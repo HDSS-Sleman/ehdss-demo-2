@@ -1,0 +1,98 @@
+<ion-view view-title="Literasi Kesehatan">
+    <div class="bar bar-subheader bar-calm">
+        <h2 class="title left nama">Formulir kuesioner kesehatan digital</h2>
+    </div>
+    <ion-content class="pss has-subheader" style="padding-bottom: 10px">
+      <form name="myForm">
+        <ion-list>
+            <div class="item item-divider item-text-wrap">
+                Bagian 4. Pengetahuan tentang sehat dan sakit
+            </div>
+            
+            <div class="item item-text-wrap item-row">
+                <div class="row">
+                    <div class="input-label-home">Pilih opsi yang menurut Anda paling benar untuk pertanyaan berikut.</div>
+                </div>
+            </div>
+
+            <div class="big-screen">
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label"><b>1.</b> Manakah dari antara pilihan berikut yang merupakan salah satu fungsi utama hati? </div>
+                        <div class="col col-50 col-center">
+                            <select class="pull-right" name="pss1" ng-model="pss.pss1" required>
+                                <option value="" selected></option>
+                                <option value="a">a. Membersihkan racun pada darah</option>
+                                <option value="b">b. Memberikan oksigen pada darah</option>
+                                <option value="c">c. Memproduksi urin</option>
+                                <option value="d">d. Biar saya tanyakan kepada orang lain karena saya tidak tahu</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label"><b>2.</b> Nefrologi adalah ilmu tentang? </div>
+                        <div class="col col-50 col-center">
+                            <select class="pull-right" name="pss2" ng-model="pss.pss2" required>
+                                <option value="" selected></option>
+                                <option value="a">a. Penyakit hati</option>
+                                <option value="b">b. Penyakit ginjal</option>
+                                <option value="c">c. Penyakit saraf</option>
+                                <option value="d">d. Biar saya tanyakan kepada orang lain karena saya tidak tahu </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="small-screen">
+                <label class="item item-text-wrap">
+                    <span class="input-label full">
+                        <b>1.</b> Manakah dari antara pilihan berikut yang merupakan salah satu fungsi utama hati? 
+                    </span >
+                    <div class="button-bar right">
+                        <select style="max-width: 200px" class="pull-right" name="pss1" ng-model="pss.pss1" required>
+                            <option value="" selected></option>
+                            <option value="a">a. Membersihkan racun pada darah</option>
+                            <option value="b">b. Memberikan oksigen pada darah</option>
+                            <option value="c">c. Memproduksi urin</option>
+                            <option value="d">d. Biar saya tanyakan kepada orang lain karena saya tidak tahu</option>
+                        </select>
+                    </div>
+                </label>
+                <label class="item item-text-wrap">
+                    <span class="input-label full">
+                        <b>2.</b> Nefrologi adalah ilmu tentang? 
+                    </span >
+                    <div class="button-bar right">
+                        <select style="max-width: 200px" class="pull-right" name="pss2" ng-model="pss.pss2" required>
+                            <option value="" selected></option>
+                            <option value="a">a. Penyakit hati</option>
+                            <option value="b">b. Penyakit ginjal</option>
+                            <option value="c">c. Penyakit saraf</option>
+                            <option value="d">d. Biar saya tanyakan kepada orang lain karena saya tidak tahu </option>
+                        </select>
+                    </div>
+                </label>
+            </div>
+                
+            
+        </ion-list>
+        
+      </form>
+        <!-- Buttons-->
+        <div class="item-group">
+            <button class="button simpan button-positive pull-left" ng-click="save('pkl')" >
+                <i class="icon ion-arrow-left-c"></i>Kembali
+            </button>
+            <button ng-if="AllowSave()" class="button simpan button-positive pull-right" ng-click="save('pst')">
+                Lanjut<i class="icon ion-arrow-right-c"></i>
+            </button>
+        </div>
+
+        <!-- Buttons-->
+    </ion-content>
+</ion-view>
+
+

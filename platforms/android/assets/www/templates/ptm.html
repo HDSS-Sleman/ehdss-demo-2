@@ -1,0 +1,499 @@
+<ion-view view-title="Riwayat Penyakit Tidak Menular">
+  <div class="bar bar-subheader bar-calm" ng-show="hipertensi">
+    <h2 class="title left">A. Hipertensi / Tekanan Darah Tinggi / Darah Tinggi</h2>
+  </div>
+  <div class="bar bar-subheader bar-assertive" ng-show="diabetes">
+    <h2 class="title left">B. Diabetes Mellitus / Kencing Manis / Gula</h2>
+  </div>
+  <div class="bar bar-subheader bar-dark" ng-show="stroke">
+    <h2 class="title left">C. Stroke/Lumpuh Separuh</h2>
+  </div>
+  <div class="bar bar-subheader bar-balanced" ng-show="jantung">
+    <h2 class="title left">D. Jantung Koroner</h2>
+  </div>
+  <div class="bar bar-subheader bar-energized" ng-show="kanker">
+    <h2 class="title left">E. Kanker</h2>
+  </div>
+  <div class="bar bar-subheader bar-royal" ng-show="asma">
+    <h2 class="title left">F. Asma / Bengek / Mengi dan Penyakit Paru Obstruktif Kronik (PPOK)</h2>
+  </div>
+  <div class="bar bar-subheader bar-calm" ng-show="cedera">
+    <h2 class="title left">G. Cedera</h2>
+  </div>
+  <div class="bar bar-subheader bar-dark" ng-show="lainnya">
+    <h2 class="title left">H. Penyakit Tidak Menular Lainnya</h2>
+  </div>
+  <ion-content id="ptm" class="has-subheader ptm">
+    <ion-list ng-show="hipertensi">
+      <label class="item item-text-wrap">
+        <span class="input-label full">
+        <b>PTM01.</b> Apakah ada anggota keluarga yang pernah terdiagnosis hipertensi
+            oleh tenaga kesehatan (dokter,perawat,bidan)?</span >
+        <div class="button-bar right">
+            <ion-radio name="ptm.ptm01" ng-model="ptm.ptm01" ng-value="1">Ya</ion-radio>
+            <ion-radio name="ptm.ptm01" ng-model="ptm.ptm01" ng-value="2">Tidak</ion-radio>
+            <ion-radio name="ptm.ptm01" ng-model="ptm.ptm01" ng-value="98">Tidak Tahu</ion-radio>
+        </div>
+      </label>
+
+      <div class="item-group" ng-if="(ptm.ptm01==1)">
+          <div class="table table-bordered table-striped">
+              <div class="row header">
+                  <div class="col col-10 text-center">No ART</div>
+                  <div class="col col-30 nama">Nama (umur)</div>
+                  <div class="col col-10 text-center">JK</div>
+                  <div class="col">Pilih ART</div>
+              </div>
+              <div class="row" ng-repeat="d in dataART">
+                  <div class="col col-10 text-center">{{d._noArt}}</div>
+                  <div class="col col-30 nama">{{d._nama}} ({{d.umur}})</div>
+                  <div class="col col-10 text-center">{{d._jk}}</div>
+                  <div class="col">
+                      <select ng-model="ptm.ptm02[d.idart]" >
+                          <option value="" selected></option>
+                          <option value="1">1. Pengobatan medis</option>
+                          <option value="2">2. Pengobatan tradisional</option>
+                          <option value="3">3. Pengobatan medis &amp; tradisional</option>
+                          <option value="4">4. Tidak diobati</option>
+                          <option value="98">98. Tidak tahu</option>
+                      </select>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </ion-list>
+
+    <ion-list ng-show="diabetes">
+        <label class="item item-text-wrap">
+        <span class="input-label full">
+            <b>PTM03.</b> Apakah ada anggota keluarga yang pernah terdiagnosis
+            diabetes mellitus oleh tenaga kesehatan (dokter,perawat,bidan)?</span >
+            <div class="button-bar right">
+                <ion-radio name="ptm.ptm03" ng-model="ptm.ptm03" ng-value="1">Ya</ion-radio>
+                <ion-radio name="ptm.ptm03" ng-model="ptm.ptm03" ng-value="2">Tidak</ion-radio>
+                <ion-radio name="ptm.ptm03" ng-model="ptm.ptm03" ng-value="98">Tidak Tahu</ion-radio>
+            </div>
+        </label>
+        <div class="item-group" ng-if="(ptm.ptm03==1)">
+            <div class="table table-bordered table-striped">
+                <div class="row header">
+                    <div class="col col-10 text-center">No ART</div>
+                    <div class="col col-30 nama">Nama (umur)</div>
+                    <div class="col col-10 text-center">JK</div>
+                    <div class="col">Pilih ART</div>
+                </div>
+                <div class="row" ng-repeat="d in dataART">
+                    <div class="col col-10 text-center">{{d._noArt}}</div>
+                    <div class="col col-30 nama">{{d._nama}} ({{d.umur}})</div>
+                    <div class="col col-10 text-center">{{d._jk}}</div>
+                  <div class="col">
+                    <select ng-model="ptm.ptm04[d.idart]" >
+                        <option value="" selected></option>
+                        <option value="1">1. Pengobatan medis</option>
+                        <option value="2">2. Pengobatan tradisional</option>
+                        <option value="3">3. Pengobatan medis &amp; tradisional</option>
+                        <option value="4">4. Tidak diobati</option>
+                        <option value="98">98. Tidak tahu</option>
+                    </select>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </ion-list>
+
+    <ion-list ng-show="stroke">
+        <label class="item item-text-wrap">
+            <span class="input-label full">
+                    <b>PTM05.</b> Apakah ada anggota keluarga yang pernah terdiagnosis
+                    stroke oleh tenaga kesehatan (dokter,perawat,bidan)?</span>
+        <div class="button-bar right">
+          <ion-radio name="ptm.ptm05" ng-model="ptm.ptm05" ng-value="1">Ya</ion-radio>
+          <ion-radio name="ptm.ptm05" ng-model="ptm.ptm05" ng-value="2">Tidak</ion-radio>
+          <ion-radio name="ptm.ptm05" ng-model="ptm.ptm05" ng-value="98">Tidak Tahu</ion-radio>
+        </div>
+      </label>
+      <div class="item-group" ng-if="(ptm.ptm05==1)">
+        <div class="table table-bordered table-striped">
+          <div class="row header">
+            <div class="col col-10 text-center">No ART</div>
+            <div class="col col-30 nama">Nama (umur)</div>
+            <div class="col col-10 text-center">JK</div>
+            <div class="col">Pilih ART</div>
+          </div>
+          <div class="row" ng-repeat="d in dataART">
+            <div class="col col-10 text-center">{{d._noArt}}</div>
+            <div class="col col-30 nama">{{d._nama}} ({{d.umur}})</div>
+            <div class="col col-10 text-center">{{d._jk}}</div>
+            <div class="col">
+              <select ng-model="ptm.ptm06[d.idart]" >
+                <option value="" selected></option>
+                <option value="1">1. Pengobatan medis</option>
+                <option value="2">2. Pengobatan tradisional</option>
+                <option value="3">3. Pengobatan medis &amp; tradisional</option>
+                <option value="4">4. Tidak diobati</option>
+                <option value="98">98. Tidak tahu</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ion-list>
+
+    <ion-list ng-show="jantung">
+      <label class="item item-text-wrap">
+        <span class="input-label full">
+                <b>PTM07.</b> Apakah pernah ada keluarga yang meninggal
+                 mendadak (terutama berusia diatas 40 tahun)?
+            </span >
+            <div class="button-bar right">
+                <ion-radio name="ptm.ptm07" ng-model="ptm.ptm07" ng-value="1">Ya</ion-radio>
+                <ion-radio name="ptm.ptm07" ng-model="ptm.ptm07" ng-value="2">Tidak</ion-radio>
+                <ion-radio name="ptm.ptm07" ng-model="ptm.ptm07" ng-value="98">Tidak Tahu</ion-radio>
+            </div>
+        </label>
+        <label class="item item-text-wrap">
+            <span class="input-label full">
+            <b>PTM08.</b> Apakah ada keluarga yang pernah dirawat di rumah sakit
+            karena sakit dada kiri yang sangat hebat?</span >
+            <div class="button-bar right">
+                <ion-radio name="ptm.ptm08" ng-model="ptm.ptm08" ng-value="1">Ya</ion-radio>
+                <ion-radio name="ptm.ptm08" ng-model="ptm.ptm08" ng-value="2">Tidak</ion-radio>
+                <ion-radio name="ptm.ptm08" ng-model="ptm.ptm08" ng-value="98">Tidak Tahu</ion-radio>
+            </div>
+        </label>
+        <label class="item item-text-wrap">
+        <span class="input-label full">
+            <b>PTM09.</b> Apakah ada anggota rumah tangga yang pernah terdiagnosis
+            sakit jantung oleh tenaga medis (dokter, perawat, bidan)?</span >
+            <div class="button-bar right">
+                <ion-radio name="ptm.ptm09" ng-model="ptm.ptm09" ng-value="1">Ya</ion-radio>
+                <ion-radio name="ptm.ptm09" ng-model="ptm.ptm09" ng-value="2">Tidak</ion-radio>
+                <ion-radio name="ptm.ptm09" ng-model="ptm.ptm09" ng-value="98">Tidak Tahu</ion-radio>
+            </div>
+        </label>
+        <div class="item-group" ng-if="ptm.ptm09==1">
+            <div class="table table-bordered table-striped">
+                <div class="row header">
+                    <div class="col col-10 text-center">No ART</div>
+                    <div class="col col-30 nama">Nama (umur)</div>
+                    <div class="col col-10 text-center">JK</div>
+                    <div class="col">Pilih ART</div>
+                </div>
+                <div class="row" ng-repeat="d in dataART">
+                    <div class="col col-10 text-center">{{d._noArt}}</div>
+                    <div class="col col-30 nama">{{d._nama}} ({{d.umur}})</div>
+                    <div class="col col-10 text-center">{{d._jk}}</div>
+                    <div class="col" ng-if="ptm.ptm09==1">
+                        <select ng-model="ptm.ptm10[d.idart]" >
+                            <option value="" selected></option>
+                            <option value="1">1. Pengobatan medis</option>
+                            <option value="2">2. Pengobatan tradisional</option>
+                            <option value="3">3. Pengobatan medis &amp; tradisional</option>
+                            <option value="4">4. Tidak diobati</option>
+                            <option value="98">98. Tidak tahu</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-list>
+
+    <ion-list ng-show="kanker">
+        <label class="item item-text-wrap">
+            <span class="input-label full">
+                <b>PTM11.</b> Apakah ada anggota rumah tangga yang pernah terdiagnosis
+                kanker oleh tenaga kesehatan (dokter, perawat, bidan)?</span >
+            <div class="button-bar right">
+                <ion-radio name="ptm.ptm11" ng-model="ptm.ptm11" ng-value="1">Ya</ion-radio>
+                <ion-radio name="ptm.ptm11" ng-model="ptm.ptm11" ng-value="2">Tidak</ion-radio>
+                <ion-radio name="ptm.ptm11" ng-model="ptm.ptm11" ng-value="98">Tidak Tahu</ion-radio>
+            </div>
+        </label>
+        <div class="item-group" ng-if="(ptm.ptm11==1)">
+            <div class="table table-bordered table-striped">
+                <div class="row header">
+                    <div class="col col-10 text-center">No ART</div>
+                    <div class="col col-30 nama">Nama (umur)</div>
+                    <div class="col col-10 text-center">JK</div>
+                    <div class="col">Jenis Kanker</div>
+                    <div class="col">Cara pengobatan</div>
+                </div>
+                <div class="row" ng-repeat="d in dataART">
+                    <div class="col col-10 text-center">{{d._noArt}}</div>
+                    <div class="col col-30 nama">{{d._nama}} ({{d.umur}})</div>
+                    <div class="col col-10 text-center">{{d._jk}}</div>
+                    <div class="col">
+                        <select ng-model="ptm.ptm12a[d.idart]" >
+                            <option value="" selected></option>
+                            <option value="1">1. Kanker leher rahim</option>
+                            <option value="2">2. Kanker payudara</option>
+                            <option value="3">3. Kanker prostat</option>
+                            <option value="4">4. Kanker kolorektal</option>
+                            <option value="5">5. Kanker paru &amp; bronkus</option>
+                            <option value="6">6. Kanker nasofaring</option>
+                            <option value="7">7. Kanker getah bening</option>
+                            <option value="8">8. Kanker darah/leukimia</option>
+                            <option value="95">95. Kanker lainnya</option>
+                            <option value="98">98. Tidak tahu</option>
+                        </select>
+                        <input ng-if="ptm.ptm12a[d.idart]==95" class="text-left" type="text" ng-model="ptm.ptm12b[d.idart]">
+                    </div>
+
+                    <div class="col">
+                        <select ng-model="ptm.ptm13[d.idart]" >
+                            <option value="" selected></option>
+                            <option value="1">1. Pengobatan medis</option>
+                            <option value="2">2. Pengobatan tradisional</option>
+                            <option value="3">3. Pengobatan medis &amp; tradisional</option>
+                            <option value="4">4. Tidak diobati</option>
+                            <option value="98">98. Tidak tahu</option>
+                        </select>
+                    </div>
+              </div>
+          </div>
+      </div>
+    </ion-list>
+
+    <ion-list ng-show="asma">
+        <label class="item item-text-wrap">
+        <span class="input-label full">
+          <b>PTM14.</b> Apakah ada anggota rumah tangga
+          yang pernah mengalami asma/bengek/mengi/PPOK?</span >
+            <div class="button-bar right">
+                <ion-radio name="ptm.ptm14" ng-model="ptm.ptm14" ng-value="1">Ya</ion-radio>
+                <ion-radio name="ptm.ptm14" ng-model="ptm.ptm14" ng-value="2">Tidak</ion-radio>
+                <ion-radio name="ptm.ptm14" ng-model="ptm.ptm14" ng-value="98">Tidak Tahu</ion-radio>
+            </div>
+        </label>
+        <div class="item-group" ng-if="ptm.ptm14==1">
+            <div class="table table-bordered table-striped">
+                <div class="row header">
+                    <div class="col col-10 text-center">No ART</div>
+                    <div class="col col-30 nama">Nama (umur)</div>
+                    <div class="col col-10 text-center">JK</div>
+                    <div class="col col-10 text-center">Pilih</div>
+                    <div class="col col-10">Edit</div>
+                </div>
+                <div class="row" ng-repeat="d in dataART">
+                    <div class="col col-10 text-center">{{d._noArt}}</div>
+                    <div class="col col-30 nama">{{d._nama}} ({{d.umur}})</div>
+                    <div class="col col-10 text-center">{{d._jk}}</div>
+                    <div class="col col-10 text-center">
+                        <!-- <ion-checkbox ng-model="ptm.ptm14ls[d.idart]"></ion-checkbox> -->
+                        <select ng-model="ptm.ptm14ls[d.idart]" >
+                            <option value="" selected></option>
+                            <option value="1">1. Ya</option>
+                            <option value="2">2. Tidak</option>
+                        </select>
+                    </div>
+                    <div class="col col-10">
+                        <button ng-if="ptm.ptm14ls[d.idart] == 1" ng-click="editPtm(d,'asma')"
+                          class="button button-small button-balanced">
+                          <i class="icon ion-edit"></i>
+                         </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-list>
+
+    <ion-list ng-show="cedera">
+        <div class="item item-text-wrap item-row">Selanjutnya saya akan akan menanyakan terkait penyakit tidak menular khususnya cedera yang dialami anggota rumah tangga ini seperti jatuh, kepleset, berantem, kecelakaan motor, kecelakaan kerja, mulai yang ringan diobati sendiri sampai yang dirawat selama 1 tahun terakhir. Kami tidak menanyakan siapa yang salah/benar atau semestinya bagaimana terkait cedera yang dialami oleh karena itu kami hanya akan mendata hal-hal mendasar terkait cedera yang dialami sehingga bapak/ibu tidak perlu khawatir.
+        </div>
+        <label class="item item-text-wrap">
+            <span class="input-label full">
+            <b>PTM20.</b> Dalam 12 bulan terakhir apakah anggota rumah tangga pernah
+            mengalami peristiwa (seperti kecelakaan, kekerasan, jatuh) yang
+            mengakibatkan cedera sehingga kegiatan sehari-hari terganggu ? </span>
+            <div class="button-bar right">
+                <ion-radio name="ptm.ptm20" ng-model="ptm.ptm20" ng-value="1">Ya</ion-radio>
+                <ion-radio name="ptm.ptm20" ng-model="ptm.ptm20" ng-value="2">Tidak</ion-radio>
+                <ion-radio name="ptm.ptm20" ng-model="ptm.ptm20" ng-value="98">Tidak Tahu</ion-radio>
+            </div>
+        </label>
+            <div class="item-group" ng-if="ptm.ptm20==1">
+                <div class="table table-bordered table-striped">
+                    <div class="row header">
+                        <div class="col col-10 text-center">No ART</div>
+                        <div class="col col-30 nama">Nama (umur)</div>
+                        <div class="col col-10 text-center">JK</div>
+                        <div class="col col-10 text-center">Pilih</div>
+                        <div class="col col-10">Edit</div>
+                    </div>
+                    <div class="row" ng-repeat="d in dataART">
+                        <div class="col col-10 text-center">{{d._noArt}}</div>
+                        <div class="col col-30 nama">{{d._nama}} ({{d.umur}})</div>
+                        <div class="col col-10 text-center">{{d._jk}}</div>
+                        <div class="col col-10 text-center">
+                            <!-- <ion-checkbox ng-model="ptm.ptm20ls[d.idart]"
+                                ng-change="checkPtm20(d,ptm.ptm20ls[d.idart])"></ion-checkbox> -->
+                                <select ng-model="ptm.ptm20ls[d.idart]" ng-change="checkPtm20(d,ptm.ptm20ls[d.idart])">
+                                    <option value="" selected></option>
+                                    <option value="1">1. Ya</option>
+                                    <option value="2">2. Tidak</option>
+                                </select>
+                        </div>
+                        <div class="col col-10">
+                            <button ng-if="ptm.ptm20ls[d.idart] == 1" ng-click="editPtm(d,'cedera',ptm.ptm20ls[d.idart])"
+                              class="button button-small button-balanced">
+                              <i class="icon ion-edit"></i>
+                             </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </ion-list>
+
+    <ion-list ng-show="lainnya">
+        <label class="item item-text-wrap">
+            <span class="input-label full">
+                <b>PTM30.</b> Apakah ada anggota keluarga yang pernah terdiagnosis sakit
+                oleh tenaga kesehatan (dokter,perawat,bidan) menderita penyakit tidak menular lainnya selain yang telah disebutkan (misalnya : gagal jantung, penyakit jantung rematik, kelainan katup jantung, sakit jantung bawaan, inflamasi jantung, aterosklerosis, aritmia / irama jantung tidak normal, gagal ginjal) dalam pertanyaan sebelumnya?</span >
+            <div class="button-bar right">
+                <ion-radio name="ptm30" ng-model="ptm.ptm30" ng-value="1">Ya</ion-radio>
+                <ion-radio name="ptm30" ng-model="ptm.ptm30" ng-value="2">Tidak</ion-radio>
+                <ion-radio name="ptm30" ng-model="ptm.ptm30" ng-value="98">Tidak Tahu</ion-radio>
+            </div>
+        </label>
+        <label class="item item-text-wrap">
+            <span class="input-label full">
+                <b>PTM33.</b> Apakah ada ART yang memiliki benjolan tidak wajar ?</span >
+            <div class="button-bar right">
+                <ion-radio name="ptm33" ng-model="ptm.ptm33" ng-value="1">Ya</ion-radio>
+                <ion-radio name="ptm33" ng-model="ptm.ptm33" ng-value="2">Tidak</ion-radio>
+                <ion-radio name="ptm33" ng-model="ptm.ptm33" ng-value="98">Tidak Tahu</ion-radio>
+            </div>
+        </label>
+        <label class="item item-text-wrap">
+            <span class="input-label full">
+                <b>PTM34.</b> Apakah ada ART yang mengalami penurunan
+                berat badan tidak wajar(10%) dalam 3 bulan terakhir?</span >
+            <div class="button-bar right">
+                <ion-radio name="ptm34" ng-model="ptm.ptm34" ng-value="1">Ya</ion-radio>
+                <ion-radio name="ptm34" ng-model="ptm.ptm34" ng-value="2">Tidak</ion-radio>
+                <ion-radio name="ptm34" ng-model="ptm.ptm34" ng-value="98">Tidak Tahu</ion-radio>
+            </div>
+        </label>
+          <div class="item-group" ng-if="ptm.ptm30==1||ptm.ptm33==1||ptm.ptm34==1">
+              <div class="table table-bordered table-striped">
+                    <div class="row header">
+                        <div class="col col-10 text-center">No ART</div>
+                        <div class="col col-30 nama">Nama ART (umur)</div>
+                        <div class="col col-30 text-center" ng-if="ptm.ptm30==1">Jenis Penyakit</div>
+                        <div class="col" ng-if="ptm.ptm30==1">Cara Pengobatan</div>
+                        <div class="col col-10 text-center" ng-if="ptm.ptm33==1">PTM33</div>
+                        <div class="col col-10 text-center" ng-if="ptm.ptm34==1">PTM34</div>
+                    </div>
+                    <div class="row" ng-repeat="d in dataART">
+                      <div class="col col-10">{{d._noArt}}</div>
+                      <div class="col col-30 nama">{{d._nama}} ({{d.umur}})</div>
+                      <div class="col col-30" ng-if="ptm.ptm30==1">
+                          <input type="text" ng-model="ptm.ptm31[d.idart]"/>
+                      </div>
+                      <div class="col" ng-if="ptm.ptm30==1">
+                        <select ng-model="ptm.ptm32[d.idart]" >
+                          <option value="1">1. Pengobatan Medis</option>
+                          <option value="2">2. Pengobatan Tradisional</option>
+                          <option value="3">3. Pengobatan Medis &amp; Tradisional</option>
+                          <option value="4">4. Tidak diobati</option>
+                          <option value="98">98. Tidak Tahu</option>
+                        </select>
+                      </div>
+                      <div class="col col-10" ng-if="ptm.ptm33==1">
+                        <select ng-model="ptm.ptm33ls[d.idart]" >
+                          <option value="1">1. Ya</option>
+                          <option value="2">2. Tidak</option>
+                          <option value="98">98. Tidak Tahu</option>
+                        </select>
+                      </div>
+                      <div class="col col-10" ng-if="ptm.ptm34==1">
+                        <select ng-model="ptm.ptm34ls[d.idart]" >
+                          <option value="1">1. Ya</option>
+                          <option value="2">2. Tidak</option>
+                          <option value="98">98. Tidak Tahu</option>
+                        </select>
+                      </div>
+                    </div>
+                </div>
+                </div>
+    </ion-list>
+
+    <!--Buttons-->
+    <div class="item-group" ng-if="hipertensi && checkAllowSave('hipertensi','ptm01','ptm02')">
+        <button  class="button simpan button-calm pull-right" ng-click="go('diabetes','hipertensi')">
+        Selanjutnya (Diabetes)<i class="icon ion-arrow-right-c"></i>
+        </button>
+    </div>
+    <div class="item-group" ng-if="diabetes">
+        <button ng-if="checkAllowSave('diabetes','ptm03','ptm04')"
+            class="button simpan button-calm pull-right" ng-click="go('stroke','diabetes')">
+            Selanjutnya (Stroke)<i class="icon ion-arrow-right-c"></i>
+        </button>
+        <button  class="button simpan button-calm" ng-click="goBack('hipertensi','diabetes')">
+            <i class="icon ion-arrow-left-c"></i>Sebelumnya (Hipertensi)
+        </button>
+    </div>
+    <div class="item-group" ng-if="stroke">
+        <button ng-if="checkAllowSave('stroke','ptm05','ptm06')"
+            class="button simpan button-calm pull-right" ng-click="go('jantung','stroke')">
+            Selanjutnya (Jantung Koroner)<i class="icon ion-arrow-right-c"></i>
+        </button>
+        <button  class="button simpan button-calm" ng-click="goBack('diabetes','stroke')">
+            <i class="icon ion-arrow-left-c"></i>Sebelumnya (Diabetes)
+        </button>
+    </div>
+    <div class="item-group" ng-if="jantung">
+        <button ng-if="jantungAllowSave()"
+            class="button simpan button-calm pull-right" ng-click="go('kanker','jantung')">
+            Selanjutnya (Kanker)<i class="icon ion-arrow-right-c"></i>
+        </button>
+        <button  class="button simpan button-calm" ng-click="goBack('stroke','jantung')">
+            <i class="icon ion-arrow-left-c"></i>Sebelumnya (Stroke)
+        </button>
+    </div>
+    <div class="item-group" ng-if="kanker">
+        <button ng-if="kankerAllowSave()"
+            class="button simpan button-calm pull-right" ng-click="go('asma','kanker')">
+            Selanjutnya (Asma)<i class="icon ion-arrow-right-c"></i>
+        </button>
+        <button class="button simpan button-calm" ng-click="goBack('jantung','kanker')">
+            <i class="icon ion-arrow-left-c"></i>Sebelumnya (Jantung Koroner)
+        </button>
+    </div>
+    <div class="item-group" ng-if="asma">
+        <button ng-show="asmaAllowSave() && ptm.ptm14" class="button simpan button-calm pull-right" ng-click="go('cedera','asma')">
+            Selanjutnya (Cedera)<i class="icon ion-arrow-right-c"></i>
+        </button>
+        <button class="button simpan button-calm" ng-click="goBack('kanker','asma')">
+            <i class="icon ion-arrow-left-c"></i>Sebelumnya (Kanker)
+        </button>
+    </div>
+    <div class="item-group" ng-if="cedera && !j_siklus.s7">
+        <button ng-show="cederaAllowSave() && ptm.ptm20" class="button simpan button-calm pull-right" ng-click="go('lainnya','cedera')">
+            Selanjutnya (PTM Lainnya)<i class="icon ion-arrow-right-c"></i>
+        </button>
+        <button class="button simpan button-calm" ng-click="goBack('asma','cedera')">
+            <i class="icon ion-arrow-left-c"></i>Sebelumnya (Asma)
+        </button>
+    </div>
+
+    <div class="hint-status"><span>Silahkan gunakan tombol Laporan Wawancaara jika sudah ada data yang tercatat dan wawancara berhenti di tengah jalan</span></div>
+    <div class="item-group" ng-if="cedera && j_siklus.s7"> <!-- siklus 7 -->
+        <button class="button simpan button-assertive" ng-click="save(true,'utama')">
+            <i class="icon ion-arrow-left-c"></i> Laporan Wawancara
+        </button>
+        <button ng-show="cederaAllowSave() && ptm.ptm20" class="button simpan button-dark pull-right" ng-click="save(true)">
+           <i class="icon ion-archive"></i> Lanjut ke AKK
+        </button>
+    </div>
+
+    <div class="item-group" ng-if="lainnya">
+        <button ng-show="lainnyaAllowSave()" class="button simpan button-dark pull-right" ng-click="save(true)">
+           <i class="icon ion-archive"></i> Simpan
+        </button>
+        <button class="button simpan button-calm" ng-click="go('cedera','lainnya')">
+            <i class="icon ion-arrow-left-c"></i>Sebelumnya (Cedera)
+        </button>
+    </div>
+    </ion-content>
+</ion-view>

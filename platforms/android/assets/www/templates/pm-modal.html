@@ -1,0 +1,437 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-calm">
+        <h1 class="title">Penyakit Menular</h1>
+        <button class="button button-clear button-primary" ng-click="modal.hide()">Cancel</button>
+    </ion-header-bar>
+    <div class="bar bar-subheader">
+        <h2 class="title left">Nama ART : <span style="text-transform:capitalize">{{nama}} ({{umur}})</span></h2>
+    </div>
+    <ion-content class="pm has-subheader">
+        <div class="item-group">
+            <ion-list ng-show="malaria">
+                <label class="item item-text-wrap">
+                    <span class="input-label full">
+                        <b>PM05.</b> Apakah ART pernah didiagnosis menderita Malaria?
+                    </span>
+                    <div class="button-bar right">
+                        <ion-radio name="pm05" ng-model="pm.pm05[idart]" ng-value="1">Ya</ion-radio>
+                        <ion-radio name="pm05" ng-model="pm.pm05[idart]" ng-value="2">Tidak</ion-radio>
+                        <ion-radio name="pm05" ng-model="pm.pm05[idart]" ng-value="98">Tidak Tahu</ion-radio>
+                    </div>
+                </label>
+
+                <!--
+                <label class="item item-select item-text-wrap" ng-if="pm.pm05 == 1">
+                    <span class="input-label">PM06. Jenis Malaria</span>
+                    <select ng-model="pm.pm06">
+                        <option value="" selected></option>
+                        <option value="1">1. Malaria tropica (P.falciparum)</option>
+                        <option value="2">2. Malaria tertiana (P.vivax)</option>
+                        <option value="3">3. Malaria kuatana (P.malariae)</option>
+                        <option value="4">4. Malaria ovale (P.ovale)</option>
+                        <option value="98">4. Malaria ovale (P.ovale)</option>
+                    </select>
+                </label>
+                -->
+
+                <label class="item item-select item-text-wrap" ng-if="pm.pm05[idart] == 1">
+                    <span class="input-label"><b>PM07.</b> Apakah diberi pengobatan program kombinasi OAM selama 3 hari?</span>
+                    <select ng-model="pm.pm07[idart]" class="input-border">
+                        <option value="" selected></option>
+                        <option value="1">1. Ya, diminum habis dalam 3 hari</option>
+                        <option value="2">2. Ya, diminum tidak habis dalam 3 hari</option>
+                        <option value="3">3. Tidak</option>
+                        <option value="98">98. Tidak Tahu</option>
+                    </select>
+                </label>
+                <!-- <input type="text" name="pm" ng-model="pm.pm[idart]" ng-value="1"> -->
+            </ion-list>
+
+            <ion-list ng-show="tuberkolusisModal1">
+                <label class="item item-text-wrap">
+                    <span class="input-label full">
+                        <b>PM11.</b> Jika ART pernah mengalami batuk lebih dari 2 minggu, apakah batuk tersebut
+                        disertai gejala berikut
+                    </span>
+                </label>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 ">
+                            <div class="input-label">Dahak</div>
+                        </div>
+                        <div class="col col-50 ">
+                            <div class="button-bar right">
+                                <ion-radio name="pm11a" ng-model="pm.pm11a[idart]" ng-value="1">Ya</ion-radio>
+                                <ion-radio name="pm11a" ng-model="pm.pm11a[idart]" ng-value="2">Tidak</ion-radio>
+                                <ion-radio name="pm11a" ng-model="pm.pm11a[idart]" ng-value="98">Tidak Tahu</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 ">
+                            <div class="input-label ">Dahak / Dahak bercampur darah</div>
+                        </div>
+                        <div class="col col-50 ">
+                            <div class="button-bar right">
+                                <ion-radio name="pm11b" ng-model="pm.pm11b[idart]" ng-value="1">Ya</ion-radio>
+                                <ion-radio name="pm11b" ng-model="pm.pm11b[idart]" ng-value="2">Tidak</ion-radio>
+                                <ion-radio name="pm11b" ng-model="pm.pm11b[idart]" ng-value="98">Tidak Tahu</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 ">
+                            <div class="input-label ">Nafsu makan menurun</div>
+                        </div>
+                        <div class="col col-50 ">
+                            <div class="button-bar right">
+                                <ion-radio name="pm11c" ng-model="pm.pm11c[idart]" ng-value="1">Ya</ion-radio>
+                                <ion-radio name="pm11c" ng-model="pm.pm11c[idart]" ng-value="2">Tidak</ion-radio>
+                                <ion-radio name="pm11c" ng-model="pm.pm11c[idart]" ng-value="98">Tidak Tahu</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 ">
+                            <div class="input-label ">Demam</div>
+                        </div>
+                        <div class="col col-50 ">
+                            <div class="button-bar right">
+                                <ion-radio name="pm11d" ng-model="pm.pm11d[idart]" ng-value="1">Ya</ion-radio>
+                                <ion-radio name="pm11d" ng-model="pm.pm11d[idart]" ng-value="2">Tidak</ion-radio>
+                                <ion-radio name="pm11d" ng-model="pm.pm11d[idart]" ng-value="98">Tidak Tahu</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 ">
+                            <div class="input-label ">Nyeri dada</div>
+                        </div>
+                        <div class="col col-50 ">
+                            <div class="button-bar right">
+                                <ion-radio name="pm11e" ng-model="pm.pm11e[idart]" ng-value="1">Ya</ion-radio>
+                                <ion-radio name="pm11e" ng-model="pm.pm11e[idart]" ng-value="2">Tidak</ion-radio>
+                                <ion-radio name="pm11e" ng-model="pm.pm11e[idart]" ng-value="98">Tidak Tahu</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 ">
+                            <div class="input-label ">Sesak Nafas</div>
+                        </div>
+                        <div class="col col-50 ">
+                            <div class="button-bar right">
+                                <ion-radio name="pm11f" ng-model="pm.pm11f[idart]" ng-value="1">Ya</ion-radio>
+                                <ion-radio name="pm11f" ng-model="pm.pm11f[idart]" ng-value="2">Tidak</ion-radio>
+                                <ion-radio name="pm11f" ng-model="pm.pm11f[idart]" ng-value="98">Tidak Tahu</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 ">
+                            <div class="input-label ">Berkeringat malam hari tanpa kegiatan fisik</div>
+                        </div>
+                        <div class="col col-50 ">
+                            <div class="button-bar right">
+                                <ion-radio name="pm11g" ng-model="pm.pm11g[idart]" ng-value="1">Ya</ion-radio>
+                                <ion-radio name="pm11g" ng-model="pm.pm11g[idart]" ng-value="2">Tidak</ion-radio>
+                                <ion-radio name="pm11g" ng-model="pm.pm11g[idart]" ng-value="98">Tidak Tahu</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 ">
+                            <div class="input-label ">Berat badan menurun/sulit bertambah</div>
+                        </div>
+                        <div class="col col-50 ">
+                            <div class="button-bar right">
+                                <ion-radio name="pm11h" ng-model="pm.pm11h[idart]" ng-value="1">Ya</ion-radio>
+                                <ion-radio name="pm11h" ng-model="pm.pm11h[idart]" ng-value="2">Tidak</ion-radio>
+                                <ion-radio name="pm11h" ng-model="pm.pm11h[idart]" ng-value="98">Tidak Tahu</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+            </ion-list>
+
+            <ion-list ng-show="tuberkolusisModal2">
+                <label class="item item-text-wrap">
+                    <span class="input-label full"><b>PM13.</b> Jenis Pemeriksaan</span >
+                    </label>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 ">
+                            <div class="input-label ">Pemeriksaan Dahak</div>
+                        </div>
+                        <div class="col col-50 ">
+                            <div class="button-bar right">
+                                <ion-radio name="pm13a" ng-model="pm.pm13a[idart]" ng-value="1">Ya</ion-radio>
+                                <ion-radio name="pm13a" ng-model="pm.pm13a[idart]" ng-value="2">Tidak Diperiksa</ion-radio>
+                                <ion-radio name="pm13a" ng-model="pm.pm13a[idart]" ng-value="98">Tidak Tahu</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 ">
+                            <div class="input-label ">Pemeriksaan foto dada</div>
+                        </div>
+                        <div class="col col-50 ">
+                            <div class="button-bar right">
+                                <ion-radio name="pm13b" ng-model="pm.pm13b[idart]" ng-value="1">Ya</ion-radio>
+                                <ion-radio name="pm13b" ng-model="pm.pm13b[idart]" ng-value="2">Tidak Diperiksa</ion-radio>
+                                <ion-radio name="pm13b" ng-model="pm.pm13b[idart]" ng-value="98">Tidak Tahu</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+
+                <label class="item item-select item-text-wrap">
+                    <div class="input-label">Status penyakit saat ini</div>
+                    <select ng-model="pm.pm13c[idart]" class="input-border">
+                        <option value="" selected></option>
+                        <option value="1">1. Tetap sakit, dan tidak pernah mendapat Obat Anti TB (OATB)</option>
+                        <option value="2">2. Tetap sakit, pernah mendapat Obat Anti TB (OATB)</option>
+                        <option value="3">3. Sedang dalam proses pengobatan Anti TB</option>
+                        <option value="4">4. Selesai pengobatan Anti TB tetapi belum sembuh total</option>
+                        <option value="5">5. Selesai pengobatan Anti TB dan dinyatakan sembuh oleh Dokter</option>
+                        <option value="98">98. Tidak Tahu</option>
+                    </select>
+                </label>
+            </ion-list>
+
+            <ion-list ng-show="typhoid">
+                <!-- jika tidak didiagnosis, tanyakan gejala -->
+                <label class="item item-text-wrap">
+                    <span class="input-label full">
+                        <b>PM16a.</b> Dalam 1 bulan terakhir apakah ART pernah menderita sakit kepala?
+                    </span>
+                    <div class="button-bar right">
+                        <ion-radio name="pm16a" ng-model="pm.pm16a[idart]" ng-value="1">Ya</ion-radio>
+                        <ion-radio name="pm16a" ng-model="pm.pm16a[idart]" ng-value="2">Tidak</ion-radio>
+                        <ion-radio name="pm16a" ng-model="pm.pm16a[idart]" ng-value="98">Tidak Tahu</ion-radio>
+                    </div>
+                </label>
+                <label class="item item-text-wrap">
+                    <span class="input-label full">
+                        <b>PM16b.</b> Dalam 1 bulan terakhir apakah ART pernah menderita diare?
+                    </span>
+                    <div class="button-bar right">
+                        <ion-radio name="pm16b" ng-model="pm.pm16b[idart]" ng-value="1">Ya</ion-radio>
+                        <ion-radio name="pm16b" ng-model="pm.pm16b[idart]" ng-value="2">Tidak</ion-radio>
+                        <ion-radio name="pm16b" ng-model="pm.pm16b[idart]" ng-value="98">Tidak Tahu</ion-radio>
+                    </div>
+                </label>
+                <label class="item item-text-wrap">
+                    <span class="input-label full">
+                        <b>PM16c.</b> Dalam 1 bulan terakhir apakah ART pernah menderita tidak bisa BAB?
+                    </span>
+                    <div class="button-bar right">
+                        <ion-radio name="pm16c" ng-model="pm.pm16c[idart]" ng-value="1">Ya</ion-radio>
+                        <ion-radio name="pm16c" ng-model="pm.pm16c[idart]" ng-value="2">Tidak</ion-radio>
+                        <ion-radio name="pm16c" ng-model="pm.pm16c[idart]" ng-value="98">Tidak Tahu</ion-radio>
+                    </div>
+                </label>
+                <label class="item item-text-wrap">
+                    <span class="input-label full">
+                        <b>PM16d.</b> Dalam 1 bulan terakhir apakah ART pernah menderita mual?
+                    </span>
+                    <div class="button-bar right">
+                        <ion-radio name="pm16d" ng-model="pm.pm16d[idart]" ng-value="1">Ya</ion-radio>
+                        <ion-radio name="pm16d" ng-model="pm.pm16d[idart]" ng-value="2">Tidak</ion-radio>
+                        <ion-radio name="pm16d" ng-model="pm.pm16d[idart]" ng-value="98">Tidak Tahu</ion-radio>
+                    </div>
+                </label>
+                <label class="item item-text-wrap">
+                    <span class="input-label full">
+                        <b>PM16e.</b> Dalam 1 bulan terakhir apakah ART pernah menderita muntah?
+                    </span>
+                    <div class="button-bar right">
+                        <ion-radio name="pm16e" ng-model="pm.pm16e[idart]" ng-value="1">Ya</ion-radio>
+                        <ion-radio name="pm16e" ng-model="pm.pm16e[idart]" ng-value="2">Tidak</ion-radio>
+                        <ion-radio name="pm16e" ng-model="pm.pm16e[idart]" ng-value="98">Tidak Tahu</ion-radio>
+                    </div>
+                </label>
+            </ion-list>
+
+            <ion-list ng-show="diare_modal">
+                <!-- jika tidak didiagnosis, tanyakan gejala -->
+                <div ng-if="diare_modal_gejala">
+                    <label class="item item-text-wrap">
+                        <span class="input-label full">
+                            <b>PM18a.</b> Kapan gejala diare terjadi?
+                        </span>
+                        <div class="button-bar right">
+                            <ion-radio name="pm18a" ng-model="pm.pm18a[idart]" ng-value="1">Ya, dalam &le; 2 minggu terakhir</ion-radio>
+                            <ion-radio name="pm18a" ng-model="pm.pm18a[idart]" ng-value="2">Ya, &gt; 2 minggu - 1 bulan</ion-radio>
+                            <!-- <ion-radio name="pm18a" ng-model="pm.pm18a[idart]" ng-value="3">Tidak</ion-radio> -->
+                            <ion-radio name="pm18a" ng-model="pm.pm18a[idart]" ng-value="98">Tidak Tahu</ion-radio>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap">
+                        <span class="input-label full">
+                            <b>PM18b.</b> Berapa kali BAB?
+                        </span>
+                        <div class="button-bar right">
+                            <ion-radio name="pm18b" ng-model="pm.pm18b[idart]" ng-value="1"> &le; 3x/hari</ion-radio>
+                            <ion-radio name="pm18b" ng-model="pm.pm18b[idart]" ng-value="2"> 4-6x/hari</ion-radio>
+                            <ion-radio name="pm18b" ng-model="pm.pm18b[idart]" ng-value="3"> &gt; 6x/hari</ion-radio>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap">
+                        <span class="input-label full">
+                            <b>PM18c.</b> Dalam 1  bulan terakhir apakah ada ART pernah mengalami BAB dengan kotoran/tinja lembek/cair?
+                        </span>
+                        <div class="button-bar right">
+                            <ion-radio name="pm18c" ng-model="pm.pm18c[idart]" ng-value="1">Ya</ion-radio>
+                            <ion-radio name="pm18c" ng-model="pm.pm18c[idart]" ng-value="2">Tidak</ion-radio>
+                            <ion-radio name="pm18c" ng-model="pm.pm18c[idart]" ng-value="98">Tidak Tahu</ion-radio>
+                        </div>
+                    </label>
+                </div>
+                <div ng-if="diare_modal_obat">
+                    <label class="item item-text-wrap">
+                        <span class="input-label full">
+                            <b>PM19.</b> Apakah {{nama}} minum obat untuk penyakit/keluhan diare tersebut?
+                        </span>
+                        <div class="button-bar right">
+                            <ion-radio name="pm19" ng-model="pm.pm19[idart]" ng-value="1">Ya</ion-radio>
+                            <ion-radio name="pm19" ng-model="pm.pm19[idart]" ng-value="2">Tidak</ion-radio>
+                            <ion-radio name="pm19" ng-model="pm.pm19[idart]" ng-value="98">Tidak Tahu</ion-radio>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap" ng-if="pm.pm19[idart] == 1">
+                        <span class="input-label full">
+                            <b>PM19a.</b> Oralit kemasan?
+                        </span>
+                        <div class="button-bar right">
+                            <ion-radio name="pm19a" ng-model="pm.pm19a[idart]" ng-value="1">Ya</ion-radio>
+                            <ion-radio name="pm19a" ng-model="pm.pm19a[idart]" ng-value="2">Tidak</ion-radio>
+                            <ion-radio name="pm19a" ng-model="pm.pm19a[idart]" ng-value="98">Tidak Tahu</ion-radio>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap" ng-if="pm.pm19[idart] == 1">
+                        <span class="input-label full">
+                            <b>PM19b.</b> Obat anti diare?
+                        </span>
+                        <div class="button-bar right">
+                            <ion-radio name="pm19b" ng-model="pm.pm19b[idart]" ng-value="1">Ya</ion-radio>
+                            <ion-radio name="pm19b" ng-model="pm.pm19b[idart]" ng-value="2">Tidak</ion-radio>
+                            <ion-radio name="pm19b" ng-model="pm.pm19b[idart]" ng-value="98">Tidak Tahu</ion-radio>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap" ng-if="pm.pm19[idart] == 1">
+                        <span class="input-label full">
+                            <b>PM19c.</b> Obat Herbal/Tradisional?
+                        </span>
+                        <div class="button-bar right">
+                            <ion-radio name="pm19c" ng-model="pm.pm19c[idart]" ng-value="1">Ya</ion-radio>
+                            <ion-radio name="pm19c" ng-model="pm.pm19c[idart]" ng-value="2">Tidak</ion-radio>
+                            <ion-radio name="pm19c" ng-model="pm.pm19c[idart]" ng-value="98">Tidak Tahu</ion-radio>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap" ng-if="pm.pm19[idart] == 1">
+                        <span class="input-label full">
+                            <b>PM19d.</b> Obat ZINC (Khusus Untuk Balita)?
+                        </span>
+                        <div class="button-bar right">
+                            <ion-radio name="pm19d" ng-model="pm.pm19d[idart]" ng-value="1">Ya</ion-radio>
+                            <ion-radio name="pm19d" ng-model="pm.pm19d[idart]" ng-value="2">Tidak</ion-radio>
+                            <ion-radio name="pm19d" ng-model="pm.pm19d[idart]" ng-value="98">Tidak Tahu</ion-radio>
+                        </div>
+                    </label>
+                </div>
+                    
+            </ion-list>
+
+            <ion-list ng-show="hepatitis">
+                <!-- jika tidak didiagnosa petugas kesehatan, tanyakan gejala -->
+                <!-- <label class="item item-text-wrap">
+                    <span class="input-label full">
+                        <b>PM21a.</b> 1 bulan terakhir Anda pernah menderita menderita demam, lemah, gangguan saluran cerna (mual, muntah, tidak nafsu makan), nyeri pada perut kanan atas?
+                    </span>
+                    <div class="button-bar right">
+                        <ion-radio name="pm21a" ng-model="pm.pm21a[idart]" ng-value="1">Ya</ion-radio>
+                        <ion-radio name="pm21a" ng-model="pm.pm21a[idart]" ng-value="2">Tidak</ion-radio>
+                        <ion-radio name="pm21a" ng-model="pm.pm21a[idart]" ng-value="98">Tidak Tahu</ion-radio>
+                    </div>
+                </label> -->
+                <label class="item item-text-wrap">
+                    <span class="input-label full">
+                        <b>PM22a.</b> Urin berwarna air teh pekat
+                    </span>
+                    <div class="button-bar right">
+                        <ion-radio name="pm22a" ng-model="pm.pm22a[idart]" ng-value="1">Ya</ion-radio>
+                        <ion-radio name="pm22a" ng-model="pm.pm22a[idart]" ng-value="2">Tidak</ion-radio>
+                        <ion-radio name="pm22a" ng-model="pm.pm22a[idart]" ng-value="98">Tidak Tahu</ion-radio>
+                    </div>
+                </label>
+                <label class="item item-text-wrap">
+                    <span class="input-label full">
+                        <b>PM22b.</b> Mata/ kulit berwarna kuning
+                    </span>
+                    <div class="button-bar right">
+                        <ion-radio name="pm22b" ng-model="pm.pm22b[idart]" ng-value="1">Ya</ion-radio>
+                        <ion-radio name="pm22b" ng-model="pm.pm22b[idart]" ng-value="2">Tidak</ion-radio>
+                        <ion-radio name="pm22b" ng-model="pm.pm22b[idart]" ng-value="98">Tidak Tahu</ion-radio>
+                    </div>
+                </label>
+                <label class="item item-text-wrap">
+                    <span class="input-label full">
+                        <b>PM22c.</b> Diare 
+                    </span>
+                    <div class="button-bar right">
+                        <ion-radio name="pm22c" ng-model="pm.pm22c[idart]" ng-value="1">Ya</ion-radio>
+                        <ion-radio name="pm22c" ng-model="pm.pm22c[idart]" ng-value="2">Tidak</ion-radio>
+                        <ion-radio name="pm22c" ng-model="pm.pm22c[idart]" ng-value="98">Tidak Tahu</ion-radio>
+                    </div>
+                </label>
+                <label class="item item-text-wrap">
+                    <span class="input-label full">
+                        <b>PM22d.</b> Tidak bisa BAB
+                    </span>
+                    <div class="button-bar right">
+                        <ion-radio name="pm22d" ng-model="pm.pm22d[idart]" ng-value="1">Ya</ion-radio>
+                        <ion-radio name="pm22d" ng-model="pm.pm22d[idart]" ng-value="2">Tidak</ion-radio>
+                        <ion-radio name="pm22d" ng-model="pm.pm22d[idart]" ng-value="98">Tidak Tahu</ion-radio>
+                    </div>
+                </label>
+                    
+            </ion-list>
+            
+        </div>
+
+    <div class="hint-status"><span>Silahkan gunakan tombol Laporan Wawancaara jika sudah ada data yang tercatat dan wawancara berhenti di tengah jalan</span></div>
+    <div class="item-group">
+        <button class="button simpan button-assertive" ng-click="saveModal(pm,'utama')">
+            <i class="icon ion-arrow-left-c"></i> Laporan Wawancara
+        </button>
+        <button class="button simpan button-calm pull-right" ng-if="modalAllowSave()" ng-click="saveModal(pm,nama)">
+            <i class="icon ion-archive"></i> Simpan
+        </button>
+    </div>
+    </ion-content>
+</ion-modal-view>

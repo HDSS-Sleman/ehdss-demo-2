@@ -1,0 +1,251 @@
+<ion-view view-title="PRAKTIK">
+    <div class="bar bar-subheader bar-calm" ng-show="nutrisi">
+        <h2 class="title left">Nutrisi dan Pemantauan Pertumbuhan</h2>
+    </div>
+    <div class="bar bar-subheader bar-calm" ng-show="kesehatan">
+        <h2 class="title left">Kesehatan</h2>
+    </div>
+    <div class="bar bar-subheader bar-calm" ng-show="pembelajaran">
+        <h2 class="title left">Pembelajaran dan Stimulasi Dini</h2>
+    </div>
+    <div class="bar bar-subheader bar-calm" ng-show="menstimulasi">
+        <h2 class="title left">Menstimulasi Putra/Putri</h2>
+    </div>
+    <div class="bar bar-subheader bar-calm" ng-show="respon">
+        <h2 class="title left">Respon Orang tua/Pengasuh</h2>
+    </div>
+    <div class="bar bar-subheader bar-calm" ng-show="keselamatan">
+        <h2 class="title left">Keselamatan Anak</h2>
+    </div>
+    <div class="bar bar-subheader bar-calm" ng-show="mental">
+        <h2 class="title left">Kesehatan Mental</h2>
+    </div>
+    
+    <ion-content id="prk" class="has-subheader prk" style="padding-bottom: 10px">
+
+        <!-- Nutrisi dan Pemantauan Pertumbuhan -->
+        <ion-list ng-show="nutrisi">
+            <div class="item item-text-wrap item-row" ng-repeat="(key,val) in prk1List">
+                <div class="row">
+                    <div class="col col-50 col-center input-label">{{key}}. {{val}}</div>
+                    <div class="col col-50 col-center">
+                        <div class="button-bar right">
+                            <ion-radio ng-require="true" name="prk1{{key}}" ng-model="prk['prk1' + key]" ng-value="1" >Ya</ion-radio>
+                            <ion-radio ng-require="true" name="prk1{{key}}" ng-model="prk['prk1' + key]" ng-value="2" >Tidak</ion-radio>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ion-list>
+        
+        <!-- Kesehatan -->
+        <ion-list ng-show="kesehatan">
+            <div class="item item-text-wrap item-row" ng-repeat="(key,val) in prk2List">
+                <div class="row">
+                    <div class="col col-50 col-center input-label">{{key}}. {{val}}</div>
+                    <div class="col col-50 col-center">
+                        <select class="pull-right" name="prk2{{key}}" ng-model="prk['prk2' + key]" required>
+                            <option value="" selected></option>
+                            <option ng-repeat="(key2,val2) in optionList" value="{{key2}}">{{key2}}. {{val2}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </ion-list>
+
+        <!-- Pembelajaran dan Stimulasi Dini -->
+        <ion-list ng-show="pembelajaran">
+            <div class="item item-text-wrap item-row" ng-repeat="(key,val) in prk31List">
+                <div class="row">
+                    <div class="col col-50 col-center input-label">{{key}}. {{val}}</div>
+                    <div class="col col-50 col-center">
+                        <div class="button-bar right">
+                            <ion-radio ng-require="true" name="prk3{{key}}" ng-model="prk['prk3' + key]" ng-value="1" >Ya</ion-radio>
+                            <ion-radio ng-require="true" name="prk3{{key}}" ng-model="prk['prk3' + key]" ng-value="2" >Tidak</ion-radio>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item item-text-wrap item-row" ng-repeat="(key,val) in prk32List">
+                <div class="row">
+                    <div class="col col-50 col-center input-label">{{key}}. {{val}}</div>
+                    <div class="col col-50 col-center">
+                        <select class="pull-right" name="prk3{{key}}" ng-model="prk['prk3' + key]" required>
+                            <option value="" selected></option>
+                            <option ng-repeat="(key2,val2) in optionList" value="{{key2}}">{{key2}}. {{val2}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </ion-list>
+
+        <!-- menstimulasi putra/putri Ibu untuk  -->
+        <ion-list ng-show="menstimulasi">
+             <div class="item item-text-wrap item-row">
+                <div class="row">
+                    <div class="col col-center input-label">Seberapa sering Ibu menstimulasi putra/putri Ibu untuk :</div>
+                </div>
+            </div>
+            <div class="item item-text-wrap item-row" ng-repeat="(key,val) in prk6List">
+                <div class="row">
+                    <div class="col col-50 col-center input-label">{{key}}. {{val}}</div>
+                    <div class="col col-50 col-center">
+                        <select class="pull-right" name="prk6{{key}}" ng-model="prk['prk6' + key]" required>
+                            <option value="" selected></option>
+                            <option ng-repeat="(key2,val2) in optionList" value="{{key2}}">{{key2}}. {{val2}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </ion-list>
+
+        <!-- Respon Orang tua/Pengasuh Anak -->
+        <ion-list ng-show="respon">
+            <div class="item item-text-wrap item-row">
+                <div class="row">
+                    <div class="col col-50 col-center input-label">a. Jika putra/putri Ibu terlihat sakit, seberapa sering Ibu memeriksakan putra/putri Ibu ke petugas atau fasilitas kesehatan? </div>
+                    <div class="col col-50 col-center">
+                        <select class="pull-right" name="prk4a" ng-model="prk.prk4a" required>
+                            <option value="" selected></option>
+                            <option ng-repeat="(key2,val2) in optionList" value="{{key2}}">{{key2}}. {{val2}}</option>
+                            <option value="5">5. Tidak pernah sakit</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="item item-text-wrap item-row">
+                <div class="row">
+                    <div class="col col-50 col-center input-label">b. Seberapa sering Ibu memaksa putra/putri Ibu menghabiskan porsi makan? </div>
+                    <div class="col col-50 col-center">
+                        <select class="pull-right" name="prk4b" ng-model="prk.prk4b" required>
+                            <option value="" selected></option>
+                            <option ng-repeat="(key2,val2) in optionList" value="{{key2}}">{{key2}}. {{val2}}</option>
+                            <option value="5">5. Belum diberikan MPASI</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="item item-text-wrap item-row">
+                <div class="row">
+                    <div class="col col-50 col-center input-label">c. Seberapa sering Ibu menyuapi makan putra/putri Ibu sambil bermain atau nonton TV? </div>
+                    <div class="col col-50 col-center">
+                        <select class="pull-right" name="prk4c" ng-model="prk.prk4c" required>
+                            <option value="" selected></option>
+                            <option ng-repeat="(key2,val2) in optionList" value="{{key2}}">{{key2}}. {{val2}}</option>
+                            <option value="5">5. Belum diberikan MPASI</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="item item-text-wrap item-row">
+                <div class="row">
+                    <div class="col col-50 col-center input-label">d. Seberapa sering Ibu meninggalkan putra/putri Ibu sendiri atau dalam pengasuhan anak di bawah 10 tahun, selama lebih dari satu jam? </div>
+                    <div class="col col-50 col-center">
+                        <select class="pull-right" name="prk4d" ng-model="prk.prk4d" required>
+                            <option value="" selected></option>
+                            <option ng-repeat="(key2,val2) in optionList" value="{{key2}}">{{key2}}. {{val2}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </ion-list>
+
+        <!-- Keselamatan Anak -->
+        <ion-list ng-show="keselamatan">
+            <div class="item item-text-wrap item-row" ng-repeat="(key,val) in prk51List">
+                <div class="row">
+                    <div class="col col-50 col-center input-label">{{key}}. {{val}}</div>
+                    <div class="col col-50 col-center">
+                        <select class="pull-right" name="prk5{{key}}" ng-model="prk['prk5' + key]" required>
+                            <option value="" selected></option>
+                            <option ng-repeat="(key2,val2) in optionList" value="{{key2}}">{{key2}}. {{val2}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="item item-text-wrap item-row" ng-repeat="(key,val) in prk52List">
+                <div class="row">
+                    <div class="col col-50 col-center input-label">{{key}}. {{val}}</div>
+                    <div class="col col-50 col-center">
+                        <div class="button-bar right">
+                            <ion-radio ng-require="true" name="prk5{{key}}" ng-model="prk['prk5' + key]" ng-value="1" >Ya</ion-radio>
+                            <ion-radio ng-require="true" name="prk5{{key}}" ng-model="prk['prk5' + key]" ng-value="2" >Tidak</ion-radio>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ion-list>
+
+        <!-- Kesehatan Mental  -->
+        <ion-list ng-show="mental">
+            <div class="item item-text-wrap item-row">
+                <div class="row">
+                    <div class="col col-50 col-center input-label">Seberapa sering ibu menerima saran/bimbingan dari tenaga kesehatan tentang kesehatan mental (termasuk pengasuhan anak, pertumbuhan perkembangan anak, dan nutrisi)? </div>
+                    <div class="col col-50 col-center">
+                        <select class="pull-right" name="prk7a" ng-model="prk.prk7a" required>
+                            <option value="" selected></option>
+                            <option ng-repeat="(key2,val2) in optionList" value="{{key2}}">{{key2}}. {{val2}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </ion-list>
+
+        <!-- Buttons -->
+        <div class="item-group" ng-if="nutrisi && nutrisiAllowSave()">
+            <button class="button simpan button-calm pull-right" ng-click="go('kesehatan','nutrisi')" >
+                Kesehatan<i class="icon ion-arrow-right-c"></i>
+            </button>
+        </div>
+
+        <div class="item-group" ng-if="kesehatan && kesehatanAllowSave()">
+            <button class="button simpan button-calm" ng-click="go('nutrisi','kesehatan')">
+                <i class="icon ion-arrow-left-c"></i>Nutrisi
+            </button>
+            <button class="button simpan button-calm pull-right" ng-click="go('pembelajaran','kesehatan')">
+                Pembelajaran<i class="icon ion-arrow-right-c"></i>
+            </button>
+        </div>
+        <div class="item-group" ng-if="pembelajaran && pembelajaranAllowSave()">
+            <button class="button simpan button-calm" ng-click="go('kesehatan','pembelajaran')">
+                <i class="icon ion-arrow-left-c"></i>Kesehatan
+            </button>
+            <button class="button simpan button-calm pull-right" ng-click="go('menstimulasi','pembelajaran')">
+                Menstimulasi Putra/Putri<i class="icon ion-arrow-right-c"></i>
+            </button>
+        </div>
+        <div class="item-group" ng-if="menstimulasi && menstimulasiAllowSave()">
+            <button class="button simpan button-calm" ng-click="go('pembelajaran','menstimulasi')">
+                <i class="icon ion-arrow-left-c"></i>Pembelajaran
+            </button>
+            <button class="button simpan button-calm pull-right" ng-click="go('respon','menstimulasi')">
+                Respon Orang tua/Pengasuh<i class="icon ion-arrow-right-c"></i>
+            </button>
+        </div>
+        <div class="item-group" ng-if="respon && responAllowSave()">
+            <button class="button simpan button-calm" ng-click="go('menstimulasi','respon')">
+                <i class="icon ion-arrow-left-c"></i>Menstimulasi Putra/Putri
+            </button>
+            <button class="button simpan button-calm pull-right" ng-click="go('keselamatan','respon')">
+                Keselamatan Anak<i class="icon ion-arrow-right-c"></i>
+            </button>
+        </div>
+        <div class="item-group" ng-if="keselamatan && keselamatanAllowSave()">
+            <button class="button simpan button-calm" ng-click="go('respon','keselamatan')">
+                <i class="icon ion-arrow-left-c"></i>Respon Orang tua/Pengasuh Anak
+            </button>
+            <button class="button simpan button-calm pull-right" ng-click="go('mental','keselamatan')">
+                Kesehatan Mental <i class="icon ion-arrow-right-c"></i>
+            </button>
+        </div>
+        <div class="item-group" ng-if="mental && mentalAllowSave()">
+            <button class="button simpan button-calm" ng-click="go('keselamatan','mental')">
+                <i class="icon ion-arrow-left-c"></i>Keselamatan Anak
+            </button>
+            <button class="button simpan button-dark pull-right" ng-click="save(true)">
+                <i class="icon ion-archive"></i> Simpan
+            </button>
+        </div>
+        
+    </ion-content>
+</ion-view>

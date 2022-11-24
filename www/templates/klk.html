@@ -1,0 +1,56 @@
+<ion-view view-title="Literasi Kesehatan">
+    <ion-content class="klk">
+      <form name="myForm">
+        <ion-list>
+            <div class="item item-divider item-text-wrap">
+                Dalam range sangat mudah sampai sangat sulit, Seberapa mudah Anda menilai tentang hal di bawah ini.
+            </div>
+            
+            <div class="big-screen item item-text-wrap item-row" ng-repeat="(key,val) in listKlk">
+                <div class="row">
+                    <div class="col col-50 col-center input-label"><b>{{key}}.</b> {{val}}</div>
+                    <div class="col col-50 col-center" >
+                        <select class="pull-right" name="klk{{key}}" ng-model="klk['klk'+key]" required>
+                            <option value="" selected></option>
+                            <option value="1">1. Sangat Sulit</option>
+                            <option value="2">2. Cukup Sulit</option>
+                            <option value="3">3. Cukup Mudah</option>
+                            <option value="4">4. sangat Mudah</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <label class="small-screen item item-text-wrap" ng-repeat="(key,val) in listKlk">
+                <span class="input-label full">
+                    <b>{{key}}.</b> {{val}}
+                </span >
+                <div class="button-bar right">
+                    <select class="pull-right" name="klk{{key}}" ng-model="klk['klk'+key]" required>
+                        <option value="" selected></option>
+                        <option value="1">1. Sangat Sulit</option>
+                        <option value="2">2. Cukup Sulit</option>
+                        <option value="3">3. Cukup Mudah</option>
+                        <option value="4">4. sangat Mudah</option>
+                    </select>
+                </div>
+            </label>
+            
+        </ion-list>
+        
+      </form>
+        <!-- Buttons-->
+        <div class="item-group">
+            <button class="button simpan button-positive pull-left" ng-click="save('ir')" >
+                <i class="icon ion-arrow-left-c"></i>Kembali
+            </button>
+            <button ng-if="AllowSave()" class="button simpan button-positive pull-right" ng-click="save('lkf')">
+                Lanjut<i class="icon ion-arrow-right-c"></i>
+            </button>
+        </div>
+
+        <!-- Buttons-->
+    </ion-content>
+</ion-view>
+
+

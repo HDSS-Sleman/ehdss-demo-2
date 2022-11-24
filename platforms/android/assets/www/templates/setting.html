@@ -1,0 +1,78 @@
+<ion-view view-title="Setting">
+    <ion-content class="padding setting">
+        <div class="about right">eHDSS <span class="version">version {{version}}</span></div>
+        <div class="row">
+            <div class="col col-66">
+                <div class="input-label">Tanggal Wawancara</div>
+            </div>
+            <div class="col">
+                <input type="date" min="2010-01-01" max="{{tglMaxToday}}" ng-model="mdTglWawancara" ng-change="saveTgl(mdTglWawancara)">
+            </div>
+        </div>
+
+        <h4>Data Baseline Enumerator</h4>
+        <div class="item item-divider desc item-text-wrap">
+            Silahkan masukkan nama enumerator untuk mengambil Data baseline Tahap I
+        </div>
+        <form ng-submit="getBaseline(username,password)">
+            <div class="row">
+                <div class="col col-40">
+                    <input type="text" placeholder="Enumerator" ng-model="username">
+                </div>
+                <div class="col col-40">
+                    <input type="password" placeholder="Password" ng-model="password">
+                </div>
+                <div class="col col-20">
+                    <input type="submit" value="Ambil Baseline" class="button button-small button-dark " />
+                </div>
+            </div>
+        </form>
+
+        <div class="list">
+            <div class="table table-bordered table-striped">
+                <div class="row header">
+                    <div class="col col-25">Enumerator</div>
+                    <div class="col col-25 text-center">Jml RT</div>
+                    <div class="col col-25 text-center">Jml ART</div>
+                    <div class="col col-25 text-center">Aksi</div>
+                </div>
+                <div class="row" ng-repeat="base in baselines">
+                    <div class="col col-25">{{base.username}}</div>
+                    <div class="col col-25 text-center">{{base.jml_rt | number : 0}} RT</div>
+                    <div class="col col-25 text-center">{{base.jml_art | number : 0}} ART</div>
+                    <div class="col col-25 col-row text-center">
+                        <button class="button icon-left ion-close button-assertive button-small" ng-click="delBaseline(base.username)">Hapus Baseline</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h4>Data Tersimpan Lokal (Offline)</h4>
+        <button class="button button-right icon-left ion-android-download button-small button-balanced"
+                       ng-click="backup()">Backup data</button>
+        <div class="item item-divider desc item-text-wrap">
+            Dibawah ini adalah data keluarga yang tersimpan di lokal (aplikasi). Untuk membersihkan (menghapus) data lokal yang tersimpan tersebut, silahkan memilih dari daftar keluarga berikut, dan klik tombol "Hapus Data".
+        </div>
+
+        <div class="list">
+            <div class="table table-bordered table-striped">
+                <div class="row header">
+                    <div class="col col-10">No</div>
+                    <div class="col col-10">ID RT</div>
+                    <div class="col col-20">Enumerator</div>
+                    <div class="col col-40">Modul Data Tersimpan</div>
+                    <div class="col col-20 text-center">Aksi</div>
+                </div>
+                <div class="row" ng-repeat="data in dataKels">
+                    <div class="col col-10">{{data.no}}</div>
+                    <div class="col col-10">{{data.idrt}}</div>
+                    <div class="col col-20">{{data.enumerator}}</div>
+                    <div class="col col-40">{{data.modelsDisplay}}</div>
+                    <div class="col col-20 col-row text-center">
+                        <button class="button icon-left ion-close button-assertive button-small" ng-click="delDataKel(data.idrt)">Hapus Data</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

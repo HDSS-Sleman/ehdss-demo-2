@@ -1,0 +1,1726 @@
+<ion-view view-title="Konfirmasi dan Laporan Wawancara">
+    <!-- Laporan Responden Utama -->
+    <div class="bar bar-subheader bar-calm" ng-show="tab_sms">
+        <h2 class="title left">Konfirmasi SMS</h2>
+    </div>
+    <div class="bar bar-subheader bar-balanced" ng-show="tab_wa">
+        <h2 class="title left">Konfirmasi WA</h2>
+    </div>
+    <div class="bar bar-subheader bar-energized" ng-show="tab_tlp_1">
+        <h2 class="title left">Konfirmasi Telepon #1</h2>
+    </div>
+    <div class="bar bar-subheader bar-energized" ng-show="tab_tlp_2">
+        <h2 class="title left">Konfirmasi Telepon #2</h2>
+    </div>
+    <div class="bar bar-subheader bar-energized" ng-show="tab_tlp_3">
+        <h2 class="title left">Konfirmasi Telepon #3</h2>
+    </div>
+    <div class="bar bar-subheader bar-energized" ng-show="tab_tlp_4">
+        <h2 class="title left">Konfirmasi Telepon #4</h2>
+    </div>
+    <div class="bar bar-subheader bar-energized" ng-show="tab_tlp_5">
+        <h2 class="title left">Konfirmasi Telepon #5</h2>
+    </div>
+    <div class="bar bar-subheader bar-royal" ng-show="tab_ltlp_1">
+        <h2 class="title left">Laporan Wawancara #1</h2>
+    </div>
+    <div class="bar bar-subheader bar-royal" ng-show="tab_ltlp_2">
+        <h2 class="title left">Laporan Wawancara #2</h2>
+    </div>
+    <div class="bar bar-subheader bar-royal" ng-show="tab_ltlp_3">
+        <h2 class="title left">Laporan Wawancara #3</h2>
+    </div>
+    <div class="bar bar-subheader bar-royal" ng-show="tab_ltlp_4">
+        <h2 class="title left">Laporan Wawancara #4</h2>
+    </div>
+    <div class="bar bar-subheader bar-royal" ng-show="tab_ltlp_5">
+        <h2 class="title left">Laporan Wawancara #5</h2>
+    </div>
+    <div class="bar bar-subheader bar-royal" ng-show="tab_reward">
+        <h2 class="title left">Reward</h2>
+    </div>
+
+    <!-- Laporan Responden Individu -->
+    <div class="bar bar-subheader bar-calm" ng-show="tab_sms_i">
+        <h2 class="title left">Konfirmasi SMS Individu</h2>
+    </div>
+    <div class="bar bar-subheader bar-balanced" ng-show="tab_wa_i">
+        <h2 class="title left">Konfirmasi WA Individu</h2>
+    </div>
+    <div class="bar bar-subheader bar-energized" ng-show="tab_tlp_1_i">
+        <h2 class="title left">Konfirmasi Telepon #1 Individu</h2>
+    </div>
+    <div class="bar bar-subheader bar-energized" ng-show="tab_tlp_2_i">
+        <h2 class="title left">Konfirmasi Telepon #2 Individu</h2>
+    </div>
+    <div class="bar bar-subheader bar-energized" ng-show="tab_tlp_3_i">
+        <h2 class="title left">Konfirmasi Telepon #3 Individu</h2>
+    </div>
+    <div class="bar bar-subheader bar-energized" ng-show="tab_tlp_4_i">
+        <h2 class="title left">Konfirmasi Telepon #4 Individu</h2>
+    </div>
+    <div class="bar bar-subheader bar-energized" ng-show="tab_tlp_5_i">
+        <h2 class="title left">Konfirmasi Telepon #5 Individu</h2>
+    </div>
+    <div class="bar bar-subheader bar-royal" ng-show="tab_ltlp_1_i">
+        <h2 class="title left">Laporan Wawancara #1 Individu</h2>
+    </div>
+    <div class="bar bar-subheader bar-royal" ng-show="tab_ltlp_2_i">
+        <h2 class="title left">Laporan Wawancara #2 Individu</h2>
+    </div>
+    <div class="bar bar-subheader bar-royal" ng-show="tab_ltlp_3_i">
+        <h2 class="title left">Laporan Wawancara #3 Individu</h2>
+    </div>
+    <div class="bar bar-subheader bar-royal" ng-show="tab_ltlp_4_i">
+        <h2 class="title left">Laporan Wawancara #4 Individu</h2>
+    </div>
+    <div class="bar bar-subheader bar-royal" ng-show="tab_ltlp_5_i">
+        <h2 class="title left">Laporan Wawancara #5 Individu</h2>
+    </div>
+    
+    <ion-content id="ktlp" class="cover has-subheader ktlp">
+        <!-- Form Responden Utama -->
+        <form name="myForm" novalidate>
+            <!-- Konfirmasi SMS -->
+            <ion-list ng-show="tab_sms">
+                <div class="item item-input">
+                    <div class="input-label">IDRT</div>
+                    <input type="number" ng-model="ktlp.idrt" block block-length="7" min="4001001" max="4216999" ng-disabled="true" class="input-border">
+                </div>
+                <label class="item item-input">
+                    <div class="input-label">Tanggal kontak via SMS</div>
+                    <input type="date" class="input-border" min="1916-01-01" max="{{tglWawancara}}" ng-model="ktlp.sms01">
+                </label>
+                <div class="item item-select">
+                    <div class="input-label">Jenis responden</div>
+                    <select class="input-border" ng-model="ktlp.sms02">
+                        <option value="" selected></option>
+                        <option value="1">1. Utama</option>
+                        <option value="2">2. Individu</option>
+                        
+                    </select>
+                </div>
+                <div class="item item-select">
+                    <div class="input-label">Respon responden</div>
+                    <select class="input-border" ng-model="ktlp.sms03" ng-change="status_konfirmasi_sms(ktlp.sms03)">
+                        <option value="" selected></option>
+                        <option value="1">1. Berhasil</option>
+                        <option value="2">2. Gagal (menolak berpartisipasi)</option>
+                        <option value="3">3. Tidak merespon</option>
+                    </select>
+                </div>
+                <div class="item item-input">
+                    <div class="input-label">Nama responden</div>
+                    <input type="text" ng-model="ktlp.sms04" class="input-border">
+                </div>
+                <label class="item item-input" ng-if="ktlp.sms03 == 1">
+                    <div class="input-label">Tanggal janjian</div>
+                    <input type="date" class="input-border" min="1916-01-01" max="{{tglWawancara}}" ng-model="ktlp.sms05a">
+                </label>
+                <label class="item item-input" ng-if="ktlp.sms03 == 1">
+                    <div class="input-label">Jam janjian</div>
+                    <input type="time" class="input-border" ng-model="ktlp.sms05b" placeholder="HH:mm" min="00:00" max="23:00">
+                </label>
+                <div class="item item-input item-text-wrap" ng-if="ktlp.sms03 == 2">
+                    <div class="input-label">Alasan menolak<span ng-show="myForm.sms06.$error.pattern" class="hint-status"> Tidak Boleh Ada Koma!</span></div>
+                    <textarea class="text-area pull-right input-border" name="sms06" ng-model="ktlp.sms06" ng-pattern="/^[^,]*$/" ></textarea>
+                </div>
+                <div class="item item-select" ng-if="ktlp.sms03 == 3">
+                    <div class="input-label">Alasan tidak merespon</div>
+                    <select class="input-border" ng-model="ktlp.sms07">
+                        <option value="" selected></option>
+                        <option value="1">1. Responden tidak menjawab pesan dalam 1 x 24 jam</option>
+                        <option value="2">2. Nomor tidak aktif</option>
+                        <option value="3">3. Nomor salah</option>
+                        <option value="4">4. Nomor salah sambung</option>
+                        <option value="98">98. Lainnya</option>
+                    </select>
+                </div>
+                <div class="item item-input item-text-wrap" ng-if="ktlp.sms03 == 3 && ktlp.sms07 == 98">
+                    <div class="input-label">Alasan tidak merespon lainnya<span ng-show="myForm.sms07a.$error.pattern" class="hint-status"> Tidak Boleh Ada Koma!</span></div>
+                    <textarea class="text-area pull-right input-border" name="sms07a" ng-model="ktlp.sms07a" ng-pattern="/^[^,]*$/" ></textarea>
+                </div>
+                <div class="item item-input">
+                    <div class="input-label">Status SMS</div>
+                    <input type="text" ng-model="ktlp.status_sms" class="input-border" readonly>
+                </div>
+            </ion-list>
+
+            <!-- Konfirmasi WA -->
+            <ion-list ng-show="tab_wa">
+                <div class="item item-input">
+                    <div class="input-label">IDRT</div>
+                    <input type="number" ng-model="ktlp.idrt" block block-length="7" min="4001001" max="4216999" ng-disabled="true" class="input-border">
+                </div>
+                <label class="item item-input">
+                    <div class="input-label">Tanggal kontak via WA</div>
+                    <input type="date" class="input-border" min="1916-01-01" max="{{tglWawancara}}" ng-model="ktlp.wa01">
+                </label>
+                <div class="item item-select">
+                    <div class="input-label">Jenis responden</div>
+                    <select class="input-border" ng-model="ktlp.wa02">
+                        <option value="" selected></option>
+                        <option value="1">1. Utama</option>
+                        <option value="2">2. Individu</option>
+                    </select>
+                </div>
+                <div class="item item-select">
+                    <div class="input-label">Respon responden</div>
+                    <select class="input-border" ng-model="ktlp.wa03" ng-change="status_konfirmasi_wa(ktlp.wa03)">
+                        <option value="" selected></option>
+                        <option value="1">1. Berhasil</option>
+                        <option value="2">2. Gagal (menolak berpartisipasi)</option>
+                        <option value="3">3. Tidak merespon</option>
+                    </select>
+                </div>
+                <div class="item item-input">
+                    <div class="input-label">Nama responden</div>
+                    <input type="text" ng-model="ktlp.wa04" class="input-border">
+                </div>
+                <label class="item item-input" ng-if="ktlp.wa03 == 1">
+                    <div class="input-label">Tanggal janjian</div>
+                    <input type="date" class="input-border" min="1916-01-01" max="{{tglWawancara}}" ng-model="ktlp.wa05a">
+                </label>
+                <label class="item item-input" ng-if="ktlp.wa03 == 1">
+                    <div class="input-label">Jam janjian</div>
+                    <input type="time" class="input-border" ng-model="ktlp.wa05b" placeholder="HH:mm" min="00:00" max="23:00">
+                </label>
+                <div class="item item-input item-text-wrap" ng-if="ktlp.wa03 == 2">
+                    <div class="input-label">Alasan menolak<span ng-show="myForm.wa06.$error.pattern" class="hint-status"> Tidak Boleh Ada Koma!</span></div>
+                    <textarea class="text-area pull-right input-border" name="wa06" ng-model="ktlp.wa06" ng-pattern="/^[^,]*$/" ></textarea>
+                </div>
+                <div class="item item-select" ng-if="ktlp.wa03 == 3">
+                    <div class="input-label">Alasan tidak merespon</div>
+                    <select class="input-border" ng-model="ktlp.wa07">
+                        <option value="" selected></option>
+                        <option value="1">1. Responden tidak menjawab pesan dalam 1 x 24 jam</option>
+                        <option value="2">2. Nomor tidak aktif</option>
+                        <option value="3">3. Nomor salah</option>
+                        <option value="4">4. Nomor salah sambung</option>
+                        <option value="98">98. Lainnya</option>
+                    </select>
+                </div>
+                <div class="item item-input item-text-wrap" ng-if="ktlp.wa03 == 3 && ktlp.wa07 == 98">
+                    <div class="input-label">Alasan tidak merespon lainnya<span ng-show="myForm.wa07a.$error.pattern" class="hint-status"> Tidak Boleh Ada Koma!</span></div>
+                    <textarea class="text-area pull-right input-border" name="wa07a" ng-model="ktlp.wa07a" ng-pattern="/^[^,]*$/" ></textarea>
+                </div>
+                <div class="item item-input">
+                    <div class="input-label">Status WA</div>
+                    <input type="text" ng-model="ktlp.status_wa" class="input-border" readonly>
+                </div>
+            </ion-list>
+
+            <!-- Konfirmasi Telepon #1 -->
+            <ion-list ng-show="tab_tlp_1">
+                <div class="item item-input">
+                    <div class="input-label">IDRT</div>
+                    <input type="number" ng-model="ktlp.idrt" block block-length="7" min="4001001" max="4216999" ng-disabled="true" class="input-border">
+                </div>
+                <label class="item item-input">
+                    <div class="input-label">Tanggal kontak via Telepon (telepon pertama)</div>
+                    <input type="date" class="input-border" min="1916-01-01" max="{{tglWawancara}}" ng-model="ktlp.tlp01">
+                </label>
+                <div class="item item-select">
+                    <div class="input-label">Jenis responden</div>
+                    <select class="input-border" ng-model="ktlp.tlp02">
+                        <option value="" selected></option>
+                        <option value="1">1. Utama</option>
+                        <option value="2">2. Individu</option>
+                    </select>
+                </div>
+                <div class="item item-select">
+                    <div class="input-label">Respon responden</div>
+                    <select class="input-border" ng-model="ktlp.tlp03" ng-change="status_konfirmasi_telp_1(ktlp.tlp03)">
+                        <option value="" selected></option>
+                        <option value="1">1. Berhasil</option>
+                        <option value="2">2. Gagal (menolak berpartisipasi)</option>
+                        <option value="3">3. Tidak merespon</option>
+                    </select>
+                </div>
+                <div class="item item-input">
+                    <div class="input-label">Nama responden</div>
+                    <input type="text" ng-model="ktlp.tlp04" class="input-border">
+                </div>
+                <label class="item item-input" ng-if="ktlp.tlp03 == 1">
+                    <div class="input-label">Tanggal janjian</div>
+                    <input type="date" class="input-border" min="1916-01-01" max="{{tglWawancara}}" ng-model="ktlp.tlp05a">
+                </label>
+                <label class="item item-input" ng-if="ktlp.tlp03 == 1">
+                    <div class="input-label">Jam janjian</div>
+                    <input type="time" class="input-border" ng-model="ktlp.tlp05b" placeholder="HH:mm" min="00:00" max="23:00">
+                </label>
+                <div class="item item-input item-text-wrap" ng-if="ktlp.tlp03 == 2">
+                    <div class="input-label">Alasan menolak<span ng-show="myForm.tlp06.$error.pattern" class="hint-status"> Tidak Boleh Ada Koma!</span></div>
+                    <textarea class="text-area pull-right input-border" name="tlp06" ng-model="ktlp.tlp06" ng-pattern="/^[^,]*$/" ></textarea>
+                </div>
+                <div class="item item-select" ng-if="ktlp.tlp03 == 3">
+                    <div class="input-label">Alasan tidak merespon</div>
+                    <select class="input-border" ng-model="ktlp.tlp07">
+                        <option value="" selected></option>
+                        <option value="1">1. Responden tidak menjawab pesan dalam 1 x 24 jam</option>
+                        <option value="2">2. Nomor tidak aktif</option>
+                        <option value="3">3. Nomor salah</option>
+                        <option value="4">4. Nomor salah sambung</option>
+                        <option value="98">98. Lainnya</option>
+                    </select>
+                </div>
+                <div class="item item-input item-text-wrap" ng-if="ktlp.tlp03 == 3 && ktlp.tlp07 == 98">
+                    <div class="input-label">Alasan tidak merespon lainnya<span ng-show="myForm.tlp07a.$error.pattern" class="hint-status"> Tidak Boleh Ada Koma!</span></div>
+                    <textarea class="text-area pull-right input-border" name="tlp07a" ng-model="ktlp.tlp07a" ng-pattern="/^[^,]*$/" ></textarea>
+                </div>
+                <div class="item item-input">
+                    <div class="input-label">Status telp pertama</div>
+                    <input type="text" ng-model="ktlp.status_telp_1" class="input-border" readonly>
+                </div>
+            </ion-list>
+
+            <!-- Konfirmasi Telepon #2 -->
+            <ion-list ng-show="tab_tlp_2">
+                <div class="item item-input">
+                    <div class="input-label">IDRT</div>
+                    <input type="number" ng-model="ktlp.idrt" block block-length="7" min="4001001" max="4216999" ng-disabled="true" class="input-border">
+                </div>
+                <label class="item item-input">
+                    <div class="input-label">Tanggal kontak via Telepon (telepon kedua)</div>
+                    <input type="date" class="input-border" min="1916-01-01" max="{{tglWawancara}}" ng-model="ktlp.tlp08">
+                </label>
+                <div class="item item-select">
+                    <div class="input-label">Respon responden</div>
+                    <select class="input-border" ng-model="ktlp.tlp09" ng-change="status_konfirmasi_telp_2(ktlp.tlp09)">
+                        <option value="" selected></option>
+                        <option value="1">1. Berhasil</option>
+                        <option value="2">2. Gagal (menolak berpartisipasi)</option>
+                        <option value="3">3. Tidak merespon</option>
+                    </select>
+                </div>
+                <div class="item item-input">
+                    <div class="input-label">Nama responden</div>
+                    <input type="text" ng-model="ktlp.tlp10" class="input-border">
+                </div>
+                <label class="item item-input" ng-if="ktlp.tlp09 == 1">
+                    <div class="input-label">Tanggal janjian</div>
+                    <input type="date" class="input-border" min="1916-01-01" max="{{tglWawancara}}" ng-model="ktlp.tlp11a">
+                </label>
+                <label class="item item-input" ng-if="ktlp.tlp09 == 1">
+                    <div class="input-label">Jam janjian</div>
+                    <input type="time" class="input-border" ng-model="ktlp.tlp11b" placeholder="HH:mm" min="00:00" max="23:00">
+                </label>
+                <div class="item item-input item-text-wrap" ng-if="ktlp.tlp09 == 2">
+                    <div class="input-label">Alasan menolak<span ng-show="myForm.tlp12.$error.pattern" class="hint-status"> Tidak Boleh Ada Koma!</span></div>
+                    <textarea class="text-area pull-right input-border" name="tlp12" ng-model="ktlp.tlp12" ng-pattern="/^[^,]*$/" ></textarea>
+                </div>
+                <div class="item item-select" ng-if="ktlp.tlp09 == 3">
+                    <div class="input-label">Alasan tidak merespon</div>
+                    <select class="input-border" ng-model="ktlp.tlp13">
+                        <option value="" selected></option>
+                        <option value="1">1. Responden tidak menjawab pesan dalam 1 x 24 jam</option>
+                        <option value="2">2. Nomor tidak aktif</option>
+                        <option value="3">3. Nomor salah</option>
+                        <option value="4">4. Nomor salah sambung</option>
+                        <option value="98">98. Lainnya</option>
+                    </select>
+                </div>
+                <div class="item item-input item-text-wrap" ng-if="ktlp.tlp09 == 3 && ktlp.tlp13 == 98">
+                    <div class="input-label">Alasan tidak merespon lainnya<span ng-show="myForm.tlp13a.$error.pattern" class="hint-status"> Tidak Boleh Ada Koma!</span></div>
+                    <textarea class="text-area pull-right input-border" name="tlp13a" ng-model="ktlp.tlp13a" ng-pattern="/^[^,]*$/" ></textarea>
+                </div>
+                <div class="item item-input">
+                    <div class="input-label">Status telp kedua</div>
+                    <input type="text" ng-model="ktlp.status_telp_2" class="input-border" readonly>
+                </div>
+            </ion-list>
+
+            <!-- Konfirmasi Telepon #3 -->
+            <ion-list ng-show="tab_tlp_3">
+                <div class="item item-input">
+                    <div class="input-label">IDRT</div>
+                    <input type="number" ng-model="ktlp.idrt" block block-length="7" min="4001001" max="4216999" ng-disabled="true" class="input-border">
+                </div>
+                <label class="item item-input">
+                    <div class="input-label">Tanggal kontak via Telepon (telepon ketiga)</div>
+                    <input type="date" class="input-border" min="1916-01-01" max="{{tglWawancara}}" ng-model="ktlp.tlp14">
+                </label>
+                <div class="item item-select">
+                    <div class="input-label">Respon responden</div>
+                    <select class="input-border" ng-model="ktlp.tlp15" ng-change="status_konfirmasi_telp_3(ktlp.tlp15)">
+                        <option value="" selected></option>
+                        <option value="1">1. Berhasil</option>
+                        <option value="2">2. Gagal (menolak berpartisipasi)</option>
+                        <option value="3">3. Tidak merespon</option>
+                    </select>
+                </div>
+                <div class="item item-input">
+                    <div class="input-label">Nama responden</div>
+                    <input type="text" ng-model="ktlp.tlp16" class="input-border">
+                </div>
+                <label class="item item-input" ng-if="ktlp.tlp15 == 1">
+                    <div class="input-label">Tanggal janjian</div>
+                    <input type="date" class="input-border" min="1916-01-01" max="{{tglWawancara}}" ng-model="ktlp.tlp17a">
+                </label>
+                <label class="item item-input" ng-if="ktlp.tlp15 == 1">
+                    <div class="input-label">Jam janjian</div>
+                    <input type="time" class="input-border" ng-model="ktlp.tlp17b" placeholder="HH:mm" min="00:00" max="23:00">
+                </label>
+                <div class="item item-input item-text-wrap" ng-if="ktlp.tlp15 == 2">
+                    <div class="input-label">Alasan menolak<span ng-show="myForm.tlp18.$error.pattern" class="hint-status"> Tidak Boleh Ada Koma!</span></div>
+                    <textarea class="text-area pull-right input-border" name="tlp18" ng-model="ktlp.tlp18" ng-pattern="/^[^,]*$/" ></textarea>
+                </div>
+                <div class="item item-select" ng-if="ktlp.tlp15 == 3">
+                    <div class="input-label">Alasan tidak merespon</div>
+                    <select class="input-border" ng-model="ktlp.tlp19">
+                        <option value="" selected></option>
+                        <option value="1">1. Responden tidak menjawab pesan dalam 1 x 24 jam</option>
+                        <option value="2">2. Nomor tidak aktif</option>
+                        <option value="3">3. Nomor salah</option>
+                        <option value="4">4. Nomor salah sambung</option>
+                        <option value="98">98. Lainnya</option>
+                    </select>
+                </div>
+                <div class="item item-input item-text-wrap" ng-if="ktlp.tlp15 == 3 && ktlp.tlp19 == 98">
+                    <div class="input-label">Alasan tidak merespon lainnya<span ng-show="myForm.tlp19a.$error.pattern" class="hint-status"> Tidak Boleh Ada Koma!</span></div>
+                    <textarea class="text-area pull-right input-border" name="tlp19a" ng-model="ktlp.tlp19a" ng-pattern="/^[^,]*$/" ></textarea>
+                </div>
+                <div class="item item-input">
+                    <div class="input-label">Status telp ketiga</div>
+                    <input type="text" ng-model="ktlp.status_telp_3" class="input-border" readonly>
+                </div>
+            </ion-list>
+
+            <!-- Konfirmasi Telepon #4 -->
+            <ion-list ng-show="tab_tlp_4">
+                <div class="item item-input">
+                    <div class="input-label">IDRT</div>
+                    <input type="number" ng-model="ktlp.idrt" block block-length="7" min="4001001" max="4216999" ng-disabled="true" class="input-border">
+                </div>
+                <label class="item item-input">
+                    <div class="input-label">Tanggal kontak via Telepon (telepon keempat)</div>
+                    <input type="date" class="input-border" min="1916-01-01" max="{{tglWawancara}}" ng-model="ktlp.tlp20">
+                </label>
+                <div class="item item-select">
+                    <div class="input-label">Respon responden</div>
+                    <select class="input-border" ng-model="ktlp.tlp21" ng-change="status_konfirmasi_telp_4(ktlp.tlp21)">
+                        <option value="" selected></option>
+                        <option value="1">1. Berhasil</option>
+                        <option value="2">2. Gagal (menolak berpartisipasi)</option>
+                        <option value="3">3. Tidak merespon</option>
+                    </select>
+                </div>
+                <div class="item item-input">
+                    <div class="input-label">Nama responden</div>
+                    <input type="text" ng-model="ktlp.tlp22" class="input-border">
+                </div>
+                <label class="item item-input" ng-if="ktlp.tlp21 == 1">
+                    <div class="input-label">Tanggal janjian</div>
+                    <input type="date" class="input-border" min="1916-01-01" max="{{tglWawancara}}" ng-model="ktlp.tlp23a">
+                </label>
+                <label class="item item-input" ng-if="ktlp.tlp21 == 1">
+                    <div class="input-label">Jam janjian</div>
+                    <input type="time" class="input-border" ng-model="ktlp.tlp23b" placeholder="HH:mm" min="00:00" max="23:00">
+                </label>
+                <div class="item item-input item-text-wrap" ng-if="ktlp.tlp21 == 2">
+                    <div class="input-label">Alasan menolak<span ng-show="myForm.tlp24.$error.pattern" class="hint-status"> Tidak Boleh Ada Koma!</span></div>
+                    <textarea class="text-area pull-right input-border" name="tlp24" ng-model="ktlp.tlp24" ng-pattern="/^[^,]*$/" ></textarea>
+                </div>
+                <div class="item item-select" ng-if="ktlp.tlp21 == 3">
+                    <div class="input-label">Alasan tidak merespon</div>
+                    <select class="input-border" ng-model="ktlp.tlp25">
+                        <option value="" selected></option>
+                        <option value="1">1. Responden tidak menjawab pesan dalam 1 x 24 jam</option>
+                        <option value="2">2. Nomor tidak aktif</option>
+                        <option value="3">3. Nomor salah</option>
+                        <option value="4">4. Nomor salah sambung</option>
+                        <option value="98">98. Lainnya</option>
+                    </select>
+                </div>
+                <div class="item item-input item-text-wrap" ng-if="ktlp.tlp21 == 3 && ktlp.tlp25 == 98">
+                    <div class="input-label">Alasan tidak merespon lainnya<span ng-show="myForm.tlp25a.$error.pattern" class="hint-status"> Tidak Boleh Ada Koma!</span></div>
+                    <textarea class="text-area pull-right input-border" name="tlp25a" ng-model="ktlp.tlp25a" ng-pattern="/^[^,]*$/" ></textarea>
+                </div>
+                <div class="item item-input">
+                    <div class="input-label">Status telp keempat</div>
+                    <input type="text" ng-model="ktlp.status_telp_4" class="input-border" readonly>
+                </div>
+            </ion-list>
+
+            <!-- Konfirmasi Telepon #5 -->
+            <ion-list ng-show="tab_tlp_5">
+                <div class="item item-input">
+                    <div class="input-label">IDRT</div>
+                    <input type="number" ng-model="ktlp.idrt" block block-length="7" min="4001001" max="4216999" ng-disabled="true" class="input-border">
+                </div>
+                <label class="item item-input">
+                    <div class="input-label">Tanggal kontak via Telepon (telepon keempat)</div>
+                    <input type="date" class="input-border" min="1916-01-01" max="{{tglWawancara}}" ng-model="ktlp.tlp26">
+                </label>
+                <div class="item item-select">
+                    <div class="input-label">Respon responden</div>
+                    <select class="input-border" ng-model="ktlp.tlp27" ng-change="status_konfirmasi_telp_5(ktlp.tlp27)">
+                        <option value="" selected></option>
+                        <option value="1">1. Berhasil</option>
+                        <option value="2">2. Gagal (menolak berpartisipasi)</option>
+                        <option value="3">3. Tidak merespon</option>
+                    </select>
+                </div>
+                <div class="item item-input">
+                    <div class="input-label">Nama responden</div>
+                    <input type="text" ng-model="ktlp.tlp28" class="input-border">
+                </div>
+                <label class="item item-input" ng-if="ktlp.tlp27 == 1">
+                    <div class="input-label">Tanggal janjian</div>
+                    <input type="date" class="input-border" min="1916-01-01" max="{{tglWawancara}}" ng-model="ktlp.tlp29a">
+                </label>
+                <label class="item item-input" ng-if="ktlp.tlp27 == 1">
+                    <div class="input-label">Jam janjian</div>
+                    <input type="time" class="input-border" ng-model="ktlp.tlp29b" placeholder="HH:mm" min="00:00" max="23:00">
+                </label>
+                <div class="item item-input item-text-wrap" ng-if="ktlp.tlp27 == 2">
+                    <div class="input-label">Alasan menolak<span ng-show="myForm.tlp30.$error.pattern" class="hint-status"> Tidak Boleh Ada Koma!</span></div>
+                    <textarea class="text-area pull-right input-border" name="tlp30" ng-model="ktlp.tlp30" ng-pattern="/^[^,]*$/" ></textarea>
+                </div>
+                <div class="item item-select" ng-if="ktlp.tlp27 == 3">
+                    <div class="input-label">Alasan tidak merespon</div>
+                    <select class="input-border" ng-model="ktlp.tlp31">
+                        <option value="" selected></option>
+                        <option value="1">1. Responden tidak menjawab pesan dalam 1 x 24 jam</option>
+                        <option value="2">2. Nomor tidak aktif</option>
+                        <option value="3">3. Nomor salah</option>
+                        <option value="4">4. Nomor salah sambung</option>
+                        <option value="98">98. Lainnya</option>
+                    </select>
+                </div>
+                <div class="item item-input item-text-wrap" ng-if="ktlp.tlp27 == 3 && ktlp.tlp31 == 98">
+                    <div class="input-label">Alasan tidak merespon lainnya<span ng-show="myForm.tlp31a.$error.pattern" class="hint-status"> Tidak Boleh Ada Koma!</span></div>
+                    <textarea class="text-area pull-right input-border" name="tlp31a" ng-model="ktlp.tlp31a" ng-pattern="/^[^,]*$/" ></textarea>
+                </div>
+                <div class="item item-input">
+                    <div class="input-label">Status telp kelima</div>
+                    <input type="text" ng-model="ktlp.status_telp_5" class="input-border" readonly>
+                </div>
+            </ion-list>
+
+            <!-- Laporan Wawancara #1 -->
+            <ion-list ng-show="tab_ltlp_1">
+                <div class="item item-input">
+                    <div class="input-label">IDRT</div>
+                    <input type="number" ng-model="ktlp.idrt" block block-length="7" min="4001001" max="4216999" ng-disabled="true" class="input-border">
+                </div>
+                <div class="item item-select">
+                    <div class="input-label">Jenis responden</div>
+                    <select class="input-border" ng-model="ktlp.ltlp01">
+                        <option value="" selected></option>
+                        <option value="1">1. Utama</option>
+                        <option value="2">2. Individu</option>
+                    </select>
+                </div>
+                <label class="item item-input">
+                    <div class="input-label">Tanggal wawancara</div>
+                    <input type="date" class="input-border" min="1916-01-01" max="{{tglWawancara}}" ng-model="ktlp.ltlp02a">
+                </label>
+                <label class="item item-input">
+                    <div class="input-label">Jam wawancara</div>
+                    <input type="time" class="input-border" ng-model="ktlp.ltlp02b" placeholder="HH:mm" min="00:00" max="23:00">
+                </label>
+                <div class="item item-input">
+                    <div class="input-label">Nama responden</div>
+                    <input type="text" ng-model="ktlp.ltlp03" class="input-border">
+                </div>
+                <div class="item item-select">
+                    <div class="input-label">Wilayah</div>
+                    <select class="input-border" ng-model="ktlp.ltlp04">
+                        <option value="" selected></option>
+                        <option value="1">1. Desa</option>
+                        <option value="2">2. Kota</option>
+                    </select>
+                </div>
+                <div class="item item-input">
+                    <div class="input-label">Usia</div>
+                    <input type="number" ng-model="ktlp.ltlp05" block block-length="3" min="0" max="200" class="input-border">
+                </div>
+                <div class="item item-select">
+                    <div class="input-label">Jenis kelamin</div>
+                    <select class="input-border" ng-model="ktlp.ltlp06">
+                        <option value="" selected></option>
+                        <option value="1">1. Laki-laki</option>
+                        <option value="2">2. Perempuan</option>
+                    </select>
+                </div>
+                <div class="item item-input item-text-wrap">
+                    <div class="input-label">No.Telp/HP <span ng-show="myForm.ltlp07.$error.pattern" class="hint-status"> Angka salah!</span></div>
+                    <input class="input-border" type="text" name="ltlp07" ng-model="ktlp.ltlp07" ng-pattern="/^[0-9]{2,13}$/">
+                </div>
+                <div class="item item-select">
+                    <div class="input-label">Satatus wawancara</div>
+                    <select class="input-border" ng-model="ktlp.ltlp08">
+                        <option value="" selected></option>
+                        <option value="1">1. Berhasil</option>
+                        <option value="2">2. Wawancara lagi</option>
+                        <option value="3">3. Menolak</option>
+                    </select>
+                </div>
+                <label class="item item-input" ng-if="ktlp.ltlp08 == 2">
+                    <div class="input-label">Tanggal wawancara lagi</div>
+                    <input type="date" class="input-border" min="1916-01-01" max="{{tglWawancara}}" ng-model="ktlp.ltlp09a">
+                </label>
+                <label class="item item-input" ng-if="ktlp.ltlp08 == 2">
+                    <div class="input-label">Jam wawancara lagi</div>
+                    <input type="time" class="input-border" ng-model="ktlp.ltlp09b" placeholder="HH:mm" min="00:00" max="23:00">
+                </label>
+                <div class="item item-input item-text-wrap" >
+                    <div class="input-label">Keterangan<span ng-show="myForm.ltlp10.$error.pattern" class="hint-status"> Tidak Boleh Ada Koma!</span></div>
+                    <textarea class="text-area pull-right input-border" name="ltlp10" ng-model="ktlp.ltlp10" ng-pattern="/^[^,]*$/" placeholder="isikan alasan wawancara ulang, alasan menolak jika menolak dan keterangan lain"></textarea>
+                </div>
+            </ion-list>
+
+            <!-- Laporan Wawancara #2 -->
+            <ion-list ng-show="tab_ltlp_2">
+                <div class="item item-input">
+                    <div class="input-label">IDRT</div>
+                    <input type="number" ng-model="ktlp.idrt" block block-length="7" min="4001001" max="4216999" ng-disabled="true" class="input-border">
+                </div>
+                <label class="item item-input">
+                    <div class="input-label">Tanggal wawancara</div>
+                    <input type="date" class="input-border" min="1916-01-01" max="{{tglWawancara}}" ng-model="ktlp.ltlp11a">
+                </label>
+                <label class="item item-input">
+                    <div class="input-label">Jam wawancara</div>
+                    <input type="time" class="input-border" ng-model="ktlp.ltlp11b" placeholder="HH:mm" min="00:00" max="23:00">
+                </label>
+                <div class="item item-input">
+                    <div class="input-label">Nama responden</div>
+                    <input type="text" ng-model="ktlp.ltlp12" class="input-border">
+                </div>
+                <div class="item item-input item-text-wrap">
+                    <div class="input-label">No.Telp/HP <span ng-show="myForm.ltlp13.$error.pattern" class="hint-status"> Angka salah!</span></div>
+                    <input class="input-border" type="text" name="ltlp13" ng-model="ktlp.ltlp13" ng-pattern="/^[0-9]{2,13}$/">
+                </div>
+                <div class="item item-select">
+                    <div class="input-label">Satatus wawancara</div>
+                    <select class="input-border" ng-model="ktlp.ltlp14">
+                        <option value="" selected></option>
+                        <option value="1">1. Berhasil</option>
+                        <option value="2">2. Wawancara lagi</option>
+                        <option value="3">3. Menolak</option>
+                    </select>
+                </div>
+                <label class="item item-input" ng-if="ktlp.ltlp14 == 2">
+                    <div class="input-label">Tanggal wawancara lagi</div>
+                    <input type="date" class="input-border" min="1916-01-01" max="{{tglWawancara}}" ng-model="ktlp.ltlp15a">
+                </label>
+                <label class="item item-input" ng-if="ktlp.ltlp14 == 2">
+                    <div class="input-label">Jam wawancara lagi</div>
+                    <input type="time" class="input-border" ng-model="ktlp.ltlp15b" placeholder="HH:mm" min="00:00" max="23:00">
+                </label>
+                <div class="item item-input item-text-wrap" >
+                    <div class="input-label">Keterangan<span ng-show="myForm.ltlp16.$error.pattern" class="hint-status"> Tidak Boleh Ada Koma!</span></div>
+                    <textarea class="text-area pull-right input-border" name="ltlp16" ng-model="ktlp.ltlp16" ng-pattern="/^[^,]*$/" placeholder="isikan alasan wawancara ulang, alasan menolak jika menolak dan keterangan lain"></textarea>
+                </div>
+            </ion-list>
+
+            <!-- Laporan Wawancara #3 -->
+            <ion-list ng-show="tab_ltlp_3">
+                <div class="item item-input">
+                    <div class="input-label">IDRT</div>
+                    <input type="number" ng-model="ktlp.idrt" block block-length="7" min="4001001" max="4216999" ng-disabled="true" class="input-border">
+                </div>
+                <label class="item item-input">
+                    <div class="input-label">Tanggal wawancara</div>
+                    <input type="date" class="input-border" min="1916-01-01" max="{{tglWawancara}}" ng-model="ktlp.ltlp17a">
+                </label>
+                <label class="item item-input">
+                    <div class="input-label">Jam wawancara</div>
+                    <input type="time" class="input-border" ng-model="ktlp.ltlp17b" placeholder="HH:mm" min="00:00" max="23:00">
+                </label>
+                <div class="item item-input">
+                    <div class="input-label">Nama responden</div>
+                    <input type="text" ng-model="ktlp.ltlp18" class="input-border">
+                </div>
+                <div class="item item-input item-text-wrap">
+                    <div class="input-label">No.Telp/HP <span ng-show="myForm.ltlp19.$error.pattern" class="hint-status"> Angka salah!</span></div>
+                    <input class="input-border" type="text" name="ltlp19" ng-model="ktlp.ltlp19" ng-pattern="/^[0-9]{2,13}$/">
+                </div>
+                <div class="item item-select">
+                    <div class="input-label">Satatus wawancara</div>
+                    <select class="input-border" ng-model="ktlp.ltlp20">
+                        <option value="" selected></option>
+                        <option value="1">1. Berhasil</option>
+                        <option value="2">2. Wawancara lagi</option>
+                        <option value="3">3. Menolak</option>
+                    </select>
+                </div>
+                <label class="item item-input" ng-if="ktlp.ltlp20 == 2">
+                    <div class="input-label">Tanggal wawancara lagi</div>
+                    <input type="date" class="input-border" min="1916-01-01" max="{{tglWawancara}}" ng-model="ktlp.ltlp21a">
+                </label>
+                <label class="item item-input" ng-if="ktlp.ltlp20 == 2">
+                    <div class="input-label">Jam wawancara lagi</div>
+                    <input type="time" class="input-border" ng-model="ktlp.ltlp21b" placeholder="HH:mm" min="00:00" max="23:00">
+                </label>
+                <div class="item item-input item-text-wrap" >
+                    <div class="input-label">Keterangan<span ng-show="myForm.ltlp22.$error.pattern" class="hint-status"> Tidak Boleh Ada Koma!</span></div>
+                    <textarea class="text-area pull-right input-border" name="ltlp22" ng-model="ktlp.ltlp22" ng-pattern="/^[^,]*$/" placeholder="isikan alasan wawancara ulang, alasan menolak jika menolak dan keterangan lain"></textarea>
+                </div>
+            </ion-list>
+
+            <!-- Laporan Wawancara #4 -->
+            <ion-list ng-show="tab_ltlp_4">
+                <div class="item item-input">
+                    <div class="input-label">IDRT</div>
+                    <input type="number" ng-model="ktlp.idrt" block block-length="7" min="4001001" max="4216999" ng-disabled="true" class="input-border">
+                </div>
+                <label class="item item-input">
+                    <div class="input-label">Tanggal wawancara</div>
+                    <input type="date" class="input-border" min="1916-01-01" max="{{tglWawancara}}" ng-model="ktlp.ltlp23a">
+                </label>
+                <label class="item item-input">
+                    <div class="input-label">Jam wawancara</div>
+                    <input type="time" class="input-border" ng-model="ktlp.ltlp23b" placeholder="HH:mm" min="00:00" max="23:00">
+                </label>
+                <div class="item item-input">
+                    <div class="input-label">Nama responden</div>
+                    <input type="text" ng-model="ktlp.ltlp24" class="input-border">
+                </div>
+                <div class="item item-input item-text-wrap">
+                    <div class="input-label">No.Telp/HP <span ng-show="myForm.ltlp25.$error.pattern" class="hint-status"> Angka salah!</span></div>
+                    <input class="input-border" type="text" name="ltlp25" ng-model="ktlp.ltlp25" ng-pattern="/^[0-9]{2,13}$/">
+                </div>
+                <div class="item item-select">
+                    <div class="input-label">Satatus wawancara</div>
+                    <select class="input-border" ng-model="ktlp.ltlp26">
+                        <option value="" selected></option>
+                        <option value="1">1. Berhasil</option>
+                        <option value="2">2. Wawancara lagi</option>
+                        <option value="3">3. Menolak</option>
+                    </select>
+                </div>
+                <label class="item item-input" ng-if="ktlp.ltlp26 == 2">
+                    <div class="input-label">Tanggal wawancara lagi</div>
+                    <input type="date" class="input-border" min="1916-01-01" max="{{tglWawancara}}" ng-model="ktlp.ltlp27a">
+                </label>
+                <label class="item item-input" ng-if="ktlp.ltlp26 == 2">
+                    <div class="input-label">Jam wawancara lagi</div>
+                    <input type="time" class="input-border" ng-model="ktlp.ltlp27b" placeholder="HH:mm" min="00:00" max="23:00">
+                </label>
+                <div class="item item-input item-text-wrap" >
+                    <div class="input-label">Keterangan<span ng-show="myForm.ltlp28.$error.pattern" class="hint-status"> Tidak Boleh Ada Koma!</span></div>
+                    <textarea class="text-area pull-right input-border" name="ltlp28" ng-model="ktlp.ltlp28" ng-pattern="/^[^,]*$/" placeholder="isikan alasan wawancara ulang, alasan menolak jika menolak dan keterangan lain"></textarea>
+                </div>
+            </ion-list>
+
+            <!-- Laporan Wawancara #5 -->
+            <ion-list ng-show="tab_ltlp_5">
+                <div class="item item-input">
+                    <div class="input-label">IDRT</div>
+                    <input type="number" ng-model="ktlp.idrt" block block-length="7" min="4001001" max="4216999" ng-disabled="true" class="input-border">
+                </div>
+                <label class="item item-input">
+                    <div class="input-label">Tanggal wawancara</div>
+                    <input type="date" class="input-border" min="1916-01-01" max="{{tglWawancara}}" ng-model="ktlp.ltlp29a">
+                </label>
+                <label class="item item-input">
+                    <div class="input-label">Jam wawancara</div>
+                    <input type="time" class="input-border" ng-model="ktlp.ltlp29b" placeholder="HH:mm" min="00:00" max="23:00">
+                </label>
+                <div class="item item-input">
+                    <div class="input-label">Nama responden</div>
+                    <input type="text" ng-model="ktlp.ltlp30" class="input-border">
+                </div>
+                <div class="item item-input item-text-wrap">
+                    <div class="input-label">No.Telp/HP <span ng-show="myForm.ltlp31.$error.pattern" class="hint-status"> Angka salah!</span></div>
+                    <input class="input-border" type="text" name="ltlp31" ng-model="ktlp.ltlp31" ng-pattern="/^[0-9]{2,13}$/">
+                </div>
+                <div class="item item-select">
+                    <div class="input-label">Satatus wawancara</div>
+                    <select class="input-border" ng-model="ktlp.ltlp32">
+                        <option value="" selected></option>
+                        <option value="1">1. Berhasil</option>
+                        <option value="2">2. Wawancara lagi</option>
+                        <option value="3">3. Menolak</option>
+                    </select>
+                </div>
+                <label class="item item-input" ng-if="ktlp.ltlp32 == 2">
+                    <div class="input-label">Tanggal wawancara lagi</div>
+                    <input type="date" class="input-border" min="1916-01-01" max="{{tglWawancara}}" ng-model="ktlp.ltlp33a">
+                </label>
+                <label class="item item-input" ng-if="ktlp.ltlp32 == 2">
+                    <div class="input-label">Jam wawancara lagi</div>
+                    <input type="time" class="input-border" ng-model="ktlp.ltlp33b" placeholder="HH:mm" min="00:00" max="23:00">
+                </label>
+                <div class="item item-input item-text-wrap" >
+                    <div class="input-label">Keterangan<span ng-show="myForm.ltlp34.$error.pattern" class="hint-status"> Tidak Boleh Ada Koma!</span></div>
+                    <textarea class="text-area pull-right input-border" name="ltlp34" ng-model="ktlp.ltlp34" ng-pattern="/^[^,]*$/" placeholder="isikan alasan wawancara ulang, alasan menolak jika menolak dan keterangan lain"></textarea>
+                </div>
+            </ion-list>
+
+            <!-- Reward -->
+            <ion-list ng-show="tab_reward">
+                <div class="item item-select">
+                    <div class="input-label">Jenis reward</div>
+                    <select class="input-border" ng-model="ktlp.rww01">
+                        <option value="" selected></option>
+                        <option value="1">1. Pulsa</option>
+                        <option value="2">2. OVO</option>
+                        <option value="3">3. GoPay</option>
+                    </select>
+                </div>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50  col-center">
+                            <div class="input-label ">Apakah nomor yang akan diberikan reward sama dengan nomor kontak</div>
+                        </div>
+                        <div class="col col-50 ">
+                            <div class="button-bar right" ng-model="ktlp.rww02" >
+                                <ion-radio ng-change="cekNoTelpResponden(ktlp.rww02)" name="rww02" ng-model="ktlp.rww02" value="1">Ya</ion-radio>
+                                <ion-radio ng-change="cekNoTelpResponden(ktlp.rww02)" name="rww02" ng-model="ktlp.rww02" value="2">Tidak</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <div class="item item-input item-text-wrap"> 
+                    <div class="input-label">No.Telp/HP <span ng-show="myForm.rww03.$error.pattern" class="hint-status"> Angka salah!</span></div>
+                    <input class="input-border" type="text" name="rww03" ng-model="ktlp.rww03" ng-pattern="/^[0-9]{2,13}$/">
+                </div>
+                <div class="item item-select">
+                    <div class="input-label">Status Pengiriman Reward</div>
+                    <select class="input-border" ng-model="ktlp.rww04">
+                        <option value="" selected></option>
+                        <option value="1">1. Berhasil</option>
+                        <option value="2">2. Tertunda</option>
+                        <option value="3">3. Tidak terkirim</option>
+                    </select>
+                </div>
+            </ion-list>
+        </form>
+
+        <!-- Form Responden Individu -->
+        <form name="myForm_i" novalidate>
+            <!-- Konfirmasi SMS -->
+            <ion-list ng-show="tab_sms_i">
+                <div class="item item-select">
+                    <div class="input-label">Sudah konfirmasi melalui responden utama</div>
+                    <select class="input-border" ng-model="ktlp.smsi00">
+                        <option value="" selected></option>
+                        <option value="1">1. Utama</option>
+                        <option value="2">2. Individu</option>
+                    </select>
+                </div>
+                <div class="item item-input">
+                    <div class="input-label">IDRT</div>
+                    <input type="number" ng-model="ktlp.idrt" block block-length="7" min="4001001" max="4216999" ng-disabled="true" class="input-border">
+                </div>
+                <div class="item item-input">
+                    <div class="input-label">IDART</div>
+                    <input type="number" ng-model="ktlp.idart" block block-length="9" ng-disabled="true" class="input-border">
+                </div>
+                <label class="item item-input">
+                    <div class="input-label">Tanggal kontak via SMS</div>
+                    <input type="date" class="input-border" min="1916-01-01" max="{{tglWawancara}}" ng-model="ktlp.sms01_i">
+                </label>
+                <div class="item item-select">
+                    <div class="input-label">Jenis responden</div>
+                    <select class="input-border" ng-model="ktlp.sms02_i">
+                        <option value="" selected></option>
+                        <option value="1">1. Utama</option>
+                        <option value="2">2. Individu</option>
+                    </select>
+                </div>
+                <div class="item item-select">
+                    <div class="input-label">Respon responden</div>
+                    <select class="input-border" ng-model="ktlp.sms03_i" ng-change="status_konfirmasi_sms_i(ktlp.sms03_i)">
+                        <option value="" selected></option>
+                        <option value="1">1. Berhasil</option>
+                        <option value="2">2. Gagal (menolak berpartisipasi)</option>
+                        <option value="3">3. Tidak merespon</option>
+                    </select>
+                </div>
+                <div class="item item-input">
+                    <div class="input-label">Nama responden</div>
+                    <input type="text" ng-model="ktlp.sms04_i" class="input-border">
+                </div>
+                <label class="item item-input" ng-if="ktlp.sms03_i == 1">
+                    <div class="input-label">Tanggal janjian</div>
+                    <input type="date" class="input-border" min="1916-01-01" max="{{tglWawancara}}" ng-model="ktlp.sms05a_i">
+                </label>
+                <label class="item item-input" ng-if="ktlp.sms03_i == 1">
+                    <div class="input-label">Jam janjian</div>
+                    <input type="time" class="input-border" ng-model="ktlp.sms05b_i" placeholder="HH:mm" min="00:00" max="23:00">
+                </label>
+                <div class="item item-input item-text-wrap" ng-if="ktlp.sms03_i == 2">
+                    <div class="input-label">Alasan menolak<span ng-show="myForm_i.sms06_i.$error.pattern" class="hint-status"> Tidak Boleh Ada Koma!</span></div>
+                    <textarea class="text-area pull-right input-border" name="sms06_i" ng-model="ktlp.sms06_i" ng-pattern="/^[^,]*$/" ></textarea>
+                </div>
+                <div class="item item-select" ng-if="ktlp.sms03_i == 3">
+                    <div class="input-label">Alasan tidak merespon</div>
+                    <select class="input-border" ng-model="ktlp.sms07_i">
+                        <option value="" selected></option>
+                        <option value="1">1. Responden tidak menjawab pesan dalam 1 x 24 jam</option>
+                        <option value="2">2. Nomor tidak aktif</option>
+                        <option value="3">3. Nomor salah</option>
+                        <option value="4">4. Nomor salah sambung</option>
+                        <option value="98">98. Lainnya</option>
+                    </select>
+                </div>
+                <div class="item item-input item-text-wrap" ng-if="ktlp.sms03_i == 3 && ktlp.sms07_i == 98">
+                    <div class="input-label">Alasan tidak merespon lainnya<span ng-show="myForm_i.sms07a_i.$error.pattern" class="hint-status"> Tidak Boleh Ada Koma!</span></div>
+                    <textarea class="text-area pull-right input-border" name="sms07a_i" ng-model="ktlp.sms07a_i" ng-pattern="/^[^,]*$/" ></textarea>
+                </div>
+                <div class="item item-input">
+                    <div class="input-label">Status SMS</div>
+                    <input type="text" ng-model="ktlp.status_sms_i" class="input-border" readonly>
+                </div>
+            </ion-list>
+
+            <!-- Konfirmasi WA -->
+            <ion-list ng-show="tab_wa_i">
+                <div class="item item-input">
+                    <div class="input-label">IDRT</div>
+                    <input type="number" ng-model="ktlp.idrt" block block-length="7" min="4001001" max="4216999" ng-disabled="true" class="input-border">
+                </div>
+                <div class="item item-input">
+                    <div class="input-label">IDART</div>
+                    <input type="number" ng-model="ktlp.idart" block block-length="9" ng-disabled="true" class="input-border">
+                </div>
+                <label class="item item-input">
+                    <div class="input-label">Tanggal kontak via WA</div>
+                    <input type="date" class="input-border" min="1916-01-01" max="{{tglWawancara}}" ng-model="ktlp.wa01_i">
+                </label>
+                <div class="item item-select">
+                    <div class="input-label">Jenis responden</div>
+                    <select class="input-border" ng-model="ktlp.wa02_i">
+                        <option value="" selected></option>
+                        <option value="1">1. Utama</option>
+                        <option value="2">2. Individu</option>
+                    </select>
+                </div>
+                <div class="item item-select">
+                    <div class="input-label">Respon responden</div>
+                    <select class="input-border" ng-model="ktlp.wa03_i" ng-change="status_konfirmasi_wa_i(ktlp.wa03_i)">
+                        <option value="" selected></option>
+                        <option value="1">1. Berhasil</option>
+                        <option value="2">2. Gagal (menolak berpartisipasi)</option>
+                        <option value="3">3. Tidak merespon</option>
+                    </select>
+                </div>
+                <div class="item item-input">
+                    <div class="input-label">Nama responden</div>
+                    <input type="text" ng-model="ktlp.wa04_i" class="input-border">
+                </div>
+                <label class="item item-input" ng-if="ktlp.wa03_i == 1">
+                    <div class="input-label">Tanggal janjian</div>
+                    <input type="date" class="input-border" min="1916-01-01" max="{{tglWawancara}}" ng-model="ktlp.wa05a_i">
+                </label>
+                <label class="item item-input" ng-if="ktlp.wa03_i == 1">
+                    <div class="input-label">Jam janjian</div>
+                    <input type="time" class="input-border" ng-model="ktlp.wa05b_i" placeholder="HH:mm" min="00:00" max="23:00">
+                </label>
+                <div class="item item-input item-text-wrap" ng-if="ktlp.wa03_i == 2">
+                    <div class="input-label">Alasan menolak<span ng-show="myForm_i.wa06_i.$error.pattern" class="hint-status"> Tidak Boleh Ada Koma!</span></div>
+                    <textarea class="text-area pull-right input-border" name="wa06_i" ng-model="ktlp.wa06_i" ng-pattern="/^[^,]*$/" ></textarea>
+                </div>
+                <div class="item item-select" ng-if="ktlp.wa03_i == 3">
+                    <div class="input-label">Alasan tidak merespon</div>
+                    <select class="input-border" ng-model="ktlp.wa07_i">
+                        <option value="" selected></option>
+                        <option value="1">1. Responden tidak menjawab pesan dalam 1 x 24 jam</option>
+                        <option value="2">2. Nomor tidak aktif</option>
+                        <option value="3">3. Nomor salah</option>
+                        <option value="4">4. Nomor salah sambung</option>
+                        <option value="98">98. Lainnya</option>
+                    </select>
+                </div>
+                <div class="item item-input item-text-wrap" ng-if="ktlp.wa03_i == 3 && ktlp.wa07_i == 98">
+                    <div class="input-label">Alasan tidak merespon lainnya<span ng-show="myForm_i.wa07a_i.$error.pattern" class="hint-status"> Tidak Boleh Ada Koma!</span></div>
+                    <textarea class="text-area pull-right input-border" name="wa07a_i" ng-model="ktlp.wa07a_i" ng-pattern="/^[^,]*$/" ></textarea>
+                </div>
+                <div class="item item-input">
+                    <div class="input-label">Status WA</div>
+                    <input type="text" ng-model="ktlp.status_wa_i" class="input-border" readonly>
+                </div>
+            </ion-list>
+
+            <!-- Konfirmasi Telepon #1 -->
+            <ion-list ng-show="tab_tlp_1_i">
+                <div class="item item-input">
+                    <div class="input-label">IDRT</div>
+                    <input type="number" ng-model="ktlp.idrt" block block-length="7" min="4001001" max="4216999" ng-disabled="true" class="input-border">
+                </div>
+                <div class="item item-input">
+                    <div class="input-label">IDART</div>
+                    <input type="number" ng-model="ktlp.idart" block block-length="9" ng-disabled="true" class="input-border">
+                </div>
+                <label class="item item-input">
+                    <div class="input-label">Tanggal kontak via Telepon (telepon pertama)</div>
+                    <input type="date" class="input-border" min="1916-01-01" max="{{tglWawancara}}" ng-model="ktlp.tlp01_i">
+                </label>
+                <div class="item item-select">
+                    <div class="input-label">Jenis responden</div>
+                    <select class="input-border" ng-model="ktlp.tlp02_i">
+                        <option value="" selected></option>
+                        <option value="1">1. Utama</option>
+                        <option value="2">2. Individu</option>
+                    </select>
+                </div>
+                <div class="item item-select">
+                    <div class="input-label">Respon responden</div>
+                    <select class="input-border" ng-model="ktlp.tlp03_i" ng-change="status_konfirmasi_telp_1_i(ktlp.tlp03_i)">
+                        <option value="" selected></option>
+                        <option value="1">1. Berhasil</option>
+                        <option value="2">2. Gagal (menolak berpartisipasi)</option>
+                        <option value="3">3. Tidak merespon</option>
+                    </select>
+                </div>
+                <div class="item item-input">
+                    <div class="input-label">Nama responden</div>
+                    <input type="text" ng-model="ktlp.tlp04_i" class="input-border">
+                </div>
+                <label class="item item-input" ng-if="ktlp.tlp03_i == 1">
+                    <div class="input-label">Tanggal janjian</div>
+                    <input type="date" class="input-border" min="1916-01-01" max="{{tglWawancara}}" ng-model="ktlp.tlp05a_i">
+                </label>
+                <label class="item item-input" ng-if="ktlp.tlp03_i == 1">
+                    <div class="input-label">Jam janjian</div>
+                    <input type="time" class="input-border" ng-model="ktlp.tlp05b_i" placeholder="HH:mm" min="00:00" max="23:00">
+                </label>
+                <div class="item item-input item-text-wrap" ng-if="ktlp.tlp03_i == 2">
+                    <div class="input-label">Alasan menolak<span ng-show="myForm_i.tlp06_i.$error.pattern" class="hint-status"> Tidak Boleh Ada Koma!</span></div>
+                    <textarea class="text-area pull-right input-border" name="tlp06_i" ng-model="ktlp.tlp06_i" ng-pattern="/^[^,]*$/" ></textarea>
+                </div>
+                <div class="item item-select" ng-if="ktlp.tlp03_i == 3">
+                    <div class="input-label">Alasan tidak merespon</div>
+                    <select class="input-border" ng-model="ktlp.tlp07_i">
+                        <option value="" selected></option>
+                        <option value="1">1. Responden tidak menjawab pesan dalam 1 x 24 jam</option>
+                        <option value="2">2. Nomor tidak aktif</option>
+                        <option value="3">3. Nomor salah</option>
+                        <option value="4">4. Nomor salah sambung</option>
+                        <option value="98">98. Lainnya</option>
+                    </select>
+                </div>
+                <div class="item item-input item-text-wrap" ng-if="ktlp.tlp03_i == 3 && ktlp.tlp07_i == 98">
+                    <div class="input-label">Alasan tidak merespon lainnya<span ng-show="myForm_i.tlp07a_i.$error.pattern" class="hint-status"> Tidak Boleh Ada Koma!</span></div>
+                    <textarea class="text-area pull-right input-border" name="tlp07a_i" ng-model="ktlp.tlp07a_i" ng-pattern="/^[^,]*$/" ></textarea>
+                </div>
+                <div class="item item-input">
+                    <div class="input-label">Status telp pertama</div>
+                    <input type="text" ng-model="ktlp.status_telp_1_i" class="input-border" readonly>
+                </div>
+            </ion-list>
+
+            <!-- Konfirmasi Telepon #2 -->
+            <ion-list ng-show="tab_tlp_2_i">
+                <div class="item item-input">
+                    <div class="input-label">IDRT</div>
+                    <input type="number" ng-model="ktlp.idrt" block block-length="7" min="4001001" max="4216999" ng-disabled="true" class="input-border">
+                </div>
+                <div class="item item-input">
+                    <div class="input-label">IDART</div>
+                    <input type="number" ng-model="ktlp.idart" block block-length="9" ng-disabled="true" class="input-border">
+                </div>
+                <label class="item item-input">
+                    <div class="input-label">Tanggal kontak via Telepon (telepon kedua)</div>
+                    <input type="date" class="input-border" min="1916-01-01" max="{{tglWawancara}}" ng-model="ktlp.tlp08_i">
+                </label>
+                <div class="item item-select">
+                    <div class="input-label">Respon responden</div>
+                    <select class="input-border" ng-model="ktlp.tlp09_i" ng-change="status_konfirmasi_telp_2_i(ktlp.tlp09_i)">
+                        <option value="" selected></option>
+                        <option value="1">1. Berhasil</option>
+                        <option value="2">2. Gagal (menolak berpartisipasi)</option>
+                        <option value="3">3. Tidak merespon</option>
+                    </select>
+                </div>
+                <div class="item item-input">
+                    <div class="input-label">Nama responden</div>
+                    <input type="text" ng-model="ktlp.tlp10_i" class="input-border">
+                </div>
+                <label class="item item-input" ng-if="ktlp.tlp09_i == 1">
+                    <div class="input-label">Tanggal janjian</div>
+                    <input type="date" class="input-border" min="1916-01-01" max="{{tglWawancara}}" ng-model="ktlp.tlp11a_i">
+                </label>
+                <label class="item item-input" ng-if="ktlp.tlp09_i == 1">
+                    <div class="input-label">Jam janjian</div>
+                    <input type="time" class="input-border" ng-model="ktlp.tlp11b_i" placeholder="HH:mm" min="00:00" max="23:00">
+                </label>
+                <div class="item item-input item-text-wrap" ng-if="ktlp.tlp09_i == 2">
+                    <div class="input-label">Alasan menolak<span ng-show="myForm_i.tlp12_i.$error.pattern" class="hint-status"> Tidak Boleh Ada Koma!</span></div>
+                    <textarea class="text-area pull-right input-border" name="tlp12_i" ng-model="ktlp.tlp12_i" ng-pattern="/^[^,]*$/" ></textarea>
+                </div>
+                <div class="item item-select" ng-if="ktlp.tlp09_i == 3">
+                    <div class="input-label">Alasan tidak merespon</div>
+                    <select class="input-border" ng-model="ktlp.tlp13_i">
+                        <option value="" selected></option>
+                        <option value="1">1. Responden tidak menjawab pesan dalam 1 x 24 jam</option>
+                        <option value="2">2. Nomor tidak aktif</option>
+                        <option value="3">3. Nomor salah</option>
+                        <option value="4">4. Nomor salah sambung</option>
+                        <option value="98">98. Lainnya</option>
+                    </select>
+                </div>
+                <div class="item item-input item-text-wrap" ng-if="ktlp.tlp09_i == 3 && ktlp.tlp13_i == 98">
+                    <div class="input-label">Alasan tidak merespon lainnya<span ng-show="myForm_i.tlp13a_i.$error.pattern" class="hint-status"> Tidak Boleh Ada Koma!</span></div>
+                    <textarea class="text-area pull-right input-border" name="tlp13a_i" ng-model="ktlp.tlp13a_i" ng-pattern="/^[^,]*$/" ></textarea>
+                </div>
+                <div class="item item-input">
+                    <div class="input-label">Status telp kedua</div>
+                    <input type="text" ng-model="ktlp.status_telp_2_i" class="input-border" readonly>
+                </div>
+            </ion-list>
+
+            <!-- Konfirmasi Telepon #3 -->
+            <ion-list ng-show="tab_tlp_3_i">
+                <div class="item item-input">
+                    <div class="input-label">IDRT</div>
+                    <input type="number" ng-model="ktlp.idrt" block block-length="7" min="4001001" max="4216999" ng-disabled="true" class="input-border">
+                </div>
+                <div class="item item-input">
+                    <div class="input-label">IDART</div>
+                    <input type="number" ng-model="ktlp.idart" block block-length="9" ng-disabled="true" class="input-border">
+                </div>
+                <label class="item item-input">
+                    <div class="input-label">Tanggal kontak via Telepon (telepon ketiga)</div>
+                    <input type="date" class="input-border" min="1916-01-01" max="{{tglWawancara}}" ng-model="ktlp.tlp14_i">
+                </label>
+                <div class="item item-select">
+                    <div class="input-label">Respon responden</div>
+                    <select class="input-border" ng-model="ktlp.tlp15_i" ng-change="status_konfirmasi_telp_3_i(ktlp.tlp15_i)">
+                        <option value="" selected></option>
+                        <option value="1">1. Berhasil</option>
+                        <option value="2">2. Gagal (menolak berpartisipasi)</option>
+                        <option value="3">3. Tidak merespon</option>
+                    </select>
+                </div>
+                <div class="item item-input">
+                    <div class="input-label">Nama responden</div>
+                    <input type="text" ng-model="ktlp.tlp16_i" class="input-border">
+                </div>
+                <label class="item item-input" ng-if="ktlp.tlp15_i == 1">
+                    <div class="input-label">Tanggal janjian</div>
+                    <input type="date" class="input-border" min="1916-01-01" max="{{tglWawancara}}" ng-model="ktlp.tlp17a_i">
+                </label>
+                <label class="item item-input" ng-if="ktlp.tlp15_i == 1">
+                    <div class="input-label">Jam janjian</div>
+                    <input type="time" class="input-border" ng-model="ktlp.tlp17b_i" placeholder="HH:mm" min="00:00" max="23:00">
+                </label>
+                <div class="item item-input item-text-wrap" ng-if="ktlp.tlp15_i == 2">
+                    <div class="input-label">Alasan menolak<span ng-show="myForm_i.tlp18_i.$error.pattern" class="hint-status"> Tidak Boleh Ada Koma!</span></div>
+                    <textarea class="text-area pull-right input-border" name="tlp18_i" ng-model="ktlp.tlp18_i" ng-pattern="/^[^,]*$/" ></textarea>
+                </div>
+                <div class="item item-select" ng-if="ktlp.tlp15_i == 3">
+                    <div class="input-label">Alasan tidak merespon</div>
+                    <select class="input-border" ng-model="ktlp.tlp19_i">
+                        <option value="" selected></option>
+                        <option value="1">1. Responden tidak menjawab pesan dalam 1 x 24 jam</option>
+                        <option value="2">2. Nomor tidak aktif</option>
+                        <option value="3">3. Nomor salah</option>
+                        <option value="4">4. Nomor salah sambung</option>
+                        <option value="98">98. Lainnya</option>
+                    </select>
+                </div>
+                <div class="item item-input item-text-wrap" ng-if="ktlp.tlp15_i == 3 && ktlp.tlp19_i == 98">
+                    <div class="input-label">Alasan tidak merespon lainnya<span ng-show="myForm_i.tlp19a_i.$error.pattern" class="hint-status"> Tidak Boleh Ada Koma!</span></div>
+                    <textarea class="text-area pull-right input-border" name="tlp19a_i" ng-model="ktlp.tlp19a_i" ng-pattern="/^[^,]*$/" ></textarea>
+                </div>
+                <div class="item item-input">
+                    <div class="input-label">Status telp ketiga</div>
+                    <input type="text" ng-model="ktlp.status_telp_3_i" class="input-border" readonly>
+                </div>
+            </ion-list>
+
+            <!-- Konfirmasi Telepon #4 -->
+            <ion-list ng-show="tab_tlp_4_i">
+                <div class="item item-input">
+                    <div class="input-label">IDRT</div>
+                    <input type="number" ng-model="ktlp.idrt" block block-length="7" min="4001001" max="4216999" ng-disabled="true" class="input-border">
+                </div>
+                <div class="item item-input">
+                    <div class="input-label">IDART</div>
+                    <input type="number" ng-model="ktlp.idart" block block-length="9" ng-disabled="true" class="input-border">
+                </div>
+                <label class="item item-input">
+                    <div class="input-label">Tanggal kontak via Telepon (telepon keempat)</div>
+                    <input type="date" class="input-border" min="1916-01-01" max="{{tglWawancara}}" ng-model="ktlp.tlp20_i">
+                </label>
+                <div class="item item-select">
+                    <div class="input-label">Respon responden</div>
+                    <select class="input-border" ng-model="ktlp.tlp21_i" ng-change="status_konfirmasi_telp_4_i(ktlp.tlp21_i)">
+                        <option value="" selected></option>
+                        <option value="1">1. Berhasil</option>
+                        <option value="2">2. Gagal (menolak berpartisipasi)</option>
+                        <option value="3">3. Tidak merespon</option>
+                    </select>
+                </div>
+                <div class="item item-input">
+                    <div class="input-label">Nama responden</div>
+                    <input type="text" ng-model="ktlp.tlp22_i" class="input-border">
+                </div>
+                <label class="item item-input" ng-if="ktlp.tlp21_i == 1">
+                    <div class="input-label">Tanggal janjian</div>
+                    <input type="date" class="input-border" min="1916-01-01" max="{{tglWawancara}}" ng-model="ktlp.tlp23a_i">
+                </label>
+                <label class="item item-input" ng-if="ktlp.tlp21_i == 1">
+                    <div class="input-label">Jam janjian</div>
+                    <input type="time" class="input-border" ng-model="ktlp.tlp23b" placeholder="HH:mm" min="00:00" max="23:00">
+                </label>
+                <div class="item item-input item-text-wrap" ng-if="ktlp.tlp21_i == 2">
+                    <div class="input-label">Alasan menolak<span ng-show="myForm_i.tlp24_i.$error.pattern" class="hint-status"> Tidak Boleh Ada Koma!</span></div>
+                    <textarea class="text-area pull-right input-border" name="tlp24_i" ng-model="ktlp.tlp24_i" ng-pattern="/^[^,]*$/" ></textarea>
+                </div>
+                <div class="item item-select" ng-if="ktlp.tlp21_i == 3">
+                    <div class="input-label">Alasan tidak merespon</div>
+                    <select class="input-border" ng-model="ktlp.tlp25_i">
+                        <option value="" selected></option>
+                        <option value="1">1. Responden tidak menjawab pesan dalam 1 x 24 jam</option>
+                        <option value="2">2. Nomor tidak aktif</option>
+                        <option value="3">3. Nomor salah</option>
+                        <option value="4">4. Nomor salah sambung</option>
+                        <option value="98">98. Lainnya</option>
+                    </select>
+                </div>
+                <div class="item item-input item-text-wrap" ng-if="ktlp.tlp21_i == 3 && ktlp.tlp25_i == 98">
+                    <div class="input-label">Alasan tidak merespon lainnya<span ng-show="myForm_i.tlp25a_i.$error.pattern" class="hint-status"> Tidak Boleh Ada Koma!</span></div>
+                    <textarea class="text-area pull-right input-border" name="tlp25a_i" ng-model="ktlp.tlp25a_i" ng-pattern="/^[^,]*$/" ></textarea>
+                </div>
+                <div class="item item-input">
+                    <div class="input-label">Status telp keempat</div>
+                    <input type="text" ng-model="ktlp.status_telp_4_i" class="input-border" readonly>
+                </div>
+            </ion-list>
+
+            <!-- Konfirmasi Telepon #5 -->
+            <ion-list ng-show="tab_tlp_5_i">
+                <div class="item item-input">
+                    <div class="input-label">IDRT</div>
+                    <input type="number" ng-model="ktlp.idrt" block block-length="7" min="4001001" max="4216999" ng-disabled="true" class="input-border">
+                </div>
+                <label class="item item-input">
+                    <div class="input-label">Tanggal kontak via Telepon (telepon keempat)</div>
+                    <input type="date" class="input-border" min="1916-01-01" max="{{tglWawancara}}" ng-model="ktlp.tlp26_i">
+                </label>
+                <div class="item item-select">
+                    <div class="input-label">Respon responden</div>
+                    <select class="input-border" ng-model="ktlp.tlp27_i" ng-change="status_konfirmasi_telp_5_i(ktlp.tlp27_i)">
+                        <option value="" selected></option>
+                        <option value="1">1. Berhasil</option>
+                        <option value="2">2. Gagal (menolak berpartisipasi)</option>
+                        <option value="3">3. Tidak merespon</option>
+                    </select>
+                </div>
+                <div class="item item-input">
+                    <div class="input-label">Nama responden</div>
+                    <input type="text" ng-model="ktlp.tlp28_i" class="input-border">
+                </div>
+                <label class="item item-input" ng-if="ktlp.tlp27_i == 1">
+                    <div class="input-label">Tanggal janjian</div>
+                    <input type="date" class="input-border" min="1916-01-01" max="{{tglWawancara}}" ng-model="ktlp.tlp29a_i">
+                </label>
+                <label class="item item-input" ng-if="ktlp.tlp27_i == 1">
+                    <div class="input-label">Jam janjian</div>
+                    <input type="time" class="input-border" ng-model="ktlp.tlp29b_i" placeholder="HH:mm" min="00:00" max="23:00">
+                </label>
+                <div class="item item-input item-text-wrap" ng-if="ktlp.tlp27_i == 2">
+                    <div class="input-label">Alasan menolak<span ng-show="myForm_i.tlp30_i.$error.pattern" class="hint-status"> Tidak Boleh Ada Koma!</span></div>
+                    <textarea class="text-area pull-right input-border" name="tlp30_i" ng-model="ktlp.tlp30_i" ng-pattern="/^[^,]*$/" ></textarea>
+                </div>
+                <div class="item item-select" ng-if="ktlp.tlp27_i == 3">
+                    <div class="input-label">Alasan tidak merespon</div>
+                    <select class="input-border" ng-model="ktlp.tlp31_i">
+                        <option value="" selected></option>
+                        <option value="1">1. Responden tidak menjawab pesan dalam 1 x 24 jam</option>
+                        <option value="2">2. Nomor tidak aktif</option>
+                        <option value="3">3. Nomor salah</option>
+                        <option value="4">4. Nomor salah sambung</option>
+                        <option value="98">98. Lainnya</option>
+                    </select>
+                </div>
+                <div class="item item-input item-text-wrap" ng-if="ktlp.tlp27_i == 3 && ktlp.tlp31_i == 98">
+                    <div class="input-label">Alasan tidak merespon lainnya<span ng-show="myForm_i.tlp31a_i.$error.pattern" class="hint-status"> Tidak Boleh Ada Koma!</span></div>
+                    <textarea class="text-area pull-right input-border" name="tlp31a_i" ng-model="ktlp.tlp31a_i" ng-pattern="/^[^,]*$/" ></textarea>
+                </div>
+                <div class="item item-input">
+                    <div class="input-label">Status telp kelima</div>
+                    <input type="text" ng-model="ktlp.status_telp_5_i" class="input-border" readonly>
+                </div>
+            </ion-list>
+
+            <!-- Laporan Wawancara #1 -->
+            <ion-list ng-show="tab_ltlp_1_i">
+                <div class="item item-input">
+                    <div class="input-label">IDRT</div>
+                    <input type="number" ng-model="ktlp.idrt" block block-length="7" min="4001001" max="4216999" ng-disabled="true" class="input-border">
+                </div>
+                <div class="item item-input">
+                    <div class="input-label">IDART</div>
+                    <input type="number" ng-model="ktlp.idart" block block-length="9" ng-disabled="true" class="input-border">
+                </div>
+                <div class="item item-select">
+                    <div class="input-label">Jenis responden</div>
+                    <select class="input-border" ng-model="ktlp.ltlp01_i">
+                        <option value="" selected></option>
+                        <option value="1">1. Utama</option>
+                        <option value="2">2. Individu</option>
+                    </select>
+                </div>
+                <label class="item item-input">
+                    <div class="input-label">Tanggal wawancara</div>
+                    <input type="date" class="input-border" min="1916-01-01" max="{{tglWawancara}}" ng-model="ktlp.ltlp02a_i">
+                </label>
+                <label class="item item-input">
+                    <div class="input-label">Jam wawancara</div>
+                    <input type="time" class="input-border" ng-model="ktlp.ltlp02b_i" placeholder="HH:mm" min="00:00" max="23:00">
+                </label>
+                <div class="item item-input">
+                    <div class="input-label">Nama responden</div>
+                    <input type="text" ng-model="ktlp.ltlp03_i" class="input-border">
+                </div>
+                <div class="item item-select">
+                    <div class="input-label">Wilayah</div>
+                    <select class="input-border" ng-model="ktlp.ltlp04_i">
+                        <option value="" selected></option>
+                        <option value="1">1. Desa</option>
+                        <option value="2">2. Kota</option>
+                    </select>
+                </div>
+                <div class="item item-input">
+                    <div class="input-label">Usia</div>
+                    <input type="number" ng-model="ktlp.ltlp05_i" block block-length="3" min="0" max="200" class="input-border">
+                </div>
+                <div class="item item-select">
+                    <div class="input-label">Jenis kelamin</div>
+                    <select class="input-border" ng-model="ktlp.ltlp06_i">
+                        <option value="" selected></option>
+                        <option value="1">1. Laki-laki</option>
+                        <option value="2">2. Perempuan</option>
+                    </select>
+                </div>
+                <div class="item item-input item-text-wrap">
+                    <div class="input-label">No.Telp/HP <span ng-show="myForm_i.ltlp07_i.$error.pattern" class="hint-status"> Angka salah!</span></div>
+                    <input class="input-border" type="text" name="ltlp07_i" ng-model="ktlp.ltlp07_i" ng-pattern="/^[0-9]{2,13}$/">
+                </div>
+                <div class="item item-select">
+                    <div class="input-label">Satatus wawancara</div>
+                    <select class="input-border" ng-model="ktlp.ltlp08_i">
+                        <option value="" selected></option>
+                        <option value="1">1. Berhasil</option>
+                        <option value="2">2. Wawancara lagi</option>
+                        <option value="3">3. Menolak</option>
+                    </select>
+                </div>
+                <label class="item item-input" ng-if="ktlp.ltlp08_i == 2">
+                    <div class="input-label">Tanggal wawancara lagi</div>
+                    <input type="date" class="input-border" min="1916-01-01" max="{{tglWawancara}}" ng-model="ktlp.ltlp09a_i">
+                </label>
+                <label class="item item-input" ng-if="ktlp.ltlp08_i == 2">
+                    <div class="input-label">Jam wawancara lagi</div>
+                    <input type="time" class="input-border" ng-model="ktlp.ltlp09b_i" placeholder="HH:mm" min="00:00" max="23:00">
+                </label>
+                <div class="item item-input item-text-wrap" >
+                    <div class="input-label">Keterangan<span ng-show="myForm_i.ltlp10_i.$error.pattern" class="hint-status"> Tidak Boleh Ada Koma!</span></div>
+                    <textarea class="text-area pull-right input-border" name="ltlp10_i" ng-model="ktlp.ltlp10_i" ng-pattern="/^[^,]*$/" placeholder="isikan alasan wawancara ulang, alasan menolak jika menolak dan keterangan lain"></textarea>
+                </div>
+            </ion-list>
+
+            <!-- Laporan Wawancara #2 -->
+            <ion-list ng-show="tab_ltlp_2_i">
+                <div class="item item-input">
+                    <div class="input-label">IDRT</div>
+                    <input type="number" ng-model="ktlp.idrt" block block-length="7" min="4001001" max="4216999" ng-disabled="true" class="input-border">
+                </div>
+                <div class="item item-input">
+                    <div class="input-label">IDART</div>
+                    <input type="number" ng-model="ktlp.idart" block block-length="9" ng-disabled="true" class="input-border">
+                </div>
+                <label class="item item-input">
+                    <div class="input-label">Tanggal wawancara</div>
+                    <input type="date" class="input-border" min="1916-01-01" max="{{tglWawancara}}" ng-model="ktlp.ltlp11a_i">
+                </label>
+                <label class="item item-input">
+                    <div class="input-label">Jam wawancara</div>
+                    <input type="time" class="input-border" ng-model="ktlp.ltlp11b_i" placeholder="HH:mm" min="00:00" max="23:00">
+                </label>
+                <div class="item item-input">
+                    <div class="input-label">Nama responden</div>
+                    <input type="text" ng-model="ktlp.ltlp12_i" class="input-border">
+                </div>
+                <div class="item item-input item-text-wrap">
+                    <div class="input-label">No.Telp/HP <span ng-show="myForm_i.ltlp13_i.$error.pattern" class="hint-status"> Angka salah!</span></div>
+                    <input class="input-border" type="text" name="ltlp13_i" ng-model="ktlp.ltlp13_i" ng-pattern="/^[0-9]{2,13}$/">
+                </div>
+                <div class="item item-select">
+                    <div class="input-label">Satatus wawancara</div>
+                    <select class="input-border" ng-model="ktlp.ltlp14_i">
+                        <option value="" selected></option>
+                        <option value="1">1. Berhasil</option>
+                        <option value="2">2. Wawancara lagi</option>
+                        <option value="3">3. Menolak</option>
+                    </select>
+                </div>
+                <label class="item item-input" ng-if="ktlp.ltlp14_i == 2">
+                    <div class="input-label">Tanggal wawancara lagi</div>
+                    <input type="date" class="input-border" min="1916-01-01" max="{{tglWawancara}}" ng-model="ktlp.ltlp15a_i">
+                </label>
+                <label class="item item-input" ng-if="ktlp.ltlp14_i == 2">
+                    <div class="input-label">Jam wawancara lagi</div>
+                    <input type="time" class="input-border" ng-model="ktlp.ltlp15b_i" placeholder="HH:mm" min="00:00" max="23:00">
+                </label>
+                <div class="item item-input item-text-wrap" >
+                    <div class="input-label">Keterangan<span ng-show="myForm_i.ltlp16_i.$error.pattern" class="hint-status"> Tidak Boleh Ada Koma!</span></div>
+                    <textarea class="text-area pull-right input-border" name="ltlp16_i" ng-model="ktlp.ltlp16_i" ng-pattern="/^[^,]*$/" placeholder="isikan alasan wawancara ulang, alasan menolak jika menolak dan keterangan lain"></textarea>
+                </div>
+            </ion-list>
+
+            <!-- Laporan Wawancara #3 -->
+            <ion-list ng-show="tab_ltlp_3_i">
+                <div class="item item-input">
+                    <div class="input-label">IDRT</div>
+                    <input type="number" ng-model="ktlp.idrt" block block-length="7" min="4001001" max="4216999" ng-disabled="true" class="input-border">
+                </div>
+                <div class="item item-input">
+                    <div class="input-label">IDART</div>
+                    <input type="number" ng-model="ktlp.idart" block block-length="9"ng-disabled="true" class="input-border">
+                </div>
+                <label class="item item-input">
+                    <div class="input-label">Tanggal wawancara</div>
+                    <input type="date" class="input-border" min="1916-01-01" max="{{tglWawancara}}" ng-model="ktlp.ltlp17a_i">
+                </label>
+                <label class="item item-input">
+                    <div class="input-label">Jam wawancara</div>
+                    <input type="time" class="input-border" ng-model="ktlp.ltlp17b_i" placeholder="HH:mm" min="00:00" max="23:00">
+                </label>
+                <div class="item item-input">
+                    <div class="input-label">Nama responden</div>
+                    <input type="text" ng-model="ktlp.ltlp18_i" class="input-border">
+                </div>
+                <div class="item item-input item-text-wrap">
+                    <div class="input-label">No.Telp/HP <span ng-show="myForm_i.ltlp19_i.$error.pattern" class="hint-status"> Angka salah!</span></div>
+                    <input class="input-border" type="text" name="ltlp19_i" ng-model="ktlp.ltlp19_i" ng-pattern="/^[0-9]{2,13}$/">
+                </div>
+                <div class="item item-select">
+                    <div class="input-label">Satatus wawancara</div>
+                    <select class="input-border" ng-model="ktlp.ltlp20_i">
+                        <option value="" selected></option>
+                        <option value="1">1. Berhasil</option>
+                        <option value="2">2. Wawancara lagi</option>
+                        <option value="3">3. Menolak</option>
+                    </select>
+                </div>
+                <label class="item item-input" ng-if="ktlp.ltlp20_i == 2">
+                    <div class="input-label">Tanggal wawancara lagi</div>
+                    <input type="date" class="input-border" min="1916-01-01" max="{{tglWawancara}}" ng-model="ktlp.ltlp21a_i">
+                </label>
+                <label class="item item-input" ng-if="ktlp.ltlp20_i == 2">
+                    <div class="input-label">Jam wawancara lagi</div>
+                    <input type="time" class="input-border" ng-model="ktlp.ltlp21b_i" placeholder="HH:mm" min="00:00" max="23:00">
+                </label>
+                <div class="item item-input item-text-wrap" >
+                    <div class="input-label">Keterangan<span ng-show="myForm_i.ltlp22_i.$error.pattern" class="hint-status"> Tidak Boleh Ada Koma!</span></div>
+                    <textarea class="text-area pull-right input-border" name="ltlp22_i" ng-model="ktlp.ltlp22_i" ng-pattern="/^[^,]*$/" placeholder="isikan alasan wawancara ulang, alasan menolak jika menolak dan keterangan lain"></textarea>
+                </div>
+            </ion-list>
+
+            <!-- Laporan Wawancara #4 -->
+            <ion-list ng-show="tab_ltlp_4_i">
+                <div class="item item-input">
+                    <div class="input-label">IDRT</div>
+                    <input type="number" ng-model="ktlp.idrt" block block-length="7" min="4001001" max="4216999" ng-disabled="true" class="input-border">
+                </div>
+                <div class="item item-input">
+                    <div class="input-label">IDART</div>
+                    <input type="number" ng-model="ktlp.idart" block block-length="9" ng-disabled="true" class="input-border">
+                </div>
+                <label class="item item-input">
+                    <div class="input-label">Tanggal wawancara</div>
+                    <input type="date" class="input-border" min="1916-01-01" max="{{tglWawancara}}" ng-model="ktlp.ltlp23a_i">
+                </label>
+                <label class="item item-input">
+                    <div class="input-label">Jam wawancara</div>
+                    <input type="time" class="input-border" ng-model="ktlp.ltlp23b_i" placeholder="HH:mm" min="00:00" max="23:00">
+                </label>
+                <div class="item item-input">
+                    <div class="input-label">Nama responden</div>
+                    <input type="text" ng-model="ktlp.ltlp24_i" class="input-border">
+                </div>
+                <div class="item item-input item-text-wrap">
+                    <div class="input-label">No.Telp/HP <span ng-show="myForm_i.ltlp25_i.$error.pattern" class="hint-status"> Angka salah!</span></div>
+                    <input class="input-border" type="text" name="ltlp25_i" ng-model="ktlp.ltlp25_i" ng-pattern="/^[0-9]{2,13}$/">
+                </div>
+                <div class="item item-select">
+                    <div class="input-label">Satatus wawancara</div>
+                    <select class="input-border" ng-model="ktlp.ltlp26_i">
+                        <option value="" selected></option>
+                        <option value="1">1. Berhasil</option>
+                        <option value="2">2. Wawancara lagi</option>
+                        <option value="3">3. Menolak</option>
+                    </select>
+                </div>
+                <label class="item item-input" ng-if="ktlp.ltlp26_i == 2">
+                    <div class="input-label">Tanggal wawancara lagi</div>
+                    <input type="date" class="input-border" min="1916-01-01" max="{{tglWawancara}}" ng-model="ktlp.ltlp27a_i">
+                </label>
+                <label class="item item-input" ng-if="ktlp.ltlp26_i == 2">
+                    <div class="input-label">Jam wawancara lagi</div>
+                    <input type="time" class="input-border" ng-model="ktlp.ltlp27b_i" placeholder="HH:mm" min="00:00" max="23:00">
+                </label>
+                <div class="item item-input item-text-wrap" >
+                    <div class="input-label">Keterangan<span ng-show="myForm_i.ltlp28_i.$error.pattern" class="hint-status"> Tidak Boleh Ada Koma!</span></div>
+                    <textarea class="text-area pull-right input-border" name="ltlp28_i" ng-model="ktlp.ltlp28_i" ng-pattern="/^[^,]*$/" placeholder="isikan alasan wawancara ulang, alasan menolak jika menolak dan keterangan lain"></textarea>
+                </div>
+            </ion-list>
+
+            <!-- Laporan Wawancara #5 -->
+            <ion-list ng-show="tab_ltlp_5_i">
+                <div class="item item-input">
+                    <div class="input-label">IDRT</div>
+                    <input type="number" ng-model="ktlp.idrt" block block-length="7" min="4001001" max="4216999" ng-disabled="true" class="input-border">
+                </div>
+                <div class="item item-input">
+                    <div class="input-label">IDART</div>
+                    <input type="number" ng-model="ktlp.idart" block block-length="9" ng-disabled="true" class="input-border">
+                </div>
+                <label class="item item-input">
+                    <div class="input-label">Tanggal wawancara</div>
+                    <input type="date" class="input-border" min="1916-01-01" max="{{tglWawancara}}" ng-model="ktlp.ltlp29a_i">
+                </label>
+                <label class="item item-input">
+                    <div class="input-label">Jam wawancara</div>
+                    <input type="time" class="input-border" ng-model="ktlp.ltlp29b_i" placeholder="HH:mm" min="00:00" max="23:00">
+                </label>
+                <div class="item item-input">
+                    <div class="input-label">Nama responden</div>
+                    <input type="text" ng-model="ktlp.ltlp30_i" class="input-border">
+                </div>
+                <div class="item item-input item-text-wrap">
+                    <div class="input-label">No.Telp/HP <span ng-show="myForm_i.ltlp31_i.$error.pattern" class="hint-status"> Angka salah!</span></div>
+                    <input class="input-border" type="text" name="ltlp31_i" ng-model="ktlp.ltlp31_i" ng-pattern="/^[0-9]{2,13}$/">
+                </div>
+                <div class="item item-select">
+                    <div class="input-label">Satatus wawancara</div>
+                    <select class="input-border" ng-model="ktlp.ltlp32_i">
+                        <option value="" selected></option>
+                        <option value="1">1. Berhasil</option>
+                        <option value="2">2. Wawancara lagi</option>
+                        <option value="3">3. Menolak</option>
+                    </select>
+                </div>
+                <label class="item item-input" ng-if="ktlp.ltlp32_i == 2">
+                    <div class="input-label">Tanggal wawancara lagi</div>
+                    <input type="date" class="input-border" min="1916-01-01" max="{{tglWawancara}}" ng-model="ktlp.ltlp33a_i">
+                </label>
+                <label class="item item-input" ng-if="ktlp.ltlp32_i == 2">
+                    <div class="input-label">Jam wawancara lagi</div>
+                    <input type="time" class="input-border" ng-model="ktlp.ltlp33b_i" placeholder="HH:mm" min="00:00" max="23:00">
+                </label>
+                <div class="item item-input item-text-wrap" >
+                    <div class="input-label">Keterangan<span ng-show="myForm_i.ltlp34_i.$error.pattern" class="hint-status"> Tidak Boleh Ada Koma!</span></div>
+                    <textarea class="text-area pull-right input-border" name="ltlp34_i" ng-model="ktlp.ltlp34_i" ng-pattern="/^[^,]*$/" placeholder="isikan alasan wawancara ulang, alasan menolak jika menolak dan keterangan lain"></textarea>
+                </div>
+            </ion-list>
+        </form>
+
+        <!-- Button untuk konfirmasi SMS -->
+        <div class="item-group" ng-if="tab_sms && kSmsAllowSave()">
+                <!-- jika SMS berhasil, langsung ke laporan telepon -->
+                <button ng-if="ktlp.status_sms == 'berhasil'" class="button simpan button-calm pull-right" ng-click="saveKonfirmasi('sms','berhasil',ktlp)" >
+                    SMS Berhasil (ke Laporan Wawancara)<i class="icon ion-arrow-right-c"></i>
+                </button>
+                <!-- jika SMS gagal (menolak), ke konfirmasi WA -->
+                <button ng-if="ktlp.status_sms == 'responden menolak'" class="button simpan button-dark pull-right" ng-click="saveKonfirmasi('sms','gagal',ktlp)">
+                    <i class="icon ion-archive"></i> SMS Gagal (selesai)
+                </button>
+                <!-- jika SMS tidak ada respon, ke konfirmasi WA -->
+                <button ng-if="ktlp.status_sms == 'tidak ada respon'" class="button simpan button-dark pull-right" ng-click="saveKonfirmasi('sms','no respon',ktlp)">
+                    <i class="icon ion-archive"></i> SMS Tidak Ada Respon (ke konfirmasi WA)
+                </button>
+        </div>
+
+        <!-- Button untuk konfirmasi WA -->
+        <div class="item-group" ng-if="tab_wa && kWaAllowSave()">
+                <!-- jika WA berhasil, langsung ke laporan telepon -->
+                <button ng-if="ktlp.status_wa == 'berhasil'" class="button simpan button-calm pull-right" ng-click="saveKonfirmasi('wa','berhasil',ktlp)" >
+                    WA Berhasil (ke Laporan Wawancara)<i class="icon ion-arrow-right-c"></i>
+                </button>
+                <!-- jika WA gagal (menolak), ke konfirmasi WA -->
+                <button ng-if="ktlp.status_wa == 'responden menolak'" class="button simpan button-dark pull-right" ng-click="saveKonfirmasi('wa','gagal',ktlp)">
+                    <i class="icon ion-archive"></i> WA Gagal (selesai)
+                </button>
+                <!-- jika WA tidak ada respon, ke konfirmasi WA -->
+                <button ng-if="ktlp.status_wa == 'tidak ada respon'" class="button simpan button-dark pull-right" ng-click="saveKonfirmasi('wa','no respon',ktlp)">
+                    <i class="icon ion-archive"></i> WA Tidak Ada Respon (ke konfirmasi Telepon)
+                </button>
+        </div>
+
+        <!-- Button untuk konfirmasi Telp #1 -->
+        <div class="item-group" ng-if="tab_tlp_1 && kT1AllowSave()">
+                <!-- jika Telp berhasil, langsung ke laporan telepon -->
+                <button ng-if="ktlp.status_telp_1 == 'berhasil'" class="button simpan button-calm pull-right" ng-click="saveKonfirmasi('telp1','berhasil',ktlp)" >
+                    Telepon Berhasil (ke Laporan Wawancara)<i class="icon ion-arrow-right-c"></i>
+                </button>
+                <!-- jika Telp #1 gagal (menolak), ke konfirmasi Telp #2 -->
+                <button ng-if="ktlp.status_telp_1 == 'responden menolak'" class="button simpan button-dark pull-right" ng-click="saveKonfirmasi('telp1','gagal',ktlp)">
+                    <i class="icon ion-archive"></i> Telepon Gagal (selesai)
+                </button>
+                <!-- jika Telp #1 tidak ada respon, ke konfirmasi Telp #2 -->
+                <button ng-if="ktlp.status_telp_1 == 'tidak ada respon pada telepon pertama'" class="button simpan button-dark pull-right" ng-click="saveKonfirmasi('telp1','no respon',ktlp)">
+                    <i class="icon ion-archive"></i> Telepon #1 Tidak Ada Respon (ke konfirmasi Telepon #2)
+                </button>
+        </div>
+
+        <!-- Button untuk konfirmasi Telp #2 -->
+        <div class="item-group" ng-if="tab_tlp_2 && kT2AllowSave()">
+                <!-- jika Telp berhasil, langsung ke laporan telepon -->
+                <button ng-if="ktlp.status_telp_2 == 'berhasil'" class="button simpan button-calm pull-right" ng-click="saveKonfirmasi('telp2','berhasil',ktlp)" >
+                    Telepon Berhasil (ke Laporan Wawancara)<i class="icon ion-arrow-right-c"></i>
+                </button>
+                <!-- jika Telp #1 gagal (menolak), ke konfirmasi Telp #2 -->
+                <button ng-if="ktlp.status_telp_2 == 'responden menolak'" class="button simpan button-dark pull-right" ng-click="saveKonfirmasi('telp2','gagal',ktlp)">
+                    <i class="icon ion-archive"></i> Telepon Gagal (selesai)
+                </button>
+                <!-- jika Telp #1 tidak ada respon, ke konfirmasi Telp #2 -->
+                <button ng-if="ktlp.status_telp_2 == 'tidak ada respon pada telepon kedua'" class="button simpan button-dark pull-right" ng-click="saveKonfirmasi('telp2','no respon',ktlp)">
+                    <i class="icon ion-archive"></i> Telepon #2 Tidak Ada Respon (ke konfirmasi Telepon #3)
+                </button>
+        </div>
+
+        <!-- Button untuk konfirmasi Telp #3 -->
+        <div class="item-group" ng-if="tab_tlp_3 && kT3AllowSave()">
+                <!-- jika Telp berhasil, langsung ke laporan telepon -->
+                <button ng-if="ktlp.status_telp_3 == 'berhasil'" class="button simpan button-calm pull-right" ng-click="saveKonfirmasi('telp3','berhasil',ktlp)" >
+                    Telepon Berhasil (ke Laporan Wawancara)<i class="icon ion-arrow-right-c"></i>
+                </button>
+                <!-- jika Telp #1 gagal (menolak), ke konfirmasi Telp #2 -->
+                <button ng-if="ktlp.status_telp_3 == 'responden menolak'" class="button simpan button-dark pull-right" ng-click="saveKonfirmasi('telp3','gagal',ktlp)">
+                    <i class="icon ion-archive"></i> Telepon Gagal (selesai)
+                </button>
+                <!-- jika Telp #1 tidak ada respon, ke konfirmasi Telp #2 -->
+                <button ng-if="ktlp.status_telp_3 == 'tidak ada respon pada telepon ketiga'" class="button simpan button-dark pull-right" ng-click="saveKonfirmasi('telp3','no respon',ktlp)">
+                    <i class="icon ion-archive"></i> Telepon #3 Tidak Ada Respon (ke konfirmasi Telepon #4)
+                </button>
+        </div>
+
+        <!-- Button untuk konfirmasi Telp #4 -->
+        <div class="item-group" ng-if="tab_tlp_4 && kT4AllowSave()">
+                <!-- jika Telp berhasil, langsung ke laporan telepon -->
+                <button ng-if="ktlp.status_telp_4 == 'berhasil'" class="button simpan button-calm pull-right" ng-click="saveKonfirmasi('telp4','berhasil',ktlp)" >
+                    Telepon Berhasil (ke Laporan Wawancara)<i class="icon ion-arrow-right-c"></i>
+                </button>
+                <!-- jika Telp #1 gagal (menolak), ke konfirmasi Telp #2 -->
+                <button ng-if="ktlp.status_telp_4 == 'responden menolak'" class="button simpan button-dark pull-right" ng-click="saveKonfirmasi('telp4','gagal',ktlp)">
+                    <i class="icon ion-archive"></i> Telepon Gagal (selesai)
+                </button>
+                <!-- jika Telp #1 tidak ada respon, ke konfirmasi Telp #2 -->
+                <button ng-if="ktlp.status_telp_4 == 'tidak ada respon pada telepon keempat'" class="button simpan button-dark pull-right" ng-click="saveKonfirmasi('telp4','no respon',ktlp)">
+                    <i class="icon ion-archive"></i> Telepon #4 Tidak Ada Respon (ke konfirmasi Telepon #5)
+                </button>
+        </div>
+
+        <!-- Button untuk konfirmasi Telp #5 -->
+        <div class="item-group" ng-if="tab_tlp_5 && kT5AllowSave()">
+                <!-- jika Telp berhasil, langsung ke laporan telepon -->
+                <button ng-if="ktlp.status_telp_5 == 'berhasil'" class="button simpan button-calm pull-right" ng-click="saveKonfirmasi('telp5','berhasil',ktlp)" >
+                    Telepon Berhasil (ke Laporan Wawancara)<i class="icon ion-arrow-right-c"></i>
+                </button>
+                <!-- jika Telp #5 gagal (menolak), selesai -->
+                <button ng-if="ktlp.status_telp_5 == 'responden menolak'" class="button simpan button-dark pull-right" ng-click="saveKonfirmasi('telp5','gagal',ktlp)">
+                    <i class="icon ion-archive"></i> Telepon Gagal (selesai)
+                </button>
+                <!-- jika Telp #5 tidak ada respon, selesai -->
+                <button ng-if="ktlp.status_telp_5 == 'tidak ada respon pada telepon kelima'" class="button simpan button-dark pull-right" ng-click="saveKonfirmasi('telp5','no respon',ktlp)">
+                    <i class="icon ion-archive"></i> Telepon #5 Tidak Ada Respon (gagal)
+                </button>
+        </div>
+
+        <!-- Button untuk laporan telepon #1 -->
+        <div class="item-group" ng-if="tab_ltlp_1 && lTLP1AllowSave()">
+                <!-- jika Telp #1 berhasil, langsung ke reward -->
+                <button ng-if="ktlp.ltlp08 == 1" class="button simpan button-calm pull-right" ng-click="saveKonfirmasi('ltlp1','berhasil',ktlp)" >
+                    Telepon Berhasil (ke reward)<i class="icon ion-arrow-right-c"></i>
+                </button>
+                <!-- jika Telp #1 reschedule, ke Telp #2 -->
+                <button ng-if="ktlp.ltlp08 == 2" class="button simpan button-dark pull-right" ng-click="saveKonfirmasi('ltlp1','reschedule',ktlp)">
+                    <i class="icon ion-archive"></i> Jadwal Ulang Wawancara (ke Telepon #2)
+                </button>
+                <!-- jika Telp #1 menolak, selesai -->
+                <button ng-if="ktlp.ltlp08 == 3" class="button simpan button-dark pull-right" ng-click="saveKonfirmasi('ltlp1','menolak',ktlp)" >
+                    <i class="icon ion-archive"></i> Menolak
+                </button>
+        </div>
+
+        <!-- Button untuk laporan telepon #2 -->
+        <div class="item-group" ng-if="tab_ltlp_2 && lTLP2AllowSave()">
+                <!-- jika Telp #2 berhasil, langsung ke reward -->
+                <button ng-if="ktlp.ltlp14 == 1" class="button simpan button-calm pull-right" ng-click="saveKonfirmasi('ltlp2','berhasil',ktlp)" >
+                    Telepon Berhasil (ke reward)<i class="icon ion-arrow-right-c"></i>
+                </button>
+                <!-- jika Telp #2 reschedule, ke Telp #3 -->
+                <button ng-if="ktlp.ltlp14 == 2" class="button simpan button-dark pull-right" ng-click="saveKonfirmasi('ltlp2','reschedule',ktlp)">
+                    <i class="icon ion-archive"></i> Jadwal Ulang Wawancara (ke Telepon #3)
+                </button>
+                <!-- jika Telp #2 menolak, selesai -->
+                <button ng-if="ktlp.ltlp14 == 3" class="button simpan button-dark pull-right" ng-click="saveKonfirmasi('ltlp2','menolak',ktlp)" >
+                    <i class="icon ion-archive"></i> Menolak
+                </button>
+        </div>
+
+        <!-- Button untuk laporan telepon #3 -->
+        <div class="item-group" ng-if="tab_ltlp_3 && lTLP3AllowSave()">
+                <!-- jika Telp #3 berhasil, langsung ke reward -->
+                <button ng-if="ktlp.ltlp20 == 1" class="button simpan button-calm pull-right" ng-click="saveKonfirmasi('ltlp3','berhasil',ktlp)" >
+                    Telepon Berhasil (ke reward)<i class="icon ion-arrow-right-c"></i>
+                </button>
+                <!-- jika Telp #3 reschedule, ke Telp #4 -->
+                <button ng-if="ktlp.ltlp20 == 2" class="button simpan button-dark pull-right" ng-click="saveKonfirmasi('ltlp3','reschedule',ktlp)">
+                    <i class="icon ion-archive"></i> Jadwal Ulang Wawancara (ke Telepon #4)
+                </button>
+                <!-- jika Telp #3 menolak, selesai -->
+                <button ng-if="ktlp.ltlp20 == 3" class="button simpan button-dark pull-right" ng-click="saveKonfirmasi('ltlp3','menolak',ktlp)" >
+                    <i class="icon ion-archive"></i> Menolak
+                </button>
+        </div>
+        
+        <!-- Button untuk laporan telepon #4 -->
+        <div class="item-group" ng-if="tab_ltlp_4 && lTLP4AllowSave()">
+                <!-- jika Telp #4 berhasil, langsung ke reward -->
+                <button ng-if="ktlp.ltlp26 == 1" class="button simpan button-calm pull-right" ng-click="saveKonfirmasi('ltlp4','berhasil',ktlp)" >
+                    Telepon Berhasil (ke reward)<i class="icon ion-arrow-right-c"></i>
+                </button>
+                <!-- jika Telp #4 reschedule, ke Telp #5 -->
+                <button ng-if="ktlp.ltlp26 == 2" class="button simpan button-dark pull-right" ng-click="saveKonfirmasi('ltlp4','reschedule',ktlp)">
+                    <i class="icon ion-archive"></i> Jadwal Ulang Wawancara (ke Telepon #5)
+                </button>
+                <!-- jika Telp #4 menolak, selesai -->
+                <button ng-if="ktlp.ltlp26 == 3" class="button simpan button-dark pull-right" ng-click="saveKonfirmasi('ltlp4','menolak',ktlp)" >
+                    <i class="icon ion-archive"></i> Menolak
+                </button>
+        </div>
+
+        <!-- Button untuk laporan telepon #5 -->
+        <div class="item-group" ng-if="tab_ltlp_5 && lTLP5AllowSave()">
+                <!-- jika Telp #5 berhasil, langsung ke reward -->
+                <button ng-if="ktlp.ltlp32 == 1" class="button simpan button-calm pull-right" ng-click="saveKonfirmasi('ltlp5','berhasil',ktlp)" >
+                    Telepon Berhasil (ke reward)<i class="icon ion-arrow-right-c"></i>
+                </button>
+                <!-- jika Telp #5 reschedule, selesai -->
+                <button ng-if="ktlp.ltlp32 == 2" class="button simpan button-dark pull-right" ng-click="saveKonfirmasi('ltlp5','reschedule',ktlp)">
+                    <i class="icon ion-archive"></i> Gagal
+                </button>
+                <!-- jika Telp #5 menolak, selesai -->
+                <button ng-if="ktlp.ltlp32 == 3" class="button simpan button-dark pull-right" ng-click="saveKonfirmasi('ltlp5','menolak',ktlp)" >
+                    <i class="icon ion-archive"></i> Menolak
+                </button>
+        </div>
+
+        <!-- Button untuk tab Reward -->
+        <div class="item-group" ng-if="tab_reward && rewardAllowSave()">
+                <!-- jika Telp #2 menolak, selesai -->
+                <button class="button simpan button-calm pull-right" ng-click="saveKonfirmasi('reward','reward',ktlp)" >
+                    <i class="icon ion-archive"></i> Selesai
+                </button>
+        </div>
+
+        <!-- tombol test biar cepat -->
+        <div class="item-group">
+                <button class="button simpan button-calm pull-right" ng-click="goART()" >
+                    <i class="icon ion-archive"></i> ke ART
+                </button>
+        </div>
+        
+    </ion-content>
+</ion-view>

@@ -1,0 +1,170 @@
+<ion-view view-title="User Otoritas">
+    <ion-content class="padding setting">
+        <ion-refresher pulling-text="Pull to refresh..." on-refresh="refreshPage()">
+        </ion-refresher>
+        <div ng-if="userOtorized && (userRole == 'admin')" class="download-export">
+            <!-- <div class="row">
+                <div class="col col-75">
+                    Hasil Export eHDSS Data Kish Terpisah
+                </div>
+                <div class="col col-25 text-right">
+                    <button
+                       class="button button-right icon-left ion-android-download button-small button-royal"
+                       ng-click="downloadExport('Random')">Download(zip)</button>
+                </div>
+            </div> -->
+            <!-- Download HDSS -->
+            <div class="row">
+                <div class="col col-75">
+                    Hasil Export eHDSS Data RT dan ART
+                </div>
+                <div class="col col-25 text-right">
+                    <button
+                       class="button button-right icon-left ion-android-download button-small button-royal"
+                       ng-click="downloadExport()">Download (zip)</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-75">
+                    Hasil Export History eHDSS Data RT dan ART
+                </div>
+                <div class="col col-25 text-right">
+                    <button
+                       class="button button-right icon-left ion-android-download button-small button-royal"
+                       ng-click="downloadExport('ART_History')">Download (zip)</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-75">
+                    Hasil Export Perbaikan baseline
+                </div>
+                <div class="col col-25 text-right">
+                    <button
+                       class="button button-right icon-left ion-android-download button-small button-balanced"
+                       ng-click="downloadExport('PB')">Download (zip)</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-75">
+                    Hasil Export ART Pindah
+                </div>
+                <div class="col col-25 text-right">
+                    <button
+                       class="button button-right icon-left ion-android-download button-small button-positive"
+                       ng-click="downloadExport('art_pindah')">Download (zip)</button>
+                </div>
+            </div>
+            <!-- <div class="row">
+                <div class="col col-75">
+                    Hasil Export Kontak Awal
+                </div>
+                <div class="col col-25 text-right">
+                    <button
+                       class="button button-right icon-left ion-android-download button-small button-positive"
+                       ng-click="downloadExport('ktlp')">Download (zip)</button>
+                </div>
+            </div> -->
+            
+            <div class="row">
+                <div class="col col-75">
+                    Set IDRT RuTa Pecah & Replacement
+                </div>
+                <div class="col col-25 text-right">
+                    <button
+                       class="button button-right icon-left ion-android-download button-small button-assertive"
+                       ng-click="setIdrtMax()">Set IDRT</button>
+                </div>
+            </div>
+        </div>
+
+        <div ng-if="userOtorized && (userRole == 'admin' || userRole == 'supervisor')" class="download-export">
+            <!-- Download Catatan Enum -->
+            <div class="row">
+                <div class="col col-75">
+                    Hasil Export Catatan Enum (xslx dan csv) tersedia
+                </div>
+                <div class="col col-25 text-right">
+                    <button
+                       class="button button-right icon-left ion-android-download button-small button-balanced"
+                       ng-click="downloadExport('CKE')">Download (zip)</button>
+                </div>
+            </div>
+            <!-- Download Catatan SPV -->
+            <div class="row">
+                <div class="col col-75">
+                    Hasil Export Catatan SPV (xslx dan csv) tersedia
+                </div>
+                <div class="col col-25 text-right">
+                    <button
+                       class="button button-right icon-left ion-android-download button-small button-balanced"
+                       ng-click="downloadExport('CSPV')">Download (zip)</button>
+                </div>
+            </div>
+            <!-- Download Catatan SPV -->
+        </div>
+        <!-- <div ng-if="userOtorized && (userRole == 'admin')" class="download-export">
+            <div class="row">
+                <div class="col col-75">
+                    Set IDRT Replacement Sample
+                </div>
+                <div class="col col-25 text-right">
+                    <button
+                       class="button button-right icon-left ion-android-download button-small button-assertive"
+                       ng-click="setIdrtReplacement()">Set IDRT replacement sample</button>
+                </div>
+            </div>
+        </div> -->
+
+        <div class="item item-divider desc item-text-wrap">
+            Silahkan login untuk mengakses modul User Otoritas
+        </div>
+        <div class="row">
+            <div class="col col-25">
+                <input type="text" placeholder="Username" ng-model="username">
+            </div>
+            <div class="col col-25">
+                <input type="password" placeholder="Password" ng-model="password">
+            </div>
+            <div class="col col-20">
+                <input type="submit" value="Login" class="button button-small button-dark "
+                    ng-click="login(username,password)" />
+            </div>
+            <div class="col col-30" ng-show="userOtorized">
+                <button class="button ion-person-add button-balanced button-small button-block"
+                    ng-click="addUser()">&nbsp;&nbsp;Tambah User Baru</button>
+            </div>
+        </div>
+
+        <div ng-if="userOtorized">
+            <div class="item item-divider desc item-text-wrap">
+                Daftar User Aplikasi HDSS
+            </div>
+
+            <div class="list user-list">
+                <div class="table table-bordered table-striped">
+                    <div class="row header">
+                        <div class="col col-10 text-center">No</div>
+                        <div class="col col-20">Username</div>
+                        <div class="col col-20 text-center">Role</div>
+                        <div class="col col-20 text-right">Jml RT</div>
+                        <div class="col col-30 text-center">Aksi</div>
+                    </div>
+                    <div class="row" ng-repeat="u in listUserRT" ng-class="u.role">
+                        <div class="col col-10 text-center">{{u.no}}</div>
+                        <div class="col col-20">{{u.user}}</div>
+                        <div class="col col-20 text-center">{{u.role}}</div>
+                        <div class="col col-20 text-right">{{u.jml_rt}}</div>
+                        <div class="col col-30 col-row text-center">
+                            <button ng-show="u.role == 'enum'" class="button icon-left ion-android-apps button-small button-positive"
+                                ng-click="detail(u)">Detail</button>
+                            <button class="button icon-left ion-edit button-small button-balanced"
+                                ng-click="edit(u)" >Edit</button>
+                            <button class="button icon-left ion-close button-assertive button-small"
+                                ng-click="deleteUser(u)">Hapus</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

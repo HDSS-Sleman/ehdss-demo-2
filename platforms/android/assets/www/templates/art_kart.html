@@ -1,0 +1,745 @@
+<ion-view view-title="Anggota Rumah Tangga">
+    <ion-content class="art_kart">
+        <form name="myForm" novalidate>
+            <ion-list>
+                <label class="item item-input">
+                    <div class="input-label">IDRT</div>
+                    <input type="number" class="input-border" ng-model="art_kart.idrt" block block-length="7" ng-readonly="1">
+                </label>
+                <label class="item item-input item-text-wrap">
+                    <span class="input-label">Nomor Urut ART</span>
+                    <input type="number" class="input-border" ng-model="art_kart.art00" ng-change="getIDI(art_kart.art00)" ng-readonly="1">
+                </label>
+                
+
+                <label class="item item-input item-text-wrap">
+                    <span class="input-label hint-status">IDART yang sudah terpakai: {{idart_terpakai}}</span>
+                </label>
+
+
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-25 ">
+                            <div class="input-label">No. IDI</div>
+                        </div>
+                        <div class="col col-25 ">
+                            <div ng-hide="idart_tersedia" class="input-label hint-status">IDART sudah terpakai, silakan generate IDART lagi</div>
+                        </div>
+                        <div class="col col-25 ">
+                            <input type="number" ng-class="{'input-border' : idart_tersedia == true, 'input-border-red': idart_tersedia == false}" ng-model="art_kart.art03b" ng-readonly="1">
+                        </div>
+                        <div class="col col-25" ng-if="idart_tersedia == false">
+                            <button ng-click="generateIdartNew(art_kart.art03b)" class="button icon-left ion-edit button-small button-positive">Generate</button>
+                        </div>
+                    </div>
+                </div>
+
+                <label class="item item-input item-text-wrap">
+                    <div class="input-label">Nama Anggota Rumah Tangga</div>
+                    <input class="lowercase input-border" type="text" ng-model="art_kart.art01">
+                </label>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center">
+                            <div class="input-label ">Hubungan dg Kepala Rumah Tangga </div>
+                        </div>
+                        <div class="col col-50 col-center">
+                            <select class="input-border" ng-model="art_kart.art02" ng-options="key as key + '. ' + val for (key,val) in listHubRT">
+                                <option value="" selected></option>
+                            </select>
+                        </div>
+                    </div>
+                </label>
+
+                <!-- pertanyaan untuk anak lahir hidup/mati dari ART HDSS -->
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center">
+                            <div class="input-label ">Apakah lahir dari ART HDSS? </div>
+                        </div>
+                        <div class="col col-50 col-center">
+                            <div class="button-bar right">
+                                <ion-radio name="art24" ng-model="art_kart.art24" value="3" >Ya</ion-radio>
+                                <ion-radio name="art24" ng-model="art_kart.art24" value="0" >Tidak</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="invalid-val">Pertanyaan ini diisi YA jika ART merupakan bayi yang lahir dari ART HDSS lama. Bayi bisa lahir hidup/mati. </span>
+                </label>
+                <label class="item item-text-wrap item-row" ng-if="art_kart.art24 == 3">
+                    <div class="row">
+                        <div class="col col-50 col-center">
+                            <div class="input-label">Keberadaan ART</div>
+                        </div>
+                        <div class="col col-50 col-center">
+                            <div class="button-bar right">
+                                <ion-radio name="art21a" ng-model="art_kart.art21a" value="1">Ada</ion-radio>
+                                <ion-radio name="art21a" ng-model="art_kart.art21a" value="2">Tidak</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <!-- pertanyaan jika keberadaan Tidak ADA -->
+                <div class="item-group" ng-if="art_kart.art24 == 3 && art_kart.art21a == 2">
+                    <div class="item item-divider">
+                        Keterangan Keberadaan ART Baru
+                    </div>
+                    <div class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label">Kejadian </div>
+                            <div class="col col-50 col-center" >
+                                <select class="input-border pull-right" ng-model="art_kart.art21b">
+                                    <option value="" selected></option>
+                                    <option value="1">1. Meninggal</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label">Apakah tahu Tanggal Kejadian? </div>
+                            <div class="col col-50 col-center" >
+                                <select class="input-border pull-right" ng-model="art_kart.art21ex">
+                                    <option value="" selected></option>
+                                    <option value="1">1. Ya</option>
+                                    <option value="2">2. Tidak</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <label class="item item-select item-text-wrap" ng-if="art_kart.art21ex == 1">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">Tanggal Kejadian</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <input type="date" min="1916-01-01" max="{{tglMaxEntry}}" ng-model="art_kart.art21e" class="pull-right input-border">
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-select item-text-wrap" ng-if="art_kart.art21ex == 2">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">Tanggal Kejadian</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <input type="date" min="1916-01-01" max="{{tglMaxEntry}}" ng-model="art_kart.art21ep" class="pull-right input-border">
+                            </div>
+                        </div>
+                    </label>
+                </div>
+                <!-- end of pertanyaan untuk anak lahir hidup/mati dari ART HDSS -->
+
+                <label class="item item-input" ng-if="art_kart.art24 == 0 || art_kart.art21a == 1">
+                    <span class="input-label">NIK</span>
+                    <input type="text" class="input-border" ng-model="art_kart.art03a" block block-length="16" ng-pattern="/^[0-9]{16,16}$/">
+                </label>
+                <div class="invalid-val"><span>Isikan 98 jika NIK tidak tahu</span></div>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center">
+                            <div class="input-label ">Jenis Kelamin </div>
+                        </div>
+                        <div class="col col-50 col-center">
+                            <select class="pull-right input-border"ng-model="art_kart.art04">
+                                <option value="" selected></option>
+                                <option value="1">1. Laki-laki</option>
+                                <option value="2">2. Perempuan</option>
+                            </select>
+                        </div>
+                    </div>
+                </label>
+                <label class="item item-text-wrap item-row" ng-if="art_kart.art24 == 0 || art_kart.art21a == 1">
+                    <div class="row">
+                        <div class="col col-50 col-center">
+                            <div class="input-label ">Apakah tahu tanggal lahir? </div>
+                        </div>
+                        <div class="col col-50 col-center">
+                            <select class="pull-right input-border" ng-model="art_kart.art05a">
+                                <option value="" selected></option>
+                                <option value="1">1. Ya</option>
+                                <option value="2">2. Tidak</option>
+                            </select>
+                        </div>
+                    </div>
+                </label>
+                <label class="item item-text-wrap item-row" ng-if="(art_kart.art24 == 0 || art_kart.art21a == 1) && art_kart.art05a == 1">
+                    <div class="row">
+                        <div class="col col-50 col-center">
+                            <div class="input-label ">Tanggal Lahir</div>
+                        </div>
+                        <div class="col col-50 col-center">
+                            <input type="date" min="1900-01-01" max="{{tglWawancara}}" ng-model="art_kart.art05" ng-change="calcUmur()" class="pull-right input-border">
+                        </div>
+                    </div>
+                </label>
+                <label class="item item-text-wrap item-row" ng-if="(art_kart.art24 == 0 || art_kart.art21a == 1) && art_kart.art05a == 1">
+                    <div class="row">
+                        <div class="col col-50 col-center">
+                            <div class="input-label ">Sumber Informasi tanggal lahir </div>
+                        </div>
+                        <div class="col col-50 col-center">
+                            <select class="pull-right input-border" ng-model="art_kart.art05b">
+                                <option value="1">1. Ingatan</option>
+                                <option value="2">2. KTP/SIM</option>
+                                <option value="3">3. Kartu Keluarga</option>
+                                <option value="4">4. Akta Kelahiran</option>
+                                <option value="5">5. Dokumen resmi lain, sebutkan</option>
+                            </select>
+                        </div>
+                    </div>
+                </label>
+                <label class="item item-input item-text-wrap" ng-if="(art_kart.art24 == 0 || art_kart.art21a == 1) && art_kart.art05a == 1 && art_kart.art05b == 5">
+                    <div class="input-label">Sumber Informasi tanggal lahir lain</div>
+                    <input type="text" class="pull-right input-border" ng-model="art_kart.art05b1">
+                </label>
+                <div class="item item-text-wrap item-row" ng-if="(art_kart.art24 == 0 || art_kart.art21a == 1) && art_kart.art05a == 2">
+                    <div class="row">
+                        <div class="col col-50">
+                            <div class="input-label">Umur (thn/bln/hari)</div>
+                        </div>
+                        <div class="col col-10 col-offset-20">
+                            <input type="number" class="input-border" ng-model="art_kart.art06a" name="art06a" placeholder="thn" min="0" max="100" ng-change="calcUmur()">
+                        </div>
+                        <div class="col col-10">
+                            <input type="number" class="input-border" ng-model="art_kart.art06b" name="art06b" placeholder="bln" min="0" max="11">
+                        </div>
+                        <div class="col col-10">
+                            <input type="number" class="input-border" ng-model="art_kart.art06c" name="art06c" placeholder="hari" min="0" max="30">
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="myForm.art06a.$invalid" class="invalid-val"><span>thn minimal 0 dan maksimal 100</span></div>
+                <div ng-show="myForm.art06b.$invalid" class="invalid-val"><span>bln minimal 0 dan maksimal 11</span></div>
+                <div ng-show="myForm.art06c.$invalid" class="invalid-val"><span>hari minimal 0 dan maksimal 30</span></div>
+
+                <label class="item item-text-wrap item-row" ng-if="art_kart.art24 == 0 || art_kart.art21a == 1">
+                    <div class="row">
+                        <div class="col col-50 col-center">
+                            <div class="input-label ">Status Kawin </div>
+                        </div>
+                        <div class="col col-50 col-center">
+                            <select class="pull-right input-border" ng-model="art_kart.art07">
+                                <option value="" selected></option>
+                                <option ng-repeat="(key,val) in statusKawin" value="{{key}}">{{val}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </label>
+
+                <div class="item-group" ng-if="(art_kart.art24 == 0 || art_kart.art21a == 1) && art_kart.art07 > 1">
+                    <div class="item item-divider">
+                        Riwayat Pernikahan
+                    </div>
+                    <label class="item item-select item-text-wrap">
+                        <div class="input-label">Apakah tahu Tgl. Pertama Menikah?</div>
+                        <select class="pull-right input-border" ng-model="art_kart.art08b">
+                            <option value="" selected></option>
+                            <option value="1">1. Ya</option>
+                            <option value="2">2. Tidak</option>
+                        </select>
+                    </label>
+                    <label class="item item-text-wrap item-row" ng-if="art_kart.art08b == 1">
+                        <div class="row">
+                            <div class="col col-50 ">
+                                <div class="input-label ">Tgl. Pertama Menikah</div>
+                            </div>
+                            <div class="col col-50">
+                                <input type="date" min="1916-01-01" max="{{tglWawancara}}" ng-model="art_kart.art08a" class="pull-right input-border">
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row" ng-if="art_kart.art08b == 2">
+                        <div class="row">
+                            <div class="col col-50 ">
+                                <div class="input-label ">Tgl. Pertama Menikah perkiraan</div>
+                            </div>
+                            <div class="col col-50">
+                                <input type="date" min="1916-01-01" max="{{tglWawancara}}" ng-model="art_kart.art08ap" class="pull-right input-border">
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-select item-text-wrap">
+                        <div class="input-label">Apakah tahu Usia Pertama Menikah?</div>
+                        <select class="pull-right input-border" ng-model="art_kart.art08d">
+                            <option value="" selected></option>
+                            <option value="1">1. Ya</option>
+                            <option value="2">2. Tidak</option>
+                        </select>
+                    </label>
+                    <label class="item item-text-wrap item-row" ng-if="art_kart.art08d == 1">
+                        <div class="row">
+                            <div class="col col-50 ">
+                                <div class="input-label ">Usia Pertama Menikah</div>
+                            </div>
+                            <div class="col col-50">
+                                <input type="number" ng-model="art_kart.art08c" name="art08c" min="10" max="99" block block-length="2" onkeypress="return event.charCode >= 48 && event.charCode <= 57" class="pull-right input-border">
+                            </div>
+                        </div>
+                    </label>
+                    <div ng-show="myForm.art08b.$invalid" class="invalid-val"><span>nilai minimal 10 dan maksimal 99</span></div>
+                </div>
+                <div class="item-group" ng-if="(art_kart.art24 == 0 || art_kart.art21a == 1) && art_kart.art07 == 2">
+                    <div class="item item-divider">
+                        Data Suami / Istri
+                    </div>
+                    <div ng-if="art_kart.art04 == 1">
+                        <div class="item item-text-wrap item-row" ng-if="art_kart.art07 == 2">
+                            <div class="row">
+                                <div class="col col-50 col-center input-label">No. Urut Pasangan Pertama </div>
+                                <div class="col col-50 col-center" >
+                                    <select class="input-border pull-right" ng-model="art_kart.art09">
+                                        <option value="" selected></option>
+                                        <option ng-repeat="(key,val) in listARTed_P track by $index" value="{{key}}">{{key}}. {{val}}</option>
+                                        <option value="51">51. jika suami/istri tidak tinggal bersama</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-if="art_kart.art04 == 2">
+                        <div class="item item-text-wrap item-row" ng-if="art_kart.art07 == 2">
+                            <div class="row">
+                                <div class="col col-50 col-center input-label">No. Urut Pasangan Pertama </div>
+                                <div class="col col-50 col-center" >
+                                    <select class="input-border pull-right" ng-model="art_kart.art09">
+                                        <option value="" selected></option>
+                                        <option ng-repeat="(key,val) in listARTed_L track by $index" value="{{key}}">{{key}}. {{val}}</option>
+                                        <option value="51">51. jika suami/istri tidak tinggal bersama</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-if="art_kart.art04 == 1">
+                        <div class="item item-text-wrap item-row" ng-if="art_kart.art07 == 2">
+                            <div class="row">
+                                <div class="col col-50 col-center input-label">No. Urut Pasangan Kedua </div>
+                                <div class="col col-50 col-center" >
+                                    <select class="input-border pull-right" ng-model="art_kart.art10">
+                                        <option value="" selected></option>
+                                        <option ng-repeat="(key,val) in listARTed_P track by $index" value="{{key}}">{{key}}. {{val}}</option>
+                                        <option value="51">51. jika suami/istri tidak tinggal bersama</option>
+                                        <option value="96">96. jika hanya punya 1 istri/suami</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-if="art_kart.art04 == 2">
+                        <div class="item item-text-wrap item-row" ng-if="art_kart.art07 == 2">
+                            <div class="row">
+                                <div class="col col-50 col-center input-label">No. Urut Pasangan Kedua </div>
+                                <div class="col col-50 col-center" >
+                                    <select class="input-border pull-right" ng-model="art_kart.art10">
+                                        <option value="" selected></option>
+                                        <option ng-repeat="(key,val) in listARTed_L track by $index" value="{{key}}">{{key}}. {{val}}</option>
+                                        <option value="51">51. jika suami/istri tidak tinggal bersama</option>
+                                        <option value="96">96. jika hanya punya 1 istri/suami</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-group">
+                    <div class="item item-divider">
+                        Data Orang Tua
+                    </div>
+                    <div class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label">No. Urut Ayah </div>
+                            <div class="col col-50 col-center" >
+                                <select class="input-border pull-right" ng-model="art_kart.art11">
+                                    <option value="" selected></option>
+                                    <option ng-repeat="(key,val) in listARTed_L track by $index" value="{{key}}">{{key}}. {{val}}</option>
+                                    <option value="51">51. Jika tidak ada dalam daftar</option>
+                                    <option value="51">52. Jika sudah meninggal</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-show="myForm.art11.$invalid" class="invalid-val"><span>Jika tidak ada dalam daftar, tulis 51. Jika sudah meninggal, tulis 52. Nilai yg diizinkan: 1-20,51,52</span></div>
+                    <div class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label">No. Urut Ibu </div>
+                            <div class="col col-50 col-center" >
+                                <select class="input-border pull-right" ng-model="art_kart.art12">
+                                    <option value="" selected></option>
+                                    <option ng-repeat="(key,val) in listARTed_P track by $index" value="{{key}}">{{key}}. {{val}}</option>
+                                    <option value="51">51. Jika tidak ada dalam daftar</option>
+                                    <option value="51">52. Jika sudah meninggal</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-show="myForm.art12.$invalid" class="invalid-val"><span>Jika tidak ada dalam daftar, tulis 51. Jika sudah meninggal, tulis 52. Nilai yg diizinkan: 1-20,51,52</span></div>
+
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">Asal Suku Ayah </div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <select class="pull-right input-border" ng-model="art_kart.art14">
+                                    <option value="" selected></option>
+                                    <option ng-repeat="(key,val) in suku" value="{{key}}">{{val}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">Asal Suku Ibu </div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <select class="pull-right input-border" ng-model="art_kart.art15">
+                                    <option value="" selected></option>
+                                    <option ng-repeat="(key,val) in suku" value="{{key}}">{{val}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+
+                <!-- jika bukan ART yg lahir dari ART HDSS-->
+                <div ng-if="art_kart.art24 == 0 || art_kart.art21a == 1">
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">Agama </div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <select class="pull-right input-border" ng-model="art_kart.art13">
+                                    <option value="" selected></option>
+                                    <option ng-repeat="(key,val) in agama" value="{{key}}">{{val}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">Apakah masih sekolah?</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="art_kart.art16a" ng-model="art_kart.art16a" value="1">Ya</ion-radio>
+                                    <ion-radio name="art_kart.art16a" ng-model="art_kart.art16a" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">Pendidikan Tertinggi yang pernah/sedang ditempuh </div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <select class="pull-right input-border" ng-model="art_kart.art16">
+                                    <option value="" selected></option>
+                                    <option ng-repeat="(key,val) in listpendidikan" value="{{key}}">{{val}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-input item-text-wrap" ng-if="art_kart.art16 > 1 && art_kart.art16 < 8 ">
+                        <div class="input-label">Lama Waktu Pendidikan (dalam tahun)</div>
+                        <input type="number" class="input-border" ng-change="waktuPendidikan(art_kart.art17)" ng-model="art_kart.art17" name="art17" min="1" max="99">
+                    </label>
+                    <div class="invalid-val" ng-if="pendidikan == false">
+                        <span>Masukkan Total Waktu menempuh pendidikan dengan benar!</span>
+                    </div>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">Pekerjaan Utama </div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <select class="pull-right input-border" ng-model="art_kart.art18">
+                                    <option value="" selected></option>
+                                    <option ng-repeat="(key,val) in pekerjaan" value="{{key}}">{{val}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </label>
+                    <!-- pekerjaan lainnya -->
+                    <div class="item item-text-wrap item-row" ng-if="art_kart.art18 == 95">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label">Pekerjaan Utama lainnya</div>
+                            <input type="text" class="input-border" placeholder="Masukkan Pekerjaan" ng-model="art_kart.art18a"
+                            ng-change="cariPekerjaan(art_kart.art18a)">
+                            <ul class="list" ng-show="tampilkan_list">
+                                <li class="item input-border" ng-click="setPekerjaan(val)" ng-repeat="(key,val) in listPekerjaanNew">{{val}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <label class="item item-text-wrap item-row" ng-if="art_kart.art18 > 1">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">Deskripsi rinci pekerjaan (posisi pekerjaan, jenis pekerjaan, tempat bekerja. Contoh: Manager jasa transportasi angkutan penumpang di PT Pelayaran Prima; Pedagang grosir pakaian di Best Cut Collections)
+                                </div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <input type="text" class="input-border pull-right" ng-model="art_kart.art18b" class="input-border pull-right">
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">Kepemilikan Asuransi Kesehatan</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="art_kart.art19" ng-model="art_kart.art19" value="1">Ya</ion-radio>
+                                    <ion-radio name="art_kart.art19" ng-model="art_kart.art19" value="2">Tidak</ion-radio>
+                                    <ion-radio name="art_kart.art19" ng-model="art_kart.art19" value="98">Tidak tahu</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <div class="item-group" ng-if="art_kart.art19 == 1">
+                        <div class="item item-divider">Apa saja jenis asuransi kesehatan yang dimiliki?</div>
+                        <ion-list>
+                            <label class="item item-text-wrap item-row">
+                                <div class="row">
+                                    <div class="col col-50 col-center">
+                                        <div class="input-label ">1. JKN PBI</div>
+                                    </div>
+                                    <div class="col col-50 col-center">
+                                        <div class="button-bar right">
+                                            <ion-radio name="art_kart.art20_01" ng-model="art_kart.art20_01" value="1" ng-change="cekJKN('art20_01')">Ya</ion-radio>
+                                            <ion-radio name="art_kart.art20_01" ng-model="art_kart.art20_01" value="2" ng-change="cekJKN('art20_01')">Tidak</ion-radio>
+                                        </div>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="item item-text-wrap item-row">
+                                <div class="row">
+                                    <div class="col col-50 col-center">
+                                        <div class="input-label ">2. JKN Non-PBI : PNS, POLRI, Pejabat Negara, Pegawai Pemerintah Non-PNS</div>
+                                    </div>
+                                    <div class="col col-50 col-center">
+                                        <div class="button-bar right">
+                                            <ion-radio name="art_kart.art20_02" ng-model="art_kart.art20_02" value="1" ng-change="cekJKN('art20_02')">Ya</ion-radio>
+                                            <ion-radio name="art_kart.art20_02" ng-model="art_kart.art20_02" value="2" ng-change="cekJKN('art20_02')">Tidak</ion-radio>
+                                        </div>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="item item-text-wrap item-row">
+                                <div class="row">
+                                    <div class="col col-50 col-center">
+                                        <div class="input-label ">3. JKN Non-PBI: Peserta Mandiri</div>
+                                    </div>
+                                    <div class="col col-50 col-center">
+                                        <div class="button-bar right">
+                                            <ion-radio name="art_kart.art20_03" ng-model="art_kart.art20_03" value="1" ng-change="cekJKN('art20_03')">Ya</ion-radio>
+                                            <ion-radio name="art_kart.art20_03" ng-model="art_kart.art20_03" value="2" ng-change="cekJKN('art20_03')">Tidak</ion-radio>
+                                        </div>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="item item-text-wrap item-row">
+                                <div class="row">
+                                    <div class="col col-50 col-center">
+                                        <div class="input-label ">4. JKN Non-PBI: Bukan Pekerja</div>
+                                    </div>
+                                    <div class="col col-50 col-center">
+                                        <div class="button-bar right">
+                                            <ion-radio name="art_kart.art20_04" ng-model="art_kart.art20_04" value="1" ng-change="cekJKN('art20_04')">Ya</ion-radio>
+                                            <ion-radio name="art_kart.art20_04" ng-model="art_kart.art20_04" value="2" ng-change="cekJKN('art20_04')">Tidak</ion-radio>
+                                        </div>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="item item-text-wrap item-row">
+                                <div class="row">
+                                    <div class="col col-50 col-center">
+                                        <div class="input-label ">5. JKN Non PBI: Pegawai Swasta</div>
+                                    </div>
+                                    <div class="col col-50 col-center">
+                                        <div class="button-bar right">
+                                            <ion-radio name="art_kart.art20_05" ng-model="art_kart.art20_05" value="1" ng-change="cekJKN('art20_05')">Ya</ion-radio>
+                                            <ion-radio name="art_kart.art20_05" ng-model="art_kart.art20_05" value="2" ng-change="cekJKN('art20_05')">Tidak</ion-radio>
+                                        </div>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="item item-text-wrap item-row">
+                                <div class="row">
+                                    <div class="col col-50 col-center">
+                                        <div class="input-label ">6. Jamkesda Sleman</div>
+                                    </div>
+                                    <div class="col col-50 col-center">
+                                        <div class="button-bar right">
+                                            <ion-radio name="art_kart.art20_06" ng-model="art_kart.art20_06" value="1">Ya</ion-radio>
+                                            <ion-radio name="art_kart.art20_06" ng-model="art_kart.art20_06" value="2">Tidak</ion-radio>
+                                        </div>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="item item-text-wrap item-row">
+                                <div class="row">
+                                    <div class="col col-50 col-center">
+                                        <div class="input-label ">7. Jamkesda Sleman Mandiri</div>
+                                    </div>
+                                    <div class="col col-50 col-center">
+                                        <div class="button-bar right">
+                                            <ion-radio name="art_kart.art20_07" ng-model="art_kart.art20_07" value="1">Ya</ion-radio>
+                                            <ion-radio name="art_kart.art20_07" ng-model="art_kart.art20_07" value="2">Tidak</ion-radio>
+                                        </div>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="item item-text-wrap item-row">
+                                <div class="row">
+                                    <div class="col col-50 col-center">
+                                        <div class="input-label ">8. Jamkesta Mandiri</div>
+                                    </div>
+                                    <div class="col col-50 col-center">
+                                        <div class="button-bar right">
+                                            <ion-radio name="art_kart.art20_08" ng-model="art_kart.art20_08" value="1">Ya</ion-radio>
+                                            <ion-radio name="art_kart.art20_08" ng-model="art_kart.art20_08" value="2">Tidak</ion-radio>
+                                        </div>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="item item-text-wrap item-row">
+                                <div class="row">
+                                    <div class="col col-50 col-center">
+                                        <div class="input-label ">9. Jamkesos</div>
+                                    </div>
+                                    <div class="col col-50 col-center">
+                                        <div class="button-bar right">
+                                            <ion-radio name="art_kart.art20_09" ng-model="art_kart.art20_09" value="1">Ya</ion-radio>
+                                            <ion-radio name="art_kart.art20_09" ng-model="art_kart.art20_09" value="2">Tidak</ion-radio>
+                                        </div>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="item item-text-wrap item-row">
+                                <div class="row">
+                                    <div class="col col-50 col-center">
+                                        <div class="input-label ">10. Asuransi Swasta</div>
+                                    </div>
+                                    <div class="col col-50 col-center">
+                                        <div class="button-bar right">
+                                            <ion-radio name="art_kart.art20_10" ng-model="art_kart.art20_10" value="1">Ya</ion-radio>
+                                            <ion-radio name="art_kart.art20_10" ng-model="art_kart.art20_10" value="2">Tidak</ion-radio>
+                                        </div>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="item item-text-wrap item-row">
+                                <div class="row">
+                                    <div class="col col-50 col-center">
+                                        <div class="input-label ">11. Perusahaan</div>
+                                    </div>
+                                    <div class="col col-50 col-center">
+                                        <div class="button-bar right">
+                                            <ion-radio name="art_kart.art20_11" ng-model="art_kart.art20_11" value="1">Ya</ion-radio>
+                                            <ion-radio name="art_kart.art20_11" ng-model="art_kart.art20_11" value="2">Tidak</ion-radio>
+                                        </div>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="item item-text-wrap item-row">
+                                <div class="row">
+                                    <div class="col col-50 col-center">
+                                        <div class="input-label ">95. Lainnya, Sebutkan (dibawah)</div>
+                                    </div>
+                                    <div class="col col-50 col-center">
+                                        <div class="button-bar right">
+                                            <ion-radio name="art_kart.art20_95" ng-model="art_kart.art20_95" value="1">Ya</ion-radio>
+                                            <ion-radio name="art_kart.art20_95" ng-model="art_kart.art20_95" value="2">Tidak</ion-radio>
+                                        </div>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="item item-input item-text-wrap" ng-if="art_kart.art20_95 == 1">
+                                <span class="input-label">Asuransi kesehatan lainnya</span>
+                                <input type="text" ng-model="art_kart.art20_95a" class="pull-right input-border">
+                            </label>
+                            <label class="item item-text-wrap item-row">
+                                <div class="row">
+                                    <div class="col col-50 col-center">
+                                        <div class="input-label ">98. Tidak Tahu</div>
+                                    </div>
+                                    <div class="col col-50 col-center">
+                                        <div class="button-bar right">
+                                            <ion-radio name="art_kart.art20_98" ng-model="art_kart.art20_98" value="1">Ya</ion-radio>
+                                            <ion-radio name="art_kart.art20_98" ng-model="art_kart.art20_98" value="2">Tidak</ion-radio>
+                                        </div>
+                                    </div>
+                                </div>
+                            </label>
+                        </ion-list>
+                    </div>
+                    <label class="item item-text-wrap item-row" ng-show="false">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label">Apakah ART ini berasal dari Rumah Tangga pengganti/pecah?</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="art_kart.art36" ng-model="art_kart.art36" value="1">Ya</ion-radio>
+                                    <ion-radio name="art_kart.art36" ng-model="art_kart.art36" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-select item-text-wrap" ng-if="art_kart.art04 == 2 && umur > 9 && umur < 55">
+                        <div class="row">
+                            <div class="col col-50 col-center" >
+                                <div class="input-label ">Apakah sedang hamil?</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="art_kart.art22" ng-model="art_kart.art22" value="1">Ya</ion-radio>
+                                    <ion-radio name="art_kart.art22" ng-model="art_kart.art22" value="2">Tidak</ion-radio>
+                                    <ion-radio name="art_kart.art22" ng-model="art_kart.art22" value="98">Tidak tahu</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+
+                    <label class="item item-text-wrap item-row" >
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">Apakah ART diwawancara ?</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="art_kart.art23" ng-model="art_kart.art23" value="1">Ya</ion-radio>
+                                    <ion-radio name="art_kart.art23" ng-model="art_kart.art23" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>                    
+                </div>
+                <input ng-show="show_start_in_wave_art" class="input-border" type="number" ng-model="art_kart.start_in_wave_art">
+            </ion-list>
+        </form>
+
+        <div class="hint-status"><span>Silahkan gunakan tombol Laporan Wawancaara jika sudah ada data yang tercatat dan wawancara berhenti di tengah jalan</span></div>
+        <div class="item-group" ng-if="!j_siklus.s6">
+            <button class="button simpan button-assertive" ng-click="save('utama')">
+                <i class="icon ion-arrow-left-c"></i> Laporan Wawancara
+            </button>
+            <button ng-if="allowSave(myForm)" class="button simpan button-dark pull-right" ng-click="save()">
+                <i class="icon ion-archive"></i> Simpan dan kembali ke ART
+            </button>
+        </div>
+        <div class="item-group" ng-if="j_siklus.s6">
+            <button class="button simpan button-assertive" ng-click="save('laporan',art_kart)">
+                <i class="icon ion-archive"></i>Laporan Wawancara
+            </button>
+            <button ng-if="allowSave(myForm)" class="button simpan button-dark pull-right" ng-click="save(true)">
+                <i class="icon ion-archive"></i> Simpan
+            </button>
+        </div>
+    </ion-content>
+</ion-view>

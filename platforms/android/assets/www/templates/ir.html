@@ -1,0 +1,328 @@
+<ion-view view-title="Identitas Responden">
+    <ion-content class="ir">
+        <form name="myForm" novalidate>
+            <ion-list>
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label">Nama Anak</div>
+                        <div class="col col-50 col-center">
+                            <input class="lowercase pull-right" type="text" ng-model="ir.id04" required>
+                        </div>
+                    </div>
+                </div>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label">Tgl Lahir Anak</div>
+                        <div class="col col-50 col-center">
+                            <input class="lowercase pull-right" ng-change="umur_AllowSave()" type="date" min="1916-01-01" max="{{tglWawancara}}" type="text" ng-model="ir.id05" required>
+                        </div>
+                    </div>
+                </label>
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label">Usia Anak saat wawancara</div>
+                        <div class="col col-50 col-center">
+                            <input class="lowercase pull-right" type="text" ng-model="ir.id26">
+                        </div>
+                    </div>
+                </div>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center"> <div class="input-label">No.Telp/HP yang bisa dihubungi</div> </div>
+                        <div class="col col-50 col-center"><input class="input-border pull-right" type="text" name="id29" ng-model="ir.id29" ng-pattern="/^[0-9]{2,13}$/" required></div>
+                    </div>
+                    <span ng-show="myForm.id29.$error.pattern" class="hint-status"> Angka salah!</span>
+                </label>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label">NIK Anak</div>
+                        <div class="col col-50 col-center">
+                            <input class="lowercase pull-right" type="text" ng-model="ir.id24">
+                        </div>
+                    </div>
+                </label>
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label">Jenis Kelamin Anak</div>
+                        <div class="col col-50 col-center">
+                            <select class="pull-right" name="id25" ng-model="ir.id25">
+                                <option value="" selected></option>
+                                <option value="1">1. Laki-laki</option>
+                                <option value="2">2. Perempuan</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label">Nama Respoden</div>
+                        <div class="col col-50 col-center">
+                            <input class="lowercase pull-right" type="text" ng-model="ir.id07">
+                        </div>
+                    </div>
+                </div>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label">Tgl Lahir Respoden</div>
+                        <div class="col col-50 col-center">
+                            <input class="lowercase pull-right" type="date" min="1916-01-01" max="{{tglWawancara}}" type="text" ng-model="ir.id08">
+                        </div>
+                    </div>
+                </label>
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label">Jenis Kelamin Responden</div>
+                        <div class="col col-50 col-center">
+                            <select class="pull-right" name="id09" ng-model="ir.id09">
+                                <option value="" selected></option>
+                                <option value="1">1. Laki-laki</option>
+                                <option value="2">2. Perempuan</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label">Hubungan dengan Anak</div>
+                        <div class="col col-50 col-center">
+                            <select class="pull-right" name="id10" ng-model="ir.id10">
+                                <option value="" selected></option>
+                                <option value="1">1. Ibu</option>
+                                <option value="2">2. Ayah</option>
+                                <option value="3">3. Lainnya</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row" ng-if="ir.id10 == 3">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label">Hubungan dengan Anak lainnya</div>
+                        <div class="col col-50 col-center">
+                            <input class="lowercase pull-right" type="text" ng-model="ir.id10a">
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label">Jumlah Anak Lahir Hidup</div>
+                        <div class="col col-50 col-center">
+                            <input class="lowercase pull-right" type="number" ng-model="ir.id11">
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label">Urutan Anak ke</div>
+                        <div class="col col-50 col-center">
+                            <input class="lowercase pull-right" type="number" ng-model="ir.id12">
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label">Berat Badan Lahir</div>
+                        <div class="col col-50 col-center">
+                            <select class="pull-right" name="id13" ng-model="ir.id13">
+                                <option value="" selected></option>
+                                <option value="1">1. &ge;2.500 gr</option>
+                                <option value="2">2. &lt; 2.500 gr</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label">Jenis Persalinan</div>
+                        <div class="col col-50 col-center">
+                            <select class="pull-right" name="id14" ng-model="ir.id14">
+                                <option value="" selected></option>
+                                <option value="1">1. Normal</option>
+                                <option value="2">2. Tidak Normal</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label">Apakah memiliki masalah neonatal?</div>
+                        <div class="col col-50 col-center">
+                            <div class="button-bar right">
+                                <ion-radio ng-require="true" name="id15" ng-model="ir.id15" ng-value="1" >Tidak </ion-radio>
+                                <ion-radio ng-require="true" name="id15" ng-model="ir.id15" ng-value="2" >Ya</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row" ng-if="ir.id15 == 2">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label">Sebutkan masalah neonatal</div>
+                        <div class="col col-50 col-center">
+                            <input class="lowercase pull-right" type="text" ng-model="ir.id15a">
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label">Tempat Persalinan</div>
+                        <div class="col col-50 col-center">
+                            <select class="pull-right" name="id16" ng-model="ir.id16">
+                                <option value="" selected></option>
+                                <option ng-repeat="(key,val) in tempatPersalinanList" value="{{key}}">{{val}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label">Pendidikan Ibu</div>
+                        <div class="col col-50 col-center">
+                            <select class="pull-right" name="id17" ng-model="ir.id17">
+                                <option value="" selected></option>
+                                <option ng-repeat="(key,val) in pendidikanList" value="{{key}}">{{val}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label">Pendidikan Ayah</div>
+                        <div class="col col-50 col-center">
+                            <select class="pull-right" name="id18" ng-model="ir.id18">
+                                <option value="" selected></option>
+                                <option ng-repeat="(key,val) in pendidikanList" value="{{key}}">{{val}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label">Pekerjaan Ibu</div>
+                        <div class="col col-50 col-center">
+                            <select class="pull-right" name="id19" ng-model="ir.id19">
+                                <option value="" selected></option>
+                                <option value="1">1. Ibu Rumah Tangga</option>
+                                <option value="2">2. Part Time</option>
+                                <option value="3">3. Full Time</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label">Pekerjaan Ayah</div>
+                        <div class="col col-50 col-center">
+                            <select class="pull-right" name="id20" ng-model="ir.id20">
+                                <option value="" selected></option>
+                                <option value="1">1. Full Time</option>
+                                <option value="2">2. Part Time</option>
+                                <option value="3">3. Tidak Bekerja</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label">Pendapatan Orang Tua</div>
+                        <div class="col col-50 col-center">
+                            <div class="button-bar right">
+                                <ion-radio ng-require="true" name="id21" ng-model="ir.id21" ng-value="1" >Gaji tetap </ion-radio>
+                                <ion-radio ng-require="true" name="id21" ng-model="ir.id21" ng-value="2" >Gaji tidak tetap</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label">Jenis Asuransi Anak</div>
+                        <div class="col col-50 col-center">
+                            <select class="pull-right" name="id22" ng-model="ir.id22">
+                                <option value="" selected></option>
+                                <option ng-repeat="(key,val) in asuransiList" value="{{key}}">{{val}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div> -->
+
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center">
+                            <div class="input-label ">Kepemilikan Asuransi Anak</div>
+                        </div>
+                        <div class="col col-50 col-center">
+                            <div class="button-bar right">
+                                <ion-radio name="id22" ng-model="ir.id22" value="1">Ya</ion-radio>
+                                <ion-radio name="id22" ng-model="ir.id22" value="2">Tidak</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <div class="item-group" ng-if="ir.id22 == 1">
+                    <div class="item item-divider">Apa saja jenis asuransi kesehatan yang dimiliki?</div>
+                    <ion-list>
+                        <label class="item item-text-wrap item-row">
+                            <div class="row">
+                                <div class="col col-50 col-center">
+                                    <div class="input-label ">1. BPJS PBI/Jamkesos/Jamkesda</div>
+                                </div>
+                                <div class="col col-50 col-center">
+                                    <div class="button-bar right">
+                                        <ion-radio name="id22a" ng-model="ir.id22a" value="1">Ya</ion-radio>
+                                        <ion-radio name="id22a" ng-model="ir.id22a" value="2">Tidak</ion-radio>
+                                    </div>
+                                </div>
+                            </div>
+                        </label>
+                        <label class="item item-text-wrap item-row">
+                            <div class="row">
+                                <div class="col col-50 col-center">
+                                    <div class="input-label ">2. BPJS Non-PBI</div>
+                                </div>
+                                <div class="col col-50 col-center">
+                                    <div class="button-bar right">
+                                        <ion-radio name="id22b" ng-model="ir.id22b" value="1">Ya</ion-radio>
+                                        <ion-radio name="id22b" ng-model="ir.id22b" value="2">Tidak</ion-radio>
+                                    </div>
+                                </div>
+                            </div>
+                        </label>
+                        <label class="item item-text-wrap item-row">
+                            <div class="row">
+                                <div class="col col-50 col-center">
+                                    <div class="input-label ">3. Asuransi Swasta</div>
+                                </div>
+                                <div class="col col-50 col-center">
+                                    <div class="button-bar right">
+                                        <ion-radio name="id22c" ng-model="ir.id22c" value="1">Ya</ion-radio>
+                                        <ion-radio name="id22c" ng-model="ir.id22c" value="2">Tidak</ion-radio>
+                                    </div>
+                                </div>
+                            </div>
+                        </label>
+                    </ion-list>
+                </div>
+
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50">Kabupaten</div>
+                        <div class="col col-50">
+                            <div class="button-bar right">
+                                <ion-radio ng-require="true" name="id27" ng-model="rt.id27" ng-value="1" >Sleman</ion-radio>
+                                <ion-radio ng-require="true" name="id27" ng-model="rt.id27" ng-value="2" >Solo</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <label class="item item-input">
+                    <div class="input-label">Alamat</div>
+                    <input class="lowercase" type="text" ng-model="ir.id23">
+                </label>
+                
+            </ion-list>
+        </form>
+        <div class="padding text-right">
+            <button ng-if="AllowSave(myForm)" class="button simpan button-dark pull-right" ng-click="save(ir)">
+                <i class="icon ion-archive"></i> Simpan
+            </button>
+        </div>
+    </ion-content>
+</ion-view>

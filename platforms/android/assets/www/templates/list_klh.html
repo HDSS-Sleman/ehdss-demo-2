@@ -1,0 +1,55 @@
+<ion-view view-title="Kejadian Kelahiran" class="md-art">
+    <ion-content class="padding klh">
+        <div class="row">
+            <div class="col col-25">ID RT</div>
+            <div class="col"><b>{{dataRT.idrt}}</b></div>
+        </div>
+        <div class="row">
+            <div class="col col-25">Nama Kepala RT</div>
+            <div class="col nama"><b>{{dataRT.krt01}}</b></div>
+        </div>
+        <div class="row">
+            <div class="col col-25">Alamat</div>
+            <div class="col alamat"><b>{{dataRT.kl08}}</b></div>
+        </div>
+        <div class="item item-divider item-text-wrap desc">
+            
+        </div>
+
+        <div class="list-art">
+            <div class="row header">
+                <div class="col col-10 text-center">No ART</div>
+                <div class="col col-20 ">Nama</div>
+                <div class="col col-10 ">Hub RT</div>
+                <div class="col col-20 ">Penolong</div>
+                <div class="col col-10 text-center">JK</div>
+                <div class="col col-20 text-center">Tgl Lahir</div>
+                <div class="col col-10 text-center">Perubahan</div>
+            </div>
+            <div class="row" ng-repeat="d in dataKLH">
+                <div class="col col-10 text-center">{{d._noArt}}</div>
+                <div class="col col-20 ">{{d._nama}}</div>
+                <div class="col col-10 ">{{d._hubRT}}</div>
+                <div class="col col-20 ">{{d.penolongPersalinan}}</div>
+                <div class="col col-10 text-center">{{d._jk}}</div>
+                <div class="col col-20 text-center">{{d.tglKLH}}</div>
+                <div class="col col-10 text-center">
+                    <button ng-click="edit(d)" class="button icon-left ion-edit button-small button-balanced">Edit</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row row-center">
+            <div class="col col-60">
+                Tambah Kejadian Kelahiran
+            </div>
+            <div class="col min-right">
+                <div class="button-bar right">
+                    <ion-radio name="group1" ng-model="art00" ng-value="1" ng-click="go('klh')"><b>Ya</b></ion-radio>
+                    <ion-radio name="group1" ng-model="art00" ng-value="2" ng-click="go('list_kmt')"><b>Tidak</b></ion-radio>
+                </div>
+            </div>
+        </div>
+
+    </ion-content>
+</ion-view>

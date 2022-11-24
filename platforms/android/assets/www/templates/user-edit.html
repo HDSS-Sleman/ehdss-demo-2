@@ -1,0 +1,307 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-calm">
+        <h1 class="title">{{modalTitle}}</h1>
+        <button class="button button-clear button-primary" ng-click="modal.hide()">Cancel</button>
+    </ion-header-bar>
+
+    <ion-content class="user-edit">
+        <div class="list">
+            <div class="item item-input">
+                <div class="row">
+                    <div class="col col-20">
+                        <span class="input-label">Username</span>
+                    </div>
+                    <div class="col col-40">
+                        <input type="text" ng-model="curUser.user" ng-readonly="editMode == 'list'">
+                    </div>
+                </div>
+            </div>
+            <div class="item item-input" ng-show="editMode != 'list'">
+                <div class="row">
+                    <div class="col col-20">
+                        <span class="input-label">Password</span>
+                    </div>
+                    <div class="col col-40">
+                        <input type="password" placeholder="Password baru" ng-model="curUser.paswd1">
+                    </div>
+                    <div class="col col-40">
+                        <input type="password" placeholder="Ulangi password baru" ng-model="curUser.paswd2">
+                    </div>
+                </div>
+            </div>
+            <div class="item item-input">
+                <div class="row">
+                    <div class="col col-20">
+                        <span class="input-label">Role User</span>
+                    </div>
+                    <div class="col col-25">
+                        <select ng-model="curUser.role" ng-disabled="editMode == 'list'">
+                            <option value="enum">Enumerator</option>
+                            <option value="supervisor">Supervisor</option>
+                            <option value="admin">Administrator</option>
+                        </select>
+                    </div>
+                    <div class="col col-25" ng-show="editMode != 'list'">
+                        <button class="button ion-checkmark button-positive button-small button-block"
+                            ng-click="editUser(curUser)">&nbsp;&nbsp;Simpan</button>
+                    </div>
+                    <div class="col col-offset-25"></div>
+                </div>
+            </div>
+        </div>
+
+        <div ng-if="curUser.role == 'enum'">
+            <div class="item item-divider desc item-text-wrap">
+                Daftar Rumah Tangga Enumerator
+                <button class="button ion-person-add button-balanced button-small pull-right"
+                    ng-if="editMode == 'add' || editMode == 'edit'"
+                    ng-click="addRT()">
+                    &nbsp;&nbsp;Tambah</button>
+            </div>
+
+            <div class="rt-available" ng-show="showAddRT">
+                <div class="item item-input">
+                    <input type="text" placeholder="Masukkan IDRT" ng-model="idrtSearch"
+                        ng-change="listRTAvailable(idrtSearch)">
+                </div>
+
+                <div class="row" ng-repeat="rt in RTAvailable">
+                    <div class="col col-20">{{rt.idrt}}</div>
+                    <div class="col col-20 nama">{{rt.kep_rt}}</div>
+                    <div class="col col-50 alamat">{{rt.alamat}}</div>
+                    <div class="col col-10">
+                        <button class="button ion-plus-round button-royal button-small pull-right"
+                            ng-click="addRTtoUser(rt,$index)"></button>
+                    </div>
+                </div>
+
+                <div class="info" ng-show="idrtSearch && RTAvailable.length == 0">
+                     Tidak ditemukan data Rumah Tangga..
+                </div>
+            </div>
+            <div class="item item-input">
+                <span class="input-label">Filter List RT</span>
+                <input type="text" placeholder="ID RT/No Klaster/Nama/Alamat" ng-model="search">
+            </div>
+            <div class="list">
+                <div class="table table-bordered table-striped">
+                    <div class="row header">
+                        <div class="col col-10 text-center">No</div>
+                        <div class="col col-10 text-center">IDRT</div>
+                        <div class="col col-20">Kepala RT</div>
+                        <!-- <div class="col col-30">Alamat</div> -->
+                        <!-- <div class="col col-10 text-center">Jml ART</div> -->
+                        <div class="col col-30 text-center">Aksi</div>
+                    </div>
+                    <div class="row" ng-repeat="u in listRT | filter:search | startFrom:currentPage*pageSize | limitTo:pageSize">
+                        <div class="col col-10 text-center">{{u.no}}</div>
+                        <div class="col col-10">{{u.idrt}}</div>
+                        <div class="col col-20 nama">{{u.kep_rt}}</div>
+                        <!-- <div class="col col-30 alamat">{{u.alamat}}</div> -->
+                        <!-- <div class="col col-10 text-center">{{u.jml_art}}</div> -->
+                        <div class="col col-30 col-row text-center">
+                            <button class="button icon-left ion-edit button-positive button-small"
+                                ng-click="catatanSPV(u)">Catatan</button>
+                            <button class="button icon-left ion-information button-balanced button-small"
+                                ng-click="info(u)">Info</button>
+                            <button class="button icon-left ion-close button-assertive button-small"
+                                ng-click="deleteRT(u)">Hapus</button>
+                        </div>
+                    </div>
+                    <div ng-if="showCatat">
+                        <div class="row">
+                            <div class="col col-80">
+                                <form name="ctForm" novalidate>
+                                    <ion-list>
+                                        <div class="item item-input">
+                                            <div class="input-label">IDRT</div>
+                                            <input type="number" ng-model="cspv.idrt" block block-length="7" min="4001001" max="4216999" ng-disabled="true">
+                                        </div>
+                                        <label class="item item-input">
+                                            <div class="input-label">Tanggal</div>
+                                            <input type="date" min="1916-01-01" max="{{tglWawancara}}" ng-model="cspv.tglcspv" ng-disabled="true">
+                                        </label>
+                                        <label class="item item-input item-text-wrap">
+                                            <div class="input-label">Keterangan<span ng-show="ketcspv.$error.pattern" class="hint-status"> Tidak Boleh Ada Koma!</span></div>
+                                            <textarea class="text-area" name="ketcspv" ng-model="cspv.ketcspv" ng-pattern="/^[^,]*$/" class="pull-right"></textarea>
+                                        </label>
+                                    </ion-list>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <button class="button simpan button-positive ion-upload" ng-click="uploadCatatan(cspv)">
+                                <i class="icon"></i>Upload
+                            </button>
+                        </div>
+                    </div>
+                    <div ng-if="showInfo">
+                        <div class="row">
+                            <div class="col col-80">
+                                <ion-list>
+                                    <div class="item item-input">
+                                        <div class="input-label">IDRT</div>
+                                        <input type="text" ng-model="iIDRT" ng-disabled="true">
+                                    </div>
+                                    <!-- modul utama -->
+                                    <div class="item item-divider">Modul Utama</div>
+                                    <label class="item item-input item-text-wrap">
+                                        <div class="input-label">Catatan Enum 1</div>
+                                        <textarea class="text-area" name="ketcke1_m1" ng-model="cenum.ketcke1_m1" class="pull-right" ng-disabled="true"></textarea>
+                                    </label>
+                                    <label class="item item-input item-text-wrap">
+                                        <div class="input-label">Tanggal Catatan 1</div>
+                                        <input type="text" ng-model="cenum.tglcke1_m1" class="pull-right" ng-disabled="true">
+                                    </label>
+                                    <label class="item item-input item-text-wrap">
+                                        <div class="input-label">Catatan Enum 2</div>
+                                        <textarea class="text-area" name="ketcke2_m1" ng-model="cenum.ketcke2_m1" class="pull-right" ng-disabled="true"></textarea>
+                                    </label>
+                                    <label class="item item-input item-text-wrap">
+                                        <div class="input-label">Tanggal Catatan 2</div>
+                                        <input type="text" ng-model="cenum.tglcke2_m1" class="pull-right" ng-disabled="true">
+                                    </label>
+                                    <label class="item item-input item-text-wrap">
+                                        <div class="input-label">Catatan Enum 3</div>
+                                        <textarea class="text-area" name="ketcke3_m1" ng-model="cenum.ketcke3_m1" class="pull-right" ng-disabled="true"></textarea>
+                                    </label>
+                                    <label class="item item-input item-text-wrap">
+                                        <div class="input-label">Tanggal Catatan 3</div>
+                                        <input type="text" ng-model="cenum.tglcke3_m1" class="pull-right" ng-disabled="true">
+                                    </label>
+                                    <!-- modul B -->
+                                    <div class="item item-divider">Modul B</div>
+                                    <label class="item item-input item-text-wrap">
+                                        <div class="input-label">Catatan Enum 1</div>
+                                        <textarea class="text-area" name="ketcke1_m2" ng-model="cenum.ketcke1_m2" class="pull-right" ng-disabled="true"></textarea>
+                                    </label>
+                                    <label class="item item-input item-text-wrap">
+                                        <div class="input-label">Tanggal Catatan 1</div>
+                                        <input type="text" ng-model="cenum.tglcke1_m2" class="pull-right" ng-disabled="true">
+                                    </label>
+                                    <label class="item item-input item-text-wrap">
+                                        <div class="input-label">Catatan Enum 2</div>
+                                        <textarea class="text-area" name="ketcke2_m2" ng-model="cenum.ketcke2_m2" class="pull-right" ng-disabled="true"></textarea>
+                                    </label>
+                                    <label class="item item-input item-text-wrap">
+                                        <div class="input-label">Tanggal Catatan 2</div>
+                                        <input type="text" ng-model="cenum.tglcke2_m2" class="pull-right" ng-disabled="true">
+                                    </label>
+                                    <label class="item item-input item-text-wrap">
+                                        <div class="input-label">Catatan Enum 3</div>
+                                        <textarea class="text-area" name="ketcke3_m2" ng-model="cenum.ketcke3_m2" class="pull-right" ng-disabled="true"></textarea>
+                                    </label>
+                                    <label class="item item-input item-text-wrap">
+                                        <div class="input-label">Tanggal Catatan 3</div>
+                                        <input type="text" ng-model="cenum.tglcke3_m2" class="pull-right" ng-disabled="true">
+                                    </label>
+                                    <!-- modul C -->
+                                    <div class="item item-divider">Modul C</div>
+                                    <label class="item item-input item-text-wrap">
+                                        <div class="input-label">Catatan Enum 1</div>
+                                        <textarea class="text-area" name="ketcke1_m3" ng-model="cenum.ketcke1_m3" class="pull-right" ng-disabled="true"></textarea>
+                                    </label>
+                                    <label class="item item-input item-text-wrap">
+                                        <div class="input-label">Tanggal Catatan 1</div>
+                                        <input type="text" ng-model="cenum.tglcke1_m3" class="pull-right" ng-disabled="true">
+                                    </label>
+                                    <label class="item item-input item-text-wrap">
+                                        <div class="input-label">Catatan Enum 2</div>
+                                        <textarea class="text-area" name="ketcke2_m3" ng-model="cenum.ketcke2_m3" class="pull-right" ng-disabled="true"></textarea>
+                                    </label>
+                                    <label class="item item-input item-text-wrap">
+                                        <div class="input-label">Tanggal Catatan 2</div>
+                                        <input type="text" ng-model="cenum.tglcke2_m3" class="pull-right" ng-disabled="true">
+                                    </label>
+                                    <label class="item item-input item-text-wrap">
+                                        <div class="input-label">Catatan Enum 3</div>
+                                        <textarea class="text-area" name="ketcke3_m3" ng-model="cenum.ketcke3_m3" class="pull-right" ng-disabled="true"></textarea>
+                                    </label>
+                                    <label class="item item-input item-text-wrap">
+                                        <div class="input-label">Tanggal Catatan 3</div>
+                                        <input type="text" ng-model="cenum.tglcke3_m3" class="pull-right" ng-disabled="true">
+                                    </label>
+
+                                    <div class="item item-divider">Catatan SPV</div>
+                                    <label class="item item-input item-text-wrap">
+                                        <div class="input-label">Tanggal Catatan SPV</div>
+                                        <input type="text" ng-model="cspv.tglcspv" class="pull-right" ng-disabled="true">
+                                    </label>
+                                    <label class="item item-input item-text-wrap">
+                                        <div class="input-label">Catatan SPV</div>
+                                        <textarea class="text-area" name="ketcspv" ng-model="cspv.ketcspv" class="pull-right" ng-disabled="true"></textarea>
+                                    </label>
+                                    <label class="item item-input item-text-wrap">
+                                        <div class="input-label">Tanggal bagi baseline</div>
+                                        <input type="text" ng-model="tglBagi" class="pull-right" ng-disabled="true">
+                                    </label>
+                                    <label class="item item-input item-text-wrap">
+                                        <div class="input-label">Status upload data wawancara</div>
+                                        <input type="text" ng-model="statUpload" class="pull-right" ng-disabled="true">
+                                    </label>
+                                    <label class="item item-input item-text-wrap">
+                                        <div class="input-label">Status upload data catatan enum</div>
+                                        <input type="text" ng-model="statUploadCke" class="pull-right" ng-disabled="true">
+                                    </label>
+                                </ion-list>
+                            </div>
+                        </div> 
+                    </div>
+                    <div class="row text-center">
+                        <button class="button paginasi icon-left ion-chevron-left button-positive" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+                            Previous
+                        </button>
+                        <button class="button button-balanced">
+                          {{currentPage+1}}/{{numberOfPages() || 1}}
+                        </button>
+                        <button class="button paginasi icon-right ion-chevron-right button-positive" ng-disabled="currentPage >= listRT.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+                            Next
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- div ng-if="curUser.role == 'enum'" -->
+
+        <div ng-if="curUser.role == 'supervisor'">
+            <div class="item item-divider item-text-wrap">
+                Daftar User Enumerator yang belum di Assign ke Supervisor
+            </div>
+
+            <div class="user-available-container">
+                <div class="user-available" ng-repeat="u in UserAvailable">
+                    <button class="button ion-plus button-energized button-small icon-right"
+                        ng-click="addUsertoUser(u,$index)">{{u.user}}
+                    </button>
+                </div>
+
+                <div class="info" ng-show="UserAvailable.length == 0">
+                     Semua user Enumerator sudah di assign..
+                </div>
+            </div>
+
+
+            <div class="item item-divider item-text-wrap">
+                Daftar User Enumerator yang diampu oleh Supervisor <b>{{curUser.user}}</b>
+            </div>
+
+            <div class="list">
+                <div class="table table-bordered table-striped">
+                    <div class="row header">
+                        <div class="col col-10 text-center">No</div>
+                        <div class="col col-33">Nama User</div>
+                        <div class="col col-33 text-center">Aksi</div>
+                    </div>
+                    <div class="row" ng-repeat="u in listUserEnum">
+                        <div class="col col-10 text-center">{{u.no}}</div>
+                        <div class="col col-33">{{u.enum}}</div>
+                        <div class="col col-33 col-row text-center">
+                            <button class="button icon-left ion-close button-assertive button-small"
+                                ng-click="deleteUserEnum(u)">Hapus</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-modal-view>

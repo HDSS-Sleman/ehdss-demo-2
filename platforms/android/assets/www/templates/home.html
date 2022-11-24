@@ -1,0 +1,155 @@
+<ion-view view-title="{{titleApp}}" class="app-home">
+    <ion-content class="padding home">
+        <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh(username)">
+        </ion-refresher>
+        <div class="row">
+            <div class="col col-20">
+                <img src="img/hdss.jpg" style="float:left;height:65px;"/>
+            </div>
+            <div class="col col-60 text-center">
+                <div>SURVEY LONGITUDINAL</div>
+                <h3>HEALTH AND DEMOGRAPHIC SURVEILLANCE SYSTEM</h3>
+                <div>Kabupaten Sleman, Fakultas Kedokteran UGM</div>
+                <div>&nbsp;</div>
+            </div>
+            <div class="col col-20">
+                <img src="img/ugm.png" style="float:right;height:65px;"/>
+            </div>
+        </div>
+        <div class="item item-divider desc item-text-wrap">
+            Silahkan memilih dari daftar pengguna/enumerator yang tersedia
+        </div>
+        <div class="list">
+            <label class="item item-text-wrap item-row">
+                <div class="row">
+                    <div class="col col-50 col-center">
+                        <div class="input-label">User Enumerator</div>
+                    </div>
+                    <div class="col col-50 col-center">
+                        <select class="nama pull-right input-border-none" ng-model="username" ng-change="listKK(username)">
+                            <option ng-repeat="user in users" value="{{user}}">{{user}}</option>
+                        </select>
+                    </div>
+                </div>
+            </label>
+            <label class="item item-text-wrap item-row">
+                <div class="row">
+                    <div class="col col-50 col-center">
+                        <div class="input-label">Penelitian</div>
+                    </div>
+                    <div class="col col-50 col-center">
+                        <select ng-model="siklus" ng-change="listSiklus(siklus)" class="pull-right input-border-none">
+                            <option value="" selected></option>
+                            <option value="ichc">ICHC</option>
+                        </select>
+                    </div>
+                </div>
+            </label>
+            <div class="item item-input">
+                <span class="input-label">Filter Data Keluarga</span>
+                <input type="text" placeholder="ID RT/No Klaster/Nama/Alamat" ng-model="no_klaster" class="input-border-none">
+            </div>
+           <div class="item item-text-wrap item-row" >
+                <div class="row">
+                    <div class="col col-50 col-center">
+                        <div class="input-label"></div>
+                    </div>
+                    <div class="col" ng-if="j_siklus.ichc">
+                        <button class="button button-positive button-small icon-left ion-plus pull-right" ng-click="tambahRT(username)">Tambah Responden</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="list">
+            <div class="table table-bordered table-striped">
+                <div class="row header">
+                    <div class="col col-10 text-center">No</div>
+                    <div class="col col-20">ID. Responden</div>
+                    <div class="col col-20">Nama</div>
+                    <div class="col col-20">Alamat</div>
+                    <div class="col col-10 text-center">ART</div>
+                    <div class="col col-10 text-center"">Upload</div>
+                    <div class="col col-10 text-center">Info</div>
+                    <!-- <div class="col col-10 text-center">Upload Laporan</div> -->
+                </div>
+                <div class="row" ng-repeat="k in dataKK | filter:no_klaster | startFrom:currentPage*pageSize | limitTo:pageSize">
+                    <div class="col col-10 text-center">{{$index+1+(currentPage*pageSize)}}</div>
+                    <div class="col col-20">{{k.id01}}</div>
+                    <div class="col col-20 nama">{{k.id04}}</div>
+                    <div class="col col-20 alamat">{{k.id23}}</div>
+                    <div class="col col-10 col-row text-center">
+                        <button ng-if="j_siklus.ichc" style="min-width: 50px;text-align: left;"
+                        class="button icon-right button-positive button-small jml-art"
+                        ng-class="jmlArtClass(k.jml_art)"
+                        ng-click="listART(username,k)"><span>{{k.jml_art}}</span></button>
+                    </div>
+                    <div class="col col-10 col-row text-center"> 
+                        <button ng-if="(k.allowUpload) && !k.sudahUploadData && j_siklus.ichc"
+                            class="button button-royal button-small icon-left ion-upload"
+                        ng-click="uploadDataKel(username,k)"></button> <!-- tombol upload hdss -->
+                        <button ng-if="(k.allowUpload) && k.sudahUploadData && j_siklus.ichc"
+                            class="button button-balanced button-small icon-left ion-upload"
+                        ng-click="uploadDataKel(username,k)"></button> <!-- tombol upload hdss yg sudah upload -->
+                    </div>
+                    <div class="col col-10 col-row text-center">
+                        <button ng-if="k.allowUpload && j_siklus.ichc" class="button button-energized button-small ion-information"
+                        ng-click="infoDataKel(username,k)"></button>
+                    </div>
+                    <!-- <div class="col col-10 col-row text-center">  -->
+                        <!-- <button ng-if="(k.allowCatatan) && !k.sudahUploadCke && j_siklus.ichc"
+                            class="button button-royal button-small icon-left ion-upload"
+                        ng-click="uploadCKE(username,k)"></button> --> <!-- tombol upload Catatan -->
+                        <!-- <button ng-if="(k.allowCatatan) && k.sudahUploadCke && j_siklus.ichc"
+                            class="button button-balanced button-small icon-left ion-upload"
+                        ng-click="uploadCKE(username,k)"></button> --> <!-- tombol upload Catatan yg sudah di upload-->
+                    <!-- </div> -->
+                </div>
+                <div class="row text-center">
+                    <button class="button paginasi icon-left ion-chevron-left button-positive" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+                        Previous
+                    </button>
+                    <button class="button button-balanced">
+                      {{currentPage+1}}/{{numberOfPages() || 1}}
+                    </button>
+                    <button class="button paginasi icon-right ion-chevron-right button-positive" ng-disabled="currentPage >= dataKK.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+                        Next
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <script id="info-kel.html" type="text/ng-template">
+            <ion-modal-view>
+                <ion-header-bar class="bar bar-header bar-calm">
+                    <h1 class="title">Informasi Data Tersimpan di Server</h1>
+                    <button class="button button-clear button-primary" ng-click="modal.hide()">Tutup</button>
+                </ion-header-bar>
+                <ion-content>
+                    <div class="padding">
+                        ID RT : <b>{{idrt}}</b><br />
+                        Kepala Keluarga : <b class="nama">{{id04}}</b><br />
+                        <small>Jika Data Keluarga sudah tersimpan di server, tanggal penyimpanan semua data
+                        akan ditampilkan di tabel berikut:</small>
+                    </div>
+                    <div class="list">
+                        <div class="table table-bordered table-striped">
+                            <div class="row header">
+                                <div class="col col-10">No</div>
+                                <div class="col col-30">Tgl Upload</div>
+                                <div class="col col-60">Modul Tersimpan</div>
+                            </div>
+                            <div class="row" ng-repeat="i in infoKel">
+                                <div class="col col-10">{{$index+1}}</div>
+                                <div class="col col-30">{{i.tgl}}</div>
+                                <div class="col col-60">{{i.modelsDisplay}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="notifikasi padding" ng-show="infoKelEmpty">
+                        Keluarga ini belum ada data yang tersimpan di server
+                    </div>
+                </ion-content>
+            </ion-modal-view>
+        </script>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,1099 @@
+<ion-view view-title="Penyakit Tidak Menular">
+    <div class="bar bar-subheader bar-calm" ng-show="stroke">
+        <h2 class="title left nama">Nama ART : {{curART._nama}} ({{curART.umur}}) - Stroke</h2>
+    </div>
+    <div class="bar bar-subheader bar-balanced" ng-show="angina">
+        <h2 class="title left nama">Nama ART : {{curART._nama}} ({{curART.umur}}) - Angina</h2>
+    </div>
+    <div class="bar bar-subheader bar-energized" ng-show="diabetes">
+        <h2 class="title left nama">Nama ART : {{curART._nama}} ({{curART.umur}}) - Diabetes / Kencing Manis / Gula</h2>
+    </div>
+    <div class="bar bar-subheader bar-dark" ng-show="paru">
+        <h2 class="title left nama">Nama ART : {{curART._nama}} ({{curART.umur}}) - Paru-Paru Kronis</h2>
+    </div>
+    <div class="bar bar-subheader bar-assertive" ng-show="hipertensi">
+        <h2 class="title left nama">Nama ART : {{curART._nama}} ({{curART.umur}}) - Hipertensi</h2>
+    </div>
+    
+
+    <!--End of Sub-Header-Bar-->
+    <ion-content id="ptmb" class="has-subheader ptmb" style="padding-bottom: 10px">
+      <form name="myForm">
+        <ion-list ng-show="stroke">
+            <input type="text" ng-model="ptmb.ptmb" ng-show="false">
+            <!-- jika ART tercatat di HDSS menjawab YA atau TIDAK -->
+            <div class="item item-divider">
+                <span ng-if="curART.stroke_d == 1">Tercatat Stroke di HDSS 2017 dan menjawab YA</span>
+                <span ng-if="curART.stroke_d == 2">Tercatat Stroke di HDSS 2017 dan menjawab Tidak</span>
+                <span ng-if="curART.stroke_d == 3 || !curART.stroke_d">Belum tercatat Stroke di HDSS 2017</span>
+            </div>
+            <div ng-if="curART.stroke_d == 1 || curART.stroke_d == 2">
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label"><b>Q4064</b> Sejak wawancara terakhir (tahun 2017), apakah Anda pernah diberitahu (diagnosis) oleh tenaga kesehatan bahwa Anda mengalami serangan stroke atau lumpuh separuh?</div>
+                        <div class="col col-50 col-center" >
+                            <select class="pull-right input-border" class="pull-right input-border" ng-model="ptmb.q4064">
+                                <option value="" selected></option>
+                                <option value="1">1. Ya, pernah mengalami stroke/lumpuh separuh lagi  [ke Q4062]</option>
+                                <option value="2">2. Tidak pernah menderita lagi [ke Q4012]</option>
+                                <option value="3">3. Tidak yakin [ke Q4012]</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- jika ART tercatat di HDSS menjawab YA atau Q4064 == 1 -->
+            <div ng-if="curART.stroke_d == 1 || ptmb.q4064 == 1">
+                <div class="item item-text-wrap item-row">
+                    <div class="row input-label"> <b>Konfirmasi diagnosis (hanya untuk ART yang tercatat menderita stroke siklus 3</b> </div>
+                </div>
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label"><b>Q4062</b> Saya bermaksud untuk mengkonfirmasi data yang kami peroleh pada tahun 2017, Apakah benar Anda pernah diberitahu oleh tenaga kesehatan bahwa Anda mengalami stroke/lumpuh separuh?</div>
+                        <div class="col col-50 col-center" >
+                            <select class="pull-right input-border" class="pull-right input-border" ng-model="ptmb.q4062">
+                                <option value="" selected></option>
+                                <option value="1">1. Ya</option>
+                                <option value="2">2. Tidak [ke Q4063]</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row" ng-if="ptmb.q4062 == 2">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label"><b>Q4063</b> Jika terdapat perbedaan informasi yang disampaikan responden dengan data HDSS, Apakah alasan terjadinya perbedaan data/diagnosis?</div>
+                        <div class="col col-50 col-center" >
+                            <select class="pull-right input-border" class="pull-right input-border" ng-model="ptmb.q4063">
+                                <option value="" selected></option>
+                                <option value="1">1. Tidak pernah memiliki gejala penyakit tersebut [ke Q4062a]</option>
+                                <option value="2">2. Diagnosis belum terkonfirmasi [ke Q4062a]</option>
+                                <option value="3">3. Lainnya. Sebutkan [kemudian ke ke Q4062a]</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row" ng-if="ptmb.q4062 == 2 && ptmb.q4063 == 3">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label"><b>Q4063a</b> Sebutkan</div>
+                        <div class="col col-50 col-center" >
+                            <input class="pull-right input-border" type="text" ng-model="ptmb.q4063a">
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row" ng-if="ptmb.q4062 == 1">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label"><b>Q4062a</b> Sebagai konfirmasi, apakah ini adalah diagnosis baru?</div>
+                        <div class="col col-50 col-center" >
+                            <select class="pull-right input-border" class="pull-right input-border" ng-model="ptmb.q4062a">
+                                <option value="" selected></option>
+                                <option value="1">1. Ya [ke Q4012]</option>
+                                <option value="2">2. Tidak [ke Q4012]</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item item-text-wrap item-row" ng-if="curART.stroke_d == 3 || !curART.stroke_d">
+                <div class="row">
+                    <div class="col col-50 col-center input-label"><b>Q4010</b> Apakah anda pernah diberi tahu oleh tenaga kesehatan bahwa anda mengalami stroke?</div>
+                    <div class="col col-50 col-center" >
+                        <select class="pull-right input-border" class="pull-right input-border" ng-model="ptmb.q4010">
+                            <option value="" selected></option>
+                            <option value="1">1. Ya</option>
+                            <option value="2">2. Tidak</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item item-text-wrap item-row" ng-if="ptmb.q4010 || ptmb.q4062a || ptmb.q4064 == 2 || ptmb.q4064 == 3">
+                <div class="row">
+                    <div class="col col-50 col-center input-label"><b>Q4012</b> Apakah anda pernah mengalami serangan kelumpuhan atau kelemahan mendadak di satu sisi tangan atau kaki anda (lumpuh separuh) yang terjadi secara tiba-tiba dan berlangsung selama lebih dari 24 jam?</div>
+                    <div class="col col-50 col-center" >
+                        <select class="pull-right input-border" class="pull-right input-border" ng-model="ptmb.q4012">
+                            <option value="" selected></option>
+                            <option value="1">1. Ya</option>
+                            <option value="2">2. Tidak</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="item item-text-wrap item-row" >
+                <div class="row">
+                    <div class="col col-50 col-center input-label"><b>Q4013</b> Apakah anda pernah, selama lebih dari 24 jam, mengalami serangan mendadak berupa mati rasa pada satu sisi tubuh anda tanpa tanda-tanda apapun sebelumnya ?</div>
+                    <div class="col col-50 col-center" >
+                        <select class="pull-right input-border" class="pull-right input-border" ng-model="ptmb.q4013">
+                            <option value="" selected></option>
+                            <option value="1">1. Ya</option>
+                            <option value="2">2. Tidak</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <!-- Ditanyakan kepada responden yang terdiagnosis stroke -->
+            <div ng-if="ptmb.q4064 == 1 || ptmb.q4010 == 1">
+                <div class="item item-divider">
+                    <span>Pertanyaan ini ditanyakan kepada responden yang terdiagnosis Stroke</span>
+                </div>
+                <div class="item item-divider">
+                    <span>Baik sebelum tahun 2017 maupun sesudah tahun 2017 (Q4064 = 1 atau Q4010 = 1)</span>
+                </div>
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label"><b>Q4065</b> Sejak tahun 2017, berapa kali Anda mengalami kejadian serangan stroke atau lumpuh separuh?</div>
+                        <div class="col col-50 col-center" >
+                            <select class="pull-right input-border" class="pull-right input-border" ng-model="ptmb.q4065">
+                                <option value="" selected></option>
+                                <option value="1">1. 1 kali</option>
+                                <option value="2">2. 2 kali</option>
+                                <option value="3">3. 3 kali atau lebih</option>
+                                <option value="4">4. Tidak pernah</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row" ng-if="ptmb.q4065 >= 1 && ptmb.q4065 <= 3">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label"><b>Q4066</b> Pada tahun berapa, kejadian terakhir serangan stroke atau lumpuh separuh tersebut terjadi?</div>
+                        <div class="col col-50 col-center" >
+                            <select class="pull-right input-border" class="pull-right input-border" ng-model="ptmb.q4066">
+                                <option value="" selected></option>
+                                <option value="1">1. 2017</option>
+                                <option value="2">2. 2018</option>
+                                <option value="3">3. 2019</option>
+                                <option value="4">4. 2020</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row" ng-if="ptmb.q4065 >= 1 && ptmb.q4065 <= 3">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label"><b>Q4067</b> Pada bulan berapa, kejadian terakhir serangan stroke atau lumpuh separuh tersebut terjadi?</div>
+                        <div class="col col-50 col-center" >
+                            <select class="pull-right input-border" class="pull-right input-border" ng-model="ptmb.q4067">
+                                <option value="" selected></option>
+                                <option value="1">1. Januari</option>
+                                <option value="2">2. Februari</option>
+                                <option value="3">3. Maret</option>
+                                <option value="4">4. April</option>
+                                <option value="5">5. Mei</option>
+                                <option value="6">6. Juni</option>
+                                <option value="7">7. Juli</option>
+                                <option value="8">8. Agustus</option>
+                                <option value="9">9. September</option>
+                                <option value="10">10. Oktober</option>
+                                <option value="11">11. November</option>
+                                <option value="12">12. Desember</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label"><b>Q4011a</b> Apakah anda pernah mengonsumsi obat atau menjalani perawatan lain untuk mengobatinya <b>dalam 2 minggu terakhir</b>?</div>
+                        <div class="col col-50 col-center" >
+                            <select class="pull-right input-border" class="pull-right input-border" ng-model="ptmb.q4011a">
+                                <option value="" selected></option>
+                                <option value="1">1. Ya</option>
+                                <option value="2">2. Tidak</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row" ng-if="ptmb.q4065 >=1 || ptmb.q4065 <=3">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label"><b>Q4011b</b> Apakah anda pernah mengonsumsi obat atau menjalani perawatan lain untuk mengobatinya <b>dalam 12 bulan terakhir</b>?</div>
+                        <div class="col col-50 col-center" >
+                            <select class="pull-right input-border" class="pull-right input-border" ng-model="ptmb.q4011b">
+                                <option value="" selected></option>
+                                <option value="1">1. Ya</option>
+                                <option value="2">2. Tidak</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+        </ion-list>
+
+        <ion-list ng-show="angina">
+            <input type="text" ng-model="ptmb.ptmb" ng-show="false">
+            <div class="item item-divider">
+                <span ng-if="curART.angina_d == 1">Tercatat Angina di HDSS 2017 dan menjawab YA</span>
+                <span ng-if="curART.angina_d == 2">Tercatat Angina di HDSS 2017 dan menjawab Tidak</span>
+                <span ng-if="curART.angina_d == 3 || !curART.angina_d">Belum tercatat Angina di HDSS 2017</span>
+            </div>
+            <!-- jika ART tercatat di HDSS menjawab YA atau TIDAK -->
+            <div ng-if="curART.angina_d == 1 || curART.angina_d == 2">
+                <div class="row">
+                    <div class="col col-50 col-center input-label"><b>Q4070</b> Sejak wawancara terakhir (tahun 2017), apakah Anda pernah diberitahu (diagnosis) oleh tenaga kesehatan bahwa Anda mengalami angina atau angina pectoris (merupakan salah satu jenis penyakit jantung)?</div>
+                    <div class="col col-50 col-center" >
+                        <select class="pull-right input-border" class="pull-right input-border" ng-model="ptmb.q4070">
+                            <option value="" selected></option>
+                            <option value="1">1. Ya, pernah mengalami angina atau angina pectoris atau penyakit jantung [ke Q4068]</option>
+                            <option value="2">2. Tidak pernah [ke Q4016]</option>
+                            <option value="3">3. Tidak yakin [ke Q4016]</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <!-- jika ART tercatat di HDSS menjawab YA atau ptmb.q4070 == 1 -->
+            <div ng-if="curART.angina_d == 1 || ptmb.q4070 == 1">
+                <div class="item item-text-wrap item-row">
+                    <div class="row input-label"> <b>Konfirmasi diagnosis (hanya untuk ART yang tercatat menderita angina atau angina pectoris (penyakit jantung) siklus 3)</b> </div>
+                </div>
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label"><b>Q4068</b> Saya bermaksud untuk mengkonfirmasi data yang kami peroleh dari wawancara tahun 2017, apakah Anda pernah diberitahu (diagnosis) oleh tenaga kesehatan bahwa Anda mengalami angina atau angina pectoris (merupakan salah satu jenis penyakit jantung)?</div>
+                        <div class="col col-50 col-center" >
+                            <select class="pull-right input-border" class="pull-right input-border" ng-model="ptmb.q4068">
+                                <option value="" selected></option>
+                                <option value="1">1. Ya [ke Q4068a]</option>
+                                <option value="2">2. Tidak [ke Q4069]</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row" ng-if="ptmb.q4068 == 2">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label"><b>Q4069</b> Jika terdapat perbedaan informasi yang disampaikan responden dengan data HDSS, Apakah alasan terjadinya perbedaan data/diagnosis?</div>
+                        <div class="col col-50 col-center" >
+                            <select class="pull-right input-border" class="pull-right input-border" ng-model="ptmb.q4069">
+                                <option value="" selected></option>
+                                <option value="1">1. Tidak pernah memiliki gejala penyakit tersebut [ke Q4016]</option>
+                                <option value="2">2. Diagnosis belum terkonfirmasi [ke Q4016]</option>
+                                <option value="3">3. Lainnya. Sebutkan [kemudian ke ke Q4016]</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row" ng-if="ptmb.q4068 == 2 && ptmb.q4069 == 3">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label"><b>Q4069a</b> Sebutkan</div>
+                        <div class="col col-50 col-center" >
+                            <input type="text" class="pull-right input-border" ng-model="ptmb.q4069a">
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row" ng-if="ptmb.q4068 == 1">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label"><b>Q4068a</b> Sebagai konfirmasi, Apakah anda <b>baru</b> didiagnosis mengalami angina atau angina pectoris?</div>
+                        <div class="col col-50 col-center" >
+                            <select class="pull-right input-border" class="pull-right input-border" ng-model="ptmb.q4068a">
+                                <option value="" selected></option>
+                                <option value="1">1. Ya [ke Q4016]</option>
+                                <option value="2">2. Tidak [ke Q4016]</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item item-text-wrap item-row" ng-if="curART.angina_d == 3 || !curART.angina_d">
+                <div class="row">
+                    <div class="col col-50 col-center input-label"><b>Q4014</b> Apakah anda pernah didiagnosis angina atau angina pectoris (penyakit jantung)?</div>
+                    <div class="col col-50 col-center" >
+                        <select class="pull-right input-border" class="pull-right input-border" ng-model="ptmb.q4014">
+                            <option value="" selected></option>
+                            <option value="1">1. Ya</option>
+                            <option value="2">2. Tidak</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item item-text-wrap item-row" ng-if="ptmb.q4014 || ptmb.q4068 || ptmb.q4070 == 2 || ptmb.q4070 == 3">
+                <div class="row">
+                    <div class="col col-50 col-center input-label"><b>Q4016</b> Dalam 12 bulan terakhir, apakah anda pernah mengalami rasa nyeri atau tidak nyaman di dada anda saat berjalan menanjak atau saat tergesa-gesa?
+                    </div>
+                    <div class="col col-50 col-center" >
+                        <select class="pull-right input-border" class="pull-right input-border" ng-change="gejala_angina()" ng-model="ptmb.q4016">
+                            <option value="" selected></option>
+                            <option value="1">1. Ya</option>
+                            <option value="2">2. Tidak [ke Q4022 Diabetes]</option>
+                            <option value="3">3. Tidak pernah berjalan menanjak atau jalan cepat [ke Q4022 Diabetes]</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="item item-text-wrap item-row" ng-if="ptmb.q4014 || ptmb.q4068 || ptmb.q4070 == 2 || ptmb.q4070 == 3">
+                <div class="row">
+                    <div class="col col-50 col-center input-label"><b>Q4017</b> Dalam 12 bulan terakhir, apakah anda pernah mengalami rasa nyeri atau tidak nyaman di dada anda, saat berjalan dengan kecepatan biasa di tanah yang rata?</div>
+                    <div class="col col-50 col-center" >
+                        <select class="pull-right input-border" class="pull-right input-border" ng-change="gejala_angina()" ng-model="ptmb.q4017">
+                            <option value="" selected></option>
+                            <option value="1">1. Ya</option>
+                            <option value="2">2. Tidak </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <div class="item item-text-wrap item-row" ng-if="ptmb.q4016 == 1">
+                <div class="row">
+                    <div class="col col-50 col-center input-label"><b>Q4018</b> Apa yang anda lakukan jika merasa nyeri atau tidak nyaman saat berjalan?
+                    </div>
+                    <div class="col col-50 col-center" >
+                        <select class="pull-right input-border" class="pull-right input-border" ng-change="gejala_angina()" ng-model="ptmb.q4018">
+                            <option value="" selected></option>
+                            <option value="1">1. Berhenti atau melambat</option>
+                            <option value="2">2. Terus berjalan setelah mengonsumsi obat pereda rasa sakit yang larut di mulut anda</option>
+                            <option value="3">3. Terus berjalan</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="item item-text-wrap item-row" ng-if="ptmb.q4016 == 1">
+                <div class="row">
+                    <div class="col col-50 col-center input-label"><b>Q4019</b> jika anda berdiri diam, apa yang terjadi pada rasa nyeri atau tidak nyaman tersebut?
+                    </div>
+                    <div class="col col-50 col-center" >
+                        <select class="pull-right input-border" class="pull-right input-border" ng-change="gejala_angina()" ng-model="ptmb.q4019">
+                            <option value="" selected></option>
+                            <option value="1">1. Mereda</option>
+                            <option value="2">2. Tidak mereda</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="item item-text-wrap item-row" ng-if="ptmb.q4016 == 1">
+                <div class="row">
+                    <div class="col col-50 col-center input-label"><b>Q4020</b> Dapatkah anda tunjukan dimana anda biasanya mengalami rasa nyeri atau tidak nyaman? 
+                    </div>
+                    <div class="col col-50 col-center" >
+                        <img src="img/torso.png" />
+                    </div>
+                </div>
+            </div>
+            <div class="item-group" ng-if="ptmb.q4016 == 1">
+                <ion-list>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center"> <div class="input-label ">Nomor 1</div> </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="q4020a" ng-model="ptmb.q4020a" value="1">Ya</ion-radio>
+                                    <ion-radio name="q4020a" ng-model="ptmb.q4020a" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center"> <div class="input-label ">Nomor 2</div> </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="q4020b" ng-change="gejala_angina()" ng-model="ptmb.q4020b" value="1">Ya</ion-radio>
+                                    <ion-radio name="q4020b" ng-change="gejala_angina()" ng-model="ptmb.q4020b" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center"> <div class="input-label ">Nomor 3</div> </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="q4020c" ng-change="gejala_angina()" ng-model="ptmb.q4020c" value="1">Ya</ion-radio>
+                                    <ion-radio name="q4020c" ng-change="gejala_angina()" ng-model="ptmb.q4020c" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center"> <div class="input-label ">Nomor 4</div> </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="q4020d" ng-model="ptmb.q4020d" value="1">Ya</ion-radio>
+                                    <ion-radio name="q4020d" ng-model="ptmb.q4020d" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center"> <div class="input-label ">Nomor 5</div> </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="q4020e" ng-model="ptmb.q4020e" value="1">Ya</ion-radio>
+                                    <ion-radio name="q4020e" ng-model="ptmb.q4020e" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center"> <div class="input-label ">Nomor 6</div> </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="q4020f" ng-change="gejala_angina()" ng-model="ptmb.q4020f" value="1">Ya</ion-radio>
+                                    <ion-radio name="q4020f" ng-change="gejala_angina()" ng-model="ptmb.q4020f" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center"> <div class="input-label ">Nomor 7</div> </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="q4020g" ng-change="gejala_angina()" ng-model="ptmb.q4020g" value="1">Ya</ion-radio>
+                                    <ion-radio name="q4020g" ng-change="gejala_angina()" ng-model="ptmb.q4020g" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center"> <div class="input-label ">Nomor 8</div> </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="q4020h" ng-change="gejala_angina()" ng-model="ptmb.q4020h" value="1">Ya</ion-radio>
+                                    <ion-radio name="q4020h" ng-change="gejala_angina()" ng-model="ptmb.q4020h" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center"> <div class="input-label ">Nomor 9</div> </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="q4020i" ng-model="ptmb.q4020i" value="1">Ya</ion-radio>
+                                    <ion-radio name="q4020i" ng-model="ptmb.q4020i" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center"> <div class="input-label ">Nomor 10</div> </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="q4020j" ng-model="ptmb.q4020j" value="1">Ya</ion-radio>
+                                    <ion-radio name="q4020j" ng-model="ptmb.q4020j" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center"> <div class="input-label ">Nomor 11</div> </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="q4020k" ng-change="gejala_angina()" ng-model="ptmb.q4020k" value="1">Ya</ion-radio>
+                                    <ion-radio name="q4020k" ng-change="gejala_angina()" ng-model="ptmb.q4020k" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center"> <div class="input-label ">Nomor 12</div> </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="q4020l" ng-change="gejala_angina()" ng-model="ptmb.q4020l" value="1">Ya</ion-radio>
+                                    <ion-radio name="q4020l" ng-change="gejala_angina()" ng-model="ptmb.q4020l" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center"> <div class="input-label ">Nomor 13</div> </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="q4020m" ng-change="gejala_angina()" ng-model="ptmb.q4020m" value="1">Ya</ion-radio>
+                                    <ion-radio name="q4020m" ng-change="gejala_angina()" ng-model="ptmb.q4020m" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center"> <div class="input-label ">Nomor 14</div> </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="q4020n" ng-model="ptmb.q4020n" value="1">Ya</ion-radio>
+                                    <ion-radio name="q4020n" ng-model="ptmb.q4020n" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center"> <div class="input-label ">Nomor 15</div> </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="q4020o" ng-model="ptmb.q4020o" value="1">Ya</ion-radio>
+                                    <ion-radio name="q4020o" ng-model="ptmb.q4020o" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center"> <div class="input-label ">Nomor 16</div> </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="q4020p" ng-change="gejala_angina()" ng-model="ptmb.q4020p" value="1">Ya</ion-radio>
+                                    <ion-radio name="q4020p" ng-change="gejala_angina()" ng-model="ptmb.q4020p" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center"> <div class="input-label ">Nomor 17</div> </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="q4020q" ng-change="gejala_angina()" ng-model="ptmb.q4020q" value="1">Ya</ion-radio>
+                                    <ion-radio name="q4020q" ng-change="gejala_angina()" ng-model="ptmb.q4020q" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center"> <div class="input-label ">Nomor 18</div> </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="q4020r" ng-change="gejala_angina()" ng-model="ptmb.q4020r" value="1">Ya</ion-radio>
+                                    <ion-radio name="q4020r" ng-change="gejala_angina()" ng-model="ptmb.q4020r" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                </ion-list>
+            </div>
+            <div class="item item-text-wrap item-row" ng-if="ptmb.q4016 == 1">
+                <div class="row">
+                    <div class="col col-50 col-center input-label"><b>Q4021</b> Apakah gejala-gejala yang anda rasakan dalam 12 bulan ini, pernah anda alami dalam 2 minggu terakhir ini?
+                    </div>
+                    <div class="col col-50 col-center" >
+                        <select class="pull-right input-border" class="pull-right input-border" ng-model="ptmb.q4021">
+                            <option value="" selected></option>
+                            <option value="1">1. Ya</option>
+                            <option value="2">2. Tidak</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="item item-text-wrap item-row">
+                <div class="row">
+                    <div class="col col-50 col-center input-label"><b>Q4014_a</b> Responden memiliki gejala angina (generate dari aplikasi)
+                    </div>
+                    <div class="col col-50 col-center" >
+                        <select class="pull-right input-border" class="pull-right input-border" ng-model="ptmb.q4014_a">
+                            <option value="" selected></option>
+                            <option value="1" disabled>1. Ya</option>
+                            <option value="2" disabled>2. Tidak</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="ptmb.q4068==1 || ptmb.q4014==1 || ptmb.q4014_a==1">
+                <div class="item item-text-wrap item-row" >
+                  <div class="row input-label"> <b>Ditanyakan kepada responden yang terdiagnosis angina atau angina pectoris (penyakit jantung) atau memiliki gejala angina (Q4068 = 1 atau Q4014 = 1 atau Q4014_a = 1)</b> </div>
+                </div>
+                <div class="item item-text-wrap item-row" >
+                    <div class="row">
+                        <div class="col col-50 col-center input-label"><b>Q4071</b> Sejak tahun 2017, berapa kali Anda mengalami kejadian serangan angina pectoris (penyakit jantung)?
+                        </div>
+                        <div class="col col-50 col-center" >
+                            <select class="pull-right input-border" class="pull-right input-border" ng-model="ptmb.q4071">
+                                <option value="" selected></option>
+                                <option value="1">1. 1 kali</option>
+                                <option value="2">2. 2 kali</option>
+                                <option value="3">3. 3 kali atau lebih</option>
+                                <option value="4">4. Tidak pernah</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row" ng-if="ptmb.q4071 == 2">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label"><b>Q4072</b> Pada tahun berapa, kejadian terakhir serangan angina atau angina pectoris (penyakit jantung) tersebut terjadi?</div>
+                        <div class="col col-50 col-center" >
+                            <select class="pull-right input-border" class="pull-right input-border" ng-model="ptmb.q4072">
+                                <option value="" selected></option>
+                                <option value="1">1. 2017</option>
+                                <option value="2">2. 2018</option>
+                                <option value="3">3. 2019</option>
+                                <option value="4">4. 2020</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row" ng-if="ptmb.q4071 == 2">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label"><b>Q4073</b> Pada bulan apa, kejadian terakhir serangan angina atau angina pectoris (penyakit jantung) tersebut terjadi?</div>
+                        <div class="col col-50 col-center" >
+                            <select class="pull-right input-border" class="pull-right input-border" ng-model="ptmb.q4073">
+                                <option value="" selected></option>
+                                <option value="1">1. Januari</option>
+                                <option value="2">2. Februari</option>
+                                <option value="3">3. Maret</option>
+                                <option value="4">4. April</option>
+                                <option value="5">5. Mei</option>
+                                <option value="6">6. Juni</option>
+                                <option value="7">7. Juli</option>
+                                <option value="8">8. Agustus</option>
+                                <option value="9">9. September</option>
+                                <option value="10">10. Oktober</option>
+                                <option value="11">11. November</option>
+                                <option value="12">12. Desember</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row" >
+                    <div class="row">
+                        <div class="col col-50 col-center input-label"><b>Q4015a</b> Apakah anda pernah mengonsumsi obat atau menjalani perawatan lain untuk mengobatinya <b>dalam 2 minggu terakhir</b>?</div>
+                        <div class="col col-50 col-center" >
+                            <select class="pull-right input-border" class="pull-right input-border" ng-model="ptmb.q4015a">
+                                <option value="" selected></option>
+                                <option value="1">1. Ya</option>
+                                <option value="2">2. Tidak</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row" >
+                    <div class="row">
+                        <div class="col col-50 col-center input-label"><b>Q4015b</b> Apakah anda pernah mengonsumsi obat atau menjalani perawatan lain untuk mengobatinya <b>dalam 12 bulan terakhir</b>?</div>
+                        <div class="col col-50 col-center" >
+                            <select class="pull-right input-border" class="pull-right input-border" ng-model="ptmb.q4015b">
+                                <option value="" selected></option>
+                                <option value="1">1. Ya</option>
+                                <option value="2">2. Tidak</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ion-list>
+
+        <ion-list ng-show="diabetes">
+            <input type="text" ng-model="ptmb.ptmb" ng-show="false">
+            <div class="item item-divider">
+                <span ng-if="curART.diabetes_d == 1">Tercatat Diabetes di HDSS 2017 dan menjawab YA</span>
+                <span ng-if="curART.diabetes_d == 2">Tercatat Diabetes di HDSS 2017 dan menjawab Tidak</span>
+                <span ng-if="curART.diabetes_d == 3 || !curART.diabetes_d">Belum tercatat Diabetes di HDSS 2017</span>
+            </div>
+            <!-- jika ART tercatat di HDSS menjawab YA  -->
+            <div ng-if="curART.diabetes_d == 1">
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label"><b>Q4074</b> Saya bermaksud untuk mengkonfirmasi data yang kami peroleh, Apakah benar Anda menderita diabetes atau kencing manis atau gula sesuai dengan wawancara yang kami lakukan sebelumnya tahun 2017?</div>
+                        <div class="col col-50 col-center" >
+                            <select class="pull-right input-border" class="pull-right input-border" ng-model="ptmb.q4074">
+                                <option value="" selected></option>
+                                <option value="1">1. Ya [ke Q4023]</option>
+                                <option value="2">2. Tidak [ke Q4075]</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row" ng-if="ptmb.q4074 == 2">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label"><b>Q4075</b> Jika terdapat perbedaan informasi yang disampaikan responden dengan data HDSS, Apakah alasan terjadinya perbedaan data/diagnosis?</div>
+                        <div class="col col-50 col-center" >
+                            <select class="pull-right input-border" class="pull-right input-border" ng-model="ptmb.q4075">
+                                <option value="" selected></option>
+                                <option value="1">1. Tidak pernah memiliki gejala penyakit tersebut [ke Q4022]</option>
+                                <option value="2">2. Diagnosis belum terkonfirmasi [ke Q4022]</option>
+                                <option value="3">3. Lainnya. Sebutkan [kemudian ke ke Q4022]</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row" ng-if="ptmb.q4074 == 2 && ptmb.q4075 == 3">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label"><b>Q4075a</b> Sebutkan</div>
+                        <div class="col col-50 col-center" >
+                            <input type="text" class="pull-right input-border" ng-model="ptmb.q4075a">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- jika ART tercatat di HDSS menjawab TIDAK atau tidak tercatat sama sekali-->
+            <div class="item item-text-wrap item-row" ng-if="(ptmb.q4074 == 2 && ptmb.q4075) || curART.diabetes_d == 2 || curART.diabetes_d == 3 || !curART.diabetes_d">
+                <div class="row input-label"> <b>Pertanyaan Q4022-Q4024 hanya untuk responden yang BELUM memiliki catatan kejadian atau yang tidak terdiagnosis penyakit tidak menular DM pada Siklus 3 Tahun 2017</b> </div>
+            </div>
+            <div class="item item-text-wrap item-row" ng-if="(ptmb.q4074 == 2 && ptmb.q4075) || curART.diabetes_d == 2 || curART.diabetes_d == 3 || !curART.diabetes_d">
+                <div class="row">
+                    <div class="col col-50 col-center input-label"><b>Q4022</b> Apakah anda pernah di diagnosa dengan Diabetes?</div>
+                    <div class="col col-50 col-center" >
+                        <select class="pull-right input-border" class="pull-right input-border" ng-model="ptmb.q4022">
+                            <option value="" selected></option>
+                            <option value="1">1. Ya</option>
+                            <option value="2">2. Tidak [ke Q4076 ke Paru]</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="item item-text-wrap item-row" ng-if="ptmb.q4074 == 1 || ptmb.q4022 == 1">
+                <div class="row">
+                    <div class="col col-50 col-center input-label"><b>Q4023a</b> Apakah anda pernah menggunakan insulin atau obat lain untuk menurunkan kadar gula darah <b>dalam 2 minggu terakhir</b>?</div>
+                    <div class="col col-50 col-center" >
+                        <select class="pull-right input-border" class="pull-right input-border" ng-model="ptmb.q4023a">
+                            <option value="" selected></option>
+                            <option value="1">1. Ya</option>
+                            <option value="2">2. Tidak</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="item item-text-wrap item-row" ng-if="ptmb.q4074 == 1 || ptmb.q4022 == 1">
+                <div class="row">
+                    <div class="col col-50 col-center input-label"><b>Q4023b</b> Apakah anda pernah menggunakan insulin atau obat lain untuk menurunkan kadar gula darah <b>dalam 12 bulan terakhir</b>?</div>
+                    <div class="col col-50 col-center" >
+                        <select class="pull-right input-border" class="pull-right input-border" ng-model="ptmb.q4023b">
+                            <option value="" selected></option>
+                            <option value="1">1. Ya</option>
+                            <option value="2">2. Tidak</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="item item-text-wrap item-row" ng-if="ptmb.q4074 == 1 || ptmb.q4022 == 1">
+                <div class="row">
+                    <div class="col col-50 col-center input-label"><b>Q4024</b> Apakah anda pernah menjalankan diet khusus, olahraga atau program pengendalian berat badan untuk diabetes dalam 2 minggu terakhir? (yang direkomendasikan oleh tenaga kesehatan)</div>
+                    <div class="col col-50 col-center" >
+                        <select class="pull-right input-border" class="pull-right input-border" ng-model="ptmb.q4024">
+                            <option value="" selected></option>
+                            <option value="1">1. Ya</option>
+                            <option value="2">2. Tidak</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </ion-list>
+
+        <ion-list ng-show="paru">
+            <input type="text" ng-model="ptmb.ptmb" ng-show="false">
+            <div class="item item-divider">
+                <span ng-if="curART.copd_d == 1">Tercatat Paru-Paru kronis di HDSS 2017 dan menjawab YA</span>
+                <span ng-if="curART.copd_d == 2">Tercatat Paru-Paru kronis di HDSS 2017 dan menjawab Tidak</span>
+                <span ng-if="curART.copd_d == 3 || !curART.copd_d">Belum tercatat Paru-Paru kronis di HDSS 2017</span>
+            </div>
+            <!-- jika ART tercatat di HDSS menjawab YA-->
+            <div ng-if="curART.copd_d == 1">
+                <div class="item item-text-wrap item-row">
+                    <div class="row input-label"> <b>Konfirmasi diagnosis (hanya untuk ART yang tercatat menderita penyakit paru-paru kronis siklus 3)</b> </div>
+                </div>
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label"><b>Q4076</b> Saya bermaksud untuk mengkonfirmasi data yang kami peroleh, Apakah benar Anda menderita penyakit paru-paru kronis (emfisema,bronkitis,CPOD) sesuai dengan wawancara yang kami lakukan sebelumnya tahun 2017?</div>
+                        <div class="col col-50 col-center" >
+                            <select class="pull-right input-border" class="pull-right input-border" ng-model="ptmb.q4076">
+                                <option value="" selected></option>
+                                <option value="1">1. Ya [ke Q4026]</option>
+                                <option value="2">2. Tidak [ke Q4077]</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row" ng-if="ptmb.q4076 == 2">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label"><b>Q4077</b> Jika terdapat perbedaan informasi yang disampaikan responden dengan data HDSS, Apakah alasan terjadinya perbedaan data/diagnosis?</div>
+                        <div class="col col-50 col-center" >
+                            <select class="pull-right input-border" class="pull-right input-border" ng-model="ptmb.q4077">
+                                <option value="" selected></option>
+                                <option value="1">1. Tidak pernah memiliki gejala penyakit tersebut [ke Q4025]</option>
+                                <option value="2">2. Diagnosis belum terkonfirmasi [ke Q4025]</option>
+                                <option value="3">3. Lainnya. Sebutkan [kemudian ke ke Q4025]</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row" ng-if="ptmb.q4076 == 2 && ptmb.q4077 == 3">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label"><b>Q4077a</b> Sebutkan</div>
+                        <div class="col col-50 col-center" >
+                            <input type="text" class="pull-right input-border" ng-model="ptmb.q4077a">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- jika ART tercatat di HDSS menjawab TIDAK atau belum tercatat sama sekali -->
+            <div class="item item-text-wrap item-row" ng-if="curART.copd_d == 2 || curART.copd_d == 3 || !curART.copd_d || (ptmb.q4076 == 2 && ptmb.q4077)">
+                <div class="row input-label"> <b>Pertanyaan Q4025-Q4032 hanya untuk responden yang BELUM memiliki catatan kejadian atau yang tidak terdiagnosis penyakit tidak menular Paru-Paru Kronis pada Siklus 3 Tahun 2017</b> </div>
+            </div>
+            <div class="item item-text-wrap item-row" ng-if="curART.copd_d == 2 || curART.copd_d == 3 || !curART.copd_d || (ptmb.q4076 == 2 && ptmb.q4077)">
+                <div class="row">
+                    <div class="col col-50 col-center input-label"><b>Q4025</b> Apakah anda pernah didiagnosis penyakit paru-paru kronis (emfisema,bronkitis,CPOD)?</div>
+                    <div class="col col-50 col-center" >
+                        <select class="pull-right input-border" class="pull-right input-border" ng-model="ptmb.q4025">
+                            <option value="" selected></option>
+                            <option value="1">1. Ya</option>
+                            <option value="2">2. Tidak [ke Q4027]</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item item-text-wrap item-row" ng-if="ptmb.q4076 == 1 || 
+                    (ptmb.q4076 == 2 && ptmb.q4077 && ptmb.q4025 == 1) ||
+                    ((curART.copd_d == 2 || curART.copd_d == 3 || !curART.copd_d) && ptmb.q4025 == 1)">
+                <div class="row">
+                    <div class="col col-50 col-center input-label"><b>Q4026a</b> Apakah anda sudah menngonsumsi obat atau menjalani perawatan lainnya (seperti oksigen)untuk penyakit tersebut <b>dalam 2 minggu terakhir</b>?</div>
+                    <div class="col col-50 col-center" >
+                        <select class="pull-right input-border" class="pull-right input-border" ng-model="ptmb.q4026a">
+                            <option value="" selected></option>
+                            <option value="1">1. Ya</option>
+                            <option value="2">2. Tidak</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="item item-text-wrap item-row" ng-if="ptmb.q4076 == 1 || 
+                    (ptmb.q4076 == 2 && ptmb.q4077 && ptmb.q4025 == 1) ||
+                    ((curART.copd_d == 2 || curART.copd_d == 3 || !curART.copd_d) && ptmb.q4025 == 1)">
+                <div class="row">
+                    <div class="col col-50 col-center input-label"><b>Q4026b</b> Apakah anda sudah menngonsumsi obat atau menjalani perawatan lainnya (seperti oksigen)untuk penyakit tersebut <b>dalam 12 bulan terakhir</b>?</div>
+                    <div class="col col-50 col-center" >
+                        <select class="pull-right input-border" class="pull-right input-border" ng-model="ptmb.q4026b">
+                            <option value="" selected></option>
+                            <option value="1">1. Ya</option>
+                            <option value="2">2. Tidak</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="item item-text-wrap item-row">
+                <div class="row">
+                    <div class="col col-50 col-center input-label"><b>Q4027</b> Selama 12 bulan terakhir, apakah anda pernah merasakan sesak napas pada waktu beristirahat? (dalam kondisi terjaga)</div>
+                    <div class="col col-50 col-center" >
+                        <select class="pull-right input-border" class="pull-right input-border" ng-model="ptmb.q4027">
+                            <option value="" selected></option>
+                            <option value="1">1. Ya</option>
+                            <option value="2">2. Tidak</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="item item-text-wrap item-row">
+                <div class="row">
+                    <div class="col col-50 col-center input-label"><b>Q4028</b> Selama 12 bulan terakhir, apakah anda pernah  batuk atau bersin selama sepuluh menit setiap kalinya?</div>
+                    <div class="col col-50 col-center" >
+                        <select class="pull-right input-border" class="pull-right input-border" ng-model="ptmb.q4028">
+                            <option value="" selected></option>
+                            <option value="1">1. Ya</option>
+                            <option value="2">2. Tidak</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="item item-text-wrap item-row">
+                <div class="row">
+                    <div class="col col-50 col-center input-label"><b>Q4029</b> Selama 12 bulan terakhir, apakah anda pernah mengalami batuk berdahak atau berlendir hampir setiap hari, selama paling tidak  3 bulan?</div>
+                    <div class="col col-50 col-center" >
+                        <select class="pull-right input-border" class="pull-right input-border" ng-model="ptmb.q4029">
+                            <option value="" selected></option>
+                            <option value="1">1. Ya</option>
+                            <option value="2">2. Tidak</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="item item-text-wrap item-row" ng-if="ptmb.q4027 == 1 || ptmb.q4028 == 1 || ptmb.q4029 == 1">
+                <div class="row">
+                    <div class="col col-50 col-center input-label"><b>Q4030</b> Apakah gejala yang anda alami dalam 12 bulan terakhir juga Anda alami dalam 2 minggu terakhir?</div>
+                    <div class="col col-50 col-center" >
+                        <select class="pull-right input-border" class="pull-right input-border" ng-model="ptmb.q4030">
+                            <option value="" selected></option>
+                            <option value="1">1. Ya</option>
+                            <option value="2">2. Tidak</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="item item-text-wrap item-row">
+                <div class="row">
+                    <div class="col col-50 col-center input-label"><b>Q4031</b> Dalam 12 bulan terakhir, apakah anda pernah tes tuberkulosis (TB)? artinya, apakah dokter pernah memeriksa dahak anda (mengambil sampel lendir yang dikeluarkan dengan batuk dan mengirimkannya ke laboratorium untuk dianalisis)  atau melakukan pemeriksaan sinar X (Rontgen) pada dada anda?</div>
+                    <div class="col col-50 col-center" >
+                        <select class="pull-right input-border" class="pull-right input-border" ng-model="ptmb.q4031">
+                            <option value="" selected></option>
+                            <option value="1">1. Ya</option>
+                            <option value="2">2. Tidak</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="item item-text-wrap item-row" ng-if="ptmb.q4031 == 1">
+                <div class="row">
+                    <div class="col col-50 col-center input-label"><b>Q4032a</b> Apakah anda pernah mengonsumsi obat  atau menjalani perawatan lain untuk penyakit tersebut <b>dalam 2 minggu terakhir</b>?</div>
+                    <div class="col col-50 col-center" >
+                        <select class="pull-right input-border" class="pull-right input-border" ng-model="ptmb.q4032a">
+                            <option value="" selected></option>
+                            <option value="1">1. Ya</option>
+                            <option value="2">2. Tidak</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="item item-text-wrap item-row" ng-if="ptmb.q4031 == 1">
+                <div class="row">
+                    <div class="col col-50 col-center input-label"><b>Q4032b</b> Apakah anda sudah mengonsumsi obat atau menjalani perawatan lain untuk penyakit tersebut <b>dalam 12 bulan terakhir</b>?</div>
+                    <div class="col col-50 col-center" >
+                        <select class="pull-right input-border" class="pull-right input-border" ng-model="ptmb.q4032b">
+                            <option value="" selected></option>
+                            <option value="1">1. Ya</option>
+                            <option value="2">2. Tidak</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="ptmb.q4029 == 1">
+                <span class="item item-divider">Khusus untuk ART yang menjawab Q4029 = 1</span>
+            </div>
+            <div class="item item-text-wrap item-row" ng-if="ptmb.q4029 == 1">
+                <div class="row">
+                    <div class="col col-50 col-center input-label"><b>Q4032c</b> Apakah dalam dahak anda pernah terdapat darah atau apakah anda pernah batuk berdarah?</div>
+                    <div class="col col-50 col-center" >
+                        <select class="pull-right input-border" class="pull-right input-border" ng-model="ptmb.q4032c">
+                            <option value="" selected></option>
+                            <option value="1">1. Ya</option>
+                            <option value="2">2. Tidak</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </ion-list>
+
+        <ion-list ng-show="hipertensi">
+            <input type="text" ng-model="ptmb.ptmb" ng-show="false">
+            <div class="item item-divider">
+                <span ng-if="curART.hyper_d == 1">Tercatat Hipertensi di HDSS 2017 dan menjawab YA</span>
+                <span ng-if="curART.hyper_d == 2">Tercatat Hipertensi di HDSS 2017 dan menjawab Tidak</span>
+                <span ng-if="curART.hyper_d == 3 || !curART.hyper_d">Belum tercatat Hipertensi di HDSS 2017</span>
+            </div>
+            <!-- jika ART tercatat di HDSS menjawab YA -->
+            <div ng-if="curART.hyper_d == 1">
+                <div class="item item-text-wrap item-row">
+                    <div class="row input-label"> <b>Konfirmasi diagnosis (hanya untuk ART yang tercatat menderita hipertensi atau darah tinggi siklus 3)</b> </div>
+                </div>
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label"><b>Q4078</b> Saya bermaksud untuk mengkonfirmasi data yang kami peroleh, Apakah benar Anda menderita hipertensi atau darah tinggi  sesuai dengan wawancara yang kami lakukan sebelumnya tahun 2017?</div>
+                        <div class="col col-50 col-center" >
+                            <select class="pull-right input-border" class="pull-right input-border" ng-model="ptmb.q4078">
+                                <option value="" selected></option>
+                                <option value="1">1. Ya [ke Q4061]</option>
+                                <option value="2">2. Tidak [ke Q4079]</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row" ng-if="ptmb.q4078 == 2">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label"><b>Q4079</b> Jika terdapat perbedaan informasi yang disampaikan responden dengan data HDSS, Apakah alasan terjadinya perbedaan data/diagnosis?</div>
+                        <div class="col col-50 col-center" >
+                            <select class="pull-right input-border" class="pull-right input-border" ng-model="ptmb.q4079">
+                                <option value="" selected></option>
+                                <option value="1">1. Ya [ke Q4060]</option>
+                                <option value="2">2. Tidak [ke Q4060]</option>
+                                <option value="3">3. Lainnya. Sebutkan [kemudian ke ke Q4060]</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row" ng-if="ptmb.q4078 == 2 && ptmb.q4079 == 3">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label"><b>Q4079a</b> Sebutkan</div>
+                        <div class="col col-50 col-center" >
+                            <input type="text" class="pull-right input-border" ng-model="ptmb.q4079a">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- jika ART tercatat di HDSS menjawab TIDAK atau belum tercatat sama sekali-->
+            <div class="item item-text-wrap item-row" ng-if="curART.hyper_d == 2 || curART.hyper_d == 3 || !curART.hyper_d || (ptmb.q4078 == 2 && ptmb.q4079)">
+                <div class="row input-label"> <b>Pertanyaan Q4025-Q4032 hanya untuk responden yang BELUM memiliki catatan kejadian atau yang tidak terdiagnosis penyakit tidak menular Paru-Paru Kronis pada Siklus 3 Tahun 2017</b> </div>
+            </div>
+            <div class="item item-text-wrap item-row" ng-if="curART.hyper_d == 2 || curART.hyper_d == 3 || !curART.hyper_d || (ptmb.q4078 == 2 && ptmb.q4079)">
+                <div class="row">
+                    <div class="col col-50 col-center input-label"><b>Q4060</b> Apakah anda pernah didiagnosis tekanan darah tinggi (hipertensi)?</div>
+                    <div class="col col-50 col-center" >
+                        <select class="pull-right input-border" class="pull-right input-border" ng-model="ptmb.q4060">
+                            <option value="" selected></option>
+                            <option value="1">1. Ya</option>
+                            <option value="2">2. Tidak</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="item item-text-wrap item-row" ng-if="ptmb.q4078 == 1 || 
+                      (ptmb.q4078 == 2 && ptmb.q4079 && ptmb.q4060 == 1) || ptmb.q4060 == 1">
+                <div class="row">
+                    <div class="col col-50 col-center input-label"><b>Q4061a</b> Apakah anda pernah mengonsumsi obat  atau menjalani perawatan lain untuk penyakit tersebut dalam <b>dalam 2 minggu terakhir</b>? (perawatan lain mungkin mencakup  program penurunan berat badan atau perubahan pola makan) </div>
+                    <div class="col col-50 col-center" >
+                        <select class="pull-right input-border" class="pull-right input-border" ng-model="ptmb.q4061a">
+                            <option value="" selected></option>
+                            <option value="1">1. Ya</option>
+                            <option value="2">2. Tidak</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="item item-text-wrap item-row" ng-if="ptmb.q4078 == 1 || 
+                      (ptmb.q4078 == 2 && ptmb.q4079 && ptmb.q4060 == 1) || ptmb.q4060 == 1">
+                <div class="row">
+                    <div class="col col-50 col-center input-label"><b>Q4061b</b> Apakah anda pernah mengonsumsi obat  atau menjalani perawatan lain untuk penyakit tersebut dalam <b>dalam 12 bulan terakhir</b>? (perawatan lain mungkin mencakup  program penurunan berat badan atau perubahan pola makan) </div>
+                    <div class="col col-50 col-center" >
+                        <select class="pull-right input-border" class="pull-right input-border" ng-model="ptmb.q4061b">
+                            <option value="" selected></option>
+                            <option value="1">1. Ya</option>
+                            <option value="2">2. Tidak</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </ion-list>
+        
+      </form>
+        <!-- Buttons-->
+        <div class="item-group" ng-if="stroke && strokeAllowSave()">
+            <button class="button simpan button-calm pull-right" ng-click="go('stroke','angina')" >
+                ke Angina<i class="icon ion-arrow-right-c"></i>
+            </button>
+        </div>
+        <div class="item-group" ng-if="angina && anginaAllowSave()">
+            <button class="button simpan button-calm" ng-click="go('angina','stroke')">
+                <i class="icon ion-arrow-left-c"></i>ke Stroke
+            </button>
+            <button class="button simpan button-calm pull-right" ng-click="go('angina','diabetes')" >
+                ke Diabetes<i class="icon ion-arrow-right-c"></i>
+            </button>
+        </div>
+        <div class="item-group" ng-if="diabetes && diabetesAllowSave()">
+            <button class="button simpan button-calm" ng-click="go('diabetes','angina')">
+                <i class="icon ion-arrow-left-c"></i>ke Angina
+            </button>
+            <button class="button simpan button-calm pull-right" ng-click="go('diabetes','paru')" >
+                ke Paru-Paru<i class="icon ion-arrow-right-c"></i>
+            </button>
+        </div>
+        <div class="item-group" ng-if="paru && paruAllowSave()">
+            <button class="button simpan button-calm" ng-click="go('paru', 'diabetes')">
+                <i class="icon ion-arrow-left-c"></i>ke Diabetes
+            </button>
+            <button class="button simpan button-calm pull-right" ng-click="go('paru','hipertensi')" >
+                ke Hipertensi<i class="icon ion-arrow-right-c"></i>
+            </button>
+        </div>
+        <div class="item-group" ng-if="hipertensi && hipertensiAllowSave()">
+            <button class="button simpan button-dark pull-right" ng-click="save(true)">
+                Simpan [ke AGH]<i class="icon ion-archive"></i>
+            </button>
+        </div>
+        <!-- Buttons-->
+    </ion-content>
+</ion-view>
+
+

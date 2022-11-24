@@ -1,0 +1,139 @@
+<ion-view view-title="Post ICHC & Konseling">
+    <ion-content class="ichcp">
+        <form name="myForm" novalidate>
+            <ion-list>
+                <div class="item item-divider item-text-wrap item-row"><b>Post ICHC</b></div>
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50">Apakah Ibu menerima informasi hasil pemeriksaan putra/putri Ibu?</div>
+                        <div class="col col-50">
+                            <div class="button-bar right">
+                                <ion-radio name="ichcp" ng-model="ichcp.ichcp1" ng-value="1" >Ya</ion-radio>
+                                <ion-radio name="ichcp" ng-model="ichcp.ichcp1" ng-value="2" >Tidak</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row" ng-if="ichcp.ichcp1 == 1">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label">Jika Ya, apakah hasilnya?</div>
+                        <div class="col col-50 col-center">
+                            <select class="pull-right" name="ichcp1a" ng-model="ichcp.ichcp1a">
+                                <option value="" selected></option>
+                                <option value="1">1. Normal</option>
+                                <option value="2">2. Membutuhkan tindak lanjut</option>
+                                <option value="3">3. Rujuk</option>
+                                <option value="4">4. Tidak tahu</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50">Apakah Ibu mendapat informasi kapan harus berkunjung untuk imunisasi berikutnya? </div>
+                        <div class="col col-50">
+                            <div class="button-bar right">
+                                <ion-radio name="ichcp2" ng-model="ichcp.ichcp2" ng-value="1" >Ya</ion-radio>
+                                <ion-radio name="ichcp2" ng-model="ichcp.ichcp2" ng-value="2" >Tidak</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50">Apakah putra/putri Ibu memiliki masalah terhadap kesehatan, gizi, tumbuh kembang anak?</div>
+                        <div class="col col-50">
+                            <div class="button-bar right">
+                                <ion-radio name="ichcp3" ng-model="ichcp.ichcp3" ng-value="1" >Ya</ion-radio>
+                                <ion-radio name="ichcp3" ng-model="ichcp.ichcp3" ng-value="2" >Tidak</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row" ng-if="ichcp.ichcp3 == 1">
+                    <div class="row">
+                        <div class="col col-50">Jika Ya, apakah Ibu menerima saran dari tenaga kesehatan?</div>
+                        <div class="col col-50">
+                            <div class="button-bar right">
+                                <ion-radio name="ichcp3a" ng-model="ichcp.ichcp3a" ng-value="1" >Ya</ion-radio>
+                                <ion-radio name="ichcp3a" ng-model="ichcp.ichcp3a" ng-value="2" >Tidak</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50">Berdasarkan hasil PKAT ini, apakah putra/putri Ibu disarankan untuk dirujuk ke rumah sakit? </div>
+                        <div class="col col-50">
+                            <div class="button-bar right">
+                                <ion-radio name="ichcp4" ng-model="ichcp.ichcp4" ng-value="1" >Ya</ion-radio>
+                                <ion-radio name="ichcp4" ng-model="ichcp.ichcp4" ng-value="2" >Tidak</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row" ng-if="ichcp.ichcp4 == 1">
+                    <div class="row">
+                        <div class="col col-50">Jika Ya, apakah Ibu mendapatkan penjelasan terkait alasan dirujuk?</div>
+                        <div class="col col-50">
+                            <div class="button-bar right">
+                                <ion-radio name="ichcp4a" ng-model="ichcp.ichcp4a" ng-value="1" >Ya</ion-radio>
+                                <ion-radio name="ichcp4a" ng-model="ichcp.ichcp4a" ng-value="2" >Tidak</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item item-divider item-text-wrap item-row"><b>Post Konseling</b></div>
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label">Apakah Ibu menerima konseling individu? </div>
+                        <div class="col col-50 col-center">
+                            <select class="pull-right" name="pc1" ng-model="ichcp.pc1">
+                                <option value="" selected></option>
+                                <option value="1">1. Ya, bermanfaat</option>
+                                <option value="2">2. Ya, tidak bermanfaat</option>
+                                <option value="3">3. Tidak</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label">Apakah Ibu menghadiri bimbingan kelompok? </div>
+                        <div class="col col-50 col-center">
+                            <select class="pull-right" name="pc2" ng-model="ichcp.pc2">
+                                <option value="" selected></option>
+                                <option value="1">1. Ya, bermanfaat</option>
+                                <option value="2">2. Ya, tidak bermanfaat</option>
+                                <option value="3">3. Tidak</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label">Apakah ibu merasa kegiatan PKAT ini bermanfaat dan penting?</div>
+                        <div class="col col-50 col-center">
+                            <select class="pull-right" name="pc3" ng-model="ichcp.pc3">
+                                <option value="" selected></option>
+                                <option value="1">1. Sangat setuju</option>
+                                <option value="2">2. Setuju</option>
+                                <option value="3">3. Tidak Setuju</option>
+                                <option value="4">4. Sangat Tidak Setuju</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+            </ion-list>
+        </form>
+        <div class="padding text-right">
+            <button ng-if="ichcpAllowSave(myForm)" class="button simpan button-dark pull-right" ng-click="save(ichcp)">
+                <i class="icon ion-archive"></i> Simpan
+            </button>
+        </div>
+    </ion-content>
+</ion-view>

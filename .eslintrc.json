@@ -1,0 +1,35 @@
+{
+    "env": {
+        "browser": true
+    },
+    "extends": "eslint:recommended",
+    "globals": {
+        "angular": false,
+        "md5": false,
+        "localforage": false,
+        "cordova": false,
+        "ionic": false
+    },
+    "rules": {
+        "indent": [
+            "warn",
+            4
+        ],
+        "linebreak-style": [
+            "warn",
+            "windows"
+        ],
+        "quotes": [
+            "warn",
+            "single"
+        ],
+        "semi": [
+            "warn",
+            "always"
+        ],
+        "no-unused-vars": ["error", {
+            "vars": "all",
+            "args": "none"
+        }]
+    }
+}

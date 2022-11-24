@@ -1,0 +1,494 @@
+part.jns_resp|Jenis Responden|1. Laki-laki, 2.Perempuan tercatat hamil, 3. Prm tdk hamil
+part.part02|Hubungan dg Kepala Rumah Tangga|1-11
+part.part03|Keberadaan ART|1.ada,2.Tidak
+part.part04a|Perubahan Keadaan ART|1. Meninggal, 2. Migrasi Keluar
+part.part04b|Migrasi ke| 1. Luar Sleman, 2. Dalam Sleman
+part.part04c|Tulis Alamat Lengkap|text
+part.part04d|Tanggal Kejadian|tgl
+part.part04dx|Tanggal Kejadian Tidak tahu|98
+part.part05|Apakah ada perubahan status perkawinan|1,2
+part.part05a|Status perkawinan saat ini|2,3,4,5,6
+part.part05b|Tanggal Kejadian|tgl
+part.part05bx|Tanggal Kejadian tidak tahu|98
+part.part07|Apakah Kehamilan sudah berakhir ?|1,2
+part.part08a|Kejadian Berakhirnya Kehamilan|1,2,3
+part.part08b|Tanggal Kejadian|tgl
+part.part08bx|Tanggal Kejadian tidak tahu|98
+part.part08c|Umur Kehamilan (dlm minggu)|1-45
+part.part09|Penolong Persalinan|1-7
+part.part10|Metode Persalinan|1,2
+part.part11a|Berat Badan Lahir (BBL) - gr|2000-5000
+part.part11ax|Berat Badan Lahir tidak tahu|98
+part.part11b|Panjang Badan (PB) - cm|30-60
+part.part11bx|Panjang Badan tidak tahu|98
+part.part11c|Apakah anak yg dilahirkan lebih dari satu?|1,98
+part.part11ca1|(1) Berat Badan Lahir (BBL) - gr|2000-5000
+part.part11ca1x|(1) Berat Badan Lahir tidak tahu|98
+part.part11ca2|(1) Panjang Badan (PB) - cm|30-60
+part.part11ca2x|(1) Panjang Badan tidak tahu|98
+part.part11cb1|(1) Berat Badan Lahir (BBL) - gr|2000-5000
+part.part11cb1x|(1) Berat Badan Lahir tidak tahu|98
+part.part11cb2|(1) Panjang Badan (PB) - cm|30-60
+part.part11cb2x|(1) Panjang Badan tidak tahu|98
+part.part12|Apakah sejak kunjungan terakhir sampai saat ini pernah hamil ?|1,2
+part.part13|Apakah saat ini masih hamil ?|1,2 (Ya, Tidak)
+part.part14a|Kejadian Berakhirnya Kehamilan|1-3
+part.part14b|Tanggal Kejadian Berakhirnya Kehamilan|tgl
+part.part14bx|Tanggal Kejadian tidak tahun|98
+part.part14c|Umur Kehamilan (dlm minggu)|1-45 (minggu)
+part.part15|Penolong Persalinan|1-7
+part.part16|Metode Persalinan|1,2
+part.part17a|Berat Badan Lahir (BBL) - gr|2000-5000
+part.part17ax|Berat badan tidak tahu|98
+part.part17b|Panjang Badan (PB) - cm|30-60 (cm)
+part.part17bx|Panjang badan tidak tahu|98
+part.part17c|Apakah anak yg dilahirkan lebih dari satu?|1,98
+part.part17ca1|(2) Berat Badan Lahir (BBL) - gr|2000-5000
+part.part17ca1x|(2) Berat Badan Lahir tidak tahu|98
+part.part17ca2|(2) Panjang Badan (PB) - cm|30-60
+part.part17ca2x|(2)Panjang Badan tidak tahu|98
+part.part17cb1|(2) Berat Badan Lahir (BBL) - gr|2000-5000
+part.part17cb1x|(2) Berat Badan Lahir tidak tahu|98
+part.part17cb2|(2) Panjang Badan (PB) - cm|30-60
+part.part17cb2x|(2) Panjang Badan tidak tahu|98
+part.part18|Pendidikan Saat ini|1-8, 98
+part.part19|Total Waktu Pendidikan (dalam tahun)|1-99
+part.part20|Pekerjaan Saat ini|1-13,95,98
+part.part20lain|Pekerjaan lainnya|text
+part.part21|Kepemilikan Asuransi|1.Ya, 2.Tidak
+part.part2201|1. JKN PBI|1,2
+part.part2202|2. JKN Non-PBI : PNS, POLRI, Pejabat Negara, Pegawai Pemerintah Non-PNS|1,2
+part.part2203|3. JKN Non-PBI: Peserta Mandiri|1,2
+part.part2204|4. JKN Non-PBI: Bukan Pekerja|1,2
+part.part2205|5. JKN Non PBI: Pegawai Swasta|1,2
+part.part2206|6. Jamkesda Sleman|1,2
+part.part2207|7. Jamkesda Sleman Mandiri|1,2
+part.part2208|8. Jamkesta Mandiri|1,2
+part.part2209|9. Jamkesos|1,2
+part.part2210|10. Asuransi Swasta|1,2
+part.part2211|11. Perusahaan|1,2
+part.part2295|95. Lainnya, Sebutkan (dibawah)|1,2
+part.part2298|98. Tidak Tahu|1,2
+part.part2295a|Asuransi kesehatan lainnya|text
+-- artb
+artb.artb00|Nomor Urut artb|int
+artb.artb03a|NIK art|varchar(16)
+artb.artb03b|Nomor IDI|int
+artb.artb01|Nama Anggota Rumah tangga|varchar(50)
+artb.artb02|Hubungan dg Kepala Rumah Tangga|1-11
+artb.artb04|Jenis Kelamin|1. Laki, 2. perempuan
+artb.artb05|Tanggal Lahir|tgl
+artb.artb05a|Tanggal Lahir tidak tahu|2.true 1.false
+artb.artb05b|Sumber Informasi tanggal lahir|1-5
+artb.artb05b1|Sumber Informasi tanggal lahir lain|text
+artb.artb06a|Umur (tahun)|0-100
+artb.artb06b|Umur (bulan)|0-11
+artb.artb06c|Umur (Hari)|0-30
+artb.artb07|Status Kawin|1-4
+artb.artb08a|Tgl. Pertama Menikah|tgl
+artb.artb08ax|Tgl. Pertama Menikah tidak tahu|98
+artb.artb08b|Usia Pertama Menikah|10-99
+artb.artb08bx|Usia Pertama Menikah Tidak tahu|98
+artb.artb09|No. Urut Pasangan Pertama|1-20,51,52,96
+artb.artb10|No. Urut Pasangan Kedua|1-20,51,52,96
+artb.artb11|No. Urut Ayah|1-20,51,52,96
+artb.artb12|No. Urut Ibu|1-20,51,52,96
+artb.artb13|Agama|1-8
+artb.artb14|Asal Suku Ayah|1-17,95
+artb.artb15|Asal Suku Ibu|1-17,95
+artb.artb16|Pendidikan Tertinggi|1-8
+artb.artb17|Lama Waktu Pendidikan (dalam tahun)|1-99
+artb.artb18|Pekerjaan Utama|1-12,95,98
+artb.artb19|Kepemilikan Asuransi Kesehatan|1.Ya, 2.Tidak
+artb.artb2001|1. JKN PBI|1,2
+artb.artb2002|2. JKN Non-PBI : PNS, POLRI, Pejabat Negara, Pegawai Pemerintah Non-PNS|1,2
+artb.artb2003|3. JKN Non-PBI: Peserta Mandiri|1,2
+artb.artb2004|4. JKN Non-PBI: Bukan Pekerja|1,2
+artb.artb2005|5. JKN Non PBI: Pegawai Swasta|1,2
+artb.artb2006|6. Jamkesda Sleman|1,2
+artb.artb2007|7. Jamkesda Sleman Mandiri|1,2
+artb.artb2008|8. Jamkesta Mandiri|1,2
+artb.artb2009|9. Jamkesos|1,2
+artb.artb2010|10. Asuransi Swasta|1,2
+artb.artb2011|11. Perusahaan|1,2
+artb.artb2095|95. Lainnya, Sebutkan (dibawah)|1,2
+artb.artb2098|98. Tidak Tahu|1,2
+artb.artb2095a|Asuransi kesehatan lainnya|text
+artb.artb21a|Keberadaan ART|1.Ada, 2.Tidak
+artb.artb21b|Keterangan Keberadaan ART Baru|1.Meninggal, 2.Migrasi Keluar
+artb.artb21c|migrasi keluar|1. Luar sleman, 2. dalam sleman
+artb.artb21d|Dalam sleman|text
+artb.artb21e|Tgl kejadian migrasi|tgl
+artb.artb21ex|tgl kejadian migrasi tidak tahu|98
+artb.artb22|Apakah sedang hamil?|1.Ya, 2. Tidak, 98. Tidak tahu
+artb.artb23|Apakah ART diwawancara ?|1. Ya, 2. Tidak
+
+krp.krp01|Jumlah anak laki-laki yang pernah dilahirkan dan sekarang masih hidup|0-20
+krp.krp02|Jumlah anak perempuan yang pernah dilahirkan dan sekarang masih hidup|0-20
+krp.krp03|Jumlah anak laki-laki yang pernah dilahirkan dan sekarang sudah meninggal|0-20
+krp.krp04|Jumlah anak Perempuan yang pernah dilahirkan dan sekarang sudah meninggal|0-20
+krp.krp05|Jumlah abortus (keguguran) yang pernah dialami|0-20
+krp.krp06|Apakah ART menggunakan alat/cara KB untuk mencegah atau menunda kehamilan?|1-3,98
+-- Alat/Cara KB yang digunakan
+krp.krp07a1|1. Sterilisasi Pria|true,false
+krp.krp07a2|2. Sterilisasi Wanita|true,false
+krp.krp07a3|3. Susuk /implan|true,false
+krp.krp07a4|4. IUD/AKDR/Spiral|true,false
+krp.krp07a5|5. Suntikan|true,false
+krp.krp07a6|6. Pil|true,false
+krp.krp07a7|7. Kondom Pria|true,false
+krp.krp07a8|8. Kondom Wanita|true,false
+krp.krp07a9|9. Diafragma|true,false
+krp.krp07a10|10. Laktasi|true,false
+krp.krp07a11|11. Jamu|true,false
+krp.krp07a12|12. Metode Kalender|true,false
+krp.krp07a13|13. Senggama Terputus|true,false
+krp.krp07a98|98. Tidak Tahu|true,false
+-- Tempat mendapatkan pelayanan KB
+krp.krp08a1|1. RS Pemerintah|true,false
+krp.krp08a2|2. RS Swasta|true,false
+krp.krp08a3|3. RS Bersalin|true,false
+krp.krp08a4|4. Klinik/Balai Pengobatan|true,false
+krp.krp08a5|5. Puskesmas/Pustu|true,false
+krp.krp08a6|6. Praktek dokter umum|true,false
+krp.krp08a7|7. Praktek dokter spesialis|true,false
+krp.krp08a8|8. Praktek Bidan|true,false
+krp.krp08a9|9. Praktek Perawat|true,false
+krp.krp08a10|10. Posyandu|true,false
+krp.krp08a11|11. Polindes/Puskesda|true,false
+krp.krp08a12|12. Tim KB Pusling|true,false
+krp.krp08a13|13. Tim Medis Pusling|true,false
+krp.krp08a14|14. Apotek/Toko Obat|true,false
+krp.krp08a95|95. Lainnya|true,false
+krp.krp08a95l|Isian lainnya|text
+krp.krp08a98|Tidak tahu|98
+-- Pemberi Pelayanan KB
+krp.krp09a1|1. Dokter Kandungan|true,false
+krp.krp09a2|2. Dokter Umum|true,false
+krp.krp09a3|3. Bidan|true,false
+krp.krp09a4|4. Perawat|true,false
+krp.krp09a95|95. Lainnya|true,false
+krp.krp09a95a|Isian lainnya|text
+krp.krp09a98|Tidak Tahu|98
+-- Cara Pembayaran
+krp.krp10a1|1. Asuransi JKN|true,false
+krp.krp10a2|2. Membayar sendiri|true,false
+krp.krp10a3|3. Dibagikan gratis|true,false
+krp.krp10a98|98. Tidak Tahu|true,false 98
+-- pm.html
+pm.pm01|Dalam 1 bulan terakhir, apakah ada anggota rumah tangga yang pernah menderita panas disertai batuk berdahak/kering atau pilek|1.Ya, 2. Tidak, 98. Tidak tahu
+pm.pm02|Dalam 1 bulan terakhir, apakah ada anggota rumah tangga yang mengalami/didiagnosis ISPA|1.Ya, 2. Tidak, 98. Tidak tahu
+pm.pm01ls[d.idart]|PM01 checked|true,false
+pm.pm02ls[d.idart]|PM02 checked|true,false
+pm.pm03|Dalam 1 bulan terakhir, apakah ada ART panas (sakit kepala..)|1.Ya, 2. Tidak, 98. Tidak tahu
+pm.pm04|Dalam 1 bulan terakhir, apakah ada ART minum obat anti malaria|1.Ya, 2. Tidak, 98. Tidak tahu
+pm.pm03ls[d.idart]|PM03 checked|true,false
+pm.pm04ls[d.idart]|PM04 checked|1,2
+pm.pm08|Dalam 6 bulan terakhir ART diagnosis DB|1.Ya, 2. Tidak, 98. Tidak tahu
+pm.pm08ls[d.idart]|PM08 checkeds|true,false
+pm.pm09|Dalam 6 bulan terakhir ART LEPTOSPIROSIS|1.Ya, 2. Tidak, 98. Tidak tahu
+pm.pm09ls[d.idart]|PM09 checked|true,false
+pm.pm10|1 tahun terakhit ART riwayat batuk > 2 minggu|1.Ya, 2. Tidak, 98. Tidak tahu
+pm.pm12|ART terdiagnosis TB Paru(TBC/Flek/Paru2)|1.Ya, 2. Tidak, 98. Tidak tahu
+pm.pm10ls[d.idart]|PM10 checked|1,0
+pm.pm12a[d.idart]|PM12 checked|1,2
+-- on pm-modal.html
+pm.pm05[idart]|Apakah ART pernah didiagnosis menderita Malaria?|1.Ya, 2. Tidak, 98. Tidak tahu
+pm.pm07[idart]|Apakah diberi pengobatan program kombinasi OAM selama 3 hari?|1-3,98
+pm.pm11a[idart]|Dahak|1.Ya, 2. Tidak, 98. Tidak tahu
+pm.pm11b[idart]|Dahak / Bercampur darah|1.Ya, 2. Tidak, 98. Tidak tahu
+pm.pm11c[idart]|Nafsu Makan menurun|1.Ya, 2. Tidak, 98. Tidak tahu
+pm.pm11d[idart]|Demam|1.Ya, 2. Tidak, 98. Tidak tahu
+pm.pm11e[idart]|Nyeri Dada|1.Ya, 2. Tidak, 98. Tidak tahu
+pm.pm11f[idart]|Sesak Nafas|1.Ya, 2. Tidak, 98. Tidak tahu
+pm.pm11g[idart]|Berkeringat malam hari tanpa keg fisik|1.Ya, 2. Tidak, 98. Tidak tahu
+pm.pm11h[idart]|Berat badan menurun /sulit bertambah|1.Ya, 2. Tidak, 98. Tidak tahu
+
+pm.pm13a[idart]|Pemeriksaan Dahak|1.Ya, 2. Tidak, 98. Tidak tahu
+pm.pm13b[idart]|Pemeriksaan Foto Dada|1.Ya, 2. Tidak, 98. Tidak tahu
+pm.pm13c[idart]|Status penyakit saat ini|1-5,98
+
+-- ptm.html
+ptm.ptm01|ART Hipertensi|1.Ya, 2. Tidak, 98. Tidak tahu
+ptm.ptm02[d.idart]|prm01 Ya|1-4,98
+ptm.ptm03|terdiagnosis diabetes mellitus|1.Ya, 2. Tidak, 98. Tidak tahu
+ptm.ptm04[d.idart]|ptm03 Ya|1-4,98
+ptm.ptm05|terdiagnosis stroke|1.Ya, 2. Tidak, 98. Tidak tahu
+ptm.ptm06[d.idart]|ptm05 Ya|1-4,98
+ptm.ptm07|meninggal mendadak|1.Ya, 2. Tidak, 98. Tidak tahu
+ptm.ptm08|pernah dirawat di rumah sakit karena sakit dada kiri yang sangat hebat|1.Ya, 2. Tidak, 98. Tidak tahu
+ptm.ptm09|terdiagnosis sakit jantung|1.Ya, 2. Tidak, 98. Tidak tahu
+ptm.ptm10[d.idart]|ptm09 == 1 |1-4,98
+ptm.ptm11|terdiagnosis kanker|1.Ya, 2. Tidak, 98. Tidak tahu
+ptm.ptm12a[d.idart]|ptm11 == 1, Jenis Kanker|1-8,95,98
+ptm.ptm12b[d.idart]|Kanker Lainnya|text
+ptm.ptm13[d.idart]|ptm11 == 1, Cara Pengobatan|1-4,98
+ptm.ptm14|mengalami asma/bengek/mengi/PPOK|1.Ya, 2. Tidak, 98. Tidak tahu
+ptm.ptm14ls[d.idart]|ptm14 == 1|checked
+ptm.ptm20|kecelakaan, kekerasan, jatuh|1.Ya, 2. Tidak, 98. Tidak tahu
+ptm.ptm20ls[d.idart]|ptm20 == 1|checked
+ptm.ptm30|menderita penyakit tidak menular lainnya|1.Ya, 2. Tidak, 98. Tidak tahu
+ptm.ptm33|ART yang memiliki benjolan tidak wajar|1.Ya, 2. Tidak, 98. Tidak tahu
+ptm.ptm34|penurunan berat badan tidak wajar(10%) dalam 3 bulan|1.Ya, 2. Tidak, 98. Tidak tahu
+ptm.ptm31[d.idart]|ptm.ptm30==1, Jenis Penyakit|text
+ptm.ptm32[d.idart]|ptm.ptm30==1, Cara Pengobatan|1-4,98
+ptm.ptm33ls[d.idart]|ptm.ptm33==1|1.Ya, 2. Tidak, 98. Tidak tahu
+ptm.ptm34ls[d.idart]|ptm.ptm34==1|1.Ya, 2. Tidak, 98. Tidak tahu
+-- ptm-modal.html
+ptm.ptm15a[idart]|Terpapar udara dingin/debu|1.Ya, 2.Tidak
+ptm.ptm15b[idart]|Debu|1.Ya, 2.Tidak
+ptm.ptm15c[idart]|Asap Rokok|1.Ya, 2.Tidak
+ptm.ptm15d[idart]|Stress|1.Ya, 2.Tidak
+ptm.ptm15e[idart]|Flu atau Infeksi |1.Ya, 2.Tidak
+ptm.ptm15f[idart]|Kelelahan|1.Ya, 2.Tidak
+ptm.ptm15g[idart]|Alergi Obat|1.Ya, 2.Tidak
+ptm.ptm15h[idart]|Alergi Makanan|1.Ya, 2.Tidak
+ptm.ptm15v[idart]|Lainny|1.Ya, 2.Tidak
+ptm.ptm15lainnya[idart]|Lainnya|text
+
+ptm.ptm16a[idart] |Mengi|1.Ya, 2.Tidak
+ptm.ptm16b[idart] |Sesak nafas berkurang atau hilang dengan pengobatan|1.Ya, 2.Tidak
+ptm.ptm16c[idart] |Sesak nafas berkurang atau hilang tanpa pengobatan|1.Ya, 2.Tidak
+ptm.ptm16d[idart] |Sesak nafas lebih berat dirasakan pd malam hari / menjelang pag|1.Ya, 2.Tidak
+ptm.ptm17[idart]|Umur berapa mulai merasa keluhan sesak pertama kali|0-90,98 (tahun)
+ptm.ptm17bln[idart]|Umur berapa mulai merasa keluhan sesak pertama kali|0-12,98 (bulan)
+ptm.ptm18[idart]|Apakah sesak nafas pernah kambuh dalam 12 bulan terakhir|1.Ya, 2.Tidak, 3.Tidak tahu
+ptm.ptm19a[idart]|Batuk berdahak|1.Ya, 2.Tidak
+ptm.ptm19b[idart]|Sesak nafas bertambah ketika beraktifitas|1.Ya, 2.Tidak
+ptm.ptm19c[idart]|Sesak nafas bertambah dengan meningkatnya usia|1.Ya, 2.Tidak
+ptm.ptm21[idart]|Dalam 12 bulan terakhir berapa kali [Nama ART] mengalami cedera (1-50)|1-50
+ptm.ptm22a[idart]|Apakah dirawat?|1.Ya, 2. Tidak, 98. Tidak tahu
+ptm.ptm22ba[idart]|Dirawat oleh a.Tenaga KEsehatan|1.Ya, 2.tidak
+ptm.ptm22ba1[idart]|Lama Rawat jalan|1-1500 (hari)
+ptm.ptm22ba2[idart]|Lama Rawat inap|1-1500 (hari)
+ptm.ptm22bb[idart]|b. Pengobatan tradisional|1.Ya, 2.tidak
+ptm.ptm22bb1[idart]|Lama Rawat jalan|1-1500 (hari)
+ptm.ptm22bb2[idart]|Lama Rawat inap|1-1500 (hari)
+ptm.ptm22bc[idart]|c. Diobati sendiri|1.Ya, 2.tidak
+-- PTM23 Bagian tubuh yang terkena cedera
+ptm.ptm23a[idart]|Kepala|1.Ya, 2.Tidak
+ptm.ptm23b[idart]|Dada|1.Ya, 2.Tidak
+ptm.ptm23c[idart]|Punggung|1.Ya, 2.Tidak
+ptm.ptm23d[idart]|Perut / Organ dalam|1.Ya, 2.Tidak
+ptm.ptm23e[idart]|Anggota Gerak Atas|1.Ya, 2.Tidak
+ptm.ptm23f[idart]|Anggota Gerak Bawa|1.Ya, 2.Tidak
+-- PTM24 Jenis Cedera yang dialami
+ptm.ptm24a[idart]|Lecet, lebam, memar|1.Ya, 2.Tidak
+ptm.ptm24b[idart]|Luka iris / robek|1.Ya, 2.Tidak
+ptm.ptm24c[idart]|Patah tulang|1.Ya, 2.Tidak
+ptm.ptm24d[idart]|Terkilir / teregang|1.Ya, 2.Tidak
+ptm.ptm24e[idart]|Anggota tubuh terputus|1.Ya, 2.Tidak
+ptm.ptm24f[idart]|Cedera mata|1.Ya, 2.Tidak
+ptm.ptm24g[idart]|Gegar otak|1.Ya, 2.Tidak
+ptm.ptm24v[idart]|Lainny|1.Ya, 2.Tidak
+ptm.ptm24lainnya[idart]|Cedera Lainnya|text
+-- PTM25 Apakah cedera yang terjadi mengakibatkan kecacatan fisik yang permanen pada bagian tubuh seperti dibawah ini
+ptm.ptm25a[idart]|Panca indera tidak berfungsi (buta, tuli, bisu, dll|1.Ya, 2.Tidak
+ptm.ptm25b[idart]|Kehilangan sebagian anggota badan (jari/tangan/kaki putus dll.|1.Ya, 2.Tidak
+ptm.ptm25c[idart]|Bekas luka permanen yang mengganggu kenyamanan|1.Ya, 2.Tidak
+-- PTM26 Tempat terjadinya cedera
+ptm.ptm26[idart]|tempat terjadinya cedera|1-7,95
+ptm.ptm26lainnya[idart]|Lainnya|text
+-- PTM27 Penyebab cedera
+ptm.ptm27[idart]|penyebab cedera|1-8,95
+ptm.ptm27lainnya[idart]|Penyebab lainnya|text
+-- PTM28 Apakah pengendara menggunakan helm ?
+ptm.ptm28[idart]|Apakah pengendara menggunakan helm ?|1-4
+ptm.ptm29[idart]|Penyebab cedera timbul karena kondisi|1-4,95
+ptm.ptm29lainnya[idart]|Lainnya|text
+
+
+--dif.html
+dif.dif01|Apakah ada anggota rumah tangga yang memiliki disabilitas?|1.Ya, 2.Tidak, 98.Tidak Tahu
+dif.dif01ls[d.idart]|check to open modal|1,0
+
+--on dif-modal.html
+--Jenis disabilitas
+dif.check1a[idart]|1.Tuna Wicara|1 (ya),0 (Tidak)
+dif.check1b[idart]|2.Tuna Daksa|1,0
+dif.check1c[idart]|3.Tuna Grahita|1,0
+dif.check1d[idart]|4.Tuna Rungu|1,0
+dif.check1e[idart]|5.Tuna Netra|1,0
+
+--aks.html
+aks.aks01|Apakah pada tahun 2015, ada anggota rumah tangga yang sakit?|1.Ya, 2.Tidak, 98.Tidak Tahu
+aks.aks01ls[idart]|check to open modal|true,false
+---Pelayanan Puskesmas
+aks.aks05|Bagaimana tingkat kepercayaan anda terhadap mutu pelayanna kesehatan di Puskesmas?|1.Sangat Percaya, 2.Percaya, 3.Ragu-ragu, 4.Kurang Percaya, 5.Tidak Percaya, 98.Tidak Tahu
+aks.aks06|Dalam skala 1-10, berapa nilai untuk kemudahan akses pelayanan di Puskesmas?|1-10,98
+aks.aks07|Dalam skala 1-10, berapa tingkat kepuasan anda terhadap pelayanan kesehatan di Puskesmas?|1-10,98
+---Pelayanan RS Pemerintah
+aks.aks08|Bagaimana tingkat kepercayaan anda terhadap mutu pelayanan kesehatan di Rumah Sakit Pemerintah?|1.Sangat Percaya, 2.Percaya, 3.Ragu-ragu, 4.Kurang Percaya, 5.Tidak Percaya, 98.Tidak Tahu
+aks.aks09|Dalam skala 1-10, berapa nilai untuk kemudahan akses pelayanan di Rumah Sakit Pemerintah?|1-10,98
+aks.aks10|Dalam skala 1-10, berapa tingkat kepuasan anda terhadap pelayanan kesehatan di Rumah Sakit Pemerintah?|1-10,98
+---Pelayanan RS Swasta
+aks.aks11|Bagaimana tingkat kepercayaan Anda terhadap mutu pelayanan kesehatan di Rumah Sakit Swasta?|1.Sangat Percaya, 2.Percaya, 3.Ragu-ragu, 4.Kurang Percaya, 5.Tidak Percaya, 98.Tidak Tahu
+aks.aks12|Dalam skala 1-10, berapa nilai untuk kemudahan akses pelayanan di Rumah Sakit Swasta?|1-10,98
+aks.aks13|Dalam skala 1-10, berapa tingkat kepuasan anda terhadap pelayanan kesehatan di Rumah Sakit Swasta?|1-10,98
+---Jaminan Kesehatan Nasional
+aks.aks14|Dalam skala 1-10, bagaimana tingkat kepercayaan anda terhadap sistem Jaminan Kesehatan Nasional?|1-10,98
+aks.aks15|Dalam skala 1-10, berapa nilai untuk kemudahan akses sistem Jaminan Kesehatan Nasional?|1-10,98
+aks.aks16|Dalam skala 1-10, berapa tingkat kepuasan anda terhadap sistem Jaminan Kesehatan Nasional?|1-10,98
+
+--on aks-modal.html
+aks.aks02[idart]|Tempat berobat utama yang didatangi di tahun 2015|1.RS Pemerintah, 2.RS Swasta, 3.RS Bersalin, 4.Puskesmas/Pustu, 5.Praktek Dokter Umum, 6.Praktek Dokter Spesialis, 7.PRaktek Bidan, 8.PRaktek Perawat, 9.Polindes/Poskesdes, 10.Apotek, 11.Pengobatan Tradisional, 12.Tidak Pergi Berobat, 98.Tidak Tahu, 95.Lainnya
+aks.aks02lain[idart]|aks.aks02 == 95|text
+aks.aks0301[idart]|1.JKN PBI|1.Ya, 0.Tidak
+aks.aks0302[idart]|2.JKN Non-PBI : PNS, POLRI, Pejabat Negara, Pegawai Pemerintah Non-PNS|1.Ya, 0.Tidak
+aks.aks0303[idart]|3.JKN Non-PBI: Peserta Mandiri|1.Ya, 0.Tidak
+aks.aks0304[idart]|4.JKN Non-PBI: Bukan Pekerja|1.Ya, 0.Tidak
+aks.aks0305[idart]|5.JKN Non PBI: Pegawai Swasta|1.Ya, 0.Tidak
+aks.aks0306[idart]|6.Jamkesda Sleman|1.Ya, 0.Tidak
+aks.aks0307[idart]|7.Jamkesda Sleman Mandiri|1.Ya, 0.Tidak
+aks.aks0308[idart]|8.Jamkesta Mandiri|1.Ya, 0.Tidak
+aks.aks0309[idart]|9.Jamkesos|1.Ya, 0.Tidak
+aks.aks0310[idart]|10.Asuransi Swasta|1.Ya, 0.Tidak
+aks.aks0311[idart]|11.Perusahaan|1.Ya, 0.Tidak
+aks.aks0312[idart]|12.Bayar Sendiri|1.Ya, 0.Tidak
+aks.aks0313[idart]|95.Lainnya|1.Ya, 0.Tidak
+aks.aks0313lain[idart]|aks.aks0313[idart]checked|text
+aks.aks0401[idart]|A.Tidak ada biaya|1.Ya, 0.Tidak
+aks.aks0402[idart]|B.Kesulitan transportasi|1.Ya, 0.Tidak
+aks.aks0403[idart]|C.Tidak puas dengan pelayanan kesehatan|1.Ya, 0.Tidak
+aks.aks0404[idart]|D.Tidak cukup sakit untuk berobat|1.Ya, 0.Tidak
+aks.aks0405[idart]|E.Lainnya|text
+aks.aks0405lain[idart]|aks.aks0405[idart]checked|text
+
+--hiv.html
+hiv.hiv00|ART yang menjawab modul HIV
+hiv.hiv01|Menurut anda, bisakah seseorang mengurangi resiko tertular HIV dengan cara menggunakan kondom dengan benar setiap kali melakukan hubungan seksual?|1.Ya, 2.Tidak, 98.Tidak Tahu
+hiv.hiv02|Menurut anda, apakah dengan saling setia pada pasangan dapat mengurangi tertular HIV ?|1.Ya, 2.Tidak, 98.Tidak Tahu
+hiv.hiv03|Bisakah seseorang tertular HIV dengan cara menggunakan alat makan?|1.Ya, 2.Tidak, 98.Tidak Tahu
+hiv.hiv04|Bisakah seseorang tertular virus HIV melalui gigitan nyamuk / serangga?|1.Ya, 2.Tidak, 98.Tidak Tahu
+hiv.hiv05|Dapatkah anda mengetahui seseorang sudah terinfeksi HIV hanya dengan melihatnya?|1.Ya, 2.Tidak, 98.Tidak Tahu
+
+--ins.html
+ins.ins01|Apakah rumah tangga ini menggunakan obat nyamuk / insektisida di dalam rumah ?|1.Ya, 2.Tidak, 98.Tidak Tahu
+ins.ins01a|A. Obat Nyamuk Bakar|1.Tidak Pernah, 2.1-3x/bulan, 3.1-6x/minggu, 4.>= 1x/hari
+ins.ins01b|B. Obat Nyamuk Semprot|1.Tidak Pernah, 2.1-3x/bulan, 3.1-6x/minggu, 4.>= 1x/hari
+ins.ins01c|C. Obat Nyamuk Elektrik|1.Tidak Pernah, 2.1-3x/bulan, 3.1-6x/minggu, 4.>= 1x/hari
+ins.ins01d|D. Lainnya|1.Tidak Pernah, 2.1-3x/bulan, 3.1-6x/minggu, 4.>= 1x/hari
+ins.ins01dl|Lainnya|text
+ins.ins02a|berapa lama rumah tangga ini menggunakan obat nyamuk|0-99
+ins.ins02b|Lama dalam|1.hari, 2.minggu, 3.bulan, 4.4ahun
+
+--mb.html
+---Biasanya berapa kali mengkonsumsi makanan berikut
+mb.mb01a1|A.Makanan dan minuman manis|0-99
+mb.mb01a2|Kali per|1.Hari, 2.Minggu, 3.Bulan, 4.Tahun
+mb.mb01b1|B.Makanan asin|0-99
+mb.mb01b2|Kali per|1.Hari, 2.Minggu, 3.Bulan, 4.Tahun
+mb.mb01c1|C.Makanan berlemak / berkolesterol / gorengan|0-99
+mb.mb01c2|Kali per|1.Hari, 2.Minggu, 3.Bulan, 4.Tahun
+mb.mb01d1|D.Makanan yang dibakar|0-99
+mb.mb01d2|Kali per|1.Hari, 2.Minggu, 3.Bulan, 4.Tahun
+mb.mb01e1|E.Makanan daging / ayam / ikan olahan dengan pengawet|0-99
+mb.mb01e2|Kali per|1.Hari, 2.Minggu, 3.Bulan, 4.Tahun
+mb.mb01f1|F.Bumbu penyedap|0-99
+mb.mb01f2|Kali per|1.Hari, 2.Minggu, 3.Bulan, 4.Tahun
+mb.mb01g1|G.Kopi|0-99
+mb.mb01g2|Kali per|1.Hari, 2.Minggu, 3.Bulan, 4.Tahun
+mb.mb01h1|H.Minuman berkafein bukan kopi|0-99
+mb.mb01h2|Kali per|1.Hari, 2.Minggu, 3.Bulan, 4.Tahun
+mb.mb01i1|I.Ikan asin|0-99
+mb.mb01i2|Kali per|1.Hari, 2.Minggu, 3.Bulan, 4.Tahun
+mb.mb01j1|J.Jamu|0-99
+mb.mb01j2|Kali per|1.Hari, 2.Minggu, 3.Bulan, 4.Tahun
+mb.mb01k1|K.Mie instan|0-99
+mb.mb01k2|Kali per|1.Hari, 2.Minggu, 3.Bulan, 4.Tahun
+
+--kai.html
+--on kai-modal.html
+kai.kai01[idart]|Apakah mempunyai catatan/ dokumen berat badan lahir?|1.Ya, 2.Tidak, 98.Tidak Tahu
+kai.kai02[idart]|BB Lahir dari dokumen|1000-5000,98
+kai.kai03[idart]|BB lahir dari ingatan|1000-5000,98
+kai.kai04[idart]|Apakah mempunyai catatan/ dokumen panjang badan lahir?|1.Ya, 2.Tidak 98.Tidak Tahu
+kai.kai05[idart]|PB Lahir dari dokumen|30-60,98
+kai.kai06[idart]|PB Lahir dari ingatan|30-60,98
+
+kim.kim01[idart]|Apakah di dalam KMS / Buku KIA / Buku Catatan Kesehatan Anak ada catatan imunisasi?|1.Ya 2.Tidak
+---Salin dari KMS / Buku KIA / Catatan Kesehatan Anak, tanggal/bulan/tahun untuk setiap jenis imunisasi
+kim.kim02a1[idart]|Hepatitis B 0|1.Diberikan Imunisasi, 2.Tidak diberikan Imunisasi, 7.Belum waktunya diberikan karena umur anak, 8.Ditulis diberi tetapi tanggal/bulan/tahun tidak ada
+kim.kim02a2[idart]|Tanggal imunisasi|tgl
+kim.kim02b1[idart]|BCG|1.Diberikan Imunisasi, 2.Tidak diberikan Imunisasi, 7.Belum waktunya diberikan karena umur anak, 8.Ditulis diberi tetapi tanggal/bulan/tahun tidak ada
+kim.kim02b2[idart]|Tanggal imunisasi|tgl
+kim.kim02c1[idart]|DPT HB Combo 1|1.Diberikan Imunisasi, 2.Tidak diberikan Imunisasi, 7.Belum waktunya diberikan karena umur anak, 8.Ditulis diberi tetapi tanggal/bulan/tahun tidak ada
+kim.kim02c2[idart]|Tanggal imunisasi|tgl
+kim.kim02d1[idart]|DPT HB Combo 2|1.Diberikan Imunisasi, 2.Tidak diberikan Imunisasi, 7.Belum waktunya diberikan karena umur anak, 8.Ditulis diberi tetapi tanggal/bulan/tahun tidak ada
+kim.kim02d2[idart]|Tanggal imunisasi|tgl
+kim.kim02e1[idart]|DPT HB Combo 3|1.Diberikan Imunisasi, 2.Tidak diberikan Imunisasi, 7.Belum waktunya diberikan karena umur anak, 8.Ditulis diberi tetapi tanggal/bulan/tahun tidak ada
+kim.kim02e2[idart]|Tanggal imunisasi|tgl
+kim.kim02f1[idart]|Polio 1|1.Diberikan Imunisasi, 2.Tidak diberikan Imunisasi, 7.Belum waktunya diberikan karena umur anak, 8.Ditulis diberi tetapi tanggal/bulan/tahun tidak ada
+kim.kim02f2[idart]|Tanggal imunisasi|tgl
+kim.kim02g1[idart]|Polio 2|1.Diberikan Imunisasi, 2.Tidak diberikan Imunisasi, 7.Belum waktunya diberikan karena umur anak, 8.Ditulis diberi tetapi tanggal/bulan/tahun tidak ada
+kim.kim02g2[idart]|Tanggal imunisasi|tgl
+kim.kim02h1[idart]|Polio 3|1.Diberikan Imunisasi, 2.Tidak diberikan Imunisasi, 7.Belum waktunya diberikan karena umur anak, 8.Ditulis diberi tetapi tanggal/bulan/tahun tidak ada
+kim.kim02h2[idart]|Tanggal imunisasi|tgl
+kim.kim02i1[idart]|Polio 4|1.Diberikan Imunisasi, 2.Tidak diberikan Imunisasi, 7.Belum waktunya diberikan karena umur anak, 8.Ditulis diberi tetapi tanggal/bulan/tahun tidak ada
+kim.kim02i2[idart]|Tanggal imunisasi|tgl
+kim.kim02j1[idart]|Campak|1.Diberikan Imunisasi, 2.Tidak diberikan Imunisasi, 7.Belum waktunya diberikan karena umur anak, 8.Ditulis diberi tetapi tanggal/bulan/tahun tidak ada
+kim.kim02j2[idart]|Tanggal imunisasi|tgl
+---Apakah pernah mendapatkan imunisasi berikut ?
+kim.kim03a[idart]|Imunisasi Hepatitis B-0|1.Ya, 2.Tidak, 98.Tidak Tahu
+kim.kim03b[idart]|Pada umur berapa diimunisasi Hepatitis B-0?|1.0-24jam, 2.24jam-7hari, 98. Tidak Tahu
+kim.kim03c[idart]|Imunisasi BCG|1.Ya, 2.Tidak, 98.Tidak Tahu
+kim.kim03d[idart]|Pada umur berapa diimunisasi BCG?|1.0-29hari, 2.>1bulan, 98.Tidak Tahu
+kim.kim03e[idart]|Imunisasi Polio|1.Ya, 2.Tidak, 7.Belum waktunya, 98.Tidak Tahu
+kim.kim03f[idart]|Pada umur berapa diimunisasi Polio?|number, 98
+kim.kim03g[idart]|Berapa kali diimunisasi Polio|1-10,98
+kim.kim03h[idart]|Imunisasi DPT-HB Combo|1.Ya, 2.Tidak, 7.Belum waktunya, 98.Tidak Tahu
+kim.kim03i[idart]|Pada umur berapa hari diimunisasi DPT-HB Combo?|1-99,98
+kim.kim03j[idart]|Berapa kali diimunisasi DPT-HB Combo?|1-9,98
+kim.kim03k[idart]|Imunisasi Campak|1.Ya, 2.Tidak, 7.Belum waktunya, 98.Tidak Tahu
+---Jumlah Imunisasi yang diterima berdasarkan KIM02 dan KIM03
+kim.jumlahkim01[idart]|BCG|0-1
+kim.jumlahkim02[idart]|Polio|0-4
+kim.jumlahkim03[idart]|DPT-HB|0-3
+kim.jumlahkim04[idart]|Campak|0-1
+kim.kim04[idart]|Apa alasan utama imunisasi tidak lengkap?|1.Takut anak menjadi panas, 2.Anak sering sakit, 3.Vaksin tidak tersedia, 4.Petugas tidak datang, 5.Tempat imunisasi jauh, 6.Sibuk / repot, 7.Belum waktunya lengkap (umur < 9 bulan), 95.Lainnya, 98.Tidak Tahu
+kim.kim04l[idart]|Alasan lainnya|text
+kim.kim05[idart]|Apakah setelah mendapat imunisasi pernah mengalami keluhan Kejadian Ikutan Pasca Imunisasi (KIPI)|1.Ya, 2.Tidak
+kim.kim0501[idart]|1.Demam Ringan|true,false
+kim.kim0502[idart]|2.Demam Tinggi|true,false
+kim.kim0503[idart]|3.Bengkak|true,false
+kim.kim0504[idart]|4.Kemerahan|true,false
+kim.kim0505[idart]|5.Bernanah|true,false
+kim.kim0506[idart]|6.Lainnya|true,false
+kim.kim0506l[idart]|Jika kim05 = 1(ya)|text
+kim.kim06[idart]|Apakah dalam 6 bulan terakhir ditimbang?|1.Ya. 2.Tidak, 98.Tidak Tahu
+kim.kim07[idart]|Dalam 6 bulan terakhir, berapa kali ditimbang ?|1-200,98
+kim.kim08[idart]|Apakah alasan utama mengapa dalam 6 bulan terakhir tidak pernah ditimbang?|1.Anak sudah besar (>1 tahun), 2.Anak sudah selesai imunisasi, 3.Anak tidak mau ditimbang, 4.Bosan jika hanya ditimbang, 5.Lupa / tidak tahu jadwalnya, 6.Tidak ada tempat penimbangan, 7.Tempatnya jauh, 8.Sibuk / repot, 9.Malas, 95.Lainnya, 98.Tidak Tahu
+kim.kim08l[idart]|alasan lain tidak ditimbang|text
+kim.kim09[idart]|Apakah dalam 6 bulan terakhir, pernah mendapatkan kapsul vitamin A?|1.Ya, 2.Tidak, 7.Belum waktunya(umur < 6 bulan), 98.Tidak Tahu
+kim.kim09next[idart]|Apakah ART berusian 0-23 bulan?|1.Ya, 2.Tidak
+asm.asm01[idart]|Apakah pernah disusui atau diberi ASI oleh ibu kandungnya?|1.Ya. 2.Tidak, 98.Tidak Tahu
+asm.asm02[idart]|Apakah sebelum disusui pertama kali atau sebelum ASI keluar / lancar, pernah diberi minuman (cairan) atau makanan selain ASI?|1.Ya. 2.Tidak, 98.Tidak Tahu
+---Apa jenis makanan / minuman yang pernah diberikan sebelum mulai disusui atau sebelum ASI keluar / lancar?
+asm.asm03a[idart]|A.Susu Formula|true,false
+asm.asm03b[idart]|B.Susu non-formula|true,false
+asm.asm03c[idart]|C.Madu / Madu + air|true,false
+asm.asm03d[idart]|D.Air gula, air tajin|true,false
+asm.asm03e[idart]|E.Air kelapa|true,false
+asm.asm03f[idart]|F.Kopi|true,false
+asm.asm03g[idart]|G.Teh Manis|true,false
+asm.asm03h[idart]|H.Air putih|true,false
+asm.asm03i[idart]|I.Bubur tepung / Bubur saring|true,false
+asm.asm03j[idart]|J.Pisang dihaluskan|true,false
+asm.asm03k[idart]|K.Nasi dihaluskan|true,false
+asm.asm04[idart]|Apakah saat ini masih disusui?|1.Ya, 2.Tidak
+asm.asm05[idart]|Pada umur berapa bulan disapih / mulai tidak disusui lagi?|0-99,98
+asm.asm06[idart]|Apakah dalam 24 jam terakhir hanya mendapatkan air susu ibu (ASI) saja dan tidak diberi minuman (cairan) dan atau makanan selain ASI?|1.Ya, 2.Tidak
+asm.asm07[idart]|Pada saat umur berapa, IBU pertama kali memberikan minuman (cairan) atau makan setelah ASI?|1.0-7 hari, 2.7-28 hari, 3.9 hari - < 2 bulan, 4.2 - < 3 bulan, 5.3 - < 4 bulan, 6.4 - < 6 bulan, 7. > 6 bulan, 98.TIdak Tahu
+---Apa jenis minuman (cairan) atau makanan selain ASI, yang pertama kali diberikan pada umur tersebut?
+asm.asm08a[idart]|A.Susu Formula|true,false
+asm.asm0ba[idart]|B.Susu non-formula|true,false
+asm.asm08c[idart]|C.Bubur formula|true,false
+asm.asm08d[idart]|D.Biscuit|true,false
+asm.asm08e[idart]|E.Bubur tepung/ bubur saring|true,false
+asm.asm08f[idart]|F.Air Tajin|true,false
+asm.asm08g[idart]|G.Pisang dihaluskan|true,false
+asm.asm08h[idart]|H.Bubur nasi / nasi tim / nasi dihaluskan|true,false
+asm.asm08i[idart]|I.Lainnya|true,false
+asm.asm08k[idart]|K.Tidak tahu|true,false
+asm.asm08ilainnya[idart]|Lainnya sebutkan|text
+asm.asm09[idart]|Apakah pernah menggunakan botol/dot/kempengan sebelum usia 6 bulan?|1.Ya. 2.Tidak, 98.Tidak Tahu

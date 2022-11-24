@@ -1,0 +1,79 @@
+<ion-view view-title="Pengeluaran Rumah Tangga">
+    <ion-content class="prp">
+        <form name="myForm" novalidate>
+            <ion-list>
+                <!--<div class="item item-divider desc item-text-wrap">
+                    Satuan dari pengeluaran yang dicatat adalah dalam ribuan rupiah.
+                </div>-->
+                <label class="item item-input">
+                    <span class="input-label"><b>PRP01.</b> Sebutkan pengeluaran <b>rata-rata perbulan <br/> dalam 6 bulan terakhir</b> untuk bahan makanan</span>
+                    <input type="number" ng-model="prp.prp01" block block-length="10" value="{{prp.prp01 || '0'}}">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label"><b>PRP02.</b> Sebutkan pengeluaran <b>rata-rata perbulan dalam 6 bulan terakhir</b> di luar bahan makanan</span>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label ">a. Perumahan</span>
+                    <input type="number" ng-model="prp.prp02a"  block block-length="10" value="{{prp.prp02a || 0}}">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label ">b. Listrik</span>
+                    <input type="number" ng-model="prp.prp02b"  block block-length="10" value="{{prp.prp02b || 0}}">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label ">c. Air</span>
+                    <input type="number" ng-model="prp.prp02c"  block block-length="10" value="{{prp.prp02c || 0}}">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label ">d. Pendidikan</span>
+                    <input type="number" ng-model="prp.prp02d"  block block-length="10" value="{{prp.prp02d || 0}}">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label ">e. Pakaian</span>
+                    <input type="number" ng-model="prp.prp02e"  block block-length="10" value="{{prp.prp02e || 0}}">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label ">f. Kesehatan</span>
+                    <input type="number" ng-model="prp.prp02f"  block block-length="10" value="{{prp.prp02f || 0}}">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label ">g. Pesta/sosial</span>
+                    <input type="number" ng-model="prp.prp02g"  block block-length="10" value="{{prp.prp02g || 0}}">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label ">h. Transportasi (bensin, bus, taksi, ojek, pajak motor)</span>
+                    <input type="number" ng-model="prp.prp02h"  block block-length="10" value="{{prp.prp02h || 0}}">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label ">i. Rokok/tembakau</span>
+                    <input type="number" ng-model="prp.prp02i"  block block-length="10" value="{{prp.prp02i || 0}}">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label ">j. Komunikasi(pulsa telfon)</span>
+                    <input type="number" ng-model="prp.prp02j"  block block-length="10" value="{{prp.prp02j || 0}}">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label ">k. Layanan Internet (Speedy, Citranet, Jogja MediaNet)</span>
+                    <input type="number" ng-model="prp.prp02k"  block block-length="10" value="{{prp.prp02k || 0}}">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label ">l. Asisten rumah tangga dan atau baby sitter</span>
+                    <input type="number" ng-model="prp.prp02l"  block block-length="10" value="{{prp.prp02l || 0}}">
+                </label>
+                <div class="item item-input item-text-wrap">
+                    <span class="input-label">v. Lainnya</span>
+                    <div class="col col-33 col-center">
+                        <input class="lowercase" type="text" ng-model="prp.prp02v1">
+                    </div>
+                    <input type="number" ng-model="prp.prp02v"  block block-length="10" value="{{prp.prp02v || 0}}">
+                </div>            
+            </ion-list>
+        </form>
+
+        <div class="padding text-right" >
+            <button ng-if="allowSave(myForm)" class="button simpan button-dark pull-right" ng-click="save(true)">
+                <i class="icon ion-archive"></i> Simpan dan lanjut ke HRT
+            </button>
+        </div>
+    </ion-content>
+</ion-view>

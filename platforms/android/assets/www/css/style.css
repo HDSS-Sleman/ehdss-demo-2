@@ -1,0 +1,635 @@
+/* Empty. Add your own CSS if you like */
+
+body {
+    font-size: 16px;
+}
+
+.header .col {
+    font-weight: bold;
+}
+
+.italic{
+    font-style: italic;
+}
+
+/* Ubah agar list item tidak full border, input tidak mepet kanan */
+
+.item {
+    border-left: 0;
+    border-right: 0;
+    border-style: dotted;
+    padding-right: 10px;
+}
+
+.item-group {
+    margin: 0 10px 10px;
+    border-left: 2px solid #eee;
+    border-right: 2px solid #eee;
+    background-color: #fff;
+}
+
+.app-home h3 {
+    margin: 0;
+    font-size: 20px;
+}
+
+
+/* Agar list item tidak terlalu lebar */
+
+.item-select,
+.item-row {
+    padding: 6px 16px;
+}
+
+/* Hint */
+.hint{
+    font-size: 20px;
+}
+.hint-status {
+    font: italic 16px sans-serif;
+    color: #E53935;
+    margin: 5px;
+}
+
+/* Modul Home */
+
+.nama,
+.alamat {
+    text-transform: capitalize;
+}
+
+.jml-art span {
+    color: #000;
+    background-color: #D8E7FF;
+    padding: 1px 5px;
+    border-radius: 3px;
+}
+
+
+/* Module List ART */
+
+.list-art .col {
+    border-bottom: 1px dotted #ddd;
+}
+
+input {
+    text-align: right;
+}
+
+.setting input {
+    text-align: center;
+    width: 100%;
+}
+
+.setting .about {
+    font-size: small;
+    font-family: monospace;
+}
+
+.user-edit .item-input input {
+    text-align: left;
+    max-width: 95%;
+}
+
+.user-edit .input-label {
+    max-width: 200px;
+}
+
+.input-label {
+    width: 50%;
+    max-width: 100%;
+    z-index: 999;
+}
+
+.input-border{
+    border: 1px solid #2196f3 !important;
+}
+
+.input-border-blue{
+    border: 1px solid #2196f3 !important;
+}
+
+.input-border-red{
+    border: 1px solid #E53935 !important;
+}
+
+.input-border-none{
+    border: 0px !important;
+}
+
+.text-area{
+    height: 100px;
+    width: 100%;
+}
+
+#part .input-label {
+    width: 100%;
+}
+
+.item-select select {
+    background: transparent;
+    width: 50%;
+    overflow: visible;
+    white-space: normal;
+}
+
+.input-label {
+    /*	font-size:14px;*/
+}
+
+.desc {
+    font-size: 13px;
+    font-weight: 300;
+}
+
+.pull-right {
+    float: right;
+}
+
+.center {
+    justify-content: center;
+}
+
+.left {
+    text-align: left!important;
+}
+
+.right {
+    text-align: right;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.text-small {
+    font-size: 12px;
+}
+
+
+/* agar tidak berantakan di screen kecil */
+
+.col input,
+.col select {
+    max-width: 95%;
+    height: 34px;
+}
+
+/* col banyak untuk screen kecil*/
+.m100{
+    max-width: 100px;
+}
+
+.m75{
+    max-width: 75px;
+}
+
+.m50{
+    max-width: 50px;
+}
+
+
+/*.min-left{
+    padding-left:0!important;
+}
+.min-right{
+    padding-right: 0!important;
+}*/
+
+.no-border {
+    border: 0!important;
+}
+
+.border {
+    border: 1px solid #ededed!important;
+}
+
+textarea {
+    border: 1px solid #ddd;
+}
+
+.button-square {
+    border-radius: 0!important;
+}
+
+.button.button-block,
+.button.button-full {
+    margin: 0;
+}
+
+
+/*.item-light {
+	background-color: #f3f3f3!important;
+}*/
+
+#menu .item a {
+    padding: 5px 16px;
+}
+
+#menu .item a span {
+    display: block;
+    font-size: 10px;
+}
+
+.paginasi{
+    border: 1px solid #ededed;
+    min-width: 90px;
+    height: 2rem;
+}
+
+.simpan {
+    border-radius: 0;
+    /*    margin: 10px;
+    margin-top: 15px;*/
+    border: 1px solid #ededed;
+}
+
+.simpan .icon {
+    padding-right: 10px;
+}
+
+.pull-right .icon {
+    padding-left: 10px;
+}
+
+.item .row,
+.item .col {
+    padding: 0;
+}
+
+
+/*.col .item {
+    border: 0;
+}*/
+
+.col-67 span {
+    line-height: 35px
+}
+
+.col-67 select {
+    width: 75%;
+}
+
+.col-67 .item {
+    height: 45px;
+}
+
+/*.col-33 select, .col-33 input {
+position: relative;
+height: 50px;
+padding: 0
+}*/
+
+
+/* MODUL HIV */
+
+.item-radio {
+    padding: 5px;
+    border: 0;
+    min-width: 110px;
+}
+/*untuk tombol ya yg terlalu lebar*/
+.radio-ya {
+    padding: 5px;
+    border: 0;
+    min-width: 90px;
+}
+
+.radio-content {
+    border: 1px solid #EC407A;
+    text-align: center;
+}
+
+.radio-content .item-content {
+    padding: 10px;
+    background: #f8f8f8;
+}
+
+.item-radio input:checked+.radio-content{
+    border: 1px solid #ededed !important;
+}
+
+.item-radio input:checked+.radio-content .item-content {
+    background: #2196F3;
+    color: #fff;
+}
+
+.item-radio input:checked+.radio-content .radio-icon {
+    display: none;
+}
+
+
+/* Module ART */
+
+.art .row.baru {
+    background: #F5F5F5;
+    color: #9C27B0;
+}
+
+.art .row.art-tdk-ada {
+    color: #F44336;
+}
+
+.art .row.baru.art-tdk-ada {
+    background: #E1BEE7;
+    color: #C62828;
+}
+
+.art .row.agh, .art .row.modb{
+    background: #e6ffe6 !important;
+    color: #00b300 !important;
+}
+
+.col.hub-rt,
+.col.status-kawin,
+.col.hamil,
+.col.tgl-lahir {
+    font-size: 80%;
+    text-align: center;
+}
+
+#hiv .input-label {
+    width: 100%;
+    padding-bottom: 16px;
+}
+
+#hiv .item-input .input-label {
+    max-width: 50%;
+}
+
+.item-input input {
+    max-width: 50%;
+}
+
+.ptm .item-input input {
+    max-width: 90%;
+}
+
+.full {
+    width: 100%;
+}
+
+.col-row {
+    display: block!important
+}
+
+#ins .padding .item:nth-child(even) {
+    background: #f8f8f8;
+}
+
+#ins .padding .item:nth-child(odd) {
+    background: #f3f3f3;
+}
+
+#ins input {
+    text-align: left;
+}
+
+#mb .item input {
+    border: 1px solid #ddd;
+    width: 100%;
+    text-align: center;
+}
+
+#mb .item select {
+    width: 100%;
+    height: 34px;
+    padding-left: 10px;
+}
+
+span.nama {
+    font-style: italic;
+    color: #9C27B0;
+    border-bottom: 1px dotted;
+}
+
+.item-row .input-label {
+    width: 100%;
+}
+
+
+/* TABLE STYLE */
+
+.table .row {
+    border-top: 1px solid #ddd;
+}
+
+.table .row:last-child {
+    border-bottom: 1px solid #ddd;
+}
+
+.table .header .col {
+    border-bottom: 0px;
+    overflow: hidden;
+}
+
+.table .col:first-child {
+    border-left: 0;
+}
+
+.table .item-checkbox {
+    border: 0px;
+    background-color: transparent;
+}
+
+.table-striped .row:nth-child(even) {
+    background: #f3f3f3;
+}
+
+.table .row+.row {
+    margin-top: 0;
+}
+
+.table .row {
+    padding: 0 5px;
+}
+
+.table select,
+.col select,
+.table input,
+.col input {
+    min-height: 34px;
+    padding-left: 5px;
+    border: 1px solid #ededed;
+}
+
+.item-group+.item-group {
+    padding-top: 0;
+}
+
+.lowercase {
+    text-transform: lowercase;
+}
+
+.variabel {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/*style untuk warning / notifikasi */
+
+.notifikasi {
+    padding: 10px;
+    font-style: italic;
+    color: #ff0000;
+}
+
+
+/* input field yg isiannya invalid */
+
+input.ng-invalid, select.ng-invalid, textarea.ng-invalid{
+    background: pink;
+    border: 1px solid #EC407A;
+}
+
+input.ng-valid, select.ng-valid, textarea.ng-valid{
+    border: 1px solid #2196f3;
+}
+
+
+/* pesan ketika field isinya invalid */
+
+.invalid-val {
+    text-align: right;
+    font: italic 12px sans-serif;
+    color: #E53935;
+    margin: 5px;
+}
+
+
+/*Nganu ukuran Modal*/
+
+@media (min-width: 1020px) {
+    .modal {
+        width: 90%!important;
+        height: 90vh!important;
+        top: 5%!important;
+        left: 5%!important;
+        right: 5%!important;
+        bottom: 5%!important;
+    }
+}
+
+
+/* User Otoritas / Edit*/
+
+.user-edit .desc {
+    padding: 10px 10px 20px 20px;
+    font-size: 16px;
+}
+
+.download-export .col-80 {
+    padding-top: 10px;
+}
+
+.download-export {
+    font-style: italic;
+    color: #512DA8;
+    text-align: right;
+}
+
+.rt-available {
+    padding: 10px;
+    background: #FFECB3;
+    margin: 10px 20px;
+    font-size: 13px;
+}
+
+.rt-available .info {
+    padding: 10px 0 0;
+    font-style: italic;
+    color: #C62828;
+    text-align: right;
+}
+
+.user-available-container {
+    padding: 10px;
+}
+
+.user-available {
+    display: inline;
+}
+
+.user-available .button {
+    margin: 7px 3px 0 0;
+    padding-left: 10px;
+    color: #D81B60;
+    padding-right: 5px;
+    font-size: 14px;
+}
+
+.user-list .table-striped .supervisor {
+    background: #FFECB3;
+    font-weight: bold;
+}
+
+.user-list .table-striped .admin {
+    background: #FFAB91;
+    font-weight: bold;
+}
+
+@media (min-width: 680px) {
+    .modal {
+        top: 10%;
+        right: 10%;
+        bottom: 10%;
+        left: 10%;
+        min-height: 240px;
+        width: 80%;
+    }
+}
+
+.status-ikut-serta{
+    background-color: #ffc9006b
+}
+
+.status-ikut-serta-ikut{
+    background-color: #27ff0066
+}
+
+.status-ikut-serta-skip{
+    background-color: #ff00006e
+}
+
+/* custom ion-radio*/
+.cc-selector-2 input{
+    position:absolute;
+    z-index:999;
+}
+
+.tidaknyeri{background-image:url('../../www/img/tidak_nyeri.jpg');}
+.sedikitnyeri{background-image:url('../../www/img/sedikit_nyeri.jpg');}
+.sedikitlebihnyeri{background-image:url('../../www/img/sedikit_lebih_nyeri.jpg');}
+.nyeri{background-image:url('../../www/img/nyeri.jpg');}
+.lebihnyeri{background-image:url('../../www/img/lebih_nyeri.jpg');}
+.sangatnyeri{background-image:url('../../www/img/sangat_nyeri.jpg');}
+
+.tidaknyeri-web{background-image:url('../img/tidak_nyeri.jpg');}
+.sedikitnyeri-web{background-image:url('../img/sedikit_nyeri.jpg');}
+.sedikitlebihnyeri-web{background-image:url('../img/sedikit_lebih_nyeri.jpg');}
+.nyeri-web{background-image:url('../img/nyeri.jpg');}
+.lebihnyeri-web{background-image:url('../img/lebih_nyeri.jpg');}
+.sangatnyeri-web{background-image:url('../img/sangat_nyeri.jpg');}
+
+.cc-selector-2 input:active +.drinkcard-cc, .cc-selector input:active +.drinkcard-cc{opacity: .9;}
+.cc-selector-2 input:checked +.drinkcard-cc, .cc-selector input:checked +.drinkcard-cc{
+    -webkit-filter: none;
+       -moz-filter: none;
+            filter: none;
+}
+.drinkcard-cc{
+    cursor:pointer;
+    background-size:contain;
+    background-repeat:no-repeat;
+    display:inline-block;
+    width:113px;height:170px;
+    -webkit-transition: all 100ms ease-in;
+       -moz-transition: all 100ms ease-in;
+            transition: all 100ms ease-in;
+    -webkit-filter: brightness(1) grayscale(1) opacity(.9);
+       -moz-filter: brightness(1) grayscale(1) opacity(.9);
+            filter: brightness(1) grayscale(1) opacity(.9);
+}
+.drinkcard-cc:hover{
+    -webkit-filter: brightness(1.2) grayscale(0.5) opacity(1);
+       -moz-filter: brightness(1.2) grayscale(0.5) opacity(1);
+            filter: brightness(1.2) grayscale(0.5) opacity(1);
+}

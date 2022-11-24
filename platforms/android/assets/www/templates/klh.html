@@ -1,0 +1,154 @@
+<ion-view view-title="Kejadian Kelahiran">
+    <ion-content class="klh">
+        <form name="myForm" novalidate>
+            <ion-list>
+                <label class="item item-input item-text-wrap ng-hide">
+                    <div class="input-label"><b>ART00.</b> Nomor urut ART</div>
+                    <input class="lowercase" type="text" ng-model="klh.art00">
+                </label>
+                <div ng-if="stat">
+                    <label class="item item-select" >
+                        <div class="input-label"><b>ART00.</b> Nomor Urut ART</div>
+                        <select ng-model="noArt" ng-change="fillForm(noArt)">
+                            <option ng-repeat="d in dataKLH" value="{{d}}">{{d._noArt}} - {{d.art01}}</option>
+                        </select>
+                    </label>
+                </div>
+                <label class="item item-input item-text-wrap">
+                    <div class="input-label"><b>KLH02.</b> Nama yang dilahirkan</div>
+                    <input class="lowercase" type="text" ng-model="klh.klh02">
+                </label>
+                <label class="item item-select item-text-wrap">
+                    <div class="input-label"><b>KLH03.</b> Hubungan dengan Kepala Rumah Tangga</div>
+                    <select ng-model="klh.klh03">
+                        <option value="" selected></option>
+                        <option value="1">1. Kepala Rumah Tangga</option>
+                        <option value="2">2. Istri/Suami</option>
+                        <option value="3">3. Anak Kandung</option>
+                        <option value="4">4. Anak Angkat/Tiri</option>
+                        <option value="5">5. Menantu</option>
+                        <option value="6">6. Cucu</option>
+                        <option value="7">7. Orangtua/Mertua</option>
+                        <option value="8">8. Famili Lain</option>
+                        <option value="9">9. Pembantu Rumah tangga</option>
+                        <option value="10">10. Kost</option>
+                        <option value="11">11. Bukan Famili</option>
+                        <option value="12">12. Buyut</option>
+                        <option value="13">13. Keponakan</option>
+                        <option value="14">14. Tidak diketahui</option>
+                    </select>
+                </label>
+                <label class="item item-select item-text-wrap">
+                    <div class="input-label"><b>KLH04.</b> Keterangan lahir</div>
+                    <select ng-model="klh.klh04">
+                        <option value="" selected></option>
+                        <option value="1">1. Lahir hidup</option>
+                        <option value="2">2. Lahir mati</option>
+                    </select>
+                </label>
+                <label class="item item-select item-text-wrap">
+                    <div class="input-label"><b>KLH05.</b> Penolong persalinan</div>
+                    <select ng-model="klh.klh05">
+                        <option value="" selected></option>
+                        <option value="1">1. Dokter kandungan</option>
+                        <option value="2">2. Dokter umum</option>
+                        <option value="3">3. Bidan</option>
+                        <option value="4">4. Perawat/nakes</option>
+                        <option value="5">5. Dukun beranak</option>
+                        <option value="6">6. Anggota keluarga/lainnya</option>
+                        <option value="7">7. Tidak ada yang menolong</option>
+                    </select>
+                </label>
+                <label class="item item-select item-text-wrap">
+                    <div class="input-label"><b>KLH06.</b> Jenis Kelamin</div>
+                    <select ng-model="klh.klh06">
+                        <option value="" selected></option>
+                        <option value="1">1. Laki-laki</option>
+                        <option value="2">2. Perempuan</option>
+                    </select>
+                </label>
+                <label class="item item-input">
+                    <div class="input-label"><b>KLH07.</b> No. Urut Ayah</div>
+                    <input type="number" ng-model="klh.klh07" name="klh07" min="1" max="99" numbers-allowed="1-20,51,52,96">
+                </label>
+                    <div ng-show="myForm.klh07.$invalid" class="invalid-val"><span>nilai yg diijinkan: 1-20,51,52</span></div>
+                <label class="item item-input">
+                    <div class="input-label"><b>KLH08.</b> No. Urut Ibu </div>
+                    <input type="number" ng-model="klh.klh08" name="klh08" min="1" max="99" numbers-allowed="1-20,51,52,96">
+                </label>
+                <div ng-show="myForm.klh08.$invalid" class="invalid-val"><span>nilai yg diijinkan: 1-20,51,52</span></div>
+                
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-33 col-center">
+                            <div class="input-label "><b>KLH09.</b>Tanggal Lahir</div>
+                        </div>
+                        <div class="col col-33 col-center">
+                            <input type="date" min="1916-01-01" max="{{tglLhrMax}}" ng-if="klh.klh09a == 1" ng-model="klh.klh09" ng-change="calcUmur()">
+                        </div>
+                        <div class="col col-33 col-center">
+                            <ion-checkbox class="no-border" ng-model="klh.klh09a" ng-true-value="98" ng-false-value="1" ng-change="calcUmur()">Tidak Tahu</ion-checkbox>
+                        </div>
+                    </div>
+                </label>
+                <div class="item item-text-wrap item-row" ng-if="klh.klh09a == 98">
+                    <div class="row">
+                        <div class="col col-50">
+                            <div class="input-label">Umur (thn/bln/hari)</div>
+                        </div>
+                        <div class="col col-10 col-offset-20">
+                            <input type="number" ng-model="klh.klh09b" name="klh09b" placeholder="thn" min="0" max="100" ng-change="calcUmur()">
+                        </div>
+                        <div class="col col-10">
+                            <input type="number" ng-model="klh.klh09c" name="klh09c" placeholder="bln" min="0" max="11">
+                        </div>
+                        <div class="col col-10">
+                            <input type="number" ng-model="klh.klh09d" name="klh09d" placeholder="hari" min="0" max="30">
+                        </div>
+                    </div>
+                </div>
+                <label class="item item-input">
+                    <div class="input-label"><b>KLH010.</b> Keterangan Lahir</div>
+                </label>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-33 col-center">
+                            <div class="input-label ">Berat Badan Lahir</div>
+                        </div>
+                        <div class="col col-3 col-center" >
+                            <input type="number" ng-model="klh.klh10" block block-length="4" ng-if="klh.klh10a == 1" min="1000" max="5000">
+                        </div>
+                        <div class="col col-3 col-center">
+                            <div class="input-label" ng-if="klh.klh10a == 1">gr</div>
+                        </div>
+                        <div class="col col-33 col-center">
+                            <ion-checkbox class="no-border" ng-model="klh.klh10a" ng-true-value="98" ng-false-value="1" >Tidak Tahu</ion-checkbox>
+                        </div>
+                    </div>
+                </label>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-33 col-center">
+                            <div class="input-label ">Panjang Badan</div>
+                        </div>
+                        <div class="col col-3 col-center" >
+                            <input type="number" ng-model="klh.klh10b" block block-length="4" ng-if="klh.klh10c == 1" min="25" max="70">
+                        </div>
+                        <div class="col col-3 col-center">
+                            <div class="input-label" ng-if="klh.klh10c == 1">cm</div>
+                        </div>
+                        <div class="col col-33 col-center">
+                            <ion-checkbox class="no-border" ng-model="klh.klh10c" ng-true-value="98" ng-false-value="1" >Tidak Tahu</ion-checkbox>
+                        </div>
+                    </div>
+                </label>
+            </ion-list>
+        </form>
+
+        <div class="padding text-right" >
+            <button ng-if="allowSave(myForm)" class="button simpan button-dark pull-right" ng-click="save()">
+                <i class="icon ion-archive"></i> Simpan dan kembali
+            </button>
+        </div>
+    </ion-content>
+</ion-view>

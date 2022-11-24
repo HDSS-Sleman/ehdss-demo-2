@@ -1,0 +1,62 @@
+<ion-view view-title="Penyakit Kulit">
+    <div class="bar bar-subheader bar-calm" ng-show="pk">
+        <h2 class="title left">Dermatitis Atopik</h2>
+    </div>
+    <!--End of Sub-Header-Bar-->
+    <ion-content id="pk" class="has-subheader pk" style="padding-bottom: 10px">
+        <ion-list ng-show="dermatitis">
+            <div class="item item-text-wrap item-row">Selanjutnya saya akan menanyakan terkait kesehatan kulit anak. Pertanyaan pada modul ini terkait anak/balita usia 2 bulan - &lt; 13tahun.
+            </div>
+            <div class="item item-text-wrap item-row notifikasi" ng-if="dataARTpk.length == 0">
+                Tidak ada Anggota Rumah Tangga yang dimaksud. Sesi anda selesai.
+            </div>
+            <label class="item item-text-wrap" ng-if="dataARTpk.length != 0">
+                <span class="input-label full">
+                    <b>PK01.</b> Apakah ada anggota rumah tangga sedang atau pernah mengalami bercak kulit merah, gatal, kumat-kumatan di daerah lipatan atau lengan atau tungkai atau wajah?
+                </span >
+                <div class="button-bar right">
+                    <ion-radio name="pk01" ng-model="pk.pk01" ng-change="setTidakSakit('pk01',pk.pk01)" ng-value="1">Ya</ion-radio>
+                    <ion-radio name="pk01" ng-model="pk.pk01" ng-change="setTidakSakit('pk01',pk.pk01)" ng-value="2">Tidak</ion-radio>
+                    <ion-radio name="pk01" ng-model="pk.pk01" ng-change="setTidakSakit('pk01',pk.pk01)" ng-value="98">Tidak Tahu</ion-radio>
+                </div>
+            </label>
+
+            <div class="item-group" ng-if="pk.pk01==1">
+                <div class="table table-bordered table-striped">
+                    <div class="row header">
+                        <div class="col col-10 text-center">No ART</div>
+                        <div class="col col-30 nama">Nama (umur)</div>
+                        <div class="col col-10 text-center">JK</div>
+                        <div class="col col-20 text-center" ng-if="pk.pk01==1">PK01</div>
+                    </div>
+                    <div class="row" ng-repeat="d in dataART">
+                        <div class="col col-10 text-center">{{d._noArt}}</div>
+                        <div class="col col-30 nama">{{d._nama}} ({{d.umur_dlm_tahun}} tahun & {{d.umur_dlm_bulan}} bulan)</div>
+                        <div class="col col-10 text-center">{{d._jk}}</div>
+                        <div class="col col-20 text-center" ng-if="pk.pk01==1">
+                            <select ng-model="pk.pk01ls[d.idart]" ng-change="defpk(pk.pk01ls[d.idart],d.idart)">
+                                <option value="" selected></option>
+                                <option value="1">1. Ya</option>
+                                <option value="2">2. Tidak</option>
+                                <option value="98">98. Tidak tahu</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ion-list> <!-- End of list module Dermatitis -->
+
+        <!-- Buttons-->
+        <!-- PM siklus 6 -->
+        <div class="item-group" ng-if="dermatitis && j_siklus.s6">
+            <button class="button simpan button-assertive pull-left" ng-click="save('ktlp')">
+                <i class="icon ion-archive"></i> Laporan Wawancara
+            </button>
+            <button ng-if="dermatitisAllowSave() || dataARTpk.length == 0" class="button simpan button-dark pull-right" ng-click="save(true)"> 
+                <i class="icon ion-archive"></i> Simpan
+            </button>
+        </div>
+        <!-- end of PM siklus 6 -->
+
+    </ion-content>
+</ion-view>

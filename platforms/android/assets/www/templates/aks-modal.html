@@ -1,0 +1,1662 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-calm">
+        <h1 class="title">Pertanyaan Lanjutan AKS</h1>
+        <button class="button button-clear button-primary" ng-click="modal.hide()">Cancel</button>
+    </ion-header-bar>
+    <div class="bar bar-subheader">
+        <h2 class="title left">Nama ART : <span class="nama">{{nama}} ({{umur}})</span></h2>
+    </div>
+    <ion-content class="aks has-subheader">
+        <ion-list>
+            <div ng-if="tipe.konfirmasi">
+                <div class="item item-divider">Konfirmasi Data</div>
+                <ion-list>
+                    <div class="item item-text-wrap item-row"><div class="row">
+                            <div class="col col-50 col-center input-label"> Diabetes Melitus </div>
+                            <div class="col col-50 col-center input-label"> : {{dm}} </div>
+                    </div></div>
+                    <div class="item item-text-wrap item-row"><div class="row">
+                            <div class="col col-50 col-center input-label"> Hipertensi </div>
+                            <div class="col col-50 col-center input-label"> : {{hiper}} </div>
+                    </div></div>
+                    <div class="item item-text-wrap item-row"><div class="row">
+                            <div class="col col-50 col-center input-label"> Stroke </div>
+                            <div class="col col-50 col-center input-label"> : {{stroke}} </div>
+                    </div></div>
+                    <div class="item item-text-wrap item-row"><div class="row">
+                            <div class="col col-50 col-center input-label"> Penyakit jantung </div>
+                            <div class="col col-50 col-center input-label"> : {{pjan}} </div>
+                    </div></div>
+                    <div class="item item-text-wrap item-row"><div class="row">
+                            <div class="col col-50 col-center input-label"> Kanker </div>
+                            <div class="col col-50 col-center input-label"> : {{cancer_w2}} </div>
+                    </div></div>
+                    <div class="item item-text-wrap item-row"><div class="row">
+                            <div class="col col-50 col-center input-label"> Asma </div>
+                            <div class="col col-50 col-center input-label"> : {{asma_w2}} </div>
+                    </div></div>
+                    <div class="item item-text-wrap item-row"><div class="row">
+                            <div class="col col-50 col-center input-label"> Penyakit paru obstruktif kronis (PPOK) </div>
+                            <div class="col col-50 col-center input-label"> : {{ppok}} </div>
+                    </div></div>
+                    
+                </ion-list>
+                <label class="item item-select item-text-wrap">
+                    <span class="input-label">
+                        <b>AKS17. </b>Saya bermaksud untuk mengkonfirmasi data yang kami peroleh, Apakah benar Bapak/Ibu menderita penyakit tidak menular sesuai dengan wawancara yang kami lakukan sebelumnya? (<b>Jika AKS17 dipilih "Ya, benar sebagian", pastikan respoden menderita salah satu penyakit</b>)
+                    </span>
+                    <select ng-model="aks.aks17[idart]">
+                        <option value="1">1. Ya -> AKS20</option>
+                        <option value="2">2. Ya, benar sebagian -> AKS32</option>
+                        <option value="3">3. Tidak -> AKS18</option>
+                    </select>
+                </label>
+                <label class="item item-input item-text-wrap"><span class="input-label" ng-if="aks.aks17[idart] == 2"><b>AKS32. </b>Konfirmasi bila ada data yang tidak sesuai</span></label>
+                <label class="item item-text-wrap item-row" ng-if="aks.aks17[idart] == 2" ng-repeat="(key,val) in jenisPenyakit">
+                    <div class="row">
+                        <div class="col col-50 col-center">
+                            <div class="input-label ">AKS32{{key}}. {{val}}</div>
+                        </div>
+                        <div class="col col-50 col-center">
+                            <div class="button-bar right">
+                                <ion-radio name="aks32{{key}}" ng-model="aks['aks32'+key][idart]" value="1">Ya</ion-radio>
+                                <ion-radio name="aks32{{key}}" ng-model="aks['aks32'+key][idart]" value="2">Tidak</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+
+                <label class="item item-select item-text-wrap" ng-if="aks.aks17[idart] == 2 || aks.aks17[idart] == 3">
+                    <span class="input-label">
+                        <b>AKS18. </b>Jika terdapat perbedaan informasi yang disampaikan responden dengan data HDSS, Apakah alasan terjadinya perbedaan data/diagnosis? </span>
+                    <select ng-model="aks.aks18[idart]">
+                        <option value="1">1. Tidak pernah memiliki gejala penyakit tersebut, Lanjut ke → AKS 19</option>
+                        <option value="2">2. Diagnosis belum terkonfirmasi, ke → AKS 19</option>
+                    </select>
+                </label>
+                <label class="item item-select item-text-wrap" ng-if="aks.aks17[idart] == 2 || aks.aks17[idart] == 3">
+                    <span class="input-label"> <b>AKS19. </b>Apakah ART diwawancara? </span>
+                    <select ng-model="aks.aks19[idart]">
+                        <option value="1">1. Ya</option>
+                        <option value="2">2. Tidak</option>
+                    </select>
+                </label>
+                <label class="item item-select item-text-wrap" ng-if="aks.aks17[idart] == 1 || aks.aks17[idart] == 2">
+                    <span class="input-label">
+                        <b>AKS20. </b>Siapa yang menyatakan Bapak/Ibu menderita penyakit? </span>
+                    <select ng-model="aks.aks20[idart]">
+                        <option value="1">1. Dokter</option>
+                        <option value="2">2. Perawat</option>
+                        <option value="3">3. Bidan</option>
+                        <option value="95">95. Lainnya -> AKS20a</option>
+                    </select>
+                </label>
+                <label class="item item-input item-text-wrap" ng-if="(aks.aks17[idart] == 1 || aks.aks17[idart] == 2) && aks.aks20[idart] == 95">
+                    <span class="input-label"><b>AKS20a. </b>lainnya sebutkan </span>
+                    <input type="text" ng-model="aks.aks20a[idart]" class="input-border">
+                </label>
+                <label class="item item-select item-text-wrap" ng-if="aks.aks17[idart] == 1 || aks.aks17[idart] == 2">
+                    <span class="input-label">
+                        <b>AKS21. </b>Apakah Bapak/Ibu memanfaatkan fasilitas kesehatan untuk mengobati/perawatan penyakit tersebut?  </span>
+                    <select ng-model="aks.aks21[idart]">
+                        <option value="1">1. Ya -> AKS22</option>
+                        <option value="2">2. Tidak -> AKS04</option>
+                    </select>
+                </label>
+            </div>
+            
+            <div ng-if="j_siklus.s4">
+                <div class="item item-divider">Nama ART</div>
+                <label class="item item-select item-text-wrap">
+                    <span class="input-label">
+                        <b>AKS02. </b>Tempat berobat utama yang didatangi dalam 12 bulan terakhir</span>
+                    <select ng-model="aks.aks02[idart]">
+                        <option value="1">1. RS Pemerintah</option>
+                        <option value="2">2. RS Swasta</option>
+                        <option value="3">3. RS Bersalin</option>
+                        <option value="4">4. Puskesmas / Pustu</option>
+                        <option value="5">5. Praktek Dokter Umum</option>
+                        <option value="6">6. Praktek Dokter Spesialis</option>
+                        <option value="7">7. Praktek Bidan</option>
+                        <option value="8">8. Praktek Perawat</option>
+                        <option value="9">9. Polindes / Poskesdes</option>
+                        <option value="10">10. Apotek</option>
+                        <option value="11">11. Pengobatan Tradisional</option>
+                        <option value="12">12. Tidak Pergi Berobat</option>
+                        <option value="98">98. Tidak Tahu</option>
+                        <option value="95">95. Lainnya, sebutkan</option>
+                    </select>
+                </label>
+                <label class="item item-input item-text-wrap" ng-if="aks.aks02[idart] == 95">
+                    <span class="input-label">Tempat lainnya</span>
+                    <input type="text" ng-model="aks.aks02lain[idart]" class="input-border">
+                </label>
+                <div class="item item-text-wrap" ng-if="aks.aks02[idart] && aks.aks02[idart] != 12">
+                    <span class="input-label"><b>AKS03. </b>Cara Pembayaran berobat dalam 12 bulan terakhir (boleh lebih dari 1)</span>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">1. JKN PBI</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="aks.aks0301" ng-model="aks.aks0301[idart]" value="1">Ya</ion-radio>
+                                    <ion-radio name="aks.aks0301" ng-model="aks.aks0301[idart]" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">2. JKN Non-PBI : PNS, POLRI, Pejabat Negara, Pegawai Pemerintah Non-PNS</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="aks.aks0302" ng-model="aks.aks0302[idart]" value="1">Ya</ion-radio>
+                                    <ion-radio name="aks.aks0302" ng-model="aks.aks0302[idart]" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">3. JKN Non-PBI: Peserta Mandiri</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="aks.aks0303" ng-model="aks.aks0303[idart]" value="1">Ya</ion-radio>
+                                    <ion-radio name="aks.aks0303" ng-model="aks.aks0303[idart]" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">4. JKN Non-PBI: Bukan Pekerja</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="aks.aks0304" ng-model="aks.aks0304[idart]" value="1">Ya</ion-radio>
+                                    <ion-radio name="aks.aks0304" ng-model="aks.aks0304[idart]" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">5. JKN Non PBI: Pegawai Swasta</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="aks.aks0305" ng-model="aks.aks0305[idart]" value="1">Ya</ion-radio>
+                                    <ion-radio name="aks.aks0305" ng-model="aks.aks0305[idart]" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">6. Jamkesda Sleman</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="aks.aks0306" ng-model="aks.aks0306[idart]" value="1">Ya</ion-radio>
+                                    <ion-radio name="aks.aks0306" ng-model="aks.aks0306[idart]" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">7. Jamkesda Sleman Mandiri</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="aks.aks0307" ng-model="aks.aks0307[idart]" value="1">Ya</ion-radio>
+                                    <ion-radio name="aks.aks0307" ng-model="aks.aks0307[idart]" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">8. Jamkesta Mandiri</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="aks.aks0308" ng-model="aks.aks0308[idart]" value="1">Ya</ion-radio>
+                                    <ion-radio name="aks.aks0308" ng-model="aks.aks0308[idart]" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">9. Jamkesos</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="aks.aks0309" ng-model="aks.aks0309[idart]" value="1">Ya</ion-radio>
+                                    <ion-radio name="aks.aks0309" ng-model="aks.aks0309[idart]" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">10. Asuransi Swasta</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="aks.aks0310" ng-model="aks.aks0310[idart]" value="1">Ya</ion-radio>
+                                    <ion-radio name="aks.aks0310" ng-model="aks.aks0310[idart]" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">11. Perusahaan</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="aks.aks0311" ng-model="aks.aks0311[idart]" value="1">Ya</ion-radio>
+                                    <ion-radio name="aks.aks0311" ng-model="aks.aks0311[idart]" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">12. Bayar Sendiri</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="aks.aks0312" ng-model="aks.aks0312[idart]" value="1">Ya</ion-radio>
+                                    <ion-radio name="aks.aks0312" ng-model="aks.aks0312[idart]" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">95. Lainnya</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="aks.aks0313" ng-model="aks.aks0313[idart]" value="1">Ya</ion-radio>
+                                    <ion-radio name="aks.aks0313" ng-model="aks.aks0313[idart]" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+                <label class="item item-input item-text-wrap" ng-if="aks.aks0313[idart]">
+                    <span class="input-label">Pembayaran lainnya</span>
+                    <input type="text" ng-model="aks.aks0313lain[idart]" class="input-border">
+                </label>
+            </div>
+            
+            <!-- Rawat Inap -->
+            <div ng-if="tipe.aks01ls || ((aks.aks17[idart] == 1 || aks.aks17[idart] == 2) && aks.aks21[idart] == 1)">
+                <div class="item item-divider">Pertanyaan Penggunaan Fasilitas Pelayanan Kesehatan</div>
+                <label class="item item-select item-text-wrap">
+                    <span class="input-label">
+                        <b>AKS22. </b>Apakah dalam 12 bulan (1 tahun) terakhir, <span class="nama">{{nama}}</span> pernah memanfaatkan fasilitas kesehatan untuk <b>RAWAT INAP</b> karena <span class="nama">{{nama}}</span> mengalami gangguan kesehatan?</span>
+                    <select ng-model="aks.aks22[idart]">
+                        <option value="1">1. Ya -> AKS23</option>
+                        <option value="2">2. Tidak -> AKS27</option>
+                    </select>
+                </label>
+            </div>
+            <div class="item item-text-wrap" ng-if="((aks.aks17[idart] == 1 || aks.aks17[idart] == 2) && aks.aks22[idart] == 1) || (tipe.aks01ls && aks.aks22[idart] == 1)">
+                <span class="input-label"><b>AKS23. </b>Jenis fasilitas kesehatan yang dimanfaatkan</span>
+                <!-- jika RS pemerintah -->
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center"><div class="input-label ">a. RS Pemerintah</div>
+                        </div>
+                        <div class="col col-50 col-center"><div class="button-bar right">
+                                <ion-radio name="aks.aks23a" ng-model="aks.aks23a[idart]" value="1">Ya</ion-radio>
+                                <ion-radio name="aks.aks23a" ng-model="aks.aks23a[idart]" value="2">Tidak</ion-radio>
+                        </div></div>
+                    </div>
+                </label>
+                <div ng-if="aks.aks23a[idart] == 1" class="item item-text-wrap item-row">
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS24a.</b> Jumlah hari rawat inap</div>
+                            <div class="col col-50 col-center" >
+                                <input type="number" block block-length="3" ng-model="aks.aks24a[idart]" min="1" max="366" class="pull-right">
+                            </div>
+                        </div>
+                    </label>
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS25a.</b> Berapa biaya selama 12 bulan (termasuk biaya medis dan obat)</div>
+                            <div class="col col-50 col-center" >
+                                <input type="text" block block-length="13" ng-pattern="/^[0-9]{1,13}$/" ng-model="aks.aks25a[idart]" class="pull-right input-border">
+                            </div>
+                        </div>
+                    </label>
+                    <span class="input-label"><b>AKS26a. </b>Dari mana biaya tersebut diperoleh (bisa lebih dari 1)</span>
+                    <!-- mulai repeat -->
+                    <label class="item item-text-wrap item-row"  ng-repeat="(key,val) in jenisPembayaran">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">{{key}}. {{val}}</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="aks26a{{key}}" ng-model="aks['aks26a'+key][idart]" value="1">Ya</ion-radio>
+                                    <ion-radio name="aks26a{{key}}" ng-model="aks['aks26a'+key][idart]" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <!-- end repeat -->
+                    <label class="item item-input item-text-wrap" ng-if="aks.aks26a95[idart]==1">
+                        <span class="input-label"><b>AKS26a95lain. </b>lainnya sebutkan </span>
+                        <input type="text" ng-model="aks.aks26a95lain[idart]" class="input-border">
+                    </label>
+                </div>
+                <!-- jika RS swasta -->
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center"><div class="input-label ">b. RS Swasta</div>
+                        </div>
+                        <div class="col col-50 col-center"><div class="button-bar right">
+                                <ion-radio name="aks.aks23b" ng-model="aks.aks23b[idart]" value="1">Ya</ion-radio>
+                                <ion-radio name="aks.aks23b" ng-model="aks.aks23b[idart]" value="2">Tidak</ion-radio>
+                        </div></div>
+                    </div>
+                </label>
+                <div ng-if="aks.aks23b[idart] == 1" class="item item-text-wrap item-row">
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS24b.</b> Jumlah hari rawat inap</div>
+                            <div class="col col-50 col-center" >
+                                <input type="number" block block-length="3" ng-model="aks.aks24b[idart]" min="1" max="366" class="pull-right">
+                            </div>
+                        </div>
+                    </label>
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS25b.</b> Berapa biaya selama 12 bulan (termasuk biaya medis dan obat)</div>
+                            <div class="col col-50 col-center" >
+                                <input type="text" block block-length="13" ng-pattern="/^[0-9]{1,13}$/" ng-model="aks.aks25b[idart]" class="pull-right input-border">
+                            </div>
+                        </div>
+                    </label>
+                    <span class="input-label"><b>AKS26b. </b>Dari mana biaya tersebut diperoleh (bisa lebih dari 1)</span>
+                    <!-- mulai repeat -->
+                    <label class="item item-text-wrap item-row"  ng-repeat="(key,val) in jenisPembayaran">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">{{key}}. {{val}}</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="aks26b{{key}}" ng-model="aks['aks26b'+key][idart]" value="1">Ya</ion-radio>
+                                    <ion-radio name="aks26b{{key}}" ng-model="aks['aks26b'+key][idart]" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <!-- end repeat -->
+                    <label class="item item-input item-text-wrap" ng-if="aks.aks26b95[idart]==1">
+                        <span class="input-label"><b>AKS26b95lain. </b>lainnya sebutkan </span>
+                        <input type="text" ng-model="aks.aks26b95lain[idart]" class="input-border">
+                    </label>
+                </div>
+                <!-- jika RS Bersalin -->
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center"><div class="input-label ">c. RS Bersalin</div>
+                        </div>
+                        <div class="col col-50 col-center"><div class="button-bar right">
+                                <ion-radio name="aks.aks23c" ng-model="aks.aks23c[idart]" value="1">Ya</ion-radio>
+                                <ion-radio name="aks.aks23c" ng-model="aks.aks23c[idart]" value="2">Tidak</ion-radio>
+                        </div></div>
+                    </div>
+                </label>
+                <div ng-if="aks.aks23c[idart] == 1" class="item item-text-wrap item-row">
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS24c.</b> Jumlah hari rawat inap</div>
+                            <div class="col col-50 col-center" >
+                                <input type="number" block block-length="3" ng-model="aks.aks24c[idart]" min="1" max="366" class="pull-right">
+                            </div>
+                        </div>
+                    </label>
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS25c.</b> Berapa biaya selama 12 bulan (termasuk biaya medis dan obat)</div>
+                            <div class="col col-50 col-center" >
+                                <input type="text" block block-length="13" ng-pattern="/^[0-9]{1,13}$/" ng-model="aks.aks25c[idart]" class="pull-right input-border">
+                            </div>
+                        </div>
+                    </label>
+                    <span class="input-label"><b>AKS26c. </b>Dari mana biaya tersebut diperoleh (bisa lebih dari 1)</span>
+                    <!-- mulai repeat -->
+                    <label class="item item-text-wrap item-row"  ng-repeat="(key,val) in jenisPembayaran">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">{{key}}. {{val}}</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="aks26c{{key}}" ng-model="aks['aks26c'+key][idart]" value="1">Ya</ion-radio>
+                                    <ion-radio name="aks26c{{key}}" ng-model="aks['aks26c'+key][idart]" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <!-- end repeat -->
+                    <label class="item item-input item-text-wrap" ng-if="aks.aks26c95[idart]==1">
+                        <span class="input-label"><b>AKS26c95lain. </b>lainnya sebutkan </span>
+                        <input type="text" ng-model="aks.aks26c95lain[idart]" class="input-border">
+                    </label>
+                </div>
+                <!-- jika Puskesmas/Pustu -->
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center"><div class="input-label ">d. Puskesmas/Pustu</div>
+                        </div>
+                        <div class="col col-50 col-center"><div class="button-bar right">
+                                <ion-radio name="aks.aks23d" ng-model="aks.aks23d[idart]" value="1">Ya</ion-radio>
+                                <ion-radio name="aks.aks23d" ng-model="aks.aks23d[idart]" value="2">Tidak</ion-radio>
+                        </div></div>
+                    </div>
+                </label>
+                <div ng-if="aks.aks23d[idart] == 1" class="item item-text-wrap item-row">
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS24d.</b> Jumlah hari rawat inap</div>
+                            <div class="col col-50 col-center" >
+                                <input type="number" block block-length="3" ng-model="aks.aks24d[idart]" min="1" max="366" class="pull-right">
+                            </div>
+                        </div>
+                    </label>
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS25d.</b> Berapa biaya selama 12 bulan (termasuk biaya medis dan obat)</div>
+                            <div class="col col-50 col-center" >
+                                <input type="text" block block-length="13" ng-pattern="/^[0-9]{1,13}$/" ng-model="aks.aks25d[idart]" class="pull-right input-border">
+                            </div>
+                        </div>
+                    </label>
+                    <span class="input-label"><b>AKS26d. </b>Dari mana biaya tersebut diperoleh (bisa lebih dari 1)</span>
+                    <!-- mulai repeat -->
+                    <label class="item item-text-wrap item-row"  ng-repeat="(key,val) in jenisPembayaran">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">{{key}}. {{val}}</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="aks26d{{key}}" ng-model="aks['aks26d'+key][idart]" value="1">Ya</ion-radio>
+                                    <ion-radio name="aks26d{{key}}" ng-model="aks['aks26d'+key][idart]" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <!-- end repeat -->
+                    <label class="item item-input item-text-wrap" ng-if="aks.aks26d95[idart]==1">
+                        <span class="input-label"><b>AKS26d95lain. </b>lainnya sebutkan </span>
+                        <input type="text" ng-model="aks.aks26d95lain[idart]" class="input-border">
+                    </label>
+                </div>
+                <!-- jika Praktek dokter umum -->
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center"><div class="input-label ">e. Praktek dokter umum</div>
+                        </div>
+                        <div class="col col-50 col-center"><div class="button-bar right">
+                                <ion-radio name="aks.aks23e" ng-model="aks.aks23e[idart]" value="1">Ya</ion-radio>
+                                <ion-radio name="aks.aks23e" ng-model="aks.aks23e[idart]" value="2">Tidak</ion-radio>
+                        </div></div>
+                    </div>
+                </label>
+                <div ng-if="aks.aks23e[idart] == 1" class="item item-text-wrap item-row">
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS24e.</b> Jumlah hari rawat inap</div>
+                            <div class="col col-50 col-center" >
+                                <input type="number" block block-length="3" ng-model="aks.aks24e[idart]" min="1" max="366" class="pull-right">
+                            </div>
+                        </div>
+                    </label>
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS25e.</b> Berapa biaya selama 12 bulan (termasuk biaya medis dan obat)</div>
+                            <div class="col col-50 col-center" >
+                                <input type="text" block block-length="13" ng-pattern="/^[0-9]{1,13}$/" ng-model="aks.aks25e[idart]" class="pull-right input-border">
+                            </div>
+                        </div>
+                    </label>
+                    <span class="input-label"><b>AKS26e. </b>Dari mana biaya tersebut diperoleh (bisa lebih dari 1)</span>
+                    <!-- mulai repeat -->
+                    <label class="item item-text-wrap item-row"  ng-repeat="(key,val) in jenisPembayaran">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">{{key}}. {{val}}</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="aks26e{{key}}" ng-model="aks['aks26e'+key][idart]" value="1">Ya</ion-radio>
+                                    <ion-radio name="aks26e{{key}}" ng-model="aks['aks26e'+key][idart]" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <!-- end repeat -->
+                    <label class="item item-input item-text-wrap" ng-if="aks.aks26e95[idart]==1">
+                        <span class="input-label"><b>AKS26e95lain. </b>lainnya sebutkan </span>
+                        <input type="text" ng-model="aks.aks26e95lain[idart]" class="input-border">
+                    </label>
+                </div>
+                <!-- jika Praktek dokter spesialis -->
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center"><div class="input-label ">f. Praktek dokter spesialis</div>
+                        </div>
+                        <div class="col col-50 col-center"><div class="button-bar right">
+                                <ion-radio name="aks.aks23f" ng-model="aks.aks23f[idart]" value="1">Ya</ion-radio>
+                                <ion-radio name="aks.aks23f" ng-model="aks.aks23f[idart]" value="2">Tidak</ion-radio>
+                        </div></div>
+                    </div>
+                </label>
+                <div ng-if="aks.aks23f[idart] == 1" class="item item-text-wrap item-row">
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS24f.</b> Jumlah hari rawat inap</div>
+                            <div class="col col-50 col-center" >
+                                <input type="number" block block-length="3" ng-model="aks.aks24f[idart]" min="1" max="366" class="pull-right">
+                            </div>
+                        </div>
+                    </label>
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS25f.</b> Berapa biaya selama 12 bulan (termasuk biaya medis dan obat)</div>
+                            <div class="col col-50 col-center" >
+                                <input type="text" block block-length="13" ng-pattern="/^[0-9]{1,13}$/" ng-model="aks.aks25f[idart]" class="pull-right input-border">
+                            </div>
+                        </div>
+                    </label>
+                    <span class="input-label"><b>AKS26f. </b>Dari mana biaya tersebut diperoleh (bisa lebih dari 1)</span>
+                    <!-- mulai repeat -->
+                    <label class="item item-text-wrap item-row"  ng-repeat="(key,val) in jenisPembayaran">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">{{key}}. {{val}}</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="aks26f{{key}}" ng-model="aks['aks26f'+key][idart]" value="1">Ya</ion-radio>
+                                    <ion-radio name="aks26f{{key}}" ng-model="aks['aks26f'+key][idart]" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <!-- end repeat -->
+                    <label class="item item-input item-text-wrap" ng-if="aks.aks26f95[idart]==1">
+                        <span class="input-label"><b>AKS26f95lain. </b>lainnya sebutkan </span>
+                        <input type="text" ng-model="aks.aks26f95lain[idart]" class="input-border">
+                    </label>
+                </div>
+                <!-- jika Praktek Bidan -->
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center"><div class="input-label ">g. Praktek bidan</div>
+                        </div>
+                        <div class="col col-50 col-center"><div class="button-bar right">
+                                <ion-radio name="aks.aks23g" ng-model="aks.aks23g[idart]" value="1">Ya</ion-radio>
+                                <ion-radio name="aks.aks23g" ng-model="aks.aks23g[idart]" value="2">Tidak</ion-radio>
+                        </div></div>
+                    </div>
+                </label>
+                <div ng-if="aks.aks23g[idart] == 1" class="item item-text-wrap item-row">
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS24g.</b> Jumlah hari rawat inap</div>
+                            <div class="col col-50 col-center" >
+                                <input type="number" block block-length="3" ng-model="aks.aks24g[idart]" min="1" max="366" class="pull-right">
+                            </div>
+                        </div>
+                    </label>
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS25g.</b> Berapa biaya selama 12 bulan (termasuk biaya medis dan obat)</div>
+                            <div class="col col-50 col-center" >
+                                <input type="text" block block-length="13" ng-pattern="/^[0-9]{1,13}$/" ng-model="aks.aks25g[idart]" class="pull-right input-border">
+                            </div>
+                        </div>
+                    </label>
+                    <span class="input-label"><b>AKS26g. </b>Dari mana biaya tersebut diperoleh (bisa lebih dari 1)</span>
+                    <!-- mulai repeat -->
+                    <label class="item item-text-wrap item-row"  ng-repeat="(key,val) in jenisPembayaran">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">{{key}}. {{val}}</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="aks26g{{key}}" ng-model="aks['aks26g'+key][idart]" value="1">Ya</ion-radio>
+                                    <ion-radio name="aks26g{{key}}" ng-model="aks['aks26g'+key][idart]" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <!-- end repeat -->
+                    <label class="item item-input item-text-wrap" ng-if="aks.aks26g95[idart]==1">
+                        <span class="input-label"><b>AKS26g95lain. </b>lainnya sebutkan </span>
+                        <input type="text" ng-model="aks.aks26g95lain[idart]" class="input-border">
+                    </label>
+                </div>
+                <!-- jika Praktek Perawat -->
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center"><div class="input-label ">h. Praktek perawat</div>
+                        </div>
+                        <div class="col col-50 col-center"><div class="button-bar right">
+                                <ion-radio name="aks.aks23h" ng-model="aks.aks23h[idart]" value="1">Ya</ion-radio>
+                                <ion-radio name="aks.aks23h" ng-model="aks.aks23h[idart]" value="2">Tidak</ion-radio>
+                        </div></div>
+                    </div>
+                </label>
+                <div ng-if="aks.aks23h[idart] == 1" class="item item-text-wrap item-row">
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS24h.</b> Jumlah hari rawat inap</div>
+                            <div class="col col-50 col-center" >
+                                <input type="number" block block-length="3" ng-model="aks.aks24h[idart]" min="1" max="366" class="pull-right">
+                            </div>
+                        </div>
+                    </label>
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS25h.</b> Berapa biaya selama 12 bulan (termasuk biaya medis dan obat)</div>
+                            <div class="col col-50 col-center" >
+                                <input type="text" block block-length="13" ng-pattern="/^[0-9]{1,13}$/" ng-model="aks.aks25h[idart]" class="pull-right input-border">
+                            </div>
+                        </div>
+                    </label>
+                    <span class="input-label"><b>AKS26h. </b>Dari mana biaya tersebut diperoleh (bisa lebih dari 1)</span>
+                    <!-- mulai repeat -->
+                    <label class="item item-text-wrap item-row"  ng-repeat="(key,val) in jenisPembayaran">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">{{key}}. {{val}}</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="aks26h{{key}}" ng-model="aks['aks26h'+key][idart]" value="1">Ya</ion-radio>
+                                    <ion-radio name="aks26h{{key}}" ng-model="aks['aks26h'+key][idart]" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <!-- end repeat -->
+                    <label class="item item-input item-text-wrap" ng-if="aks.aks26h95[idart]==1">
+                        <span class="input-label"><b>AKS26h95lain. </b>lainnya sebutkan </span>
+                        <input type="text" ng-model="aks.aks26h95lain[idart]" class="input-border">
+                    </label>
+                </div>
+                <!-- jika polindes/poskesdes -->
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center"><div class="input-label ">i. Polindes/poskesdes</div>
+                        </div>
+                        <div class="col col-50 col-center"><div class="button-bar right">
+                                <ion-radio name="aks.aks23i" ng-model="aks.aks23i[idart]" value="1">Ya</ion-radio>
+                                <ion-radio name="aks.aks23i" ng-model="aks.aks23i[idart]" value="2">Tidak</ion-radio>
+                        </div></div>
+                    </div>
+                </label>
+                <div ng-if="aks.aks23i[idart] == 1" class="item item-text-wrap item-row">
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS24i.</b> Jumlah hari rawat inap</div>
+                            <div class="col col-50 col-center" >
+                                <input type="number" block block-length="3" ng-model="aks.aks24i[idart]" min="1" max="366" class="pull-right">
+                            </div>
+                        </div>
+                    </label>
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS25i.</b> Berapa biaya selama 12 bulan (termasuk biaya medis dan obat)</div>
+                            <div class="col col-50 col-center" >
+                                <input type="text" block block-length="13" ng-pattern="/^[0-9]{1,13}$/" ng-model="aks.aks25i[idart]" class="pull-right input-border">
+                            </div>
+                        </div>
+                    </label>
+                    <span class="input-label"><b>AKS26i. </b>Dari mana biaya tersebut diperoleh (bisa lebih dari 1)</span>
+                    <!-- mulai repeat -->
+                    <label class="item item-text-wrap item-row"  ng-repeat="(key,val) in jenisPembayaran">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">{{key}}. {{val}}</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="aks26i{{key}}" ng-model="aks['aks26i'+key][idart]" value="1">Ya</ion-radio>
+                                    <ion-radio name="aks26i{{key}}" ng-model="aks['aks26i'+key][idart]" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <!-- end repeat -->
+                    <label class="item item-input item-text-wrap" ng-if="aks.aks26i95[idart]==1">
+                        <span class="input-label"><b>AKS26i95lain. </b>lainnya sebutkan </span>
+                        <input type="text" ng-model="aks.aks26i95lain[idart]" class="input-border">
+                    </label>
+                </div>
+                <!-- jika pengobatan tradisional -->
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center"><div class="input-label ">j. Pengobatan tradisional</div>
+                        </div>
+                        <div class="col col-50 col-center"><div class="button-bar right">
+                                <ion-radio name="aks.aks23j" ng-model="aks.aks23j[idart]" value="1">Ya</ion-radio>
+                                <ion-radio name="aks.aks23j" ng-model="aks.aks23j[idart]" value="2">Tidak</ion-radio>
+                        </div></div>
+                    </div>
+                </label>
+                <div ng-if="aks.aks23j[idart] == 1" class="item item-text-wrap item-row">
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS24j.</b> Jumlah hari rawat inap</div>
+                            <div class="col col-50 col-center" >
+                                <input type="number" block block-length="3" ng-model="aks.aks24j[idart]" min="1" max="366" class="pull-right">
+                            </div>
+                        </div>
+                    </label>
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS25j.</b> Berapa biaya selama 12 bulan (termasuk biaya medis dan obat)</div>
+                            <div class="col col-50 col-center" >
+                                <input type="text" block block-length="13" ng-pattern="/^[0-9]{1,13}$/" ng-model="aks.aks25j[idart]" class="pull-right input-border">
+                            </div>
+                        </div>
+                    </label>
+                    <span class="input-label"><b>AKS26j. </b>Dari mana biaya tersebut diperoleh (bisa lebih dari 1)</span>
+                    <!-- mulai repeat -->
+                    <label class="item item-text-wrap item-row"  ng-repeat="(key,val) in jenisPembayaran">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">{{key}}. {{val}}</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="aks26j{{key}}" ng-model="aks['aks26j'+key][idart]" value="1">Ya</ion-radio>
+                                    <ion-radio name="aks26j{{key}}" ng-model="aks['aks26j'+key][idart]" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <!-- end repeat -->
+                    <label class="item item-input item-text-wrap" ng-if="aks.aks26j95[idart]==1">
+                        <span class="input-label"><b>AKS26j95lain. </b>lainnya sebutkan </span>
+                        <input type="text" ng-model="aks.aks26j95lain[idart]" class="input-border">
+                    </label>
+                </div>
+                <!-- jika fasilitas kesehatan di luar negeri -->
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center"><div class="input-label ">k. Fasilitas kesehatan di luar negeri</div>
+                        </div>
+                        <div class="col col-50 col-center"><div class="button-bar right">
+                                <ion-radio name="aks.aks23k" ng-model="aks.aks23k[idart]" value="1">Ya</ion-radio>
+                                <ion-radio name="aks.aks23k" ng-model="aks.aks23k[idart]" value="2">Tidak</ion-radio>
+                        </div></div>
+                    </div>
+                </label>
+                <div ng-if="aks.aks23k[idart] == 1" class="item item-text-wrap item-row">
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS24k.</b> Jumlah hari rawat inap</div>
+                            <div class="col col-50 col-center" >
+                                <input type="number" block block-length="3" ng-model="aks.aks24k[idart]" min="1" max="366" class="pull-right">
+                            </div>
+                        </div>
+                    </label>
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS25k.</b> Berapa biaya selama 12 bulan (termasuk biaya medis dan obat)</div>
+                            <div class="col col-50 col-center" >
+                                <input type="text" block block-length="13" ng-pattern="/^[0-9]{1,13}$/" ng-model="aks.aks25k[idart]" class="pull-right input-border">
+                            </div>
+                        </div>
+                    </label>
+                    <span class="input-label"><b>AKS26k. </b>Dari mana biaya tersebut diperoleh (bisa lebih dari 1)</span>
+                    <!-- mulai repeat -->
+                    <label class="item item-text-wrap item-row"  ng-repeat="(key,val) in jenisPembayaran">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">{{key}}. {{val}}</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="aks26k{{key}}" ng-model="aks['aks26k'+key][idart]" value="1">Ya</ion-radio>
+                                    <ion-radio name="aks26k{{key}}" ng-model="aks['aks26k'+key][idart]" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <!-- end repeat -->
+                    <label class="item item-input item-text-wrap" ng-if="aks.aks26k95[idart]==1">
+                        <span class="input-label"><b>AKS26k95lain. </b>lainnya sebutkan </span>
+                        <input type="text" ng-model="aks.aks26k95lain[idart]" class="input-border">
+                    </label>
+                </div>
+                <!-- jika fasilitas kesehatan lain -->
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center"><div class="input-label ">l. Fasilitas ksehatan lainnya</div>
+                        </div>
+                        <div class="col col-50 col-center"><div class="button-bar right">
+                                <ion-radio name="aks.aks23l" ng-model="aks.aks23l[idart]" value="1">Ya</ion-radio>
+                                <ion-radio name="aks.aks23l" ng-model="aks.aks23l[idart]" value="2">Tidak</ion-radio>
+                        </div></div>
+                    </div>
+                </label>
+                <label class="item item-input item-text-wrap" ng-if="aks.aks23l[idart] == 1">
+                    <span class="input-label"><b>AKS23l lain. </b>lainnya sebutkan </span>
+                    <input type="text" ng-model="aks.aks23llain[idart]" class="input-border">
+                </label>
+                <div ng-if="aks.aks23l[idart] == 1" class="item item-text-wrap item-row">
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS24l.</b> Jumlah hari rawat inap</div>
+                            <div class="col col-50 col-center" >
+                                <input type="number" block block-length="3" ng-model="aks.aks24l[idart]" min="1" max="366" class="pull-right">
+                            </div>
+                        </div>
+                    </label>
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS25l.</b> Berapa biaya selama 12 bulan (termasuk biaya medis dan obat)</div>
+                            <div class="col col-50 col-center" >
+                                <input type="text" block block-length="13" ng-pattern="/^[0-9]{1,13}$/" ng-model="aks.aks25l[idart]" class="pull-right input-border">
+                            </div>
+                        </div>
+                    </label>
+                    <span class="input-label"><b>AKS26l. </b>Dari mana biaya tersebut diperoleh (bisa lebih dari 1)</span>
+                    <!-- mulai repeat -->
+                    <label class="item item-text-wrap item-row"  ng-repeat="(key,val) in jenisPembayaran">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">{{key}}. {{val}}</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="aks26l{{key}}" ng-model="aks['aks26l'+key][idart]" value="1">Ya</ion-radio>
+                                    <ion-radio name="aks26l{{key}}" ng-model="aks['aks26l'+key][idart]" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <!-- end repeat -->
+                    <label class="item item-input item-text-wrap" ng-if="aks.aks26l95[idart]==1">
+                        <span class="input-label"><b>AKS26l95lain. </b>lainnya sebutkan </span>
+                        <input type="text" ng-model="aks.aks26l95lain[idart]" class="input-border">
+                    </label>
+                </div>
+            </div>
+            <!-- End of Rawat Inap -->
+            <!-- Rawat Jalan -->
+            <div ng-if="tipe.aks01ls || ((aks.aks17[idart] == 1 || aks.aks17[idart] == 2) && aks.aks21[idart] == 1)">
+                <label class="item item-select item-text-wrap">
+                    <span class="input-label">
+                        <b>AKS27. </b>Apakah <span class="nama">{{nama}}</span> dalam 1 bulan terakhir memanfaatkan fasilitas kesehatan untuk <b>RAWAT JALAN</b> karena <span class="nama">{{nama}}</span> mengalami gangguan kesehatan?</span>
+                    <select ng-model="aks.aks27[idart]">
+                        <option value="1">1. Ya -> AKS28</option>
+                        <option value="2">2. Tidak</option>
+                    </select>
+                </label>
+            </div>
+            <div ng-if="aks.aks27[idart] == 1">
+                <label class="item item-text-wrap item-row">
+                    <span class="input-label"><b>AKS28. </b>Jenis fasilitas kesehatan yang dimanfaatkan</span>
+                </label>
+                <!-- jika RS pemerintah -->
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center"><div class="input-label ">a. RS Pemerintah</div>
+                        </div>
+                        <div class="col col-50 col-center"><div class="button-bar right">
+                                <ion-radio name="aks.aks28a" ng-model="aks.aks28a[idart]" value="1">Ya</ion-radio>
+                                <ion-radio name="aks.aks28a" ng-model="aks.aks28a[idart]" value="2">Tidak</ion-radio>
+                        </div></div>
+                    </div>
+                </label>
+                <div ng-if="aks.aks28a[idart] == 1" class="item item-text-wrap item-row">
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS29a.</b> Berapa frekuensi selama 1 bulan</div>
+                            <div class="col col-50 col-center" >
+                                <input type="number" block block-length="3" ng-model="aks.aks29a[idart]" min="1" max="60" class="pull-right">
+                            </div>
+                        </div>
+                    </label>
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS30a.</b> Berapa biaya selama 1 bulan (termasuk biaya medis dan obat)</div>
+                            <div class="col col-50 col-center" >
+                                <input type="text" block block-length="13" ng-pattern="/^[0-9]{1,13}$/" ng-model="aks.aks30a[idart]" class="pull-right input-border">
+                            </div>
+                        </div>
+                    </label>
+                    <span class="input-label"><b>AKS31a. </b>Dari mana biaya tersebut diperoleh (bisa lebih dari 1)</span>
+                    <!-- mulai repeat -->
+                    <label class="item item-text-wrap item-row"  ng-repeat="(key,val) in jenisPembayaran">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">{{key}}. {{val}}</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="aks31a{{key}}" ng-model="aks['aks31a'+key][idart]" value="1">Ya</ion-radio>
+                                    <ion-radio name="aks31a{{key}}" ng-model="aks['aks31a'+key][idart]" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <!-- end repeat -->
+                    <label class="item item-input item-text-wrap" ng-if="aks.aks31a95[idart]==1">
+                        <span class="input-label"><b>AKS31a95lain. </b>lainnya sebutkan </span>
+                        <input type="text" ng-model="aks.aks31a95lain[idart]" class="input-border">
+                    </label>
+                </div>
+                <!-- jika RS swasta -->
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center"><div class="input-label ">b. RS Swasta</div>
+                        </div>
+                        <div class="col col-50 col-center"><div class="button-bar right">
+                                <ion-radio name="aks.aks28b" ng-model="aks.aks28b[idart]" value="1">Ya</ion-radio>
+                                <ion-radio name="aks.aks28b" ng-model="aks.aks28b[idart]" value="2">Tidak</ion-radio>
+                        </div></div>
+                    </div>
+                </label>
+                <div ng-if="aks.aks28b[idart] == 1" class="item item-text-wrap item-row">
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS29b.</b> Berapa frekuensi selama 1 bulan</div>
+                            <div class="col col-50 col-center" >
+                                <input type="number" block block-length="3" ng-model="aks.aks29b[idart]" min="1" max="60" class="pull-right">
+                            </div>
+                        </div>
+                    </label>
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS30b.</b> Berapa biaya selama 1 bulan (termasuk biaya medis dan obat)</div>
+                            <div class="col col-50 col-center" >
+                                <input type="text" block block-length="13" ng-pattern="/^[0-9]{1,13}$/" ng-model="aks.aks30b[idart]" class="pull-right input-border">
+                            </div>
+                        </div>
+                    </label>
+                    <span class="input-label"><b>AKS31b. </b>Dari mana biaya tersebut diperoleh (bisa lebih dari 1)</span>
+                    <!-- mulai repeat -->
+                    <label class="item item-text-wrap item-row"  ng-repeat="(key,val) in jenisPembayaran">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">{{key}}. {{val}}</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="aks31b{{key}}" ng-model="aks['aks31b'+key][idart]" value="1">Ya</ion-radio>
+                                    <ion-radio name="aks31b{{key}}" ng-model="aks['aks31b'+key][idart]" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <!-- end repeat -->
+                    <label class="item item-input item-text-wrap" ng-if="aks.aks31b95[idart]==1">
+                        <span class="input-label"><b>AKS31b95lain. </b>lainnya sebutkan </span>
+                        <input type="text" ng-model="aks.aks31b95lain[idart]" class="input-border">
+                    </label>
+                </div>
+                <!-- jika RS Bersalin -->
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center"><div class="input-label ">c. RS Bersalin</div>
+                        </div>
+                        <div class="col col-50 col-center"><div class="button-bar right">
+                                <ion-radio name="aks.aks28c" ng-model="aks.aks28c[idart]" value="1">Ya</ion-radio>
+                                <ion-radio name="aks.aks28c" ng-model="aks.aks28c[idart]" value="2">Tidak</ion-radio>
+                        </div></div>
+                    </div>
+                </label>
+                <div ng-if="aks.aks28c[idart] == 1" class="item item-text-wrap item-row">
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS29c.</b> Berapa frekuensi selama 1 bulan</div>
+                            <div class="col col-50 col-center" >
+                                <input type="number" block block-length="3" ng-model="aks.aks29c[idart]" min="1" max="60" class="pull-right">
+                            </div>
+                        </div>
+                    </label>
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS30c.</b> Berapa biaya selama 1 bulan (termasuk biaya medis dan obat)</div>
+                            <div class="col col-50 col-center" >
+                                <input type="text" block block-length="13" ng-pattern="/^[0-9]{1,13}$/" ng-model="aks.aks30c[idart]" class="pull-right input-border">
+                            </div>
+                        </div>
+                    </label>
+                    <span class="input-label"><b>AKS31c. </b>Dari mana biaya tersebut diperoleh (bisa lebih dari 1)</span>
+                    <!-- mulai repeat -->
+                    <label class="item item-text-wrap item-row"  ng-repeat="(key,val) in jenisPembayaran">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">{{key}}. {{val}}</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="aks31c{{key}}" ng-model="aks['aks31c'+key][idart]" value="1">Ya</ion-radio>
+                                    <ion-radio name="aks31c{{key}}" ng-model="aks['aks31c'+key][idart]" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <!-- end repeat -->
+                    <label class="item item-input item-text-wrap" ng-if="aks.aks31c95[idart]==1">
+                        <span class="input-label"><b>AKS31c95lain. </b>lainnya sebutkan </span>
+                        <input type="text" ng-model="aks.aks31c95lain[idart]" class="input-border">
+                    </label>
+                </div>
+                <!-- jika Puskesmas/Pustu -->
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center"><div class="input-label ">d. Puskesmas/Pustu</div>
+                        </div>
+                        <div class="col col-50 col-center"><div class="button-bar right">
+                                <ion-radio name="aks.aks28d" ng-model="aks.aks28d[idart]" value="1">Ya</ion-radio>
+                                <ion-radio name="aks.aks28d" ng-model="aks.aks28d[idart]" value="2">Tidak</ion-radio>
+                        </div></div>
+                    </div>
+                </label>
+                <div ng-if="aks.aks28d[idart] == 1" class="item item-text-wrap item-row">
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS29d.</b> Berapa frekuensi selama 1 bulan</div>
+                            <div class="col col-50 col-center" >
+                                <input type="number" block block-length="3" ng-model="aks.aks29d[idart]" min="1" max="60" class="pull-right">
+                            </div>
+                        </div>
+                    </label>
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS30d.</b> Berapa biaya selama 1 bulan (termasuk biaya medis dan obat)</div>
+                            <div class="col col-50 col-center" >
+                                <input type="text" block block-length="13" ng-pattern="/^[0-9]{1,13}$/" ng-model="aks.aks30d[idart]" class="pull-right input-border">
+                            </div>
+                        </div>
+                    </label>
+                    <span class="input-label"><b>AKS31d. </b>Dari mana biaya tersebut diperoleh (bisa lebih dari 1)</span>
+                    <!-- mulai repeat -->
+                    <label class="item item-text-wrap item-row"  ng-repeat="(key,val) in jenisPembayaran">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">{{key}}. {{val}}</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="aks31d{{key}}" ng-model="aks['aks31d'+key][idart]" value="1">Ya</ion-radio>
+                                    <ion-radio name="aks31d{{key}}" ng-model="aks['aks31d'+key][idart]" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <!-- end repeat -->
+                    <label class="item item-input item-text-wrap" ng-if="aks.aks31d95[idart]==1">
+                        <span class="input-label"><b>AKS31d95lain. </b>lainnya sebutkan </span>
+                        <input type="text" ng-model="aks.aks31d95lain[idart]" class="input-border">
+                    </label>
+                </div>
+                <!-- jika Praktek dokter umum -->
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center"><div class="input-label ">e. Praktek dokter umum</div>
+                        </div>
+                        <div class="col col-50 col-center"><div class="button-bar right">
+                                <ion-radio name="aks.aks28e" ng-model="aks.aks28e[idart]" value="1">Ya</ion-radio>
+                                <ion-radio name="aks.aks28e" ng-model="aks.aks28e[idart]" value="2">Tidak</ion-radio>
+                        </div></div>
+                    </div>
+                </label>
+                <div ng-if="aks.aks28e[idart] == 1" class="item item-text-wrap item-row">
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS29e.</b> Berapa frekuensi selama 1 bulan</div>
+                            <div class="col col-50 col-center" >
+                                <input type="number" block block-length="3" ng-model="aks.aks29e[idart]" min="1" max="60" class="pull-right">
+                            </div>
+                        </div>
+                    </label>
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS30e.</b> Berapa biaya selama 1 bulan (termasuk biaya medis dan obat)</div>
+                            <div class="col col-50 col-center" >
+                                <input type="text" block block-length="13" ng-pattern="/^[0-9]{1,13}$/" ng-model="aks.aks30e[idart]" class="pull-right input-border">
+                            </div>
+                        </div>
+                    </label>
+                    <span class="input-label"><b>AKS31e. </b>Dari mana biaya tersebut diperoleh (bisa lebih dari 1)</span>
+                    <!-- mulai repeat -->
+                    <label class="item item-text-wrap item-row"  ng-repeat="(key,val) in jenisPembayaran">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">{{key}}. {{val}}</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="aks31e{{key}}" ng-model="aks['aks31e'+key][idart]" value="1">Ya</ion-radio>
+                                    <ion-radio name="aks31e{{key}}" ng-model="aks['aks31e'+key][idart]" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <!-- end repeat -->
+                    <label class="item item-input item-text-wrap" ng-if="aks.aks31e95[idart]==1">
+                        <span class="input-label"><b>AKS31e95lain. </b>lainnya sebutkan </span>
+                        <input type="text" ng-model="aks.aks31e95lain[idart]" class="input-border">
+                    </label>
+                </div>
+                <!-- jika Praktek dokter spesialis -->
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center"><div class="input-label ">f. Praktek dokter spesialis</div>
+                        </div>
+                        <div class="col col-50 col-center"><div class="button-bar right">
+                                <ion-radio name="aks.aks28f" ng-model="aks.aks28f[idart]" value="1">Ya</ion-radio>
+                                <ion-radio name="aks.aks28f" ng-model="aks.aks28f[idart]" value="2">Tidak</ion-radio>
+                        </div></div>
+                    </div>
+                </label>
+                <div ng-if="aks.aks28f[idart] == 1" class="item item-text-wrap item-row">
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS29f.</b> Berapa frekuensi selama 1 bulan</div>
+                            <div class="col col-50 col-center" >
+                                <input type="number" block block-length="3" ng-model="aks.aks29f[idart]" min="1" max="60" class="pull-right">
+                            </div>
+                        </div>
+                    </label>
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS30f.</b> Berapa biaya selama 1 bulan (termasuk biaya medis dan obat)</div>
+                            <div class="col col-50 col-center" >
+                                <input type="text" block block-length="13" ng-pattern="/^[0-9]{1,13}$/" ng-model="aks.aks30f[idart]" class="pull-right input-border">
+                            </div>
+                        </div>
+                    </label>
+                    <span class="input-label"><b>AKS31f. </b>Dari mana biaya tersebut diperoleh (bisa lebih dari 1)</span>
+                    <!-- mulai repeat -->
+                    <label class="item item-text-wrap item-row"  ng-repeat="(key,val) in jenisPembayaran">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">{{key}}. {{val}}</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="aks31f{{key}}" ng-model="aks['aks31f'+key][idart]" value="1">Ya</ion-radio>
+                                    <ion-radio name="aks31f{{key}}" ng-model="aks['aks31f'+key][idart]" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <!-- end repeat -->
+                    <label class="item item-input item-text-wrap" ng-if="aks.aks31f95[idart]==1">
+                        <span class="input-label"><b>AKS31f95lain. </b>lainnya sebutkan </span>
+                        <input type="text" ng-model="aks.aks31f95lain[idart]" class="input-border">
+                    </label>
+                </div>
+                <!-- jika Praktek Bidan -->
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center"><div class="input-label ">g. Praktek bidan</div>
+                        </div>
+                        <div class="col col-50 col-center"><div class="button-bar right">
+                                <ion-radio name="aks.aks28g" ng-model="aks.aks28g[idart]" value="1">Ya</ion-radio>
+                                <ion-radio name="aks.aks28g" ng-model="aks.aks28g[idart]" value="2">Tidak</ion-radio>
+                        </div></div>
+                    </div>
+                </label>
+                <div ng-if="aks.aks28g[idart] == 1" class="item item-text-wrap item-row">
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS29g.</b> Berapa frekuensi selama 1 bulan</div>
+                            <div class="col col-50 col-center" >
+                                <input type="number" block block-length="3" ng-model="aks.aks29g[idart]" min="1" max="60" class="pull-right">
+                            </div>
+                        </div>
+                    </label>
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS30g.</b> Berapa biaya selama 1 bulan (termasuk biaya medis dan obat)</div>
+                            <div class="col col-50 col-center" >
+                                <input type="text" block block-length="13" ng-pattern="/^[0-9]{1,13}$/" ng-model="aks.aks30g[idart]" class="pull-right input-border">
+                            </div>
+                        </div>
+                    </label>
+                    <span class="input-label"><b>AKS31g. </b>Dari mana biaya tersebut diperoleh (bisa lebih dari 1)</span>
+                    <!-- mulai repeat -->
+                    <label class="item item-text-wrap item-row"  ng-repeat="(key,val) in jenisPembayaran">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">{{key}}. {{val}}</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="aks31g{{key}}" ng-model="aks['aks31g'+key][idart]" value="1">Ya</ion-radio>
+                                    <ion-radio name="aks31g{{key}}" ng-model="aks['aks31g'+key][idart]" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <!-- end repeat -->
+                    <label class="item item-input item-text-wrap" ng-if="aks.aks31g95[idart]==1">
+                        <span class="input-label"><b>AKS31g95lain. </b>lainnya sebutkan </span>
+                        <input type="text" ng-model="aks.aks31g95lain[idart]" class="input-border">
+                    </label>
+                </div>
+                <!-- jika Praktek Perawat -->
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center"><div class="input-label ">h. Praktek perawat</div>
+                        </div>
+                        <div class="col col-50 col-center"><div class="button-bar right">
+                                <ion-radio name="aks.aks28h" ng-model="aks.aks28h[idart]" value="1">Ya</ion-radio>
+                                <ion-radio name="aks.aks28h" ng-model="aks.aks28h[idart]" value="2">Tidak</ion-radio>
+                        </div></div>
+                    </div>
+                </label>
+                <div ng-if="aks.aks28h[idart] == 1" class="item item-text-wrap item-row">
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS29h.</b> Berapa frekuensi selama 1 bulan</div>
+                            <div class="col col-50 col-center" >
+                                <input type="number" block block-length="3" ng-model="aks.aks29h[idart]" min="1" max="60" class="pull-right">
+                            </div>
+                        </div>
+                    </label>
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS30h.</b> Berapa biaya selama 1 bulan (termasuk biaya medis dan obat)</div>
+                            <div class="col col-50 col-center" >
+                                <input type="text" block block-length="13" ng-pattern="/^[0-9]{1,13}$/" ng-model="aks.aks30h[idart]" class="pull-right input-border">
+                            </div>
+                        </div>
+                    </label>
+                    <span class="input-label"><b>AKS31h. </b>Dari mana biaya tersebut diperoleh (bisa lebih dari 1)</span>
+                    <!-- mulai repeat -->
+                    <label class="item item-text-wrap item-row"  ng-repeat="(key,val) in jenisPembayaran">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">{{key}}. {{val}}</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="aks31h{{key}}" ng-model="aks['aks31h'+key][idart]" value="1">Ya</ion-radio>
+                                    <ion-radio name="aks31h{{key}}" ng-model="aks['aks31h'+key][idart]" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <!-- end repeat -->
+                    <label class="item item-input item-text-wrap" ng-if="aks.aks31h95[idart]==1">
+                        <span class="input-label"><b>AKS31h95lain. </b>lainnya sebutkan </span>
+                        <input type="text" ng-model="aks.aks31h95lain[idart]" class="input-border">
+                    </label>
+                </div>
+                <!-- jika polindes/poskesdes -->
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center"><div class="input-label ">i. Polindes/poskesdes</div>
+                        </div>
+                        <div class="col col-50 col-center"><div class="button-bar right">
+                                <ion-radio name="aks.aks28i" ng-model="aks.aks28i[idart]" value="1">Ya</ion-radio>
+                                <ion-radio name="aks.aks28i" ng-model="aks.aks28i[idart]" value="2">Tidak</ion-radio>
+                        </div></div>
+                    </div>
+                </label>
+                <div ng-if="aks.aks28i[idart] == 1" class="item item-text-wrap item-row">
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS29i.</b> Berapa frekuensi selama 1 bulan</div>
+                            <div class="col col-50 col-center" >
+                                <input type="number" block block-length="3" ng-model="aks.aks29i[idart]" min="1" max="60" class="pull-right">
+                            </div>
+                        </div>
+                    </label>
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS30i.</b> Berapa biaya selama 1 bulan (termasuk biaya medis dan obat)</div>
+                            <div class="col col-50 col-center" >
+                                <input type="text" block block-length="13" ng-pattern="/^[0-9]{1,13}$/" ng-model="aks.aks30i[idart]" class="pull-right input-border">
+                            </div>
+                        </div>
+                    </label>
+                    <span class="input-label"><b>AKS31i. </b>Dari mana biaya tersebut diperoleh (bisa lebih dari 1)</span>
+                    <!-- mulai repeat -->
+                    <label class="item item-text-wrap item-row"  ng-repeat="(key,val) in jenisPembayaran">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">{{key}}. {{val}}</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="aks31i{{key}}" ng-model="aks['aks31i'+key][idart]" value="1">Ya</ion-radio>
+                                    <ion-radio name="aks31i{{key}}" ng-model="aks['aks31i'+key][idart]" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <!-- end repeat -->
+                    <label class="item item-input item-text-wrap" ng-if="aks.aks31i95[idart]==1">
+                        <span class="input-label"><b>AKS31i95lain. </b>lainnya sebutkan </span>
+                        <input type="text" ng-model="aks.aks31i95lain[idart]" class="input-border">
+                    </label>
+                </div>
+                <!-- jika apotek -->
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center"><div class="input-label ">j. Apotek</div>
+                        </div>
+                        <div class="col col-50 col-center"><div class="button-bar right">
+                                <ion-radio name="aks.aks28j" ng-model="aks.aks28j[idart]" value="1">Ya</ion-radio>
+                                <ion-radio name="aks.aks28j" ng-model="aks.aks28j[idart]" value="2">Tidak</ion-radio>
+                        </div></div>
+                    </div>
+                </label>
+                <div ng-if="aks.aks28j[idart] == 1" class="item item-text-wrap item-row">
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS29j.</b> Berapa frekuensi selama 1 bulan</div>
+                            <div class="col col-50 col-center" >
+                                <input type="number" block block-length="3" ng-model="aks.aks29j[idart]" min="1" max="60" class="pull-right">
+                            </div>
+                        </div>
+                    </label>
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS30j.</b> Berapa biaya selama 1 bulan (termasuk biaya medis dan obat)</div>
+                            <div class="col col-50 col-center" >
+                                <input type="text" block block-length="13" ng-pattern="/^[0-9]{1,13}$/" ng-model="aks.aks30j[idart]" class="pull-right input-border">
+                            </div>
+                        </div>
+                    </label>
+                    <span class="input-label"><b>AKS31j. </b>Dari mana biaya tersebut diperoleh (bisa lebih dari 1)</span>
+                    <!-- mulai repeat -->
+                    <label class="item item-text-wrap item-row"  ng-repeat="(key,val) in jenisPembayaran">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">{{key}}. {{val}}</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="aks31j{{key}}" ng-model="aks['aks31j'+key][idart]" value="1">Ya</ion-radio>
+                                    <ion-radio name="aks31j{{key}}" ng-model="aks['aks31j'+key][idart]" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <!-- end repeat -->
+                    <label class="item item-input item-text-wrap" ng-if="aks.aks31j95[idart]==1">
+                        <span class="input-label"><b>AKS31j95lain. </b>lainnya sebutkan </span>
+                        <input type="text" ng-model="aks.aks31j95lain[idart]" class="input-border">
+                    </label>
+                </div>
+                <!-- jika pengobatan tradisional -->
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center"><div class="input-label ">k. Pengobatan tradisional</div>
+                        </div>
+                        <div class="col col-50 col-center"><div class="button-bar right">
+                                <ion-radio name="aks.aks28k" ng-model="aks.aks28k[idart]" value="1">Ya</ion-radio>
+                                <ion-radio name="aks.aks28k" ng-model="aks.aks28k[idart]" value="2">Tidak</ion-radio>
+                        </div></div>
+                    </div>
+                </label>
+                <div ng-if="aks.aks28k[idart] == 1" class="item item-text-wrap item-row">
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS29k.</b> Berapa frekuensi selama 1 bulan</div>
+                            <div class="col col-50 col-center" >
+                                <input type="number" block block-length="3" ng-model="aks.aks29k[idart]" min="1" max="60" class="pull-right">
+                            </div>
+                        </div>
+                    </label>
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS30k.</b> Berapa biaya selama 1 bulan (termasuk biaya medis dan obat)</div>
+                            <div class="col col-50 col-center" >
+                                <input type="text" block block-length="13" ng-pattern="/^[0-9]{1,13}$/" ng-model="aks.aks30k[idart]" class="pull-right input-border">
+                            </div>
+                        </div>
+                    </label>
+                    <span class="input-label"><b>AKS31k. </b>Dari mana biaya tersebut diperoleh (bisa lebih dari 1)</span>
+                    <!-- mulai repeat -->
+                    <label class="item item-text-wrap item-row"  ng-repeat="(key,val) in jenisPembayaran">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">{{key}}. {{val}}</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="aks31k{{key}}" ng-model="aks['aks31k'+key][idart]" value="1">Ya</ion-radio>
+                                    <ion-radio name="aks31k{{key}}" ng-model="aks['aks31k'+key][idart]" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <!-- end repeat -->
+                    <label class="item item-input item-text-wrap" ng-if="aks.aks31k95[idart]==1">
+                        <span class="input-label"><b>AKS31k95lain. </b>lainnya sebutkan </span>
+                        <input type="text" ng-model="aks.aks31k95lain[idart]" class="input-border">
+                    </label>
+                </div>
+                <!-- jika fasilitas kesehatan di luar negeri -->
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center"><div class="input-label ">l. Fasilitas ksehatan di luar negeri</div>
+                        </div>
+                        <div class="col col-50 col-center"><div class="button-bar right">
+                                <ion-radio name="aks.aks28l" ng-model="aks.aks28l[idart]" value="1">Ya</ion-radio>
+                                <ion-radio name="aks.aks28l" ng-model="aks.aks28l[idart]" value="2">Tidak</ion-radio>
+                        </div></div>
+                    </div>
+                </label>
+                <div ng-if="aks.aks28l[idart] == 1" class="item item-text-wrap item-row">
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS29l.</b> Berapa frekuensi selama 1 bulan</div>
+                            <div class="col col-50 col-center" >
+                                <input type="number" block block-length="3" ng-model="aks.aks29l[idart]" min="1" max="60" class="pull-right">
+                            </div>
+                        </div>
+                    </label>
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS30l.</b> Berapa biaya selama 1 bulan (termasuk biaya medis dan obat)</div>
+                            <div class="col col-50 col-center" >
+                                <input type="text" block block-length="13" ng-pattern="/^[0-9]{1,13}$/" ng-model="aks.aks30l[idart]" class="pull-right input-border">
+                            </div>
+                        </div>
+                    </label>
+                    <span class="input-label"><b>AKS31l. </b>Dari mana biaya tersebut diperoleh (bisa lebih dari 1)</span>
+                    <!-- mulai repeat -->
+                    <label class="item item-text-wrap item-row"  ng-repeat="(key,val) in jenisPembayaran">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">{{key}}. {{val}}</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="aks31l{{key}}" ng-model="aks['aks31l'+key][idart]" value="1">Ya</ion-radio>
+                                    <ion-radio name="aks31l{{key}}" ng-model="aks['aks31l'+key][idart]" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <!-- end repeat -->
+                    <label class="item item-input item-text-wrap" ng-if="aks.aks31l95[idart]==1">
+                        <span class="input-label"><b>AKS31l95lain. </b>lainnya sebutkan </span>
+                        <input type="text" ng-model="aks.aks31l95lain[idart]" class="input-border">
+                    </label>
+                </div>
+                <!-- jika fasilitas kesehatan lainnya -->
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center"><div class="input-label ">m. Fasilitas lain</div>
+                        </div>
+                        <div class="col col-50 col-center"><div class="button-bar right">
+                                <ion-radio name="aks.aks28m" ng-model="aks.aks28m[idart]" value="1">Ya</ion-radio>
+                                <ion-radio name="aks.aks28m" ng-model="aks.aks28m[idart]" value="2">Tidak</ion-radio>
+                        </div></div>
+                    </div>
+                </label>
+                <label class="item item-input item-text-wrap" ng-if="aks.aks28m[idart] == 1">
+                    <span class="input-label"><b>AKS28m lain. </b>lainnya sebutkan </span>
+                    <input type="text" ng-model="aks.aks28mlain[idart]" class="input-border">
+                </label>
+                <div ng-if="aks.aks28m[idart] == 1" class="item item-text-wrap item-row">
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS29m.</b> Berapa frekuensi selama 1 bulan</div>
+                            <div class="col col-50 col-center" >
+                                <input type="number" block block-length="3" ng-model="aks.aks29m[idart]" min="1" max="60" class="pull-right">
+                            </div>
+                        </div>
+                    </label>
+                    <label class="input-label">
+                        <div class="row">
+                            <div class="col col-50 col-center input-label"><b>AKS30m.</b> Berapa biaya selama 1 bulan (termasuk biaya medis dan obat)</div>
+                            <div class="col col-50 col-center" >
+                                <input type="text" block block-length="13" ng-pattern="/^[0-9]{1,13}$/" ng-model="aks.aks30m[idart]" class="pull-right input-border">
+                            </div>
+                        </div>
+                    </label>
+                    <span class="input-label"><b>AKS31m. </b>Dari mana biaya tersebut diperoleh (bisa lebih dari 1)</span>
+                    <!-- mulai repeat -->
+                    <label class="item item-text-wrap item-row"  ng-repeat="(key,val) in jenisPembayaran">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">{{key}}. {{val}}</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="aks31m{{key}}" ng-model="aks['aks31m'+key][idart]" value="1">Ya</ion-radio>
+                                    <ion-radio name="aks31m{{key}}" ng-model="aks['aks31m'+key][idart]" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <!-- end repeat -->
+                    <label class="item item-input item-text-wrap" ng-if="aks.aks31m95[idart]==1">
+                        <span class="input-label"><b>AKS31m95lain. </b>lainnya sebutkan </span>
+                        <input type="text" ng-model="aks.aks31m95lain[idart]" class="input-border">
+                    </label>
+                </div>
+            </div>
+            <!-- End of Rawat jalan -->
+            <!-- tidak berobat -->
+            <label class="item item-text-full" ng-if="aks.aks02[idart]==12 || 
+            ((aks.aks17[idart]==1 || aks.aks17[idart]==2) && aks.aks21[idart]==2) || 
+            (tipe.aks01ls && aks.aks22[idart] == 2 && aks.aks27[idart] == 2)">
+                <span class="input-label"><b>AKS04. </b>Alasan Tidak Berobat</span>
+                <ion-list>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">A. Tidak ada biaya</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="aks.aks0401" ng-model="aks.aks0401[idart]" value="1">Ya</ion-radio>
+                                    <ion-radio name="aks.aks0401" ng-model="aks.aks0401[idart]" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">B. Kesulitan transportasi</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="aks.aks0402" ng-model="aks.aks0402[idart]" value="1">Ya</ion-radio>
+                                    <ion-radio name="aks.aks0402" ng-model="aks.aks0402[idart]" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">C. Tidak puas dengan pelayanan kesehatan</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="aks.aks0403" ng-model="aks.aks0403[idart]" value="1">Ya</ion-radio>
+                                    <ion-radio name="aks.aks0403" ng-model="aks.aks0403[idart]" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">D. Tidak cukup sakit untuk berobat</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="aks.aks0404" ng-model="aks.aks0404[idart]" value="1">Ya</ion-radio>
+                                    <ion-radio name="aks.aks0404" ng-model="aks.aks0404[idart]" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">E. Lainnya</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="aks.aks0405" ng-model="aks.aks0405[idart]" value="1">Ya</ion-radio>
+                                    <ion-radio name="aks.aks0405" ng-model="aks.aks0405[idart]" value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                </ion-list>
+            </label>
+            <label class="item item-input item-text-wrap" ng-if="aks.aks0405[idart]==1">
+                <span class="input-label">Alasan lainnya</span>
+                <input type="text" ng-model="aks.aks0405lain[idart]" class="input-border">
+            </label>
+        </ion-list>
+        <div class="padding" ng-show="checkAllowSaveModal()">
+            <button class="button simpan button-calm pull-right" ng-click="saveModal()">
+                <i class="icon ion-archive"></i> Simpan
+            </button>
+        </div>
+    </ion-content>
+</ion-modal-view>

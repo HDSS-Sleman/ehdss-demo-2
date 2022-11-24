@@ -1,0 +1,59 @@
+<ion-view view-title="Kesehatan Jiwa dalam Rumah Tangga">
+    <div class="bar bar-subheader bar-calm" ng-show="Kj01">
+        <h2 class="title left">Kesehatan Jiwa</h2>
+    </div>
+    <!--End of Sub-Header-Bar-->
+    <ion-content id="kj" class="has-subheader kj" style="padding-bottom: 10px">
+        <ion-list ng-show="Kj01">
+            <label class="item item-text-wrap">
+                <span class="input-label full">
+                    <b>KJ01.</b> Apakah ada anggota tumah tangga yang pernah menderita gangguan jiwa?
+                </span >
+                <div class="button-bar right">
+                    <ion-radio name="kj01" ng-model="kj.kj01" ng-value="1">Ya</ion-radio>
+                    <ion-radio name="kj01" ng-model="kj.kj01" ng-value="2">Tidak</ion-radio>
+                    <ion-radio name="kj01" ng-model="kj.kj01" ng-value="98">Tidak Tahu</ion-radio>
+                </div>
+            </label>
+
+            <div class="item-group" ng-if="kj.kj01==1">
+                <div class="table table-bordered table-striped">
+                    <div class="row header">
+                        <div class="col col-10 text-center">No ART</div>
+                        <div class="col col-30 nama">Nama (umur)</div>
+                        <div class="col col-10 text-center">JK</div>
+                        <div class="col">Hub RT</div>
+                        <div class="col col-20 text-center" ng-if="kj.kj01==1">KJ01</div>
+                    </div>
+                    <div class="row" ng-repeat="d in dataART">
+                        <div class="col col-10 text-center">{{d._noArt}}</div>
+                        <div class="col col-30 nama">{{d._nama}} ({{d.umur}})</div>
+                        <div class="col col-10 text-center">{{d._jk}}</div>
+                        <div class="col">{{d._hubRT}}</div>
+                        <div class="col col-20" ng-if="kj.kj01==1">
+                            <select ng-model="kj.kj01ls[d.idart]" ng-change="openModal(kj.kj01ls[d.idart],d,'modalKj01')">
+                                <option value="" selected></option>
+                                <option value="1">1. Ya</option>
+                                <option value="2">2. Tidak</option>
+                                <option value="98">98. Tidak tahu</option>
+                            </select>
+                            <button ng-if="kj.kj01ls[d.idart] == 1"
+                                class="button button-small simpan button-calm"
+                                ng-click="openModal(kj.kj01ls[d.idart],d,'modalKj01')">
+                                <i class="icon ion-edit"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ion-list> <!-- End of list module KJ01-KJ02 -->
+    
+    <!-- Buttons-->
+    <div class="item-group" ng-if="Kj01 && KjAllowSave()">
+        <button  class="button simpan button-dark pull-right" ng-click="save(true)">
+           <i class="icon ion-archive"></i> Simpan (lanjut ke KRP)
+        </button>
+    </div>
+
+</ion-content>
+</ion-view>

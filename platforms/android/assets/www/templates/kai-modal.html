@@ -1,0 +1,1100 @@
+<ion-modal-view view-title="Kesehatan Anak dan Imunisasi">
+    <ion-header-bar class="bar bar-header bar-balanced">
+        <h1 class="title" ng-if="kesehatan">Kesehatan Anak</h1>
+        <h1 class="title" ng-if="imunisasi ">Imunisasi</h1>
+        <h1 class="title" ng-if="imunisasi2">Imunisasi 2</h1>
+        <h1 class="title" ng-if="imunisasi3">Imunisasi 3</h1>
+        <h1 class="title" ng-if="imunisasi4">Imunisasi 4</h1>
+        <h1 class="title" ng-if="imunisasi5">Informasi Penimbangan Berat Badan</h1>
+        <h1 class="title" ng-if="imunisasi6">Vitamin A</h1>
+        <h1 class="title" ng-if="imunisasi7">Imunisasi 7</h1>
+        <h1 class="title" ng-if="asi">ASI &amp; MPASI</h1>
+        <button class="button button-clear button-primary" ng-click="modal.hide()">Cancel</button>
+    </ion-header-bar>
+    <div class="bar bar-subheader">
+        <h2 class="title left nama">Nama : {{nama}} ({{umur}})</h2>
+    </div>
+    <ion-content id="kai" class="kai kim asm has-subheader" style="padding-bottom: 10px">
+        <!-- KAI -->
+        <ion-list ng-show="kesehatan">
+            <div class="item item-divider item-text-wrap desc">
+                Bagian ini ditanyakan ke ARTB balita. Pertanyaan tidak ditampilkan jika bukan ARTB balita. Silahkan klik lanjut jika pertanyaan tidak muncul.
+            </div>
+            <div ng-if="artb">
+                <!-- BB lahir -->
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 min-left">
+                            <div class="input-label ">
+                                <b>KAI01. </b>Apakah mempunyai catatan / dokumen berat badan lahir?
+                                (BB Lahir adalah berat badan yang ditimbang dalam kurun waktu 24 jam setelah dilahirkan)</div>
+                        </div>
+                        <div class="col col-50 min-right">
+                            <div class="button-bar right">
+                                <ion-radio class="radio-ya" name="kai01" ng-model="kai.kai01[idart]" ng-value="1">Ya</ion-radio>
+                                <ion-radio name="kai01" ng-model="kai.kai01[idart]" ng-value="2">Tidak</ion-radio>
+                                <ion-radio name="kai01" ng-model="kai.kai01[idart]" ng-value="98">Tidak tahu</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <div class="item item-input" ng-if="kai.kai01[idart]==1">
+                    <span class="input-label"><b>KAI02. </b>Salin dari catatan / dokumen BB Lahir (1000-5000)</span>
+                    <input type="number" class="input-border" ng-model="kai.kai02[idart]" placeholder="gram" min="1000" max="5000" block block-length="4">
+                </div>
+                <!-- <div class="item item-input" ng-if="kai.kai01[idart]==1">
+                    <span class="input-label"><b>KAI02a. </b>Bacakan dari catatan/dokumen berat badan lahir (1000-5000)</span>
+                    <input type="number" class="input-border" ng-model="kai.kai02a[idart]" placeholder="gram" min="1000" max="5000" block block-length="4">
+                </div> -->
+                <label class="item item-text-wrap item-row" ng-if="kai.kai01[idart]==2 || kai.kai01[idart]==98">
+                    <div class="row">
+                        <div class="col col-50 min-left">
+                            <div class="input-label "><b>KAI03a. </b>Apakah ingat BB Lahir?</div>
+                        </div>
+                        <div class="col col-50 min-right">
+                            <div class="button-bar right">
+                                <ion-radio name="kai03a" ng-model="kai.kai03a[idart]" ng-value="1">Ya</ion-radio>
+                                <ion-radio name="kai03a" ng-model="kai.kai03a[idart]" ng-value="2">Tidak</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <label class="item item-input" ng-if="kai.kai03a[idart]==1 && (kai.kai01[idart]==2 || kai.kai01[idart]==98)">
+                    <span class="input-label"><b>KAI03. </b>Salin BB Lahir berdasarkan ingatan (1000-5000)</span>
+                    <input type="number" class="input-border" ng-model="kai.kai03[idart]" placeholder="gram" min="1000" max="5000" block block-length="4">
+                </label>
+                <!-- <label class="item item-input" ng-if="kai.kai03a[idart]==1 && (kai.kai01[idart]==2 || kai.kai01[idart]==98)">
+                    <span class="input-label"><b>KAI03aa. </b>Salin berat badan lahir berdasarkan ingatan (1000-5000)</span>
+                    <input type="number" class="input-border" ng-model="kai.kai03aa[idart]" placeholder="gram" min="1000" max="5000" block block-length="4">
+                </label> -->
+
+                <!-- PB lahir -->
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 min-left">
+                            <div class="input-label "><b>KAI04. </b>Apakah mempunyai catatan/ dokumen panjang badan lahir? (PB Lahir adalah berat badan yang diukur dalam kurun waktu 24 jam setelah dilahirkan)</div>
+                        </div>
+                        <div class="col col-50 min-right">
+                            <div class="button-bar right">
+                                <ion-radio class="radio-ya" name="kai04" ng-model="kai.kai04[idart]" ng-value="1">Ya</ion-radio>
+                                <ion-radio name="kai04" ng-model="kai.kai04[idart]" ng-value="2">Tidak</ion-radio>
+                                <ion-radio name="kai04" ng-model="kai.kai04[idart]" ng-value="98">Tidak tahu</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <div class="item item-input" ng-if="kai.kai04[idart]==1">
+                    <span class="input-label"><b>KAI05. </b>Salin dari catatan / dokumen PB Lahir (30-60)</span>
+                    <input type="number" class="input-border" ng-model="kai.kai05[idart]" placeholder="cm" min="30" max="60" block block-length="2">
+                </div>
+                <!-- <div class="item item-input" ng-if="kai.kai04[idart]==1">
+                    <span class="input-label"><b>KAI05a. </b>Bacakan dari catatan/dokumen panjang badan lahir (30-60)</span>
+                    <input type="number" class="input-border" ng-model="kai.kai05a[idart]" placeholder="cm" min="30" max="60" block block-length="2">
+                </div> -->
+                <label class="item item-text-wrap item-row" ng-if="kai.kai04[idart]==2 || kai.kai04[idart]==98">
+                    <div class="row">
+                        <div class="col col-50 min-left">
+                            <div class="input-label "><b>KAI06a. </b>Apakah ingat PB Lahir?</div>
+                        </div>
+                        <div class="col col-50 min-right">
+                            <div class="button-bar right">
+                                <ion-radio name="kai06a" ng-model="kai.kai06a[idart]" ng-value="1">Ya</ion-radio>
+                                <ion-radio name="kai06a" ng-model="kai.kai06a[idart]" ng-value="2">Tidak</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <label class="item item-input" ng-if="kai.kai06a[idart]==1 && (kai.kai04[idart]==2 || kai.kai04[idart]==98)">
+                    <span class="input-label"><b>KAI06. </b>Salin PB Lahir berdasarkan ingatan (30-60)</span>
+                    <input type="number" class="input-border" ng-model="kai.kai06[idart]" placeholder="cm" min="30" max="60" block block-length="2">
+                </label>
+                <!-- <label class="item item-input" ng-if="kai.kai06a[idart]==1 && (kai.kai04[idart]==2 || kai.kai04[idart]==98)">
+                    <span class="input-label"><b>KAI06aa. </b>Salin panjang badan lahir berdasarkan ingatan (30-60)</span>
+                    <input type="number" class="input-border" ng-model="kai.kai06aa[idart]" placeholder="cm" min="30" max="60" block block-length="2">
+                </label> -->
+
+                <!-- Lingkar kepala lahir -->
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 min-left">
+                            <div class="input-label "><b>KAI07. </b>Apakah mempunyai catatan/ dokumen lingkar kepala saat lahir? (Lingkar kepala yang diukur dalam kurun waktu 24 jam setelah dilahirkan)</div>
+                        </div>
+                        <div class="col col-50 min-right">
+                            <div class="button-bar right">
+                                <ion-radio class="radio-ya" name="kai07" ng-model="kai.kai07[idart]" ng-value="1">Ya</ion-radio>
+                                <ion-radio name="kai07" ng-model="kai.kai07[idart]" ng-value="2">Tidak</ion-radio>
+                                <ion-radio name="kai07" ng-model="kai.kai07[idart]" ng-value="98">Tidak tahu</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <div class="item item-input" ng-if="kai.kai07[idart]==1">
+                    <span class="input-label"><b>KAI08. </b>Salin dari catatan / dokumen Lingkar Kepala Lahir (10-90)</span>
+                    <input type="number" class="input-border" ng-model="kai.kai08[idart]" placeholder="cm" min="10" max="90" block block-length="2">
+                </div>
+                <!-- <div class="item item-input" ng-if="kai.kai07[idart]==1">
+                    <span class="input-label"><b>KAI08a. </b>Bacakan dari catatan/dokumen lingkar kepala lahir (10-90)</span>
+                    <input type="number" class="input-border" ng-model="kai.kai08a[idart]" placeholder="cm" min="10" max="90" block block-length="2">
+                </div> -->
+                <label class="item item-text-wrap item-row" ng-if="kai.kai07[idart]==2 || kai.kai07[idart]==98">
+                    <div class="row">
+                        <div class="col col-50 min-left">
+                            <div class="input-label "><b>KAI09a. </b>Apakah ingat Lingkar Kepala Lahir?</div>
+                        </div>
+                        <div class="col col-50 min-right">
+                            <div class="button-bar right">
+                                <ion-radio name="kai09a" ng-model="kai.kai09a[idart]" ng-value="1">Ya</ion-radio>
+                                <ion-radio name="kai09a" ng-model="kai.kai09a[idart]" ng-value="2">Tidak</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <label class="item item-input" ng-if="kai.kai09a[idart]==1 && (kai.kai07[idart]==2 || kai.kai07[idart]==98)">
+                    <span class="input-label"><b>KAI09. </b>Salin Lingkar Kepala Lahir berdasarkan ingatan (10-90)</span>
+                    <input type="number" class="input-border" ng-model="kai.kai09[idart]" placeholder="cm" min="10" max="90" block block-length="2">
+                </label>
+                <!-- <label class="item item-input" ng-if="kai.kai09a[idart]==1 && (kai.kai07[idart]==2 || kai.kai07[idart]==98)">
+                    <span class="input-label"><b>KAI09aa. </b>Salin lingkar kepala lahir berdasarkan ingatan (10-90)</span>
+                    <input type="number" class="input-border" ng-model="kai.kai09aa[idart]" placeholder="cm" min="10" max="90" block block-length="2">
+                </label> -->
+
+                <input ng-show="false" ng-if="(kai.kai02[idart] > 1 || kai.kai03[idart] > 1) || (kai.kai05[idart] > 1 || kai.kai06[idart] > 1) || (kai.kai08[idart] > 1 || kai.kai09[idart] > 1)" 
+                type="text" class="input-border" name="kai" ng-model="kai.kai[idart]">
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 min-left">
+                            <div class="input-label "><b>KAI10. </b>Usia kehamilan (dalam minggu, tidak tahu 98, jika responden menyampaikan cukup bulan isikan 37 minggu)</div>
+                        </div>
+                        <div class="col col-33">
+                            <input type="number" class="input-border" ng-model="kai.kai10[idart]" min="1" max="100" block block-length="3">
+                        </div>
+                        <div class="col">minggu
+                        </div>
+                    </div>
+                </label>
+            </div>
+        </ion-list>
+
+        <!-- KIM -->
+        <!-- Buku Catatan Kesehatan Anak -->
+        <ion-list ng-show="imunisasi">
+            <label class="item item-text-wrap item-row">
+                <input ng-show="false" type="text" class="input-border" name="kim.kim" ng-model="kim.kim">
+                <span class="input-label ">
+                    <b>KIM01. </b>Apakah di dalam KMS / Buku KIA / Buku Catatan Kesehatan Anak <span class="nama">{{nama}}</span> ada catatan imunisasi?
+                </span>
+                <div class="button-bar right">
+                    <ion-radio name="kim01" ng-model="kim.kim01[idart]" ng-value="1">Ya</ion-radio>
+                    <ion-radio name="kim01" ng-model="kim.kim01[idart]" ng-value="2">Tidak</ion-radio>
+                    <ion-radio name="kim01" ng-model="kim.kim01[idart]" ng-value="98">Tidak tahu</ion-radio>
+                </div>
+            </label>
+            <div ng-if="kim.kim01[idart] == 1">
+                <label class="item item-text-wrap">
+                    <span class="input-label full"><b>KIM02.</b> Salin dari KMS / Buku KIA / Catatan Kesehatan Anak, tanggal/bulan/tahun untuk setiap jenis imunisasi</span>
+                </label>
+                <div class="item-group">
+                    <div class="table table-bordered table-striped">
+                        <div class="row header">
+                            <div class="col col-33">
+                                Jenis Imunisasi
+                            </div>
+                            <div class="col col-50">
+                                Keterangan
+                            </div>
+                            <div class="col">
+                                Tgl Pertama Imunisasi
+                            </div>
+                        </div>
+                        <div class="row" ng-repeat="(key,val) in jenisImunisasi">
+                            <div class="col col-33"><span class="">{{key}}.</span> {{val}}</div>
+                            <div class="col col-50">
+                                <select name="kim02{{key}}" ng-model="kim['kim02' + key + '1'][idart]">
+                                    <option value="" selected></option>
+                                    <option value="1">1. Diberikan Imunisasi</option>
+                                    <option value="2">2. Tidak diberikan Imunisasi</option>
+                                    <option value="7">7. Belum waktunya diberikan karena umur anak</option>
+                                    <option value="8">8. Ditulis diberi tetapi tanggal/bulan/tahun tidak ada</option>
+                                </select>
+                            </div>
+                            <label class="col">
+                                <input type="date" min="1916-01-01" max="{{tglMaxEntry}}" ng-model="kim['kim02' + key + '2'][idart]" ng-if="kim['kim02' + key + '1'][idart] == 1">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ion-list>
+
+        <!-- List Imunisasi2 (Jenis IMUNISASI) -->
+        <ion-list ng-show="imunisasi2">
+            <span class="notifikasi"><b>KONFIRMASI</b></span>
+            <label class="item item-text-wrap">
+                <span class="input-label full"><b>KIM03. </b>Apakah <span class="nama">{{nama}}</span> pernah mendapatkan imunisasi berikut ? (Informasi berdasarkan ingatan responden)</span>
+            </label>
+            <div class="item-group">
+                <ion-item class="item-divider">Hepatitis B0
+                    <span ng-if="kim.kim02a1[idart] == 1" class="notifikasi">Imunisasi Sudah DIberikan</span>
+                    <span ng-if="kim.kim02a1[idart] != 1" class="notifikasi">Imunisasi Belum DIberikan</span>
+                </ion-item>
+                <div ng-if="kim.kim02a1[idart] != 1">
+                    <label class="item item-text-wrap">
+                        <div class="input-label full"><b>KIM03a.</b> Imunisasi Hepatitis B-0<br><span class="notifikasi">Biasanya diberikan sesaat setelah bayi lahir sampai umur 7 hari yang disuntikkan di paha bayi</span></div>
+                        <div class="button-bar right">
+                            <ion-radio name="kim03a" ng-model="kim.kim03a[idart]" ng-value="1">Ya</ion-radio>
+                            <ion-radio name="kim03a" ng-model="kim.kim03a[idart]" ng-value="2">Tidak</ion-radio>
+                            <ion-radio name="kim03a" ng-model="kim.kim03a[idart]" ng-value="98">Tidak Tahu</ion-radio>
+                        </div>
+                    </label>
+                    <label class="item item-select item-text-wrap" ng-if="kim.kim03a[idart]==1">
+                        <div class="input-label"><b>KIM03b.</b> Pada umur berapa hari <span class="nama">{{nama}}</span> diimunisasi Hepatitis B-0?</div>
+                        <select ng-model="kim.kim03b[idart]">
+                            <option value="" selected></option>
+                            <option value="1">1. 0-24 jam</option>
+                            <option value="2">2. 24 jam - 7 hari</option>
+                            <option value="98">98. Tidak tahu</option>
+                        </select>
+                    </label>
+                </div>
+            </div>
+            <div class="item-group">
+                <ion-item class="item-divider">BCG
+                    <span ng-if="kim.kim02b1[idart] == 1" class="notifikasi">Imunisasi Sudah DIberikan</span>
+                    <span ng-if="kim.kim02b1[idart] != 1" class="notifikasi">Imunisasi Belum DIberikan</span>
+                </ion-item>
+                <div ng-if="kim.kim02b1[idart] != 1">
+                    <label class="item item-text-wrap">
+                        <div class="input-label full"><b>KIM03c.</b> Imunisasi BCG<br><span class="notifikasi">Biasanya mulai diberikan umur 1 bulan dan disuntikkan di lengan (kanan) atas serta dapat meninggalkan bekas (scar) dibawah kulit</span></div>
+                        <div class="button-bar right">
+                            <ion-radio name="kim03c" ng-model="kim.kim03c[idart]" ng-value="1">Ya</ion-radio>
+                            <ion-radio name="kim03c" ng-model="kim.kim03c[idart]" ng-value="2">Tidak</ion-radio>
+                            <ion-radio name="kim03c" ng-model="kim.kim03c[idart]" ng-value="98">Tidak Tahu</ion-radio>
+                        </div>
+                    </label>
+                    <label class="item item-select item-text-wrap" ng-if="kim.kim03c[idart]==1">
+                        <div class="input-label"><b>KIM03d.</b> Pada umur berapa hari <span class="nama">{{nama}}</span> diimunisasi BCG?</div>
+                        <select ng-model="kim.kim03d[idart]">
+                            <option value="" selected></option>
+                            <option value="1">1. 0-29 hari</option>
+                            <option value="2">2. &gt; = 1 bulan</option>
+                            <option value="98">98. Tidak tahu</option>
+                        </select>
+                    </label>
+                </div>
+            </div>
+            <div class="item-group">
+                <ion-item class="item-divider">Polio (OPV/Oral)
+                    <span ng-if="(kim.kim02f1[idart] == 1) && (kim.kim02g1[idart] == 1) && (kim.kim02h1[idart] == 1) && (kim.kim02i1[idart] == 1)" class="notifikasi">Imunisasi Sudah DIberikan</span>
+                    <span ng-if="(kim.kim02f1[idart] != 1) || (kim.kim02g1[idart] != 1) || (kim.kim02h1[idart] != 1) || (kim.kim02i1[idart] != 1)" class="notifikasi">Imunisasi Belum DIberikan</span>
+                </ion-item>
+                <div ng-if="(kim.kim02f1[idart] != 1) || (kim.kim02g1[idart] != 1) || (kim.kim02h1[idart] != 1) || (kim.kim02i1[idart] != 1)">
+                    <label class="item item-select item-text-wrap">
+                        <div class="input-label"><b>KIM03e.</b> Imunisasi Polio<br><span class="notifikasi">Cairan merah muda atau kekuningan yang biasanya mulai diberikan pada umur 1 bulan dan diteteskan di mulut</span></div>
+                        <select ng-model="kim.kim03e[idart]">
+                            <option value="" selected></option>
+                            <option value="1">1. Ya</option>
+                            <option value="2">2. Tidak</option>
+                            <option value="7">7. Belum Waktunya (umur &lt; 2 bulan)</option>
+                            <option value="98">98. Tidak tahu</option>
+                        </select>
+                    </label>
+                    <label class="item item-input item-text-wrap" ng-if="kim.kim03e[idart]==1">
+                        <div class="input-label"><b>KIM03f.</b> Pada umur berapa bulan <span class="nama">{{nama}}</span> diimunisasi Polio OPV? (jika tidak tahu isikan 98)</div>
+                        <input placeholder="bulan" type="number" class="input-border" ng-model="kim.kim03f[idart]" block block-length="2"/>
+                    </label>
+                    <label class="item item-input item-text-wrap" ng-if="kim.kim03e[idart]==1">
+                        <div class="input-label"><b>KIM03g.</b> Berapa kali <span class="nama">{{nama}}</span> diimunisasi Polio OPV?</div>
+                        <input type="number" class="input-border" ng-model="kim.kim03g[idart]" block block-length="2">
+                    </label>
+                </div>
+            </div>
+            <div class="item-group">
+                <ion-item class="item-divider">Polio (Suntik)
+                    <span ng-if="(kim.kim02k1[idart] == 1) && (kim.kim02l1[idart] == 1) && (kim.kim02m1[idart] == 1) && (kim.kim02n1[idart] == 1)" class="notifikasi">Imunisasi Sudah DIberikan</span>
+                    <span ng-if="(kim.kim02k1[idart] != 1) || (kim.kim02l1[idart] != 1) || (kim.kim02m1[idart] != 1) || (kim.kim02n1[idart] != 1)" class="notifikasi">Imunisasi Belum DIberikan</span>
+                </ion-item>
+                <div ng-if="(kim.kim02k1[idart] != 1) || (kim.kim02l1[idart] != 1) || (kim.kim02m1[idart] != 1) || (kim.kim02n1[idart] != 1)">
+                    <label class="item item-select item-text-wrap">
+                        <div class="input-label"><b>KIM03ea.</b> Imunisasi Polio (IPV)<br><span class="notifikasi">Biasanya mulai diberikan pada umur 2 bulan dan disuntikan di paha kanan, dan bersamaan dengan suntik DPT di paha kiri</span> </div>
+                        <select ng-model="kim.kim03ea[idart]">
+                            <option value="" selected></option>
+                            <option value="1">1. Ya</option>
+                            <option value="2">2. Tidak</option>
+                            <option value="7">7. Belum Waktunya (umur &lt; 2 bulan)</option>
+                            <option value="98">98. Tidak tahu</option>
+                        </select>
+                    </label>
+                    <label class="item item-input item-text-wrap" ng-if="kim.kim03ea[idart]==1">
+                        <div class="input-label"><b>KIM03fa.</b> Pada umur berapa bulan <span class="nama">{{nama}}</span> diimunisasi Polio suntik? (jika tidak tahu isikan 98)</div>
+                        <input placeholder="bulan" type="number" class="input-border" ng-model="kim.kim03fa[idart]" block block-length="2"/>
+                    </label>
+                    <label class="item item-input item-text-wrap" ng-if="kim.kim03ea[idart]==1">
+                        <div class="input-label"><b>KIM03ga.</b> Berapa kali <span class="nama">{{nama}}</span> diimunisasi Polio suntik?</div>
+                        <input type="number" class="input-border" ng-model="kim.kim03ga[idart]" block block-length="2">
+                    </label>
+                </div>
+            </div>
+            <div class="item-group">
+                <ion-item class="item-divider">DPT-HB Combo
+                    <span ng-if="(kim.kim02c1[idart] == 1) && (kim.kim02d1[idart] == 1) && (kim.kim02e1[idart] == 1)" class="notifikasi">Imunisasi Sudah DIberikan</span>
+                    <span ng-if="(kim.kim02c1[idart] != 1) || (kim.kim02d1[idart] != 1) || (kim.kim02e1[idart] != 1)" class="notifikasi">Imunisasi Belum DIberikan</span>
+                </ion-item>
+                <div ng-if="(kim.kim02c1[idart] != 1) || (kim.kim02d1[idart] != 1) || (kim.kim02e1[idart] != 1)">
+                    <label class="item item-select item-text-wrap">
+                        <div class="input-label"><b>KIM03h.</b> Imunisasi DPT-HB HIB (Diphteri Pertusis Tetanus-Hepatitis B Combo / DPT-HB HIB)<br><span class="notifikasi">Biasanya disuntikkan di paha, dan biasanya mulai diberikan pada saat anak berusia 2 bulan bersama dengan Polio 2</span></div>
+                        <select ng-model="kim.kim03h[idart]">
+                            <option value="" selected></option>
+                            <option value="1">1. Ya</option>
+                            <option value="2">2. Tidak</option>
+                            <option value="7">7. Belum Waktunya (umur &lt; 2 bulan)</option>
+                            <option value="98">98. Tidak tahu</option>
+                        </select>
+                    </label>
+                    <label class="item item-input item-text-wrap" ng-if="kim.kim03h[idart]==1">
+                        <div class="input-label"><b>KIM03i.</b> Pada umur berapa bulan <span class="nama">{{nama}}</span> diimunisasi DPT-HB Combo? (jika tidak tahu isikan 98)</div>
+                        <input type="number" class="input-border" ng-model="kim.kim03i[idart]" block block-length="2">
+                    </label>
+                    <label class="item item-input item-text-wrap" ng-if="kim.kim03h[idart]==1">
+                        <div class="input-label"><b>KIM03j.</b> Berapa kali <span class="nama">{{nama}}</span> diimunisasi DPT-HB Combo / DPT-HB HIB? (jika tidak tahu isikan 98)</div>
+                        <input type="number" class="input-border" ng-model="kim.kim03j[idart]" block block-length="2">
+                    </label>
+                </div>
+            </div>
+            <div class="item-group">
+                <ion-item class="item-divider">Campak
+                    <span ng-if="(kim.kim02j1[idart] == 1)" class="notifikasi">Imunisasi Sudah DIberikan</span>
+                    <span ng-if="(kim.kim02j1[idart] != 1)" class="notifikasi">Imunisasi Belum DIberikan</span>
+                </ion-item>
+                <div ng-if="(kim.kim02j1[idart] != 1)">
+                    <label class="item item-select item-text-wrap">
+                        <div class="input-label"><b>KIM03k.</b> Imunisasi campak/MR<br><span class="notifikasi">Biasanya mulai diberikan umur 9 bulan dan disuntikkan dipaha atau lengan kiri atas serta diberikan satu kali?</span></div>
+                        <select ng-model="kim.kim03k[idart]">
+                            <option value="" selected></option>
+                            <option value="1">1. Ya</option>
+                            <option value="2">2. Tidak</option>
+                            <option value="7">7. Belum Waktunya (umur &lt; 9 bulan)</option>
+                            <option value="98">98. Tidak tahu</option>
+                        </select>
+                    </label>
+                    <label class="item item-input item-text-wrap" ng-if="kim.kim03k[idart]==1">
+                        <div class="input-label"><b>KIM03l.</b> Pada umur berapa hari <span class="nama">{{nama}}</span> diimunisasi campak/MR ? (jika tidak tahu isikan 98)</div>
+                        <input type="number" class="input-border" ng-model="kim.kim03l[idart]" block block-length="2">
+                    </label>
+                    <label class="item item-input item-text-wrap" ng-if="kim.kim03k[idart]==1">
+                        <div class="input-label"><b>KIM03m.</b> Berapa kali <span class="nama">{{nama}}</span> diimunisasi campak/MR ? (jika tidak tahu isikan 98)</div>
+                        <input type="number" class="input-border" ng-model="kim.kim03m[idart]" block block-length="2">
+                    </label>
+                </div>
+            </div>
+        </ion-list>
+        <!--End Of List Imunisasi2 (Jenis IMUNISASI)-->
+
+        <!--List Imunisasi3-->
+        <ion-list ng-show="imunisasi3">
+            <ion-item class="item-divider">Isikan jumlah imunisasi yang diterima berdasarkan KIM02 dan KIM03</ion-item>
+            <label class="item item-input">
+                <div class="input-label"><b>BCG</b></div>
+                <input type="number" class="input-border" ng-model="kim.jumlahkim01[idart]" numbers-allowed="0,1,98"/>
+            </label>
+            <label class="item item-input">
+                <div class="input-label"><b>POLIO</b></div>
+                <input type="number" class="input-border" ng-model="kim.jumlahkim02[idart]" numbers-allowed="0-4,98"/>
+            </label>
+            <label class="item item-input">
+                <div class="input-label"><b>DPT-HB</b></div>
+                <input type="number" class="input-border" ng-model="kim.jumlahkim03[idart]" numbers-allowed="0-3,98"/>
+            </label>
+            <label class="item item-input">
+                <div class="input-label"><b>CAMPAK</b></div>
+                <input type="number" class="input-border" ng-model="kim.jumlahkim04[idart]" numbers-allowed="0,1,98"/>
+            </label>
+        </ion-list>
+        <!--End Of List Imunisasi3-->
+
+        <ion-list ng-show="imunisasi4">
+            <div class="item item-text-wrap">
+                <span> <b>KIM010.</b> Apakah menurut responden, imunisasi dasar <span class="nama">{{nama}}</span>
+                    sudah lengkap? </span>
+                <div class="invalid-val"><span>Imunisasi dasar diberikan sampai anak berusia 1 tahun</span></div>
+                <div class="button-bar right">
+                    <ion-radio name="kim10" ng-model="kim.kim10[idart]" ng-value="1">Ya</ion-radio>
+                    <ion-radio name="kim10" ng-model="kim.kim10[idart]" ng-value="2">Tidak</ion-radio>
+                    <ion-radio name="kim10" ng-model="kim.kim10[idart]" ng-value="98">Tidak tahu</ion-radio>
+                </div>
+            </div>
+            <label class="item item-select item-text-wrap" ng-if="kim.kim10[idart] == 2 || kim.kim10[idart] == 98">
+                <div class="input-label"><b>KIM04.</b> Apa alasan utama <span class="nama">{{nama}}</span> tidak mendapat imunisasi lengkap?</div>
+                <select ng-model="kim.kim04[idart]" class="input-border">
+                    <option value=""></option>
+                    <option value="1">1. Takut anak menjadi panas</option>
+                    <option value="2">2. Anak sering sakit</option>
+                    <option value="3">3. Vaksin tidak tersedia</option>
+                    <option value="4">4. Petugas tidak datang</option>
+                    <option value="5">5. Tempat imunisasi jauh</option>
+                    <option value="6">6. Sibuk / repot</option>
+                    <option value="7">7. Belum waktunya lengkap</option>
+                    <option value="8">8. Issue haram</option>
+                    <option value="9">9. Bukan program pemerintah daerah</option>
+                    <option value="10">10. Keluarga tidak mengizinkan</option>
+                    <option value="95">95. Lainnya</option>
+                    <option value="98">98. Tidak Tahu</option>
+                </select>
+            </label>
+            <label class="item item-text-wrap item-row" ng-if="kim.kim04[idart] == 95">
+                <div class="row">
+                    <div class="col col-50 col-center input-label"><b>KIM04l.</b> lainnya sebutkan</div>
+                    <div class="col col-50 col-center">
+                        <input type="text" ng-model="kim.kim04l[idart]" placeholder="Lainnya, sebutkan..." class="pull-right input-border">
+                    </div>
+                </div>
+            </label>
+            
+            <div class="item item-text-wrap item-row">
+                <span>
+                    <b>KIM05.</b> Apakah setelah mendapat imunisasi <span class="nama">{{nama}}</span>
+                    pernah mengalami keluhan Kejadian Ikutan Pasca Imunisasi (KIPI) non serius
+                    seperti berikut (boleh lebih dari satu)
+                </span>
+                <div class="button-bar right">
+                    <ion-radio name="kim05" ng-model="kim.kim05[idart]" ng-value="1">Ya</ion-radio>
+                    <ion-radio name="kim05" ng-model="kim.kim05[idart]" ng-value="2">Tidak</ion-radio>
+                    <ion-radio name="kim05" ng-model="kim.kim05[idart]" ng-value="98">Tidak tahu</ion-radio>
+                </div>
+            </div>
+            <div ng-if="kim.kim05[idart] == 1">
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 min-left">
+                            <div class="input-label ">1. Demam ringan</div>
+                        </div>
+                        <div class="col col-50 min-right">
+                            <div class="button-bar right">
+                                <ion-radio name="kim0501" ng-model="kim.kim0501[idart]" ng-value="1">Ya</ion-radio>
+                                <ion-radio name="kim0501" ng-model="kim.kim0501[idart]" ng-value="2">Tidak</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 min-left">
+                            <div class="input-label ">2. Demam tinggi</div>
+                        </div>
+                        <div class="col col-50 min-right">
+                            <div class="button-bar right">
+                                <ion-radio name="kim0502" ng-model="kim.kim0502[idart]" ng-value="1">Ya</ion-radio>
+                                <ion-radio name="kim0502" ng-model="kim.kim0502[idart]" ng-value="2">Tidak</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 min-left">
+                            <div class="input-label ">3. Bengkak</div>
+                        </div>
+                        <div class="col col-50 min-right">
+                            <div class="button-bar right">
+                                <ion-radio name="kim0503" ng-model="kim.kim0503[idart]" ng-value="1">Ya</ion-radio>
+                                <ion-radio name="kim0503" ng-model="kim.kim0503[idart]" ng-value="2">Tidak</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 min-left">
+                            <div class="input-label ">4. Kemerahan</div>
+                        </div>
+                        <div class="col col-50 min-right">
+                            <div class="button-bar right">
+                                <ion-radio name="kim0504" ng-model="kim.kim0504[idart]" ng-value="1">Ya</ion-radio>
+                                <ion-radio name="kim0504" ng-model="kim.kim0504[idart]" ng-value="2">Tidak</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 min-left">
+                            <div class="input-label ">5. Bernanah</div>
+                        </div>
+                        <div class="col col-50 min-right">
+                            <div class="button-bar right">
+                                <ion-radio name="kim0505" ng-model="kim.kim0505[idart]" ng-value="1">Ya</ion-radio>
+                                <ion-radio name="kim0505" ng-model="kim.kim0505[idart]" ng-value="2">Tidak</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 min-left">
+                            <div class="input-label ">6. Alergi</div>
+                        </div>
+                        <div class="col col-50 min-right">
+                            <div class="button-bar right">
+                                <ion-radio name="kim0506" ng-model="kim.kim0506[idart]" ng-value="1">Ya</ion-radio>
+                                <ion-radio name="kim0506" ng-model="kim.kim0506[idart]" ng-value="2">Tidak</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 min-left">
+                            <div class="input-label ">95. Lainnya</div>
+                        </div>
+                        <div class="col col-50 min-right">
+                            <div class="button-bar right">
+                                <ion-radio name="kim0595" ng-model="kim.kim0595[idart]" ng-value="1">Ya</ion-radio>
+                                <ion-radio name="kim0595" ng-model="kim.kim0595[idart]" ng-value="2">Tidak</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <label class="item item-text-wrap item-row" ng-if="kim.kim0595[idart] == 1">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label">Lainnya</div>
+                        <div class="col col-50 col-center" >
+                            <input type="text" ng-model="kim.kim0595l[idart]" placeholder="Lainnya, sebutkan..." class="pull-right input-border">
+                        </div>
+                    </div>
+                </label>
+            </div>
+            <div class="item item-text-wrap item-row">
+                <span>
+                    <b>KIM11.</b> Apakah setelah mendapat imunisasi <span class="nama">{{nama}}</span>
+                    pernah mengalami keluhan Kejadian Ikutan Pasca Imunisasi (KIPI) sampai dirawat di rumah sakit terkait dengan imunisasinya?
+                </span>
+                <div class="button-bar right">
+                    <ion-radio name="kim11" ng-model="kim.kim11[idart]" ng-value="1">Ya</ion-radio>
+                    <ion-radio name="kim11" ng-model="kim.kim11[idart]" ng-value="2">Tidak</ion-radio>
+                    <ion-radio name="kim11" ng-model="kim.kim11[idart]" ng-value="98">Tidak tahu</ion-radio>
+                </div>
+            </div>
+            <input ng-show="false" ng-if="kim.kim10[idart]" type="text" class="input-border" name="kim" ng-model="kim.kim[idart]">
+        </ion-list>
+        <!--End Of List Imunisasi4-->
+
+        <!--Imunisasi5-->
+        <ion-list ng-show="imunisasi5">
+            <label class="item item-text-wrap">
+                    <span class="input-label full"><b>KIM06.</b> Apakah dalam 6 Bulan terakhir <span class="nama">{{nama}}</span> ditimbang ?</span>
+                    <div class="button-bar right">
+                        <ion-radio name="kim06" ng-model="kim.kim06[idart]" ng-value="1">Ya</ion-radio>
+                        <ion-radio name="kim06" ng-model="kim.kim06[idart]" ng-value="2">Tidak</ion-radio>
+                        <ion-radio name="kim06" ng-model="kim.kim06[idart]" ng-value="98">Tidak Tahu</ion-radio>
+                    </div>
+            </label>
+
+            <!-- <label class="item item-input input-text-wrap" ng-if="kim.kim06[idart] == 1">
+                <div class="input-label"><b>KIM07.</b> Dalam 6 bulan terakhir, berapa kali <span class="nama">{{nama}}</span> ditimbang ?</div>
+                <input type="number" class="input-border" ng-model="kim.kim07[idart]" min="1" max="200" block block-length="2">
+            </label> -->
+
+            <label class="item item-text-wrap item-row" ng-if="kim.kim06[idart] == 1">
+                <div class="row">
+                    <div class="col col-50 col-center input-label"><b>KIM07.</b> Dalam 6 bulan terakhir, berapa kali <span class="nama">{{nama}}</span> ditimbang ?</div>
+                    <div class="col col-50 col-center" >
+                        <input type="number" class="input-border pull-right" ng-model="kim.kim07[idart]" min="1" max="200" block block-length="2">
+                    </div>
+                </div>
+            </label>
+
+            <label class="item item-select item-text-wrap" ng-if="kim.kim06[idart] == 2 || kim.kim06[idart] == 98">
+            <div class="input-label"><b>KIM08.</b> Apakah alasan utama mengapa dalam 6 bulan terakhir <span class="nama">{{nama}}</span> tidak pernah ditimbang ?</div>
+                <select ng-model="kim.kim08[idart]">
+                    <option value="1">1. Anak sudah besar (&gt;1 tahun)</option>
+                    <option value="2">2. Anak sudah selesai imunisasi</option>
+                    <option value="3">3. Anak tidak mau ditimbang</option>
+                    <option value="4">4. Bosan jika hanya ditimbang</option>
+                    <option value="5">5. Lupa / tidak tahu jadwalnya</option>
+                    <option value="6">6. Tidak ada tempat penimbangan</option>
+                    <option value="7">7. Tempatnya jauh</option>
+                    <option value="8">8. Sibuk / repot</option>
+                    <option value="9">9. Malas</option>
+                    <option value="95">95. Lainnya, sebutkan</option>
+                    <option value="98">98. Tidak tahu</option>
+                </select>
+            </label>
+            <label class="item item-input item-text-wrap" ng-if="kim.kim08[idart] == 95">
+                <span class="input-label">KIM08l. <b></b>Isikan lainnya</span>
+                <input type="text" class="input-border" ng-model="kim.kim08l[idart]" placeholder="Lainnya, sebutkan...">
+            </label>
+        </ion-list>
+        <!--End Of List Imunisasi5-->
+
+        <ion-list ng-show="imunisasi6">
+            <label class="item item-select item-text-wrap">
+            <div class="input-label"><b>KIM09.</b> Apakah dalam 6 bulan terakhir, <span class="nama">{{nama}}</span> pernah mendapatkan kapsul vitamin A ? (GUNAKAN KARTU PERAGA)</div>
+                <select ng-model="kim.kim09[idart]">
+                    <option value="" selected></option>
+                    <option value="1">1. Ya</option>
+                    <option value="2">2. Tidak</option>
+                    <option value="7">7. Belum Waktunya (umur &lt; 6 Bulan)</option>
+                    <option value="98">98. Tidak tahu</option>
+                </select>
+            </label>
+            <!-- <label class="item item-text-wrap" ng-if="kim.kim09[idart]">
+                <span class="input-label">Apakah ART Berusia 0-23 Bulan ?</span>
+                <div class="button-bar right">
+                    <ion-radio name="kim09next" ng-model="kim.kim09next[idart]" ng-value="1">Ya</ion-radio>
+                    <ion-radio name="kim09next" ng-model="kim.kim09next[idart]" ng-value="2">Tidak</ion-radio>
+                </div>
+            </label> -->
+        </ion-list>
+        <!--End Of List Imunisasi6-->
+
+        <ion-list ng-show="imunisasi7">
+            <label class="item item-select item-text-wrap">
+                <div class="input-label"><b>KIM12.</b> Apakah anak <span class="nama">{{nama}}</span> diberikan vaksin Non-Program<br>
+                    <span class="notifikasi">Contoh vaksin Non-Program: Pnemococcus, Rotavirus, Influenza, Typhoid, Hepatitis A, dan Varicella.</span>
+                    <span class="notifikasi">Biasanya Vaksin Non-Program tidak ditanggung biayanya oleh pemerintah/membayar sendiri.</span>
+                </div>
+                <select ng-model="kim.kim12[idart]">
+                    <option value="" selected></option>
+                    <option value="1">1. Ya</option>
+                    <option value="2">2. Tidak</option>
+                </select>
+            </label>
+            <label class="item item-select item-text-wrap">
+                <div class="input-label"><b>KIM13.</b> Apakah di dalam KMS / buku KIA / buku catatan kesehatan anak <span class="nama">{{nama}}</span> ada catatan imunisasi non program?</div>
+                <select ng-model="kim.kim13[idart]">
+                    <option value="" selected></option>
+                    <option value="1">1. Ya</option>
+                    <option value="2">2. Tidak</option>
+                </select>
+            </label>
+            <div ng-if="kim.kim13[idart] == 1">
+                <label class="item item-text-wrap">
+                    <span class="input-label full"><b>KIM14.</b> Salin dari KMS / Buku KIA / Catatan Kesehatan Anak, tanggal/bulan/tahun untuk setiap jenis imunisasi</span>
+                </label>
+                <div class="item-group">
+                    <div class="table table-bordered table-striped">
+                        <div class="row header">
+                            <div class="col col-25">
+                                Jenis Imunisasi
+                            </div>
+                            <div class="col col-25">
+                                Keterangan
+                            </div>
+                            <div class="col col-10">
+                                Berapa kali diberikan
+                            </div>
+                            <div class="col col-25">
+                                Tgl pertama diberikan
+                            </div>
+                            <div class="col col-10">
+                                Umur pertama diberikan
+                            </div>
+                        </div>
+                        <div class="row" ng-repeat="(key,val) in jenisImunisasi2">
+                            <div class="col col-25"><span class="">{{key}}.</span> {{val}}</div>
+                            <div class="col col-25"> <!-- keterangan -->
+                                <select name="kim14{{key}}" ng-model="kim['kim14' + key + '1'][idart]">
+                                    <option value="" selected></option>
+                                    <option value="1">1. Diberikan Imunisasi</option>
+                                    <option value="2">2. Tidak diberikan Imunisasi</option>
+                                    <!-- <option value="7">7. Belum waktunya diberikan karena umur anak</option> -->
+                                    <option value="8">8. Ditulis diberi tetapi tanggal/bulan/tahun tidak ada</option>
+                                </select>
+                            </div>
+                            <div class="col col-10"> <!-- Berapa kali diberikan -->
+                                <input type="number" class="input-border" ng-model="kim['kim14' + key + '2'][idart]" ng-if="kim['kim14' + key + '1'][idart] == 1" block block-length="2"/>
+                            </div>
+                            <label class="col col-25"> <!-- Waktu imunisasi -->
+                                <input type="date" min="1916-01-01" max="{{tglMaxEntry}}" ng-model="kim['kim14' + key + '3'][idart]" ng-if="kim['kim14' + key + '1'][idart] == 1">
+                            </label>
+                            <div class="col col-10"> <!-- Umur pertama diberikan -->
+                                <input type="number" class="input-border" ng-model="kim['kim14' + key + '4'][idart]" ng-if="kim['kim14' + key + '1'][idart] == 1" block block-length="2" placeholder="bulan" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ion-list>
+        <!--End Of List Imunisasi7-->
+
+        <!--ASM-->
+        <ion-list ng-show="asi && umur < 2">
+            <label class="item item-text-wrap">
+                <span class="input-label full"><b>ASM10.</b> Apakah sesaat setelah <span class="nama">{{nama}}</span> lahir, diletakkan di dada/perut ibu dengan kulit ibu melekat pada kulit bayi?</span>
+                <div class="button-bar right">
+                    <ion-radio name="asm10" ng-model="asm.asm10[idart]" ng-value="1">Ya</ion-radio>
+                    <ion-radio name="asm10" ng-model="asm.asm10[idart]" ng-value="2">Tidak</ion-radio>
+                </div>
+            </label>
+            <label class="item item-text-wrap item-row" ng-if="asm.asm10[idart] == 1">
+                <div class="row" >
+                    <div class="col col-50">
+                        <span class="input-label"><b>ASM11.</b> Mulai berapa menit <span class="nama">{{nama}}</span> diletakkan di dada/perut ibu setelah dilahirkan?</span>
+                    </div>
+                    <div class="col col-50">
+                        <input type="number" class="input-border" ng-model="asm.asm11[idart]" block block-length="3" min="0" max="200" class="pull-right">
+                    </div>
+                </div>
+            </label>
+            <label class="item item-select item-text-wrap" ng-if="asm.asm10[idart] == 1">
+                <span class="input-label"><b>ASM12.</b> Berapa lama proses pelekatan bayi <span class="nama">{{nama}}</span> pada dada/perut ibu setelah dilahirkan?</span>
+                <select ng-model="asm.asm12[idart]">
+                    <option value="1">&lt; 1 jam</option>
+                    <option value="2">&ge; 1 jam</option>
+                </select>   
+            </label>
+            <label class="item item-text-wrap">
+                <span class="input-label full"><b>ASM01.</b> Apakah <span class="nama">{{nama}}</span> pernah disusui atau diberi ASI oleh ibu kandungnya?</span>
+                <div class="button-bar right">
+                    <ion-radio name="asm01" ng-model="asm.asm01[idart]" ng-value="1">Ya</ion-radio>
+                    <ion-radio name="asm01" ng-model="asm.asm01[idart]" ng-value="2">Tidak</ion-radio>
+                    <ion-radio name="asm01" ng-model="asm.asm01[idart]" ng-value="98">Tidak Tahu</ion-radio>
+                </div>
+            </label>
+            <label class="item item-select item-text-wrap" ng-if="asm.asm01[idart] == 2 || asm.asm01[idart] == 98">
+                <span class="input-label full"><b>ASM13.</b> Jika belum/tidak pernah, apa alasan utama <span class="nama">{{nama}}</span> belum/tidak pernah disusui?</span>
+                <select ng-model="asm.asm13[idart]">
+                    <option value="1">1. ASI belum keluar</option>
+                    <option value="2">2. Anak sakit</option>
+                    <option value="3">3. Anak tidak bisa menyusui</option>
+                    <option value="4">4. Ibu sakit/meninggal</option>
+                    <option value="5">5. Rawat pisah</option>
+                    <option value="95">95. Lainnya</option>
+                </select>
+            </label>
+            <label class="item item-input item-text-wrap" ng-if="(asm.asm01[idart] == 2 || asm.asm01[idart] == 98) && asm.asm13[idart] == 95">
+                <span class="input-label"><b>ASM13a.</b> Isikan lainnya</span>
+                <input type="text" class="input-border" ng-model="asm.asm13a[idart]" placeholder="Lainnya, sebutkan...">
+            </label>
+
+            <!-- jika bayi pernah disusui -->
+            <div ng-if="asm.asm01[idart] == 1">
+                <label class="item item-select item-text-wrap" ng-if="asm.asm01[idart] == 1">
+                    <span class="input-label"><b>ASM14.</b> Kapan ibu mulai melakukan proses menyusui untuk yang pertama kali setelah <span class="nama">{{nama}}</span> dilahirkan?</span>
+                    <select ng-model="asm.asm14[idart]">
+                        <option value="1">&lt; 1 jam</option>
+                        <option value="2">1 jam sampai &lt; 24 jam</option>
+                        <option value="3">24 jam atau lebih</option>>
+                    </select>
+                </label>
+                <label class="item item-input item-text-wrap" ng-if="asm.asm14[idart] == 2">
+                    <div class="input-label"><b>ASM14b</b> Berapa jam?</div>
+                    <input type="number" class="input-border" ng-model="asm.asm14b[idart]" block block-length="2" min="1" max="23" />
+                </label>
+                <label class="item item-input item-text-wrap" ng-if="asm.asm14[idart] == 3">
+                    <div class="input-label"><b>ASM14c</b> Berapa hari?</div>
+                    <input type="number" class="input-border" ng-model="asm.asm14c[idart]" block block-length="2" min="1" max="99"/>
+                </label>
+                <label class="item item-select item-text-wrap">
+                    <span class="input-label"><b>ASM15.</b> Apa yang dilakukan ibu terhadap air susu yang pertama kali keluar (biasanya encer, bening, dan atau berwarna kekuningan/kolostrum)?</span>
+                    <select ng-model="asm.asm15[idart]">
+                        <option value="1">1. Diberikan semua kepada bayi</option>
+                        <option value="2">2. Dibuang sebagian</option>
+                        <option value="3">3. Dibuang semua</option>
+                        <option value="98">98. Tidak tahu</option>
+                    </select>
+                </label>
+                <label class="item item-text-wrap">
+                    <span class="input-label full"><b>ASM02.</b> Apakah sebelum disusui pertama kali atau sebelum ASI keluar / lancar, <span class="nama">{{nama}}</span> pernah diberi minuman (cairan) atau makanan selain ASI ?</span>
+                    <div class="button-bar right">
+                        <ion-radio name="asm02" ng-model="asm.asm02[idart]" ng-value="1">Ya</ion-radio>
+                        <ion-radio name="asm02" ng-model="asm.asm02[idart]" ng-value="2">Tidak</ion-radio>
+                        <ion-radio name="asm02" ng-model="asm.asm02[idart]" ng-value="98">Tidak Tahu</ion-radio>
+                    </div>
+                </label>
+                <label class="item item-text-wrap" ng-if="asm.asm02[idart] == 1">
+                    <span class="input-label full"><b>ASM03.</b> Apa jenis makanan / minuman yang pernah diberikan kepada <span class="nama">{{nama}}</span> sebelum mulai disusui atau sebelum ASI keluar / lancar ? (boleh lebih dari 1)</span>
+                        <!-- <ion-checkbox name="asm03{{key}}" ng-model="asm['asm03'+ key][idart]" ng-repeat= "(key, val) in asm03Item">{{key}} . {{val}}</ion-checkbox> -->
+                    <label class="item item-text-wrap item-row" ng-repeat= "(key, val) in asm03Item">
+                        <div class="row" >
+                            <div class="col col-50">
+                                <div class="input-label "><b>{{key}}. </b>{{val}}</div>
+                            </div>
+                            <div class="col col-50">
+                                <div class="button-bar right">
+                                    <ion-radio name="asm03{{key}}" ng-model="asm['asm03'+ key][idart]" ng-value="1">Ya</ion-radio>
+                                    <ion-radio name="asm03{{key}}" ng-model="asm['asm03'+ key][idart]" ng-value="2">Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                </label>
+                <label class="item item-input item-text-wrap" ng-if="asm.asm03m[idart] == 1">
+                    <span class="input-label"><b>ASM03lain.</b> Isikan lainnya</span>
+                    <input type="text" class="input-border" ng-model="asm.asm03lain[idart]" placeholder="Lainnya, sebutkan...">
+                </label>
+                <label class="item item-text-wrap">
+                    <span class="input-label"><b>ASM04.</b> Apakah saat ini <span class="nama">{{nama}}</span> masih disusui?</span>
+                    <div class="button-bar right">
+                        <ion-radio name="asm04" ng-model="asm.asm04[idart]" ng-value="1">Ya</ion-radio>
+                        <ion-radio name="asm04" ng-model="asm.asm04[idart]" ng-value="2">Tidak</ion-radio>
+                        <ion-radio name="asm04" ng-model="asm.asm04[idart]" ng-value="98">Tidak tahu</ion-radio>
+                    </div>
+                </label>
+                <label class="item item-input item-text-wrap" ng-if="asm.asm04[idart] == 2 || asm.asm04[idart] == 98">
+                    <div class="input-label"><b>ASM05</b> Pada umur berapa bulan <span class="nama">{{nama}}</span> disapih / mulai tidak disusui lagi? (bila tidak tahu isikan 98; bila sudah disapih < 1 bulan, isikan 0)</div>
+                    <input type="number" class="input-border" ng-model="asm.asm05[idart]" block block-length="2" min="0" />
+                </label>
+                <label class="item item-text-wrap">
+                    <span class="input-label"><b>ASM06.</b> Apakah dalam 24 jam terakhir <span class="nama">{{nama}}</span> hanya mendapatkan air susu ibu (ASI) saja?</span>
+                    <div class="button-bar right">
+                        <ion-radio name="asm06" ng-model="asm.asm06[idart]" ng-value="1">Ya</ion-radio>
+                        <ion-radio name="asm06" ng-model="asm.asm06[idart]" ng-value="2">Tidak</ion-radio>
+                        <ion-radio name="asm06" ng-model="asm.asm06[idart]" ng-value="98">Tidak tahu</ion-radio>
+                    </div>
+                </label>
+            </div>
+            <!-- End of jika bayi pernah disusui -->
+            <label class="item item-text-wrap">
+                <span class="input-label"><b>ASM16.</b> Apakah sejak lahir sampai dengan sebelum 24 jam terakhir <span class="nama">{{nama}}</span> pernah diberi minuman (cairan) dan/ atau makanan?</span>
+                <div class="button-bar right">
+                    <ion-radio name="asm16" ng-model="asm.asm16[idart]" ng-value="1">Ya</ion-radio>
+                    <ion-radio name="asm16" ng-model="asm.asm16[idart]" ng-value="2">Tidak</ion-radio>
+                    <ion-radio name="asm16" ng-model="asm.asm16[idart]" ng-value="98">Tidak tahu</ion-radio>
+                </div>
+            </label>
+            <label class="item item-text-wrap">
+                <span class="input-label">
+                    <b>ASM09.</b> Apakah <span class="nama">{{nama}}</span> pernah menggunakan botol/dot/kempengan sebelum usia 6 bulan?</span>
+                <div class="button-bar right">
+                    <ion-radio name="asm09" ng-model="asm.asm09[idart]" ng-value="1">Ya</ion-radio>
+                    <ion-radio name="asm09" ng-model="asm.asm09[idart]" ng-value="2">Tidak</ion-radio>
+                    <ion-radio name="asm09" ng-model="asm.asm09[idart]" ng-value="98">Tidak Tahu</ion-radio>
+                </div>
+            </label>
+            <!-- Susu Formula -->
+            <label class="item item-select item-text-wrap">
+                <span class="input-label"><b>ASM17.</b> Pada usia berapa <span class="nama">{{nama}}</span>, "Susu Formula" pertama kali diberikan?</span>
+                <select ng-model="asm.asm17[idart]">
+                    <option value="1">1. Sejak lahir</option>
+                    <option value="2">2. 0 sampai 6 bulan</option>
+                    <option value="3">3. Lebih dari 6 bulan</option>
+                    <option value="4">4. Belum pernah</option>
+                    <option value="98">98. Tidak tau</option>
+                </select>
+            </label>
+            <label class="item item-input item-text-wrap" ng-if="asm.asm17[idart] == 95">
+                <span class="input-label"><b>ASM17lain.</b> Isikan lainnya</span>
+                <input type="text" class="input-border" ng-model="asm.asm17lain[idart]" placeholder="Lainnya, sebutkan...">
+            </label>
+            <label class="item item-select item-text-wrap" ng-if="asm.asm17[idart] < 4">
+                <span class="input-label"><b>ASM18.</b> Berapa kali frekuensi pemberian "Susu Formula" tersebut dalam satu hari?</span>
+                <select ng-model="asm.asm18[idart]">
+                    <option value="1">1 kali</option>
+                    <option value="2">2 kali </option>
+                    <option value="3">3 kali</option>
+                    <option value="4">&gt; 3 kali</option>
+                    <option value="98">98. Tidak tau</option>
+                </select>
+            </label>
+            <!-- Buah -->
+            <label class="item item-select item-text-wrap">
+                <span class="input-label"><b>ASM19.</b> Pada usia berapa <span class="nama">{{nama}}</span>, "Buah" pertama kali diberikan?</span>
+                <select ng-model="asm.asm19[idart]">
+                    <option value="1">&lt; 6 bulan</option>
+                    <option value="2">6 - 9 bulan</option>
+                    <option value="3">9 - 12 bulan</option>
+                    <option value="4">&gt; 12 bulan</option>
+                    <option value="5">Belum pernah</option>
+                    <option value="98">98. Tidak tau</option>
+                </select>
+            </label>
+            <label class="item item-input item-text-wrap" ng-if="asm.asm19[idart] == 95">
+                <span class="input-label"><b>ASM19lain.</b> Isikan lainnya</span>
+                <input type="text" class="input-border" ng-model="asm.asm19lain[idart]" placeholder="Lainnya, sebutkan...">
+            </label>
+            <label class="item item-select item-text-wrap" ng-if="asm.asm19[idart] < 5">
+                <span class="input-label"><b>ASM20.</b> Berapa kali frekuensi pemberian "Buah" tersebut dalam satu hari?</span>
+                <select ng-model="asm.asm20[idart]">
+                    <option value="1">1 kali</option>
+                    <option value="2">2 kali </option>
+                    <option value="3">3 kali</option>
+                    <option value="4">&gt; 3 kali</option>
+                    <option value="98">98. Tidak tau</option>
+                </select>
+            </label>
+            <!-- Bubur susu -->
+            <label class="item item-select item-text-wrap">
+                <span class="input-label"><b>ASM21.</b> Pada usia berapa <span class="nama">{{nama}}</span>, "Bubur susu" pertama kali diberikan?</span>
+                <select ng-model="asm.asm21[idart]">
+                    <option value="1">&lt; 6 bulan</option>
+                    <option value="2">6 - 9 bulan</option>
+                    <option value="3">9 - 12 bulan</option>
+                    <option value="4">&gt; 12 bulan</option>
+                    <option value="5">Belum pernah</option>
+                    <option value="98">98. Tidak tau</option>
+                </select>
+            </label>
+            <label class="item item-select item-text-wrap" ng-if="asm.asm21[idart] < 5">
+                <span class="input-label"><b>ASM22.</b> Berapa kali frekuensi pemberian "Bubur susu" tersebut dalam satu hari?</span>
+                <select ng-model="asm.asm22[idart]">
+                    <option value="1">1 kali</option>
+                    <option value="2">2 kali </option>
+                    <option value="3">3 kali</option>
+                    <option value="4">&gt; 3 kali</option>
+                    <option value="98">98. Tidak tau</option>
+                </select>
+            </label>
+            <!-- Makanan lembek -->
+            <label class="item item-select item-text-wrap">
+                <span class="input-label"><b>ASM23.</b> Pada usia berapa <span class="nama">{{nama}}</span>, "Makanan lembek" pertama kali diberikan?</span>
+                <select ng-model="asm.asm23[idart]">
+                    <option value="1">&lt; 6 bulan</option>
+                    <option value="2">6 - 9 bulan</option>
+                    <option value="3">9 - 12 bulan</option>
+                    <option value="4">&gt; 12 bulan</option>
+                    <option value="5">Belum pernah</option>
+                    <option value="98">98. Tidak tau</option>
+                </select>
+            </label>
+            <label class="item item-select item-text-wrap" ng-if="asm.asm23[idart] < 5">
+                <span class="input-label"><b>ASM24.</b> Berapa kali frekuensi pemberian "Makanan lembek" tersebut dalam satu hari?</span>
+                <select ng-model="asm.asm24[idart]">
+                    <option value="1">1 kali</option>
+                    <option value="2">2 kali </option>
+                    <option value="3">3 kali</option>
+                    <option value="4">&gt; 3 kali</option>
+                    <option value="98">98. Tidak tau</option>
+                </select>
+            </label>
+            <!-- Nasi/makanan keluarga -->
+            <label class="item item-select item-text-wrap">
+                <span class="input-label"><b>ASM25.</b> Pada usia berapa <span class="nama">{{nama}}</span>, "Nasi/makanan keluarga" pertama kali diberikan?</span>
+                <select ng-model="asm.asm25[idart]">
+                    <option value="1">&lt; 6 bulan</option>
+                    <option value="2">6 - 9 bulan</option>
+                    <option value="3">9 - 12 bulan</option>
+                    <option value="4">&gt; 12 bulan</option>
+                    <option value="5">Belum pernah</option>
+                    <option value="98">98. Tidak tau</option>
+                </select>
+            </label>
+            <label class="item item-select item-text-wrap" ng-if="asm.asm25[idart] < 5">
+                <span class="input-label"><b>ASM26.</b> Berapa kali frekuensi pemberian "Nasi/makanan keluarga" tersebut dalam satu hari?</span>
+                <select ng-model="asm.asm26[idart]">
+                    <option value="1">1 kali</option>
+                    <option value="2">2 kali </option>
+                    <option value="3">3 kali</option>
+                    <option value="4">&gt; 3 kali</option>
+                    <option value="98">98. Tidak tau</option>
+                </select>
+            </label>
+        </ion-list>
+        <!--End Of List ASM-->
+
+
+        <!--Button-->
+        <!-- Siklus 7 -->
+        <div class="hint-status"><span>Silahkan gunakan tombol Laporan Wawancaara jika sudah ada data yang tercatat dan wawancara berhenti di tengah jalan</span></div>
+        <div class="item-group" ng-if="kesehatan">
+            <!-- Jika wawancara berhenti di tengah modul -->
+            <button class="button simpan button-assertive" ng-click="saveModal('utama_kai',true)">
+                <i class="icon ion-arrow-left-c"></i> Laporan Wawancara
+            </button>
+            <!-- jika ARTB -->
+            <button ng-if="allowNextKesehatan() && artb && j_siklus.s7" class="button simpan button-calm pull-right" ng-click="go('kesehatan','imunisasi4')">
+             Selanjutnya (KIM) <i class="icon ion-arrow-right-c"></i>
+            </button>
+            <!-- jika ART lama -->
+            <button ng-if="!artb && j_siklus.s7" class="button simpan button-calm pull-right" ng-click="go('kesehatan','imunisasi4')">
+             Selanjutnya (KIM) <i class="icon ion-arrow-right-c"></i>
+            </button>
+        </div>
+
+        <div class="item-group" ng-if="imunisasi4 && j_siklus.s7">
+            <!-- Jika wawancara berhenti di tengah modul -->
+            <button class="button simpan button-assertive" ng-click="saveModal('utama_kim',true)">
+                <i class="icon ion-arrow-left-c"></i> Laporan Wawancara
+            </button>
+            <button ng-if="allowNextImunisasi4()" class="button simpan button-calm pull-right"
+                ng-click="saveModal('kim', true)">
+                Simpan <i class="icon ion-archive"></i>
+            </button>
+            <button class="button simpan button-calm" ng-click="go('imunisasi4','kesehatan')">
+                <i class="icon ion-arrow-left-c"></i>Sebelumnya
+            </button>
+        </div>
+        <!-- End of Siklus 7 -->
+
+
+        <div class="padding" ng-if="imunisasi5">
+            <button ng-if="allowNextImunisasi5()"
+            class="button simpan button-calm pull-right" ng-click="go('imunisasi5','imunisasi')">
+            Selanjutnya <i class="icon ion-arrow-right-c"></i>
+            </button>
+            <button class="button simpan button-calm" ng-click="go('imunisasi5','kesehatan')">
+                <i class="icon ion-arrow-left-c"></i>Sebelumnya
+            </button>
+        </div>
+        <div class="padding" ng-if="imunisasi">
+            <button ng-if="imunisasi && allowNextImunisasi()"
+            class="button simpan button-calm pull-right" ng-click="go('imunisasi','imunisasi2')">
+            Selanjutnya <i class="icon ion-arrow-right-c"></i>
+        </button>
+            <button class="button simpan button-calm" ng-click="go('imunisasi','imunisasi5')">
+            <i class="icon ion-arrow-left-c"></i>Sebelumnya
+        </button>
+        </div>
+        <div class="padding" ng-if="imunisasi2">
+            <button ng-if="imunisasi2 && allowNextImunisasi2()"
+            class="button simpan button-calm pull-right" ng-click="go('imunisasi2','imunisasi4')">
+            Selanjutnya <i class="icon ion-arrow-right-c"></i>
+        </button>
+            <button class="button simpan button-calm" ng-click="go('imunisasi2','imunisasi')">
+            <i class="icon ion-arrow-left-c"></i>Sebelumnya
+        </button>
+        </div>
+        <div class="padding" ng-if="imunisasi3">
+            <button ng-if="allowNextImunisasi3()" class="button simpan button-calm pull-right"
+            ng-click="go('imunisasi3','imunisasi4')">
+            Selanjutnya <i class="icon ion-arrow-right-c"></i>
+            </button>
+            <button class="button simpan button-calm" ng-click="go('imunisasi3','imunisasi2')">
+                <i class="icon ion-arrow-left-c"></i>Sebelumnya
+            </button>
+        </div>
+        <div class="padding" ng-if="imunisasi4 && !j_siklus.s7">
+            <button ng-if="allowNextImunisasi4()" class="button simpan button-calm pull-right"
+                ng-click="go('imunisasi4','imunisasi6')">
+                Selanjutnya <i class="icon ion-arrow-right-c"></i>
+            </button>
+            <button class="button simpan button-calm" ng-click="go('imunisasi4','imunisasi2')">
+                <i class="icon ion-arrow-left-c"></i>Sebelumnya
+            </button>
+        </div>
+        <div class="padding" ng-if="imunisasi6">
+            <button ng-if="allowNextImunisasi6()" class="button simpan button-calm pull-right"
+                ng-click="go('imunisasi6','imunisasi7')">
+                Selanjutnya <i class="icon ion-arrow-right-c"></i>
+            </button>
+            <button class="button simpan button-calm" ng-click="go('imunisasi6','imunisasi4')">
+                <i class="icon ion-arrow-left-c"></i>Sebelumnya
+            </button>
+        </div>
+        <div class="padding" ng-if="imunisasi7">
+            <button ng-if="allowNextImunisasi7()"
+                class="button simpan button-calm pull-right" ng-click="saveModal('kim')">
+                Selanjutnya (ASM) <i class="icon ion-arrow-right-c"></i>
+            </button>
+            <button class="button simpan button-calm" ng-click="go('imunisasi7','imunisasi6')">
+                <i class="icon ion-arrow-left-c"></i>Sebelumnya
+            </button>
+        </div>
+
+        <div class="padding" ng-if="asi && umur < 2">
+            <button ng-if="asmAllowSave()" class="button simpan button-dark pull-right" ng-click="saveModal('asm')">
+                <i class="icon ion-archive"></i> Simpan
+            </button>
+            <button class="button simpan button-calm" ng-click="go('asi','imunisasi7')">
+                <i class="icon ion-arrow-left-c"></i>Sebelumnya
+            </button>
+        </div>
+        <div class="padding" ng-if="asi && umur >= 2">
+            <button class="button simpan button-dark pull-right" ng-click="saveModal('asm')">
+                <i class="icon ion-archive"></i> Simpan
+            </button>
+            <button class="button simpan button-calm" ng-click="go('asi','imunisasi7')">
+                <i class="icon ion-arrow-left-c"></i>Sebelumnya
+            </button>
+        </div>
+    </ion-content>
+</ion-modal-view>

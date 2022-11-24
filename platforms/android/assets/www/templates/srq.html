@@ -1,0 +1,278 @@
+<ion-view view-title="Kesehatan Jiwa (Subsample)">
+    <div class="bar bar-subheader bar-calm">
+        <h2 class="title left nama">Nama ART : {{curART._nama}} ({{curART.umur}})
+        </h2>
+    </div>
+    <ion-content id="srq" class="has-subheader has-footer srq">
+        <form name="myForm" novalidate>
+            <ion-list>
+                <div class="item item-text-wrap item-row">Pertanyaan berikut berhubungan dengan masalah yang mungkin mengganggu Anda selama 30 hari terakhir. Apabila Anda menganggap pertanyaan itu Anda alami dalam 30 hari terakhir, pilihlah pilihan jawaban YA Sebaliknya apabila Anda menganggap pertanyaan itu tidak Anda alami dalam 30 hari terakhir, pilihlah pilihan jawaban TIDAK. Jika Anda tidak yakin tentang jawabannya, berilah jawaban yang paling sesuai di antara YA dan TIDAK. Kami tegaskan bahwa jawaban Anda bersifat rahasia.
+                </div>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center nput-label"><b>SRQ01 </b>Apakah Anda sering menderita sakit kepala?</div>
+                        <div class="col col-50 ">
+                            <div class="button-bar right">
+                                <ion-radio name="srq01" ng-model="srq.srq01" value="1">Ya</ion-radio>
+                                <ion-radio name="srq01" ng-model="srq.srq01" value="2">Tidak</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center nput-label"><b>SRQ02 </b>Apakah Anda tidak nafsu makan?</div>
+                        <div class="col col-50 ">
+                            <div class="button-bar right">
+                                <ion-radio name="srq02" ng-model="srq.srq02" value="1">Ya</ion-radio>
+                                <ion-radio name="srq02" ng-model="srq.srq02" value="2">Tidak</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center nput-label"><b>SRQ03 </b>Apakah Anda tidur tidak nyenyak? </div>
+                        <div class="col col-50 ">
+                            <div class="button-bar right">
+                                <ion-radio name="srq03" ng-model="srq.srq03" value="1">Ya</ion-radio>
+                                <ion-radio name="srq03" ng-model="srq.srq03" value="2">Tidak</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center nput-label"><b>SRQ04 </b>Apakah Anda mudah merasa takut? </div>
+                        <div class="col col-50 ">
+                            <div class="button-bar right">
+                                <ion-radio name="srq04" ng-model="srq.srq04" value="1">Ya</ion-radio>
+                                <ion-radio name="srq04" ng-model="srq.srq04" value="2">Tidak</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center nput-label"><b>SRQ05 </b>Apakah Anda merasa cemas, tegang, atau khawatir? </div>
+                        <div class="col col-50 ">
+                            <div class="button-bar right">
+                                <ion-radio name="srq05" ng-model="srq.srq05" value="1">Ya</ion-radio>
+                                <ion-radio name="srq05" ng-model="srq.srq05" value="2">Tidak</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center nput-label"><b>SRQ06 </b>Apakah tangan Anda gemetar? </div>
+                        <div class="col col-50 ">
+                            <div class="button-bar right">
+                                <ion-radio name="srq06" ng-model="srq.srq06" value="1">Ya</ion-radio>
+                                <ion-radio name="srq06" ng-model="srq.srq06" value="2">Tidak</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center nput-label"><b>SRQ07 </b>Apakah Anda mengalami gangguan pencernaan? </div>
+                        <div class="col col-50 ">
+                            <div class="button-bar right">
+                                <ion-radio name="srq07" ng-model="srq.srq07" value="1">Ya</ion-radio>
+                                <ion-radio name="srq07" ng-model="srq.srq07" value="2">Tidak</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center nput-label"><b>SRQ08 </b>Apakah Anda merasa sulit berpikir jernih? </div>
+                        <div class="col col-50 ">
+                            <div class="button-bar right">
+                                <ion-radio name="srq08" ng-model="srq.srq08" value="1">Ya</ion-radio>
+                                <ion-radio name="srq08" ng-model="srq.srq08" value="2">Tidak</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center nput-label"><b>SRQ09 </b>Apakah Anda merasa tidak bahagia? </div>
+                        <div class="col col-50 ">
+                            <div class="button-bar right">
+                                <ion-radio name="srq09" ng-model="srq.srq09" value="1">Ya</ion-radio>
+                                <ion-radio name="srq09" ng-model="srq.srq09" value="2">Tidak</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center nput-label"><b>SRQ10 </b>Apakah Anda lebih sering menangis?</div>
+                        <div class="col col-50 ">
+                            <div class="button-bar right">
+                                <ion-radio name="srq10" ng-model="srq.srq10" value="1">Ya</ion-radio>
+                                <ion-radio name="srq10" ng-model="srq.srq10" value="2">Tidak</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center nput-label"><b>SRQ11 </b>Apakah Anda merasa sulit untuk menikmati aktivitas sehari-hari? </div>
+                        <div class="col col-50 ">
+                            <div class="button-bar right">
+                                <ion-radio name="srq11" ng-model="srq.srq11" value="1">Ya</ion-radio>
+                                <ion-radio name="srq11" ng-model="srq.srq11" value="2">Tidak</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center nput-label"><b>SRQ12 </b>Apakah Anda merasa kesulitan untuk mengambil keputusan? </div>
+                        <div class="col col-50 ">
+                            <div class="button-bar right">
+                                <ion-radio name="srq12" ng-model="srq.srq12" value="1">Ya</ion-radio>
+                                <ion-radio name="srq12" ng-model="srq.srq12" value="2">Tidak</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center nput-label"><b>SRQ13 </b>aktivitas/tugas sehari-hari Anda terbengkalai? </div>
+                        <div class="col col-50 ">
+                            <div class="button-bar right">
+                                <ion-radio name="srq13" ng-model="srq.srq13" value="1">Ya</ion-radio>
+                                <ion-radio name="srq13" ng-model="srq.srq13" value="2">Tidak</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center nput-label"><b>SRQ14 </b>Apakah Anda merasa tidak mampu berperan dalam kehidupan ini?</div>
+                        <div class="col col-50 ">
+                            <div class="button-bar right">
+                                <ion-radio name="srq14" ng-model="srq.srq14" value="1">Ya</ion-radio>
+                                <ion-radio name="srq14" ng-model="srq.srq14" value="2">Tidak</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center nput-label"><b>SRQ15 </b>Apakah Anda kehilangan minat terhadap banyak hal? </div>
+                        <div class="col col-50 ">
+                            <div class="button-bar right">
+                                <ion-radio name="srq15" ng-model="srq.srq15" value="1">Ya</ion-radio>
+                                <ion-radio name="srq15" ng-model="srq.srq15" value="2">Tidak</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center nput-label"><b>SRQ16 </b>Apakah Anda merasa tidak berharga? </div>
+                        <div class="col col-50 ">
+                            <div class="button-bar right">
+                                <ion-radio name="srq16" ng-model="srq.srq16" value="1">Ya</ion-radio>
+                                <ion-radio name="srq16" ng-model="srq.srq16" value="2">Tidak</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center nput-label"><b>SRQ17 </b>Apakah Anda mempunyai pikiran untuk mengakhiri hidup Anda? </div>
+                        <div class="col col-50 ">
+                            <div class="button-bar right">
+                                <ion-radio name="srq17" ng-model="srq.srq17" value="1">Ya</ion-radio>
+                                <ion-radio name="srq17" ng-model="srq.srq17" value="2">Tidak</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center nput-label"><b>SRQ18 </b>Apakah Anda merasa lelah sepanjang waktu? </div>
+                        <div class="col col-50 ">
+                            <div class="button-bar right">
+                                <ion-radio name="srq18" ng-model="srq.srq18" value="1">Ya</ion-radio>
+                                <ion-radio name="srq18" ng-model="srq.srq18" value="2">Tidak</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center nput-label"><b>SRQ19 </b>Apakah Anda merasa tidak enak di perut? </div>
+                        <div class="col col-50 ">
+                            <div class="button-bar right">
+                                <ion-radio name="srq19" ng-model="srq.srq19" value="1">Ya</ion-radio>
+                                <ion-radio name="srq19" ng-model="srq.srq19" value="2">Tidak</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center nput-label"><b>SRQ20 </b>Apakah Anda mudah lelah? </div>
+                        <div class="col col-50 ">
+                            <div class="button-bar right">
+                                <ion-radio name="srq20" ng-model="srq.srq20" value="1">Ya</ion-radio>
+                                <ion-radio name="srq20" ng-model="srq.srq20" value="2">Tidak</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center nput-label"><b>SRQ21 </b>Dalam sebulan terakhir, apakah Anda minum obat resep untuk membantu anda mengelola emosi atau konsentrasi, perilaku atau kesehatan mental/jiwa Anda? </div>
+                        <div class="col col-50 ">
+                            <div class="button-bar right">
+                                <ion-radio name="srq21" ng-model="srq.srq21" value="1">Ya</ion-radio>
+                                <ion-radio name="srq21" ng-model="srq.srq21" value="2">Tidak</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center nput-label"><b>SRQ22 </b>Dalam sebulan terakhir, apakah Anda menerima konseling/ terapi/ pengobatan (termasuk secara online) dari ahli kesehatan seperti psikiater (dokter ahli kesehatan jiwa), psikolog, perawat kesehatan jiwa? </div>
+                        <div class="col col-50 ">
+                            <div class="button-bar right">
+                                <ion-radio name="srq22" ng-model="srq.srq22" value="1">Ya</ion-radio>
+                                <ion-radio name="srq22" ng-model="srq.srq22" value="2">Tidak</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center nput-label"><b>SRQ23 </b>Dalam sebulan terakhir, apakah Anda memerlukan konseling atau terapi/pengobatan dari ahli kesehatan jiwa, tetapi tidak mendapatkannya karena alasan apapun? </div>
+                        <div class="col col-50 ">
+                            <div class="button-bar right">
+                                <ion-radio name="srq23" ng-model="srq.srq23" value="1">Ya</ion-radio>
+                                <ion-radio name="srq24" ng-model="srq.srq23" value="2">Tidak</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <input type="number" ng-model="srq.srq" ng-show="false">
+            </ion-list>
+        </form>
+
+        <div class="hint-status"><span>Silahkan gunakan tombol Laporan Wawancaara jika sudah ada data yang tercatat dan wawancara berhenti di tengah jalan</span></div>
+        <div class="item-group" ng-if="j_siklus.s7">
+            <button class="button simpan button-assertive" ng-click="save('individu')">
+                <i class="icon ion-arrow-left-c"></i> Laporan Wawancara
+            </button>
+            <button ng-if="allowSave(myForm)" class="button simpan button-dark pull-right" ng-click="save()">
+                <i class="icon ion-archive"></i> Lanjut ke AKS
+            </button>
+        </div>
+    </ion-content>
+</ion-view>

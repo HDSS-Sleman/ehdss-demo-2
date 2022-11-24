@@ -1,0 +1,636 @@
+<ion-view view-title="Riwayat Penyakit Menular">
+    <div class="bar bar-subheader bar-calm" ng-show="vaksin">
+        <h2 class="title left">Riwayat Vaksin</h2>
+    </div>
+    <div class="bar bar-subheader bar-calm" ng-show="ispa">
+        <h2 class="title left">A. Infeksi Saluran Pernafasan Atas (ISPA)</h2>
+    </div>
+    <div class="bar bar-subheader bar-assertive" ng-show="malaria">
+        <h2 class="title left">B. Malaria</h2>
+    </div>
+    <div class="bar bar-subheader bar-dark" ng-show="demam">
+        <h2 class="title left">C. Demam Berdarah</h2>
+    </div>
+    <div class="bar bar-subheader bar-balanced" ng-show="leptospirosis">
+        <h2 class="title left">D. Leptospirosis / Demam Tikus</h2>
+    </div>
+    <div class="bar bar-subheader bar-energized" ng-show="tuberkolusis">
+        <h2 class="title left">E. Tuberkolusis Paru</h2>
+    </div>
+    <div class="bar bar-subheader bar-calm" ng-show="typhoid">
+        <h2 class="title left">F. Demam Typhoid (Tifus Perut)</h2>
+    </div>
+    <div class="bar bar-subheader bar-balanced" ng-show="diare">
+        <h2 class="title left">G. Diare/Mencret</h2>
+    </div>
+    <div class="bar bar-subheader bar-calm" ng-show="hepatitis">
+        <h2 class="title left">H. Hepatitis/ Sakit Liver / Sakit Kuning</h2>
+    </div>
+    <!--End of Sub-Header-Bar-->
+    <ion-content id="pm" class="has-subheader pm" style="padding-bottom: 10px">
+        <ion-list ng-show="vaksin">
+            <label class="item item-text-wrap">
+                <span class="input-label full">
+                    <b>VAC99.</b> Apakah ada ART yang sudah mendapatkan vaksin COVID-19?
+                </span >
+                <div class="button-bar right">
+                    <ion-radio name="vac99" ng-model="pm.vac99" ng-value="1">Ya</ion-radio>
+                    <ion-radio name="vac99" ng-model="pm.vac99" ng-value="2">Tidak</ion-radio>
+                </div>
+            </label>
+
+            <div class="item-group" ng-if="pm.vac99==1">
+                <div class="table table-bordered table-striped">
+                    <div class="row header">
+                        <div class="col col-20 text-center">No ART</div>
+                        <div class="col col-30 nama">Nama (umur)</div>
+                        <div class="col col-20 text-center">JK</div>
+                        <div class="col col-30 text-center">VAC99</div>
+                    </div>
+                    <div class="row" ng-repeat="d in dataARTvac">
+                        <div class="col col-20 text-center">{{d._noArt}}</div>
+                        <div class="col col-30 nama">{{d._nama}} ({{d.umur}})</div>
+                        <div class="col col-20 text-center">{{d._jk}}</div>
+                        <div class="col col-30 text-center">
+                            <select ng-model="pm.vac99ls[d.idart]">
+                                <option value="" selected></option>
+                                <option value="1">1. Ya, sudah dua dosis </option>
+                                <option value="2">2. Ya, baru satu dosis </option>
+                                <option value="3">3. Belum</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ion-list> <!-- End of list module ispa -->
+        <ion-list ng-show="ispa">
+            <div class="item item-text-wrap item-row">Bagian ketiga ini saya ingin menanyakan terkait riwayat sakit yang diderita ART rumah tangga bapak/ibu selama 1 tahun terakhir, sakit yang diderita terbagi2 yaitu yang menular dan tidak menular.
+            Untuk penyakit menular yang ingin saya tanyakan terkait sakit ISPA (demam batuk pilek), malaria, demam berdarah, TB paru, demam tifoid, diare, dan hepatitis. Bapak/ibu tidak perlu khawatir dan membayangkan jika akan terjadi hal-hal buruk jika menjawab pertanyaan ini, kami hanya ingin melihat apakah di Kabupaten Sleman masih ada kasus yang diderita warga terkait sakit tersebut sehingga bapak/ibu hanya perlu menjawab apa adanya yang terjadi anggota keluarga, karena mungkin tidak semua penyakit diderita dan jika ada yang sakit sudah berobat dan sehat kembali.
+            </div>
+            <label class="item item-text-wrap">
+                <span class="input-label full">
+                    <b>PM01.</b> Dalam 1 bulan terakhir, apakah ada anggota rumah tangga yang pernah menderita panas
+                    disertai batuk berdahak/kering atau pilek?
+                </span >
+                <div class="button-bar right">
+                    <ion-radio name="pm01" ng-model="pm.pm01" ng-change="setTidakSakit('pm01',pm.pm01)" ng-value="1">Ya</ion-radio>
+                    <ion-radio name="pm01" ng-model="pm.pm01" ng-change="setTidakSakit('pm01',pm.pm01)" ng-value="2">Tidak</ion-radio>
+                    <ion-radio name="pm01" ng-model="pm.pm01" ng-change="setTidakSakit('pm01',pm.pm01)" ng-value="98">Tidak Tahu</ion-radio>
+                </div>
+            </label>
+            <label class="item item-text-wrap">
+                <span class="input-label full">
+                    <b>PM02.</b> Dalam 1 bulan terakhir, apakah ada anggota rumah tangga yang pernah dinyatakan
+                    mengalami/didiagnosis ISPA (panas, batuk pilek,radang tenggorokan)
+                    oleh tenaga kesehatan (Dokter, perawat, bidan)?
+                </span >
+                <div class="button-bar right">
+                    <ion-radio name="pm02" ng-model="pm.pm02" ng-change="setTidakSakit('pm02',pm.pm02)" ng-value="1">Ya</ion-radio>
+                    <ion-radio name="pm02" ng-model="pm.pm02" ng-change="setTidakSakit('pm02',pm.pm02)" ng-value="2">Tidak</ion-radio>
+                    <ion-radio name="pm02" ng-model="pm.pm02" ng-change="setTidakSakit('pm02',pm.pm02)" ng-value="98">Tidak Tahu</ion-radio>
+                </div>
+            </label>
+
+            <div class="item-group" ng-if="pm.pm01==1 || pm.pm02==1">
+                <div class="table table-bordered table-striped">
+                    <div class="row header">
+                        <div class="col col-10 text-center">No ART</div>
+                        <div class="col col-30 nama">Nama (umur)</div>
+                        <div class="col col-10 text-center">JK</div>
+                        <div class="col col-20 text-center" ng-if="pm.pm01==1">PM01</div>
+                        <div class="col col-20 text-center" ng-if="pm.pm02==1">PM02</div>
+                    </div>
+                    <div class="row" ng-repeat="d in dataART">
+                        <div class="col col-10 text-center">{{d._noArt}}</div>
+                        <div class="col col-30 nama">{{d._nama}} ({{d.umur}})</div>
+                        <div class="col col-10 text-center">{{d._jk}}</div>
+                        <div class="col col-20 text-center" ng-if="pm.pm01==1">
+                            <select ng-model="pm.pm01ls[d.idart]" ng-if="pm.pm01==1" ng-change="defpm(pm.pm01ls[d.idart],d.idart)">
+                                <option value="" selected></option>
+                                <option value="1">1. Ya</option>
+                                <option value="2">2. Tidak</option>
+                                <option value="98">98. Tidak tahu</option>
+                            </select>
+                        </div>
+                        <div class="col col-20 text-center" ng-if="pm.pm02==1">
+                            <select ng-model="pm.pm02ls[d.idart]" ng-if="pm.pm02==1" ng-change="defpm(pm.pm02ls[d.idart],d.idart)">
+                                <option value="" selected></option>
+                                <option value="1">1. Ya</option>
+                                <option value="2">2. Tidak</option>
+                                <option value="98">98. Tidak tahu</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ion-list> <!-- End of list module ispa -->
+
+        <ion-list ng-show="malaria">
+            <div class="item item-text-wrap item-row">Bagian ketiga ini saya ingin menanyakan terkait riwayat sakit yang diderita ART rumah tangga bapak/ibu selama 1 tahun terakhir, sakit yang diderita terbagi2 yaitu yang menular dan tidak menular.
+            Untuk penyakit menular yang ingin saya tanyakan terkait sakit ISPA (demam batuk pilek), malaria, demam berdarah, TB paru, demam tifoid, diare, dan hepatitis. Bapak/ibu tidak perlu khawatir dan membayangkan jika akan terjadi hal-hal buruk jika menjawab pertanyaan ini, kami hanya ingin melihat apakah di Kabupaten Sleman masih ada kasus yang diderita warga terkait sakit tersebut sehingga bapak/ibu hanya perlu menjawab apa adanya yang terjadi anggota keluarga, karena mungkin tidak semua penyakit diderita dan jika ada yang sakit sudah berobat dan sehat kembali.
+            </div>
+            <label class="item item-text-wrap">
+                <span class="input-label full">
+                    <b>PM03.</b> Dalam 1 bulan terakhir, apakah ART pernah menderita panas disertai menggigil
+                    atau panas naik turun secara berkala, dapat disertai sakit kepala, berkeringat mual ,muntah?
+                </span >
+                    <div class="button-bar right">
+                        <ion-radio name="pm03" ng-model="pm.pm03" ng-change="setTidakSakit('pm03',pm.pm03)" ng-value="1">Ya</ion-radio>
+                        <ion-radio name="pm03" ng-model="pm.pm03" ng-change="setTidakSakit('pm03',pm.pm03)" ng-value="2">Tidak</ion-radio>
+                        <ion-radio name="pm03" ng-model="pm.pm03" ng-change="setTidakSakit('pm03',pm.pm03)" ng-value="98">Tidak Tahu</ion-radio>
+                    </div>
+            </label>
+            <label class="item item-text-wrap">
+                <span class="input-label full">
+                    <b>PM04.</b> Dalam 1 bulan terakhir, apakah ada anggota rumah tangga yang pernah
+                    minum obat anti malaria, dengan atau tanpa gejala panas?
+                </span >
+                <div class="button-bar right">
+                    <ion-radio name="pm04" ng-model="pm.pm04" ng-change="setTidakSakit('pm04',pm.pm04)" ng-value="1">Ya</ion-radio>
+                    <ion-radio name="pm04" ng-model="pm.pm04" ng-change="setTidakSakit('pm04',pm.pm04)" ng-value="2">Tidak</ion-radio>
+                    <ion-radio name="pm04" ng-model="pm.pm04" ng-change="setTidakSakit('pm04',pm.pm04)" ng-value="98">Tidak Tahu</ion-radio>
+                </div>
+            </label>
+
+            <div class="item-group" ng-if="pm.pm03==1 || pm.pm04==1">
+              <div class="table table-bordered table-striped">
+                <div class="row header">
+                    <div class="col col-10 text-center">No ART</div>
+                    <div class="col col-20 nama">Nama (umur)</div>
+                    <div class="col col-10 text-center">JK</div>
+                    <div class="col col-20 text-center" ng-if="pm.pm03==1">PM03</div>
+                    <div class="col col-30 text-center" ng-if="pm.pm04==1">PM04</div>
+                </div>
+                <div class="row" ng-repeat="d in dataART">
+                  <div class="col col-10 text-center">{{d._noArt}}</div>
+                  <div class="col col-20 nama">{{d._nama}} ({{d.umur}})</div>
+                  <div class="col col-10 text-center">{{d._jk}}</div>
+                  <div class="col col-20 text-center" ng-if="pm.pm03==1">
+                      <select ng-model="pm.pm03ls[d.idart]" ng-change="defpm(pm.pm03ls[d.idart],d.idart)">
+                          <option value="" selected></option>
+                          <option value="1">1. Ya</option>
+                          <option value="2">2. Tidak</option>
+                          <option value="98">98. Tidak tahu</option>
+                      </select>
+                  </div>
+                  <div class="col col-30 text-center" ng-if="pm.pm04==1">
+                    <select ng-model="pm.pm04ls[d.idart]" ng-change="openModal(pm.pm04ls[d.idart],d)">
+                        <option value=""></option>
+                        <option value="1">1. Ya, dalam &lt; 1 bulan terakhir</option>
+                        <option value="2">2. Ya, lebih dari 1 bulan</option>
+                        <option value="3">3. Tidak</option>
+                        <option value="98">98. Tidak tahu</option>
+                    </select>
+                    <button ng-if="pm.pm04ls[d.idart] == 1 || pm.pm04ls[d.idart] == 2"
+                        class="button button-small simpan button-calm"
+                        ng-click="openModal(pm.pm04ls[d.idart],d)">
+                        <i class="icon ion-edit"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </ion-list> <!-- EOF list malaria -->
+
+        <ion-list ng-show="demam">
+            <div class="item item-text-wrap item-row">Bagian ketiga ini saya ingin menanyakan terkait riwayat sakit yang diderita ART rumah tangga bapak/ibu selama 1 tahun terakhir, sakit yang diderita terbagi2 yaitu yang menular dan tidak menular.
+            Untuk penyakit menular yang ingin saya tanyakan terkait sakit ISPA (demam batuk pilek), malaria, demam berdarah, TB paru, demam tifoid, diare, dan hepatitis. Bapak/ibu tidak perlu khawatir dan membayangkan jika akan terjadi hal-hal buruk jika menjawab pertanyaan ini, kami hanya ingin melihat apakah di Kabupaten Sleman masih ada kasus yang diderita warga terkait sakit tersebut sehingga bapak/ibu hanya perlu menjawab apa adanya yang terjadi anggota keluarga, karena mungkin tidak semua penyakit diderita dan jika ada yang sakit sudah berobat dan sehat kembali.
+            </div>
+            <label class="item item-text-wrap">
+                <span class="input-label full">
+                    <b>PM08.</b> Dalam 6 bulan terakhir, apakah ada anggota rumah tangga yang pernah
+                    didiagnosis menderita demam berdarah dengue yang sudah dipastikan dengan pemeriksaan darah
+                    oleh tenaga kesehatan (dokter, perawat, bidan)?
+                </span >
+                <div class="button-bar right">
+                    <ion-radio name="pm08" ng-model="pm.pm08" ng-change="setTidakSakit('pm08',pm.pm08)" ng-value="1">Ya</ion-radio>
+                    <ion-radio name="pm08" ng-model="pm.pm08" ng-change="setTidakSakit('pm08',pm.pm08)" ng-value="2">Tidak</ion-radio>
+                    <ion-radio name="pm08" ng-model="pm.pm08" ng-change="setTidakSakit('pm08',pm.pm08)" ng-value="98">Tidak Tahu</ion-radio>
+                </div>
+            </label>
+
+            <div class="item-group" ng-if="pm.pm08==1">
+                <div class="table table-bordered table-striped">
+                    <div class="row header">
+                        <div class="col col-10 text-center">No ART</div>
+                        <div class="col col-30 nama">Nama (umur)</div>
+                        <div class="col col-10 text-center">JK</div>
+                        <div class="col col-20 text-center">Pilih</div>
+                    </div>
+                    <div class="row" ng-repeat="d in dataART">
+                      <div class="col col-10 text-center">{{d._noArt}}</div>
+                      <div class="col col-30 nama">{{d._nama}} ({{d.umur}})</div>
+                      <div class="col col-10 text-center">{{d._jk}}</div>
+                      <div class="col col-20 text-center">
+                          <select ng-model="pm.pm08ls[d.idart]" ng-change="defpm(pm.pm08ls[d.idart],d.idart)">
+                              <option value="" selected></option>
+                              <option value="1">1. Ya</option>
+                              <option value="2">2. Tidak</option>
+                              <option value="98">98. Tidak tahu</option>
+                          </select>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </ion-list> <!-- EOF List demam -->
+
+        <ion-list ng-show="leptospirosis">
+            <div class="item item-text-wrap item-row">Bagian ketiga ini saya ingin menanyakan terkait riwayat sakit yang diderita ART rumah tangga bapak/ibu selama 1 tahun terakhir, sakit yang diderita terbagi2 yaitu yang menular dan tidak menular.
+            Untuk penyakit menular yang ingin saya tanyakan terkait sakit ISPA (demam batuk pilek), malaria, demam berdarah, TB paru, demam tifoid, diare, dan hepatitis. Bapak/ibu tidak perlu khawatir dan membayangkan jika akan terjadi hal-hal buruk jika menjawab pertanyaan ini, kami hanya ingin melihat apakah di Kabupaten Sleman masih ada kasus yang diderita warga terkait sakit tersebut sehingga bapak/ibu hanya perlu menjawab apa adanya yang terjadi anggota keluarga, karena mungkin tidak semua penyakit diderita dan jika ada yang sakit sudah berobat dan sehat kembali.
+            </div>
+            <label class="item item-text-wrap">
+                <span class="input-label full">
+                    <b>PM09.</b> Dalam 6 bulan terakhir, apakah ada anggota rumah tangga yang pernah didiagnosis
+                    menderita LEPTOSPIROSIS yang sudah dipastikan dengan pemeriksaan darah
+                    oleh tenaga kesehatan (dokter, perawat, bidan)?
+                </span >
+                <div class="button-bar right">
+                    <ion-radio name="pm09" ng-model="pm.pm09" ng-change="setTidakSakit('pm09',pm.pm09)" ng-value="1">Ya</ion-radio>
+                    <ion-radio name="pm09" ng-model="pm.pm09" ng-change="setTidakSakit('pm09',pm.pm09)" ng-value="2">Tidak</ion-radio>
+                    <ion-radio name="pm09" ng-model="pm.pm09" ng-change="setTidakSakit('pm09',pm.pm09)" ng-value="98">Tidak Tahu</ion-radio>
+                </div>
+            </label>
+            <div class="item-group" ng-if="pm.pm09==1">
+                <div class="table table-bordered table-striped">
+                    <div class="row header">
+                        <div class="col col-10 text-center">No ART</div>
+                        <div class="col col-30 nama">Nama (umur)</div>
+                        <div class="col col-10 text-center">JK</div>
+                        <div class="col col-20 text-center">Pilih</div>
+                    </div>
+                    <div class="row" ng-repeat="d in dataART">
+                      <div class="col col-10 text-center">{{d._noArt}}</div>
+                      <div class="col col-30 nama">{{d._nama}} ({{d.umur}})</div>
+                      <div class="col col-10 text-center">{{d._jk}}</div>
+                      <div class="col col-20 text-center">
+                          <select ng-model="pm.pm09ls[d.idart]" ng-change="defpm(pm.pm09ls[d.idart],d.idart)">
+                              <option value="" selected></option>
+                              <option value="1">1. Ya</option>
+                              <option value="2">2. Tidak</option>
+                              <option value="98">98. Tidak tahu</option>
+                          </select>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </ion-list> <!-- EOF list leptospirosis -->
+
+        <ion-list ng-show="tuberkolusis">
+            <div class="item item-text-wrap item-row">Bagian ketiga ini saya ingin menanyakan terkait riwayat sakit yang diderita ART rumah tangga bapak/ibu selama 1 tahun terakhir, sakit yang diderita terbagi2 yaitu yang menular dan tidak menular.
+            Untuk penyakit menular yang ingin saya tanyakan terkait sakit ISPA (demam batuk pilek), malaria, demam berdarah, TB paru, demam tifoid, diare, dan hepatitis. Bapak/ibu tidak perlu khawatir dan membayangkan jika akan terjadi hal-hal buruk jika menjawab pertanyaan ini, kami hanya ingin melihat apakah di Kabupaten Sleman masih ada kasus yang diderita warga terkait sakit tersebut sehingga bapak/ibu hanya perlu menjawab apa adanya yang terjadi anggota keluarga, karena mungkin tidak semua penyakit diderita dan jika ada yang sakit sudah berobat dan sehat kembali.
+            </div>
+            <label class="item item-text-wrap">
+                <span class="input-label full">
+                    <b>PM10.</b> Dalam 1 tahun terakhir, apakah ada anggota rumah tangga yang memiliki riwayat batuk
+                    lebih dari 2 minggu ?
+                </span >
+                <div class="button-bar right">
+                    <ion-radio name="pm10" ng-model="pm.pm10" ng-change="setTidakSakit('pm10',pm.pm10)" ng-value="1">Ya</ion-radio>
+                    <ion-radio name="pm10" ng-model="pm.pm10" ng-change="setTidakSakit('pm10',pm.pm10)" ng-value="2">Tidak</ion-radio>
+                    <ion-radio name="pm10" ng-model="pm.pm10" ng-change="setTidakSakit('pm10',pm.pm10)" ng-value="98">Tidak Tahu</ion-radio>
+                </div>
+            </label>
+            <label class="item item-text-wrap">
+                <span class="input-label full">
+                    <b>PM12.</b> Apakah ada anggota rumah tangga yang pernah terdiagnosis TB Paru
+                    (TBC / flek / paru-paru basah) oleh tenaga kesehatan (dokter, perawat, bidan)?
+                </span >
+                <div class="button-bar right">
+                    <ion-radio name="pm12" ng-model="pm.pm12" ng-change="setTidakSakit('pm12',pm.pm12)" ng-value="1">Ya</ion-radio>
+                    <ion-radio name="pm12" ng-model="pm.pm12" ng-change="setTidakSakit('pm12',pm.pm12)" ng-value="2">Tidak</ion-radio>
+                    <ion-radio name="pm12" ng-model="pm.pm12" ng-change="setTidakSakit('pm12',pm.pm12)" ng-value="98">Tidak Tahu</ion-radio>
+                </div>
+            </label>
+
+            <div class="item-group" ng-if="pm.pm10==1 || pm.pm12==1">
+                <div class="table table-bordered table-striped">
+                    <div class="row header">
+                        <div class="col col-10 text-center">No ART</div>
+                        <div class="col col-20 nama">Nama (umur)</div>
+                        <div class="col col-10 text-center">JK</div>
+                        <div class="col col-20 text-center" ng-if="pm.pm10==1">PM10</div>
+                        <div class="col col-33 text-center" ng-if="pm.pm12==1">PM12</div>
+                    </div>
+                    <div class="row" ng-repeat="d in dataART">
+                      <div class="col col-10 text-center">{{d._noArt}}</div>
+                      <div class="col col-20 nama">{{d._nama}} ({{d.umur}})</div>
+                      <div class="col col-10 text-center">{{d._jk}}</div>
+                      <div class="col col-20 text-center" ng-if="pm.pm10==1">
+                          <select ng-model="pm.pm10ls[d.idart]" ng-change="editPm10(pm.pm10ls[d.idart],d)">
+                              <option value="" selected></option>
+                              <option value="1">1. Ya</option>
+                              <option value="2">2. Tidak</option>
+                              <option value="98">98. Tidak tahu</option>
+                          </select>
+                          <button ng-if="pm.pm10ls[d.idart] == 1" ng-click="editPm10(pm.pm10ls[d.idart],d)"
+                            class="button button-small button-balanced">
+                            <i class="icon ion-edit"></i>
+                           </button>
+                      </div>
+                      <div class="col col-33 text-center" ng-if="pm.pm12==1">
+                          <select ng-model="pm.pm12a[d.idart]" ng-change="editPm12(pm.pm12a[d.idart], d)">
+                              <option value="" selected></option>
+                              <option value="1">1. Ya, dalam &lt; 1 tahun terakhir</option>
+                              <option value="2">2. Ya, lebih dari 1 tahun</option>
+                              <option value="3">3. Tidak</option>
+                              <option value="98">98. Tidak tahu</option>
+                          </select>
+                          <button ng-if="pm.pm12a[d.idart] == 1"
+                              class="button button-small simpan button-calm"
+                              ng-click="editPm12(pm.pm12a[d.idart], d)">
+                              <i class="icon ion-edit"></i>
+                          </button>
+                      </div>
+
+                    </div>
+                </div>
+            </div>
+        </ion-list> <!-- EOF list tuberkolusis -->
+        
+        <ion-list ng-show="typhoid">
+            <div class="item item-text-wrap item-row">Bagian ketiga ini saya ingin menanyakan terkait riwayat sakit yang diderita ART rumah tangga bapak/ibu selama 1 tahun terakhir, sakit yang diderita terbagi2 yaitu yang menular dan tidak menular.
+            Untuk penyakit menular yang ingin saya tanyakan terkait sakit ISPA (demam batuk pilek), malaria, demam berdarah, TB paru, demam tifoid, diare, dan hepatitis. Bapak/ibu tidak perlu khawatir dan membayangkan jika akan terjadi hal-hal buruk jika menjawab pertanyaan ini, kami hanya ingin melihat apakah di Kabupaten Sleman masih ada kasus yang diderita warga terkait sakit tersebut sehingga bapak/ibu hanya perlu menjawab apa adanya yang terjadi anggota keluarga, karena mungkin tidak semua penyakit diderita dan jika ada yang sakit sudah berobat dan sehat kembali.
+            </div>
+            <label class="item item-text-wrap">
+                <span class="input-label full">
+                    <b>PM15.</b> Dalam 1 bulan terakhir, apakah ada Anggota Rumah Tangga yang pernah didiagnosis menderita demam Typhoid (Tifus perut) oleh tenaga kesehatan (Dokter/Perawat/Bidan) ?
+                </span>
+                <div class="button-bar right">
+                    <ion-radio name="pm15" ng-model="pm.pm15" ng-change="setTidakSakit('pm15',pm.pm15)" ng-value="1">Ya</ion-radio>
+                    <ion-radio name="pm15" ng-model="pm.pm15" ng-change="setTidakSakit('pm15',pm.pm15)" ng-value="2">Tidak</ion-radio>
+                    <ion-radio name="pm15" ng-model="pm.pm15" ng-change="setTidakSakit('pm15',pm.pm15)" ng-value="98">Tidak Tahu</ion-radio>
+                </div>
+            </label>
+            <label class="item item-text-wrap">
+                <span class="input-label full">
+                    <b>PM16.</b> Dalam 1 bulan terakhir, apakah ada Anggota Rumah Tangga yang pernah menderita panas terutama pada sore atau malam hari lebih dari 1 minggu dan gangguan pencernaan ?
+                </span>
+                <div class="button-bar right">
+                    <ion-radio name="pm16" ng-model="pm.pm16" ng-change="setTidakSakit('pm16',pm.pm16)" ng-value="1">Ya</ion-radio>
+                    <ion-radio name="pm16" ng-model="pm.pm16" ng-change="setTidakSakit('pm16',pm.pm16)" ng-value="2">Tidak</ion-radio>
+                    <ion-radio name="pm15" ng-model="pm.pm16" ng-change="setTidakSakit('pm16',pm.pm16)" ng-value="98">Tidak Tahu</ion-radio>
+                </div>
+            </label>
+
+            <div class="item-group" ng-if="pm.pm15==1 || pm.pm16==1">
+              <div class="table table-bordered table-striped">
+                <div class="row header">
+                    <div class="col col-10 text-center">No ART</div>
+                    <div class="col col-20 nama">Nama (umur)</div>
+                    <div class="col col-10 text-center">JK</div>
+                    <div class="col col-20 text-center" ng-if="pm.pm15==1">PM15</div>
+                    <div class="col col-30 text-center" ng-if="pm.pm16==1">PM16</div>
+                </div>
+                <div class="row" ng-repeat="d in dataART">
+                  <div class="col col-10 text-center">{{d._noArt}}</div>
+                  <div class="col col-20 nama">{{d._nama}} ({{d.umur}})</div>
+                  <div class="col col-10 text-center">{{d._jk}}</div>
+                  <div class="col col-20 text-center" ng-if="pm.pm15==1">
+                      <select ng-model="pm.pm15ls[d.idart]" ng-change="defpm(pm.pm15ls[d.idart],d.idart)">
+                          <option value="" selected></option>
+                          <option value="1">1. Ya</option>
+                          <option value="2">2. Tidak</option>
+                          <option value="98">98. Tidak tahu</option>
+                      </select>
+                      <!-- <button ng-if="pm.pm15ls[d.idart] == 1"
+                        class="button button-small simpan button-calm"
+                        ng-click="editPm15(pm.pm15ls[d.idart],d)">
+                        <i class="icon ion-edit"></i>
+                      </button> -->
+                  </div>
+                  <div class="col col-30 text-center" ng-if="pm.pm16==1">
+                    <select ng-model="pm.pm16ls[d.idart]" ng-change="editPm16(pm.pm16ls[d.idart],d)">
+                        <option value=""></option>
+                        <option value="1">1. Ya</option>
+                        <option value="2">2. Tidak</option>
+                        <option value="98">98. Tidak tahu</option>
+                    </select>
+                    <button ng-if="pm.pm16ls[d.idart] == 1"
+                        class="button button-small simpan button-calm"
+                        ng-click="editPm16(pm.pm16ls[d.idart],d)">
+                        <i class="icon ion-edit"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </ion-list> <!-- EOF list typhoid -->
+
+        <ion-list ng-show="diare">
+            <div class="item item-text-wrap item-row">Bagian ketiga ini saya ingin menanyakan terkait riwayat sakit yang diderita ART rumah tangga bapak/ibu selama 1 tahun terakhir, sakit yang diderita terbagi2 yaitu yang menular dan tidak menular.
+            Untuk penyakit menular yang ingin saya tanyakan terkait sakit ISPA (demam batuk pilek), malaria, demam berdarah, TB paru, demam tifoid, diare, dan hepatitis. Bapak/ibu tidak perlu khawatir dan membayangkan jika akan terjadi hal-hal buruk jika menjawab pertanyaan ini, kami hanya ingin melihat apakah di Kabupaten Sleman masih ada kasus yang diderita warga terkait sakit tersebut sehingga bapak/ibu hanya perlu menjawab apa adanya yang terjadi anggota keluarga, karena mungkin tidak semua penyakit diderita dan jika ada yang sakit sudah berobat dan sehat kembali.
+            </div>
+            <label class="item item-text-wrap">
+                <span class="input-label full">
+                    <b>PM17.</b> Dalam 1 bulan terakhir, apakah ada Anggota Rumah Tangga yang pernah didiagnosis menderita Diare/Mencret oleh tenaga kesehatan (Dokter/Perawat/Bidan) ?
+                </span >
+                <div class="button-bar right">
+                    <ion-radio name="pm17" ng-model="pm.pm17" ng-change="setTidakSakit('pm17',pm.pm17)" ng-value="1">Ya</ion-radio>
+                    <ion-radio name="pm17" ng-model="pm.pm17" ng-change="setTidakSakit('pm17',pm.pm17)" ng-value="2">Tidak</ion-radio>
+                    <ion-radio name="pm17" ng-model="pm.pm17" ng-change="setTidakSakit('pm17',pm.pm17)" ng-value="98">Tidak Tahu</ion-radio>
+                </div>
+            </label>
+            <label class="item item-text-wrap">
+                <span class="input-label full">
+                    <b>PM18.</b> Dalam 1 bulan terakhir apakah ada ART pernah mengalami Diare dengan ciri-ciri BAB >3 sehari ?
+                </span >
+                <div class="button-bar right">
+                    <ion-radio name="pm18" ng-model="pm.pm18" ng-change="setTidakSakit('pm18',pm.pm18)" ng-value="1">Ya</ion-radio>
+                    <ion-radio name="pm18" ng-model="pm.pm18" ng-change="setTidakSakit('pm18',pm.pm18)" ng-value="2">Tidak</ion-radio>
+                    <ion-radio name="pm18" ng-model="pm.pm18" ng-change="setTidakSakit('pm18',pm.pm18)" ng-value="98">Tidak Tahu</ion-radio>
+                </div>
+            </label>
+
+            <div class="item-group" ng-if="pm.pm17==1 || pm.pm18==1">
+              <div class="table table-bordered table-striped">
+                <div class="row header">
+                    <div class="col col-10 text-center">No ART</div>
+                    <div class="col col-20 nama">Nama (umur)</div>
+                    <div class="col col-10 text-center">JK</div>
+                    <div class="col col-20 text-center" ng-if="pm.pm17==1">PM17</div>
+                    <div class="col col-20 text-center" ng-if="pm.pm18==1">pm18</div>
+                </div>
+                <div class="row" ng-repeat="d in dataART">
+                  <div class="col col-10 text-center">{{d._noArt}}</div>
+                  <div class="col col-20 nama">{{d._nama}} ({{d.umur}})</div>
+                  <div class="col col-10 text-center">{{d._jk}}</div>
+                  <div class="col col-20 text-center" ng-if="pm.pm17==1">
+                      <select ng-model="pm.pm17ls[d.idart]" ng-change="editPm17(pm.pm17ls[d.idart],d)">
+                          <option value="" selected></option>
+                          <option value="1">1. Ya</option>
+                          <option value="2">2. Tidak</option>
+                          <option value="98">98. Tidak tahu</option>
+                      </select>
+                      <button ng-if="pm.pm17ls[d.idart] == 1"
+                        class="button button-small simpan button-calm"
+                        ng-click="editPm17(pm.pm17ls[d.idart],d)">
+                        <i class="icon ion-edit"></i>
+                      </button>
+                  </div>
+                  <div class="col col-20 text-center" ng-if="pm.pm18==1">
+                      <select ng-model="pm.pm18ls[d.idart]" ng-change="editPm18(pm.pm18ls[d.idart],d)">
+                          <option value="" selected></option>
+                          <option value="1">1. Ya</option>
+                          <option value="2">2. Tidak</option>
+                          <option value="98">98. Tidak tahu</option>
+                      </select>
+                      <button ng-if="pm.pm18ls[d.idart] == 1"
+                        class="button button-small simpan button-calm"
+                        ng-click="editPm18(pm.pm18ls[d.idart],d)">
+                        <i class="icon ion-edit"></i>
+                      </button>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </ion-list> <!-- EOF list hepatitis -->
+
+        <ion-list ng-show="hepatitis">
+            <div class="item item-text-wrap item-row">Bagian ketiga ini saya ingin menanyakan terkait riwayat sakit yang diderita ART rumah tangga bapak/ibu selama 1 tahun terakhir, sakit yang diderita terbagi2 yaitu yang menular dan tidak menular.
+            Untuk penyakit menular yang ingin saya tanyakan terkait sakit ISPA (demam batuk pilek), malaria, demam berdarah, TB paru, demam tifoid, diare, dan hepatitis. Bapak/ibu tidak perlu khawatir dan membayangkan jika akan terjadi hal-hal buruk jika menjawab pertanyaan ini, kami hanya ingin melihat apakah di Kabupaten Sleman masih ada kasus yang diderita warga terkait sakit tersebut sehingga bapak/ibu hanya perlu menjawab apa adanya yang terjadi anggota keluarga, karena mungkin tidak semua penyakit diderita dan jika ada yang sakit sudah berobat dan sehat kembali.
+            </div>
+            <label class="item item-text-wrap">
+                <span class="input-label full">
+                    <b>PM20.</b> Dalam 1 bulan terakhir, apakah ada Anggota Rumah Tangga yangpernah didiagnosis menderita menderita Hepatitis / Sakit Liver/ Sakit Kuning oleh tenaga kesehatan (Dokter/Perawat/Bidan) ?
+                </span >
+                    <div class="button-bar right">
+                        <ion-radio name="pm20" ng-model="pm.pm20" ng-change="setTidakSakit('pm20',pm.pm20)" ng-value="1">Ya</ion-radio>
+                        <ion-radio name="pm20" ng-model="pm.pm20" ng-change="setTidakSakit('pm20',pm.pm20)" ng-value="2">Tidak</ion-radio>
+                        <ion-radio name="pm20" ng-model="pm.pm20" ng-change="setTidakSakit('pm20',pm.pm20)" ng-value="98">Tidak Tahu</ion-radio>
+                    </div>
+            </label>
+            <label class="item item-text-wrap">
+                <span class="input-label full">
+                    <b>PM21.</b> Dalam 1  bulan terakhir, apakah ada Anggota Rumah Tangga yang pernah menderita menderita demam, lemah, gangguan saluran cerna (mual, muntah, tidak nafsu makan), nyeri pada perut kanan atas ?
+                </span >
+                    <div class="button-bar right">
+                        <ion-radio name="pm21" ng-model="pm.pm21" ng-change="setTidakSakit('pm21',pm.pm21)" ng-value="1">Ya</ion-radio>
+                        <ion-radio name="pm21" ng-model="pm.pm21" ng-change="setTidakSakit('pm21',pm.pm21)" ng-value="2">Tidak</ion-radio>
+                        <ion-radio name="pm21" ng-model="pm.pm21" ng-change="setTidakSakit('pm21',pm.pm21)" ng-value="98">Tidak Tahu</ion-radio>
+                    </div>
+            </label>
+
+            <div class="item-group" ng-if="pm.pm20==1 || pm.pm21==1">
+              <div class="table table-bordered table-striped">
+                <div class="row header">
+                    <div class="col col-10 text-center">No ART</div>
+                    <div class="col col-20 nama">Nama (umur)</div>
+                    <div class="col col-10 text-center">JK</div>
+                    <div class="col col-20 text-center" ng-if="pm.pm20==1">PM20</div>
+                    <div class="col col-20 text-center" ng-if="pm.pm21==1">PM21</div>
+                </div>
+                <div class="row" ng-repeat="d in dataART">
+                  <div class="col col-10 text-center">{{d._noArt}}</div>
+                  <div class="col col-20 nama">{{d._nama}} ({{d.umur}})</div>
+                  <div class="col col-10 text-center">{{d._jk}}</div>
+                  <div class="col col-20 text-center" ng-if="pm.pm20==1">
+                      <select ng-model="pm.pm20ls[d.idart]" ng-change="defpm(pm.pm20ls[d.idart],d.idart)">
+                          <option value="" selected></option>
+                          <option value="1">1. Ya</option>
+                          <option value="2">2. Tidak</option>
+                          <option value="98">98. Tidak tahu</option>
+                      </select>
+                      <!-- <button ng-if="pm.pm20ls[d.idart] == 1"
+                        class="button button-small simpan button-calm"
+                        ng-click="editPm20(pm.pm20ls[d.idart],d)">
+                        <i class="icon ion-edit"></i>
+                      </button> -->
+                  </div>
+                  <div class="col col-20 text-center" ng-if="pm.pm21==1">
+                      <select ng-model="pm.pm21ls[d.idart]" ng-change="editPm21(pm.pm21ls[d.idart],d)">
+                          <option value="" selected></option>
+                          <option value="1">1. Ya</option>
+                          <option value="2">2. Tidak</option>
+                          <option value="98">98. Tidak tahu</option>
+                      </select>
+                      <button ng-if="pm.pm21ls[d.idart] == 1"
+                        class="button button-small simpan button-calm"
+                        ng-click="editPm21(pm.pm21ls[d.idart],d)">
+                        <i class="icon ion-edit"></i>
+                      </button>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </ion-list> <!-- EOF list hepatitis -->
+
+        <div class="hint-status"><span>Silahkan gunakan tombol Laporan Wawancaara jika sudah ada data yang tercatat dan wawancara berhenti di tengah jalan</span></div>
+        <!-- Buttons-->
+        <div class="item-group" ng-if="vaksin">
+            <button class="button simpan button-calm pull-right" ng-click="go('ispa','vaksin')">
+                Selanjutnya (ISPA)<i class="icon ion-arrow-right-c"></i>
+            </button>
+        </div>
+        <div class="item-group" ng-if="ispa">
+            <button ng-if="ispaAllowSave()" class="button simpan button-calm pull-right" ng-click="go('malaria','ispa')">
+                Selanjutnya (Malaria)<i class="icon ion-arrow-right-c"></i>
+            </button>
+            <button  class="button simpan button-calm" ng-click="go('vaksin','ispa')">
+                <i class="icon ion-arrow-left-c"></i>Sebelumnya (Vaksin)
+            </button>
+        </div>
+        <div class="item-group" ng-if="malaria">
+            <button  ng-if="malariaAllowSave()" class="button simpan button-calm pull-right" ng-click="go('demam','malaria')">
+                Selanjutnya (Demam Berdarah)<i class="icon ion-arrow-right-c"></i>
+            </button>
+            <button  class="button simpan button-calm" ng-click="go('ispa','malaria')">
+                <i class="icon ion-arrow-left-c"></i>Sebelumnya (ISPA)
+            </button>
+        </div>
+        <div class="item-group" ng-if="demam">
+            <button ng-if="dbAllowSave()" class="button simpan button-calm pull-right" ng-click="go('leptospirosis','demam')">
+                Selanjutnya (Leptospirosis)<i class="icon ion-arrow-right-c"></i>
+            </button>
+            <button class="button simpan button-calm" ng-click="go('malaria','demam')">
+                <i class="icon ion-arrow-left-c"></i>Sebelumnya (Malaria)
+            </button>
+        </div>
+        <div class="item-group" ng-if="leptospirosis">
+            <button ng-if="leptoAllowSave()" class="button simpan button-calm pull-right" ng-click="go('tuberkolusis','leptospirosis')">
+                Selanjutnya (Tuberkolusis)<i class="icon ion-arrow-right-c"></i>
+            </button>
+            <button  class="button simpan button-calm" ng-click="go('demam','leptospirosis')">
+                <i class="icon ion-arrow-left-c"></i>Sebelumnya (Demam Berdarah)
+            </button>
+        </div>
+        <div class="item-group" ng-if="tuberkolusis">
+            <button  ng-if="tuberkolusisAllowSave()" class="button simpan button-calm pull-right" ng-click="go('typhoid','tuberkolusis')">
+                Selanjutnya (Typhoid)<i class="icon ion-arrow-right-c"></i>
+            </button>
+            <button  class="button simpan button-calm" ng-click="go('leptospirosis','tuberkolusis')">
+                <i class="icon ion-arrow-left-c"></i>Sebelumnya (Leptospirosis)
+            </button>
+        </div>
+        <div class="item-group" ng-if="typhoid">
+            <button  ng-if="typhoidAllowSave()" class="button simpan button-calm pull-right" ng-click="go('diare','typhoid')">
+                Selanjutnya (Diare)<i class="icon ion-arrow-right-c"></i>
+            </button>
+            <button  class="button simpan button-calm" ng-click="go('tuberkolusis','typhoid')">
+                <i class="icon ion-arrow-left-c"></i>Sebelumnya (Tuberkolusis)
+            </button>
+        </div>
+        <div class="item-group" ng-if="diare">
+            <button  ng-if="diareAllowSave()" class="button simpan button-calm pull-right" ng-click="go('hepatitis','diare')">
+                Selanjutnya (Hepatitis)<i class="icon ion-arrow-right-c"></i>
+            </button>
+            <button  class="button simpan button-calm" ng-click="go('typhoid','diare')">
+                <i class="icon ion-arrow-left-c"></i>Sebelumnya (Typhoid)
+            </button>
+        </div>
+        <div class="item-group" ng-if="hepatitis">
+            <button  ng-if="hepatitisAllowSave()" class="button simpan button-dark pull-right" ng-click="save(true)">
+               <i class="icon ion-archive"></i> Lanjut ke PTM Cedera
+            </button>
+            <button  class="button simpan button-calm" ng-click="go('diare','hepatitis')">
+                <i class="icon ion-arrow-left-c"></i>Sebelumnya (Diare)
+            </button>
+        </div>
+        <!-- Jika wawancara berhenti di tengah jalan -->
+        <div class="item-group"> 
+            <button class="button simpan button-assertive pull-left" ng-click="save('utama')">
+                <i class="icon ion-arrow-left-c"></i> Laporan Wawancara
+            </button>
+        </div>
+
+    </ion-content>
+</ion-view>

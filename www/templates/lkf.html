@@ -1,0 +1,97 @@
+<ion-view view-title="Literasi Kesehatan">
+    <div class="bar bar-subheader bar-calm">
+        <h2 class="title left nama">Formulir kuesioner kesehatan digital</h2>
+    </div>
+    <ion-content class="lkf has-subheader" style="padding-bottom: 10px">
+      <form name="myForm">
+        <ion-list>
+            <div class="item item-divider item-text-wrap">
+                Bagian 1. Literasi kesehatan fungsional
+            </div>
+            
+            <div class="item item-text-wrap item-row">
+                <div class="row">
+                    <div class="input-label-home">Anggaplah ini sebagai lembar informasi tentang tablet parasetamol 500 mg (Panadol). Lengkapilah kalimat berikut dengan memilih empat opsi di bawah setiap isian!</div>
+                </div>
+            </div>
+
+            <div class="big-screen">
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label"><b>1.</b> Panadol adalah pereda nyeri dan juga dapat ________ suhu badan Anda ketika mengalami demam.</div>
+                        <div class="col col-50 col-center" >
+                            <select class="pull-right" name="lkf1" ng-model="lkf.lkf1" required>
+                                <option value="" selected></option>
+                                <option value="a">a. Memakai ulang</option>
+                                <option value="b">b. Menaikkan</option>
+                                <option value="c">c. Menyelamatkan</option>
+                                <option value="d">d. Menurunkan</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label"><b>2.</b> Dosis maksimal untuk anak-anak adalah 50 mg/kg/hari yang dibagi menjadi 3-4 dosis per hari. Jika berat badan anak 30 kg, dosis maksimumnya adalah ________ mg per hari.</div>
+                        <div class="col col-50 col-center" >
+                            <select class="pull-right" name="lkf2" ng-model="lkf.lkf2" required>
+                                <option value="" selected></option>
+                                <option value="a">a. 500</option>
+                                <option value="b">b. 1000</option>
+                                <option value="c">c. 1.500</option>
+                                <option value="d">d. 3.000</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="small-screen">
+                <label class="item item-text-wrap">
+                    <span class="input-label full">
+                        <b>1.</b> Panadol adalah pereda nyeri dan juga dapat ________ suhu badan Anda ketika mengalami demam.
+                    </span >
+                    <div class="button-bar right">
+                        <select class="pull-right" name="lkf1" ng-model="lkf.lkf1" required>
+                            <option value="" selected></option>
+                            <option value="a">a. Memakai ulang</option>
+                            <option value="b">b. Menaikkan</option>
+                            <option value="c">c. Menyelamatkan</option>
+                            <option value="d">d. Menurunkan</option>
+                        </select>
+                    </div>
+                </label>
+                <label class="item item-text-wrap">
+                    <span class="input-label full">
+                        <b>2.</b> Dosis maksimal untuk anak-anak adalah 50 mg/kg/hari yang dibagi menjadi 3-4 dosis per hari. Jika berat badan anak 30 kg, dosis maksimumnya adalah ________ mg per hari.
+                    </span >
+                    <div class="button-bar right">
+                        <select class="pull-right" name="lkf2" ng-model="lkf.lkf2" required>
+                            <option value="" selected></option>
+                            <option value="a">a. 500</option>
+                            <option value="b">b. 1000</option>
+                            <option value="c">c. 1.500</option>
+                            <option value="d">d. 3.000</option>
+                        </select>
+                    </div>
+                </label>
+            </div>
+
+        </ion-list>
+        
+      </form>
+        <!-- Buttons-->
+        <div class="item-group">
+            <button class="button simpan button-positive pull-left" ng-click="save('klk')" >
+                <i class="icon ion-arrow-left-c"></i>Kembali
+            </button>
+            <button ng-if="AllowSave()" class="button simpan button-positive pull-right" ng-click="save('lkm')">
+                Lanjut<i class="icon ion-arrow-right-c"></i>
+            </button>
+        </div>
+
+        <!-- Buttons-->
+    </ion-content>
+</ion-view>
+
+

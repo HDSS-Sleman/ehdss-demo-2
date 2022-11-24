@@ -1,0 +1,100 @@
+<ion-view view-title="Kejadian Kematian">
+    <ion-content class="kmt">
+        <form name="myForm" novalidate>
+            <ion-list>
+                <label class="item item-input item-text-wrap ng-hide">
+                    <div class="input-label"><b>KMT02.</b> Nama yang meninggal</div>
+                    <input class="lowercase" type="text" ng-model="kmt.kmt02">
+                </label>
+                <div ng-if="stat">
+                    <label class="item item-select" >
+                        <div class="input-label"><b>KMT02.</b> Nama yang meninggal</div>
+                        <select ng-model="nama" ng-change="fillForm(nama)">
+                            <option ng-repeat="d in dataKMT" value="{{d}}">{{d._nama}}</option>
+                        </select>
+                    </label>
+                </div>
+                <label class="item item-select item-text-wrap">
+                    <div class="input-label"><b>KMT03.</b> Hubungan dengan Kepala Rumah Tangga</div>
+                    <select ng-model="kmt.kmt03">
+                        <option value="" selected></option>
+                        <option value="1">1. Kepala Rumah Tangga</option>
+                        <option value="2">2. Istri/Suami</option>
+                        <option value="3">3. Anak Kandung</option>
+                        <option value="4">4. Anak Angkat/Tiri</option>
+                        <option value="5">5. Menantu</option>
+                        <option value="6">6. Cucu</option>
+                        <option value="7">7. Orangtua/Mertua</option>
+                        <option value="8">8. Famili Lain</option>
+                        <option value="9">9. Pembantu Rumah tangga</option>
+                        <option value="10">10. Kost</option>
+                        <option value="11">11. Bukan Famili</option>
+                        <option value="12">12. Buyut</option>
+                        <option value="13">13. Keponakan</option>
+                        <option value="14">14. Tidak diketahui</option>
+                    </select>
+                </label>
+                
+                <label class="item item-input">
+                    <div class="input-label"><b>KMT04.</b> No. Urut Ayah</div>
+                    <input type="number" ng-model="kmt.kmt04" name="kmt04" min="1" max="99" numbers-allowed="1-20,51,52,96">
+                </label>
+                <div ng-show="myForm.kmt04.$invalid" class="invalid-val"><span>nilai yg diijinkan: 1-20,51,52</span></div>
+                <label class="item item-input">
+                    <div class="input-label"><b>KMT05.</b> No. Urut Ibu </div>
+                    <input type="number" ng-model="kmt.kmt05" name="klh05" min="1" max="99" numbers-allowed="1-20,51,52,96">
+                </label>
+                <div ng-show="myForm.kmt05.$invalid" class="invalid-val"><span>nilai yg diijinkan: 1-20,51,52</span></div>
+
+                <label class="item item-select item-text-wrap">
+                    <div class="input-label"><b>KMT06.</b> Jenis Kelamin</div>
+                    <select ng-model="kmt.kmt06">
+                        <option value="" selected></option>
+                        <option value="1">1. Laki-laki</option>
+                        <option value="2">2. Perempuan</option>
+                    </select>
+                </label>
+                
+                
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-33 col-center">
+                            <div class="input-label "><b>KMT07.</b>Tanggal meninggal</div>
+                        </div>
+                        <div class="col col-33 col-center">
+                            <input type="date" min="1916-01-01" max="{{tglLhrMax}}" ng-if="kmt.kmt07a == 1" ng-model="kmt.kmt07">
+                        </div>
+                        <div class="col col-33 col-center">
+                            <ion-checkbox class="no-border" ng-model="kmt.kmt07a" ng-true-value="98" ng-false-value="1">Tidak Tahu</ion-checkbox>
+                        </div>
+                    </div>
+                </label>
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-30">
+                            <div class="input-label"><b>KMT08.</b>Umur saat meninggal (thn/bln/hari)</div>
+                        </div>
+                        <div class="col col-10">
+                            <input type="number" ng-model="kmt.kmt08a" name="kmt08a" placeholder="thn" min="0" max="100" ng-if="kmt.kmt08d == 1">
+                        </div>
+                        <div class="col col-10">
+                            <input type="number" ng-model="kmt.kmt08b" name="kmt08b" placeholder="bln" min="0" max="11" ng-if="kmt.kmt08d == 1">
+                        </div>
+                        <div class="col col-10">
+                            <input type="number" ng-model="kmt.kmt08c" name="kmt08c" placeholder="hari" min="0" max="30" ng-if="kmt.kmt08d == 1">
+                        </div>
+                        <div class="col col-30 col-center">
+                            <ion-checkbox class="no-border" ng-model="kmt.kmt08d" ng-true-value="98" ng-false-value="1">Tidak Tahu</ion-checkbox>
+                        </div>
+                    </div>
+                </div>
+            </ion-list>
+        </form>
+
+        <div class="padding text-right" >
+            <button ng-if="allowSave(myForm)" class="button simpan button-dark pull-right" ng-click="save()">
+                <i class="icon ion-archive"></i> Simpan dan kembali
+            </button>
+        </div>
+    </ion-content>
+</ion-view>

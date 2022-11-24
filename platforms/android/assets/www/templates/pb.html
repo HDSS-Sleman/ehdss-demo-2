@@ -1,0 +1,200 @@
+<ion-view view-title="Perbaikan Baseline">
+    <ion-content class="pb">
+        <form name="myForm" novalidate>
+            <ion-list>
+                <label class="item item-input item-text-wrap">
+                    <div class="input-label">Nama Anggota Rumah Tangga</div>
+                    <input class="lowercase" type="text" ng-model="pb.art01_ed" class="input-border">
+                </label>
+                <label class="item item-select item-text-wrap">
+                    <div class="input-label">Hubungan dg Kepala Rumah Tangga</div>
+                    <select ng-model="pb.art02_ed" ng-options="key as key + '. ' + val for (key,val) in listHubRT">
+                        <option value="" selected></option>
+                    </select>
+                </label>
+                <label class="item item-select item-text-wrap">
+                    <div class="input-label">Jenis Kelamin</div>
+                    <select ng-model="pb.art04_ed">
+                        <option value="" selected></option>
+                        <option value="1">1. Laki-laki</option>
+                        <option value="2">2. Perempuan</option>
+                    </select>
+                </label>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center">
+                            <div class="input-label ">Tanggal Lahir</div>
+                        </div>
+                        <div class="col col-50 col-center">
+                            <input type="date" min="1916-01-01" max="{{tglWawancara}}" ng-model="pb.art05_ed" ng-change="calcUmur()" class="pull-right">
+                        </div>
+                    </div>
+                </label>
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label">Sumber Informasi tanggal lahir </div>
+                        <div class="col col-50 col-center" >
+                            <select class="input-border pull-right" ng-model="pb.art05b_ed">
+                                <option value="" selected></option>
+                                <option value="1">1. Ingatan</option>
+                                <option value="2">2. KTP/SIM</option>
+                                <option value="3">3. Kartu Keluarga</option>
+                                <option value="4">4. Akta Kelahiran</option>
+                                <option value="5">5. Dokumen resmi lain, sebutkan</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <label class="item item-input item-text-wrap" ng-if="pb.art05b_ed == 5">
+                    <div class="input-label">Sumber Informasi tanggal lahir lain</div>
+                    <input type="text" class="input-border" ng-model="pb.art05b1_ed">
+                </label>
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50">
+                            <div class="input-label">Umur (tahun)</div>
+                        </div>
+                        <div class="col col-50">
+                            <input type="number" ng-model="pb.art06a_ed" name="art06a_ed" placeholder="tahun" min="0" max="150" ng-change="calcUmur()" class="pull-right input-border">
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="myForm.art06a_ed.$invalid" class="invalid-val"><span>thn minimal 0 dan maksimal 150</span></div>
+                <label class="item item-select item-text-wrap">
+                    <div class="input-label">Status Kawin</div>
+                    <select ng-model="pb.art07_ed">
+                        <option value="" selected></option>
+                        <option value="1">1. Belum Kawin</option>
+                        <option value="2">2. Kawin</option>
+                        <option value="3">3. Cerai Hidup</option>
+                        <option value="4">4. Cerai Mati</option>
+                        <option value="5">5. Pisahan</option>
+                        <option value="6">6. Rujuk</option>
+                    </select>
+                </label>
+                <label class="item item-select item-text-wrap">
+                    <div class="input-label">Pendidikan tertinggi yang pernah/sedang ditempuh</div>
+                    <select ng-model="pb.art16_ed">
+                        <option value="" selected></option>
+                        <option value="1">1. Tidak / Belum Sekolah</option>
+                        <option value="2">2. SD/MI</option>
+                        <option value="3">3. SLTP/Mts</option>
+                        <option value="4">4. SLTA/SMK/MA</option>
+                        <option value="5">5. D2/D3</option>
+                        <option value="6">6. D4/S1</option>
+                        <option value="7">7. S2/S3</option>
+                        <option value="98">98. Tidak Tahu</option>
+                    </select>
+                </label>
+                <label class="item item-select item-text-wrap">
+                    <div class="input-label">Pekerjaan Utama</div>
+                    <select ng-model="pb.art18_ed">
+                        <option value="" selected></option>
+                        <option value="1">1. Tidak Bekerja</option>
+                        <option value="2">2. Ibu Rumah Tangga</option>
+                        <option value="3">3. TNI /Polri</option>
+                        <option value="4">4. Pegawai Negeri Sipil</option>
+                        <option value="5">5. Pegawai BUMN</option>
+                        <option value="6">6. Pegawai Swasta</option>
+                        <option value="7">7. Wiraswasta/Pedagang</option>
+                        <option value="8">8. Pelayanan Jasa</option>
+                        <option value="9">9. Petani</option>
+                        <option value="10">10. Nelayan</option>
+                        <option value="11">11. Buruh</option>
+                        <option value="12">12. Pensiun</option>
+                        <option value="13">13. Pelajar</option>
+                        <option value="95">95. Lainnya</option>
+                        <option value="98">98. Tidak Tahu</option>
+                    </select>
+                </label>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center">
+                            <div class="input-label">Keberadaan ART</div>
+                        </div>
+                        <div class="col col-50 col-center">
+                            <div class="button-bar right">
+                                <ion-radio name="art21a_ed" ng-model="pb.art21a_ed" value="1">Ada</ion-radio>
+                                <ion-radio name="art21a_ed" ng-model="pb.art21a_ed" value="2">Tidak</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <div class="item-group" ng-if="pb.art21a_ed == 2">
+                    <div class="item item-divider">
+                        Keterangan Keberadaan
+                    </div>
+                    <label class="item item-select item-text-wrap">
+                        <div class="input-label">Kejadian</div>
+                        <select ng-model="pb.art21b_ed">
+                            <option value="" selected></option>
+                            <option value="1">1. Meninggal</option>
+                            <option value="2">2. Migrasi Keluar</option>
+                        </select>
+                    </label>
+                    <label class="item item-select item-text-wrap" ng-if="pb.art21b_ed == 2">
+                        <div class="input-label">Migrasi Keluar</div>
+                        <select ng-model="pb.art21c_ed">
+                            <option value="" selected></option>
+                            <option value="1">1. Luar Sleman</option>
+                            <option value="2">2. Dalam Sleman</option>
+                        </select>
+                    </label>
+                    <label class="item item-input" ng-if="pb.art21c_ed == 2">
+                        <div class="input-label">Dalam Sleman</div>
+                        <textarea rows="3" ng-model="pb.art21d_ed" placeholder="Tuliskan Alamat Lengkap" ></textarea>
+                    </label>
+                    <!-- new model form pertanyaan tgl kejadian -->
+                    <label class="item item-select item-text-wrap">
+                        <div class="input-label">Apakah tahu tanggal kejadian?</div>
+                        <select ng-model="pb.art21ex_ed">
+                            <option value="" selected></option>
+                            <option value="1">1. Ya</option>
+                            <option value="2">2. Tidak</option>
+                        </select>
+                    </label>
+                    <label class="item item-text-wrap item-row" ng-if="pb.art21ex_ed == 1">
+                        <div class="row">
+                            <div class="col col-50 col-center">
+                                <div class="input-label ">Tanggal kejadian</div>
+                            </div>
+                            <div class="col col-50 col-center">
+                                <input type="date" min="1916-01-01" max="{{tglWawancara}}" ng-model="pb.art21e_ed" class="pull-right">
+                            </div>
+                        </div>
+                    </label>
+                    <!-- end of new model form pertanyaan tgl kejadian -->
+                </div>
+                <!-- pertanyaan no urut pasanga di hide saja -->
+                <div ng-show="false">
+                    <label class="item item-input">
+                        <span class="input-label">No. Urut Pasangan Pertama</span>
+                        <input type="number" ng-model="pb.art09_ed" name="art09_ed" min="1" max="99" numbers-allowed="1-20,51,96" class="input-border">
+                    </label>
+                    <div class="invalid-val"><span>Isi 51 jika suami/istri tidak tinggal bersama. Nilai yg diizinkan: 1-20,51,96</span></div>
+                    <label class="item item-input">
+                        <span class="input-label">No. Urut Pasangan Kedua</span>
+                        <input type="number" ng-model="pb.art10_ed" name="art10_ed" min="1" max="99" numbers-allowed="1-20,51,96" class="input-border">
+                    </label>
+                    <div class="invalid-val"><span>Isi 96 jika hanya punya 1 istri/suami. Isi 51 jika punya istri/suami kedua tp tdk tinggal bersama. Nilai yg diizinkan: 1-20,51,96</span></div>
+                    <label class="item item-input">
+                        <div class="input-label">No. Urut Ayah</div>
+                        <input type="number" ng-model="pb.art11_ed" name="art11_ed" min="1" max="99" numbers-allowed="1-20,51,52" class="input-border">
+                    </label>
+                    <div class="invalid-val"><span>Jika tidak ada dalam daftar, tulis 51. Jika sudah meninggal, tulis 52. Nilai yg diizinkan: 1-20,51,52</span></div>
+                    <label class="item item-input">
+                        <div class="input-label">No. Urut Ibu </div>
+                        <input type="number" ng-model="pb.art12_ed" name="art12_ed" min="1" max="99" numbers-allowed="1-20,51,52" class="input-border">
+                    </label>
+                    <div class="invalid-val"><span>Jika tidak ada dalam daftar, tulis 51. Jika sudah meninggal, tulis 52. Nilai yg diizinkan: 1-20,51,52</span></div>
+                </div>
+                <!-- End of pertanyaan no urut pasangan dan orang tua -->
+            </ion-list>
+        </form>
+        <div class="padding text-right" ng-if="allowSave(myForm)">
+            <button class="button simpan button-dark pull-right" ng-click="save()">
+                <i class="icon ion-archive"></i> Simpan dan kembali ke ART
+            </button>
+        </div>
+    </ion-content>
+</ion-view>

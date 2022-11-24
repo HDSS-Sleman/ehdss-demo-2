@@ -1,0 +1,180 @@
+<ion-view view-title="Data ART" class="md-art">
+    <ion-content class="padding art">
+        <div class="row">
+            <div class="col col-25">ID RT</div>
+            <div class="col"><b>{{rt.idrt}}</b></div>
+        </div>
+        <div class="row">
+            <div class="col col-25">Nama Anak</div>
+            <div class="col nama"><b>{{rt.id04}}</b></div>
+        </div>
+        <div class="row">
+            <div class="col col-25">Alamat</div>
+            <div class="col nama"><b>{{rt.id23}}</b></div>
+        </div>
+        <div class="item item-divider item-text-wrap desc">
+        </div>
+
+        <!-- <div class="list-art">
+            <div class="row header">
+                <div class="col col-10 text-center" ng-if="!Random">No<br>ART</div>
+                <div class="col col-10 nama">Nama ART</div>
+                <div class="col col-10 text-center">Umur</div>
+                <div class="col col-10 text-center" ng-if="!Random">JK</div>
+                <div class="col hub-rt col-10 text-center">Hub RT</div>
+                <div class="col status-kawin col-10 text-center" >Status</div>
+                <div class="col col-10 text-center" ng-if="j_siklus.s7">Cek</div>
+                <div class="col text-center" ng-if="j_siklus.s7 && !Random">Perubahan</div>
+                <div class="col text-center" ng-if="j_siklus.s7">Kish</div>
+                <div class="col text-center" ng-if="j_siklus.s7 && !Random">Modul B</div>
+            </div>
+            <div class="row" ng-class="{'baru': d.artb, 'art-tdk-ada': d.artTdkAda, 'modb' : d.ptmb}" ng-repeat="d in dataART track by $index">
+                <div class="col col-10 text-center" ng-if="!Random">{{d._noArt}}</div>
+                <div class="col col-10 nama">{{d._nama}} <button ng-if="!d.artb && !d.start_in_wave_art" ng-click="PerbaikanBaseline(d)" class="button button-positive button-small icon-left ion-edit"></button> </div>
+                <div class="col col-10 text-center">{{d.umur || d.umur_str ||d.umur_th_rev}}</div>
+                <div class="col col-10 text-center" ng-if="j_siklus.s7 && !Random">{{d._jk}}</div>
+                <div class="col hub-rt col-10 text-center" >{{d._hubRT || '----'}}</div>
+                <div class="col status-kawin col-10 text-center" >
+                {{
+                    (d.ketart_db == 1) ? 'ada' : 
+                        ((d.ketart_db == 2) ? 'meninggal' : 
+                            ((d.ketart_db == 3) ? 'migrasi' : 
+                                ((d.ketart_db == 4) ? 'keberadaan tidak ada' :
+                                    ((d.keberadaan == 'Ada') ? 'ada' :
+                                        ((d.artb21a == 1)? 'ada' : 
+                                            ((d.artb21a == 2)? 'tidak ada' : '-')
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                }}
+                </div>
+                <div class="col col-10 text-center" ng-if="j_siklus.s7">
+                    <i ng-if="!d.start_in_wave_art" ng-class="{'icon ion-android-checkbox-outline-blank':!d.part,
+                        'ion-android-checkbox-outline': d.part}"></i> 
+                    <i ng-if="d.start_in_wave_art" class="ion-android-checkbox-outline""></i>
+                </div>
+                <div class="col text-center">
+                    <button  ng-if="j_siklus.s7 && !d.art36 && !Random && (d.ketart_db == 1 || d.ketart_db == 2 || d.ketart_db == 3 || d.artb)" ng-click="edit(d)" class="button icon-left ion-edit button-small"
+                        ng-class="{'button-royal':d.artb && !d.artTdkAda, 'button-balanced':!d.artb && !d.artTdkAda, 'button-assertive': d.artTdkAda}">Edit
+                    </button>
+                    <button ng-if="j_siklus.s7 && d.art36 && !Random" ng-click="edit(d)" class="button icon-left ion-edit button-small"
+                        ng-class="{'button-calm':!d.artb && !d.artTdkAda}">Edit
+                    </button>
+                </div>
+                <div class="col text-center">
+                    <input
+                        type="checkbox"
+                        name="selectedNoArt[]"
+                        value="{{d}}"
+                        ng-checked="selectionKish.indexOf(d) > -1"
+                        ng-click="toggleSelection(d)"
+                        ng-if="d.ketart_db || d.artb || d.start_in_wave_art"
+                      />
+                </div>
+                <div class="col text-center" ng-if="j_siklus.s7"> 
+                    <button ng-if="d.kish || d.modb" ng-click="formModB(d)" class="button icon-left ion-edit button-small button-balanced">Modul B
+                    </button>
+                     <button ng-if="!d.kish" ng-show="false">Modul B
+                    </button>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- to module -->
+        <div class="row">
+          <div class="col col-67 col-offset-33">
+            <button ng-class="{'button-assertive':status_ir, 'button-balanced': !status_ir}" class="button button-block button-assertive pull-right" ng-click="go('ir')">
+                Identitas Responden <i class="icon ion-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col col-67 col-offset-33">
+            <button ng-class="{'button-assertive':status_mch, 'button-balanced': !status_mch}" class="button button-block pull-right" ng-click="go('mch')">
+                Buku KIA <i class="icon ion-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col col-67 col-offset-33">
+            <button ng-class="{'button-assertive':status_ichc, 'button-balanced': !status_ichc}" class="button button-block button-assertive pull-right" ng-click="go('ichc')">
+                Pemeriksaan Kesehatan <i class="icon ion-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col col-67 col-offset-33">
+            <button ng-class="{'button-assertive':status_png, 'button-balanced': !status_png}" class="button button-block button-assertive pull-right" ng-click="go('png')">
+                Orangtua - Pengetahuan <i class="icon ion-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col col-67 col-offset-33">
+            <button ng-class="{'button-assertive':status_prk, 'button-balanced': !status_prk}" class="button button-block button-assertive pull-right" ng-click="go('prk')">
+                Orangtua - Praktik <i class="icon ion-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col col-67 col-offset-33">
+            <button ng-class="{'button-assertive':status_bkia, 'button-balanced': !status_bkia}" class="button button-block button-assertive pull-right" ng-click="go('bkia')">
+                Orangtua - Pemanfaatan Buku KIA <i class="icon ion-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col col-67 col-offset-33">
+            <button ng-class="{'button-assertive':status_ichcp, 'button-balanced': !status_ichcp}" class="button button-block button-assertive pull-right" ng-click="go('ichcp')">
+                Orangtua - Post PKAT & Konseling <i class="icon ion-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+        
+
+        <!-- shortcut modul untuk testing -->
+        <div class="row" ng-if="false">
+          <div class="col col-67 col-offset-33">
+            <button class="button button-block button-assertive pull-right" ng-click="go('akk')">
+                Ke AKK<i class="icon ion-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+        
+        <!-- Kish Selection Table untuk ART yg tidak mau direkam -->
+        <div class="row row-center" ng-if="j_siklus.s4 && Random">
+            <div class="col col-60">
+                Tambah anggota rumah tangga? (random terpisah)
+            </div>
+            <div class="col min-right">
+                <div class="button-bar right">
+                    <ion-radio name="group1" ng-model="art00" ng-value="1" ng-click="go('r_art')"><b>Ya</b></ion-radio>
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-if="j_siklus.s4 && jumART > 0 && Random">
+          <div class="col col-67 col-offset-33">
+            <button class="button button-block pull-right button-assertive" ng-click="go('list_kish')">
+                Ke Antropometri Gaya Hidup (random terpisah)<i class="icon ion-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+        <!-- end of siklus sebelumnya -->
+
+        <!-- siklus 5 -->
+        <div class="row" ng-if="j_siklus.s5 && jumART > 0 && !Random && allowARTB">
+          <div class="col col-67 col-offset-33">
+            <button class="button button-block button-assertive pull-right" ng-click="go('art_cover')">
+                Modul Balita (KAI - PH)<i class="icon ion-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+        
+        <!--end of to module -->
+        <!-- <button class="button button-block button-assertive pull-right" ng-click="go('dif')">
+            DIF<i class="icon ion-chevron-right"></i>
+        </button> -->
+    </ion-content>
+</ion-view>

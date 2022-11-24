@@ -1,0 +1,659 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-balanced">
+        <h1 class="title">KRP</h1>
+        <button class="button button-clear button-primary" ng-click="modal.hide()">Cancel</button>
+    </ion-header-bar>
+    <div class="bar bar-subheader">
+        <h2 class="title left">Nama ART : <span style="text-transform:capitalize">
+            {{art._nama}} ({{art._jk}}-{{art.umur}})</span>
+        </h2>
+    </div>
+    <ion-content class="krp has-subheader">
+        <form name="myForm" novalidate>
+            <ion-list ng-if="ARTBpernahhamil" ng-show="j_siklus.s7">
+              <input type="text" ng-model="krp.krp" ng-show="false">
+                <div class="item item-divider item-text-wrap desc">
+                    Bagian ini ditanyakan apabila ARTB yang berjenis kelamin perempuan
+                    yang berada pada usia reproduktif (15-49th).
+                </div>
+                <label class="item item-input item-text-wrap">
+                    <span class="input-label">
+                    <b>KRP01. </b>Jumlah anak laki-laki yang pernah dilahirkan dan sekarang masih hidup</span>
+                    <input type="number" class="input-border" ng-model="krp.krp01" name="krp01" min="0" max="20" block block-length="2" required>
+                </label>
+                <div ng-show="myForm.krp01.$invalid" class="invalid-val"><span>nilai minimal 0 dan maksimal 20</span></div>
+
+                <label class="item item-input item-text-wrap">
+                    <span class="input-label">
+                    <b>KRP02. </b>Jumlah anak perempuan yang pernah dilahirkan dan sekarang masih hidup</span>
+                    <input type="number" class="input-border" ng-model="krp.krp02" name="krp02" min="0" max="20" block block-length="2" required>
+                </label>
+                <div ng-show="myForm.krp02.$invalid" class="invalid-val"><span>nilai minimal 0 dan maksimal 20</span></div>
+
+                <label class="item item-input item-text-wrap">
+                    <span class="input-label">
+                    <b>KRP03. </b>Jumlah anak laki-laki yang pernah dilahirkan dan sekarang sudah meninggal</span>
+                    <input type="number" class="input-border" ng-model="krp.krp03" name="krp03" min="0" max="20" block block-length="2" required>
+                </label>
+                <div ng-show="myForm.krp03.$invalid" class="invalid-val"><span>nilai minimal 0 dan maksimal 20</span></div>
+
+                <label class="item item-input item-text-wrap">
+                    <span class="input-label">
+                    <b>KRP04. </b>Jumlah anak perempuan yang pernah dilahirkan dan sekarang sudah meninggal</span>
+                    <input type="number" class="input-border" ng-model="krp.krp04" name="krp04" min="0" max="20" block block-length="2" required>
+                </label>
+                <div ng-show="myForm.krp04.$invalid" class="invalid-val"><span>nilai minimal 0 dan maksimal 20</span></div>
+
+                <label class="item item-input item-text-wrap">
+                    <span class="input-label">
+                    <b>KRP05. </b>Jumlah abortus (keguguran) yang pernah dialami</span>
+                    <input type="number" class="input-border" ng-model="krp.krp05" name="krp05" min="0" max="20" block block-length="2" required>
+                </label>
+                <div ng-show="myForm.krp05.$invalid" class="invalid-val"><span>nilai minimal 0 dan maksimal 20</span></div>
+            </ion-list>
+            <ion-list ng-if="pertanyaanKB">
+                <div ng-show="j_siklus.s5">
+                    <div class="item item-divider item-success">
+                        Penggunaan Alat KB
+                    </div>
+                    <div class="item item-divider item-text-wrap desc">
+                        Bagian ini ditanyakan apabila ada anggota rumah tangga laki-laki dan perempuan yang berada pada usia reproduktif (15-49th) dengan status kawin YA
+                    </div>
+                    <label class="item item-select item-text-wrap" >
+                        <span class="input-label">
+                        Apakah ART menggunakan alat/cara KB untuk mencegah atau menunda kehamilan?</span>
+                        <select ng-model="krp.krp06" name="krp06" required>
+                            <option value="" selected></option>
+                            <option value="1">1. Ya, sekarang menggunakan</option>
+                            <option value="2">2. Ya, pernah tapi tidak menggunakan lagi</option>
+                            <option value="3">3. Tidak pernah menggunakan</option>
+                            <option value="98">98. Tidak Tahu</option>
+                        </select>
+                    </label>
+                    <div ng-if="krp.krp06 < 3">
+                        <div class="item item-divider">Alat/Cara KB yang digunakan</div>
+                          <div ng-if="jk == 'L'">
+                            <label class="item item-text-wrap item-row" ng-if="jk == 'L'">
+                              <div class="row">
+                                <div class="col col-50 col-center">
+                                  <div class="input-label ">1. Sterilisasi Pria</div>
+                                </div>
+                                <div class="col col-50 col-center">
+                                  <div class="button-bar right">
+                                    <ion-radio name="krp07a1" ng-model="krp.krp07a1" value="1">Ya</ion-radio>
+                                    <ion-radio name="krp07a1" ng-model="krp.krp07a1" value="2">Tidak</ion-radio>
+                                  </div>
+                                </div>
+                              </div>
+                            </label>
+                             <label class="item item-text-wrap item-row" ng-if="jk == 'L'">
+                              <div class="row">
+                                <div class="col col-50 col-center">
+                                  <div class="input-label ">7. Kondom Pria</div>
+                                </div>
+                                <div class="col col-50 col-center">
+                                  <div class="button-bar right">
+                                    <ion-radio name="krp07a7" ng-model="krp.krp07a7" value="1">Ya</ion-radio>
+                                    <ion-radio name="krp07a7" ng-model="krp.krp07a7" value="2">Tidak</ion-radio>
+                                  </div>
+                                </div>
+                              </div>
+                            </label>
+                          </div>
+                          <div ng-if="jk == 'P'">
+                            <label class="item item-text-wrap item-row" ng-if="jk == 'P'">
+                              <div class="row">
+                                <div class="col col-50 col-center">
+                                  <div class="input-label ">2. Sterilisasi Wanita</div>
+                                </div>
+                                <div class="col col-50 col-center">
+                                  <div class="button-bar right">
+                                    <ion-radio name="krp07a2" ng-model="krp.krp07a2" value="1">Ya</ion-radio>
+                                    <ion-radio name="krp07a2" ng-model="krp.krp07a2" value="2">Tidak</ion-radio>
+                                  </div>
+                                </div>
+                              </div>
+                            </label>
+                            <label class="item item-text-wrap item-row" ng-if="jk == 'P'">
+                              <div class="row">
+                                <div class="col col-50 col-center">
+                                  <div class="input-label ">3. Susuk/implan</div>
+                                </div>
+                                <div class="col col-50 col-center">
+                                  <div class="button-bar right">
+                                    <ion-radio name="krp07a3" ng-model="krp.krp07a3" value="1">Ya</ion-radio>
+                                    <ion-radio name="krp07a3" ng-model="krp.krp07a3" value="2">Tidak</ion-radio>
+                                  </div>
+                                </div>
+                              </div>
+                            </label>
+                            <label class="item item-text-wrap item-row" ng-if="jk == 'P'">
+                              <div class="row">
+                                <div class="col col-50 col-center">
+                                  <div class="input-label ">4. IUD/AKDR/Spiral</div>
+                                </div>
+                                <div class="col col-50 col-center">
+                                  <div class="button-bar right">
+                                    <ion-radio name="krp07a4" ng-model="krp.krp07a4" value="1">Ya</ion-radio>
+                                    <ion-radio name="krp07a4" ng-model="krp.krp07a4" value="2">Tidak</ion-radio>
+                                  </div>
+                                </div>
+                              </div>
+                            </label>
+                            <label class="item item-text-wrap item-row" ng-if="jk == 'P'">
+                              <div class="row">
+                                <div class="col col-50 col-center">
+                                  <div class="input-label ">5. Suntikan</div>
+                                </div>
+                                <div class="col col-50 col-center">
+                                  <div class="button-bar right">
+                                    <ion-radio name="krp07a5" ng-model="krp.krp07a5" value="1">Ya</ion-radio>
+                                    <ion-radio name="krp07a5" ng-model="krp.krp07a5" value="2">Tidak</ion-radio>
+                                  </div>
+                                </div>
+                              </div>
+                            </label>
+                            <label class="item item-text-wrap item-row" ng-if="jk == 'P'">
+                              <div class="row">
+                                <div class="col col-50 col-center">
+                                  <div class="input-label ">6. Pil</div>
+                                </div>
+                                <div class="col col-50 col-center">
+                                  <div class="button-bar right">
+                                    <ion-radio name="krp07a6" ng-model="krp.krp07a6" value="1">Ya</ion-radio>
+                                    <ion-radio name="krp07a6" ng-model="krp.krp07a6" value="2">Tidak</ion-radio>
+                                  </div>
+                                </div>
+                              </div>
+                            </label>
+                            <label class="item item-text-wrap item-row" ng-if="jk == 'P'">
+                              <div class="row">
+                                <div class="col col-50 col-center">
+                                  <div class="input-label ">8. Kondom Wanita</div>
+                                </div>
+                                <div class="col col-50 col-center">
+                                  <div class="button-bar right">
+                                    <ion-radio name="krp07a8" ng-model="krp.krp07a8" value="1">Ya</ion-radio>
+                                    <ion-radio name="krp07a8" ng-model="krp.krp07a8" value="2">Tidak</ion-radio>
+                                  </div>
+                                </div>
+                              </div>
+                            </label>
+                            <label class="item item-text-wrap item-row" ng-if="jk == 'P'">
+                              <div class="row">
+                                <div class="col col-50 col-center">
+                                  <div class="input-label ">9. Diafragma</div>
+                                </div>
+                                <div class="col col-50 col-center">
+                                  <div class="button-bar right">
+                                    <ion-radio name="krp07a9" ng-model="krp.krp07a9" value="1">Ya</ion-radio>
+                                    <ion-radio name="krp07a9" ng-model="krp.krp07a9" value="2">Tidak</ion-radio>
+                                  </div>
+                                </div>
+                              </div>
+                            </label>
+                            <label class="item item-text-wrap item-row" ng-if="jk == 'P'">
+                              <div class="row">
+                                <div class="col col-50 col-center">
+                                  <div class="input-label ">10. Laktasi</div>
+                                </div>
+                                <div class="col col-50 col-center">
+                                  <div class="button-bar right">
+                                    <ion-radio name="krp07a10" ng-model="krp.krp07a10" value="1">Ya</ion-radio>
+                                    <ion-radio name="krp07a10" ng-model="krp.krp07a10" value="2">Tidak</ion-radio>
+                                  </div>
+                                </div>
+                              </div>
+                            </label>
+                          </div>
+                            
+                            <label class="item item-text-wrap item-row">
+                              <div class="row">
+                                <div class="col col-50 col-center">
+                                  <div class="input-label ">11. Jamu</div>
+                                </div>
+                                <div class="col col-50 col-center">
+                                  <div class="button-bar right">
+                                    <ion-radio name="krp07a11" ng-model="krp.krp07a11" value="1">Ya</ion-radio>
+                                    <ion-radio name="krp07a11" ng-model="krp.krp07a11" value="2">Tidak</ion-radio>
+                                  </div>
+                                </div>
+                              </div>
+                            </label>
+                            <label class="item item-text-wrap item-row">
+                              <div class="row">
+                                <div class="col col-50 col-center">
+                                  <div class="input-label ">12. Metode Kalender</div>
+                                </div>
+                                <div class="col col-50 col-center">
+                                  <div class="button-bar right">
+                                    <ion-radio name="krp07a12" ng-model="krp.krp07a12" value="1">Ya</ion-radio>
+                                    <ion-radio name="krp07a12" ng-model="krp.krp07a12" value="2">Tidak</ion-radio>
+                                  </div>
+                                </div>
+                              </div>
+                            </label>
+                            <label class="item item-text-wrap item-row">
+                              <div class="row">
+                                <div class="col col-50 col-center">
+                                  <div class="input-label ">13. Senggama Terputus</div>
+                                </div>
+                                <div class="col col-50 col-center">
+                                  <div class="button-bar right">
+                                    <ion-radio name="krp07a13" ng-model="krp.krp07a13" value="1">Ya</ion-radio>
+                                    <ion-radio name="krp07a13" ng-model="krp.krp07a13" value="2">Tidak</ion-radio>
+                                  </div>
+                                </div>
+                              </div>
+                            </label>
+                            <label class="item item-text-wrap item-row">
+                              <div class="row">
+                                <div class="col col-50 col-center">
+                                  <div class="input-label ">98. Tidak Tahu</div>
+                                </div>
+                                <div class="col col-50 col-center">
+                                  <div class="button-bar right">
+                                    <ion-radio name="krp07a98" ng-model="krp.krp07a98" value="1">Ya</ion-radio>
+                                    <ion-radio name="krp07a98" ng-model="krp.krp07a98" value="2">Tidak</ion-radio>
+                                  </div>
+                                </div>
+                              </div>
+                            </label>
+                        
+
+                        <!-- Tempat mendapatkan pelayanan KB -->
+                        <div ng-if="tempatPelayananKB">
+                            <div class="item item-divider">Tempat mendapatkan pelayanan KB</div>
+                            
+                              <label class="item item-text-wrap item-row">
+                                <div class="row">
+                                  <div class="col col-50 col-center">
+                                    <div class="input-label ">1. RS Pemerintah</div>
+                                  </div>
+                                  <div class="col col-50 col-center">
+                                    <div class="button-bar right">
+                                      <ion-radio name="krp08a1" ng-model="krp.krp08a1" value="1">Ya</ion-radio>
+                                      <ion-radio name="krp08a1" ng-model="krp.krp08a1" value="2">Tidak</ion-radio>
+                                    </div>
+                                  </div>
+                                </div>
+                              </label>
+                              <label class="item item-text-wrap item-row">
+                                <div class="row">
+                                  <div class="col col-50 col-center">
+                                    <div class="input-label ">2. RS Swasta</div>
+                                  </div>
+                                  <div class="col col-50 col-center">
+                                    <div class="button-bar right">
+                                      <ion-radio name="krp08a2" ng-model="krp.krp08a2" value="1">Ya</ion-radio>
+                                      <ion-radio name="krp08a2" ng-model="krp.krp08a2" value="2">Tidak</ion-radio>
+                                    </div>
+                                  </div>
+                                </div>
+                              </label>
+                              <label class="item item-text-wrap item-row">
+                                <div class="row">
+                                  <div class="col col-50 col-center">
+                                    <div class="input-label ">3. RS Bersalin</div>
+                                  </div>
+                                  <div class="col col-50 col-center">
+                                    <div class="button-bar right">
+                                      <ion-radio name="krp08a3" ng-model="krp.krp08a3" value="1">Ya</ion-radio>
+                                      <ion-radio name="krp08a3" ng-model="krp.krp08a3" value="2">Tidak</ion-radio>
+                                    </div>
+                                  </div>
+                                </div>
+                              </label>
+                              <label class="item item-text-wrap item-row">
+                                <div class="row">
+                                  <div class="col col-50 col-center">
+                                    <div class="input-label ">4. Klinik/Balai Pengobatan</div>
+                                  </div>
+                                  <div class="col col-50 col-center">
+                                    <div class="button-bar right">
+                                      <ion-radio name="krp08a4" ng-model="krp.krp08a4" value="1">Ya</ion-radio>
+                                      <ion-radio name="krp08a4" ng-model="krp.krp08a4" value="2">Tidak</ion-radio>
+                                    </div>
+                                  </div>
+                                </div>
+                              </label>
+                              <label class="item item-text-wrap item-row">
+                                <div class="row">
+                                  <div class="col col-50 col-center">
+                                    <div class="input-label ">5. Puskesmas/Pustu</div>
+                                  </div>
+                                  <div class="col col-50 col-center">
+                                    <div class="button-bar right">
+                                      <ion-radio name="krp08a5" ng-model="krp.krp08a5" value="1">Ya</ion-radio>
+                                      <ion-radio name="krp08a5" ng-model="krp.krp08a5" value="2">Tidak</ion-radio>
+                                    </div>
+                                  </div>
+                                </div>
+                              </label>
+                              <label class="item item-text-wrap item-row">
+                                <div class="row">
+                                  <div class="col col-50 col-center">
+                                    <div class="input-label ">6. Praktek dokter umum</div>
+                                  </div>
+                                  <div class="col col-50 col-center">
+                                    <div class="button-bar right">
+                                      <ion-radio name="krp08a6" ng-model="krp.krp08a6" value="1">Ya</ion-radio>
+                                      <ion-radio name="krp08a6" ng-model="krp.krp08a6" value="2">Tidak</ion-radio>
+                                    </div>
+                                  </div>
+                                </div>
+                              </label>
+                              <label class="item item-text-wrap item-row">
+                                <div class="row">
+                                  <div class="col col-50 col-center">
+                                    <div class="input-label ">7. Praktek dokter spesialis</div>
+                                  </div>
+                                  <div class="col col-50 col-center">
+                                    <div class="button-bar right">
+                                      <ion-radio name="krp08a7" ng-model="krp.krp08a7" value="1">Ya</ion-radio>
+                                      <ion-radio name="krp08a7" ng-model="krp.krp08a7" value="2">Tidak</ion-radio>
+                                    </div>
+                                  </div>
+                                </div>
+                              </label>
+                              <label class="item item-text-wrap item-row">
+                                <div class="row">
+                                  <div class="col col-50 col-center">
+                                    <div class="input-label ">8. Praktek Bidan</div>
+                                  </div>
+                                  <div class="col col-50 col-center">
+                                    <div class="button-bar right">
+                                      <ion-radio name="krp08a8" ng-model="krp.krp08a8" value="1">Ya</ion-radio>
+                                      <ion-radio name="krp08a8" ng-model="krp.krp08a8" value="2">Tidak</ion-radio>
+                                    </div>
+                                  </div>
+                                </div>
+                              </label>
+                              <label class="item item-text-wrap item-row">
+                                <div class="row">
+                                  <div class="col col-50 col-center">
+                                    <div class="input-label ">9. Praktek Perawat</div>
+                                  </div>
+                                  <div class="col col-50 col-center">
+                                    <div class="button-bar right">
+                                      <ion-radio name="krp08a9" ng-model="krp.krp08a9" value="1">Ya</ion-radio>
+                                      <ion-radio name="krp08a9" ng-model="krp.krp08a9" value="2">Tidak</ion-radio>
+                                    </div>
+                                  </div>
+                                </div>
+                              </label>
+                              <label class="item item-text-wrap item-row">
+                                <div class="row">
+                                  <div class="col col-50 col-center">
+                                    <div class="input-label ">10. Posyandu</div>
+                                  </div>
+                                  <div class="col col-50 col-center">
+                                    <div class="button-bar right">
+                                      <ion-radio name="krp08a10" ng-model="krp.krp08a10" value="1">Ya</ion-radio>
+                                      <ion-radio name="krp08a10" ng-model="krp.krp08a10" value="2">Tidak</ion-radio>
+                                    </div>
+                                  </div>
+                                </div>
+                              </label>
+                              <label class="item item-text-wrap item-row">
+                                <div class="row">
+                                  <div class="col col-50 col-center">
+                                    <div class="input-label ">11. Polindes/Puskesda</div>
+                                  </div>
+                                  <div class="col col-50 col-center">
+                                    <div class="button-bar right">
+                                      <ion-radio name="krp08a11" ng-model="krp.krp08a11" value="1">Ya</ion-radio>
+                                      <ion-radio name="krp08a11" ng-model="krp.krp08a11" value="2">Tidak</ion-radio>
+                                    </div>
+                                  </div>
+                                </div>
+                              </label>
+                              <label class="item item-text-wrap item-row">
+                                <div class="row">
+                                  <div class="col col-50 col-center">
+                                    <div class="input-label ">12. Tim KB Pusling</div>
+                                  </div>
+                                  <div class="col col-50 col-center">
+                                    <div class="button-bar right">
+                                      <ion-radio name="krp08a12" ng-model="krp.krp08a12" value="1">Ya</ion-radio>
+                                      <ion-radio name="krp08a12" ng-model="krp.krp08a12" value="2">Tidak</ion-radio>
+                                    </div>
+                                  </div>
+                                </div>
+                              </label>
+                              <label class="item item-text-wrap item-row">
+                                <div class="row">
+                                  <div class="col col-50 col-center">
+                                    <div class="input-label ">13. Tim Medis Pusling</div>
+                                  </div>
+                                  <div class="col col-50 col-center">
+                                    <div class="button-bar right">
+                                      <ion-radio name="krp08a13" ng-model="krp.krp08a13" value="1">Ya</ion-radio>
+                                      <ion-radio name="krp08a13" ng-model="krp.krp08a13" value="2">Tidak</ion-radio>
+                                    </div>
+                                  </div>
+                                </div>
+                              </label>
+                              <label class="item item-text-wrap item-row">
+                                <div class="row">
+                                  <div class="col col-50 col-center">
+                                    <div class="input-label ">14. Apotek/Toko Obat</div>
+                                  </div>
+                                  <div class="col col-50 col-center">
+                                    <div class="button-bar right">
+                                      <ion-radio name="krp08a14" ng-model="krp.krp08a14" value="1">Ya</ion-radio>
+                                      <ion-radio name="krp08a14" ng-model="krp.krp08a14" value="2">Tidak</ion-radio>
+                                    </div>
+                                  </div>
+                                </div>
+                              </label>
+                              <label class="item item-text-wrap item-row">
+                                <div class="row">
+                                  <div class="col col-50 col-center">
+                                    <div class="input-label ">95. Lainnya</div>
+                                  </div>
+                                  <div class="col col-50 col-center">
+                                    <div class="button-bar right">
+                                      <ion-radio name="krp08a95" ng-model="krp.krp08a95" value="1">Ya</ion-radio>
+                                      <ion-radio name="krp08a95" ng-model="krp.krp08a95" value="2">Tidak</ion-radio>
+                                    </div>
+                                  </div>
+                                </div>
+                              </label>
+                              <label class="item item-input item-text-wrap" ng-if="krp.krp08a95 == 1">
+                                <span class="input-label">Isikan lainnya</span>
+                                <input type="text" class="input-border" ng-model="krp.krp08a95l">
+                              </label>
+                              <label class="item item-text-wrap item-row">
+                                <div class="row">
+                                  <div class="col col-50 col-center">
+                                    <div class="input-label ">98. Tidak Tahu</div>
+                                  </div>
+                                  <div class="col col-50 col-center">
+                                    <div class="button-bar right">
+                                      <ion-radio name="krp08a98" ng-model="krp.krp08a98" value="1">Ya</ion-radio>
+                                      <ion-radio name="krp08a98" ng-model="krp.krp08a98" value="2">Tidak</ion-radio>
+                                    </div>
+                                  </div>
+                                </div>
+                              </label>
+                            
+
+                            <div class="item item-divider">Pemberi Pelayanan KB</div>
+                            
+                              <label class="item item-text-wrap item-row">
+                                <div class="row">
+                                  <div class="col col-50 col-center">
+                                    <div class="input-label ">1. Dokter Kandungan</div>
+                                  </div>
+                                  <div class="col col-50 col-center">
+                                    <div class="button-bar right">
+                                      <ion-radio name="krp09a1" ng-model="krp.krp09a1" value="1">Ya</ion-radio>
+                                      <ion-radio name="krp09a1" ng-model="krp.krp09a1" value="2">Tidak</ion-radio>
+                                    </div>
+                                  </div>
+                                </div>
+                              </label>
+                              <label class="item item-text-wrap item-row">
+                                <div class="row">
+                                  <div class="col col-50 col-center">
+                                    <div class="input-label ">2. Dokter Umum</div>
+                                  </div>
+                                  <div class="col col-50 col-center">
+                                    <div class="button-bar right">
+                                      <ion-radio name="krp09a2" ng-model="krp.krp09a2" value="1">Ya</ion-radio>
+                                      <ion-radio name="krp09a2" ng-model="krp.krp09a2" value="2">Tidak</ion-radio>
+                                    </div>
+                                  </div>
+                                </div>
+                              </label>
+                              <label class="item item-text-wrap item-row">
+                                <div class="row">
+                                  <div class="col col-50 col-center">
+                                    <div class="input-label ">3. Bidan</div>
+                                  </div>
+                                  <div class="col col-50 col-center">
+                                    <div class="button-bar right">
+                                      <ion-radio name="krp09a3" ng-model="krp.krp09a3" value="1">Ya</ion-radio>
+                                      <ion-radio name="krp09a3" ng-model="krp.krp09a3" value="2">Tidak</ion-radio>
+                                    </div>
+                                  </div>
+                                </div>
+                              </label>
+                              <label class="item item-text-wrap item-row">
+                                <div class="row">
+                                  <div class="col col-50 col-center">
+                                    <div class="input-label ">4. Perawat</div>
+                                  </div>
+                                  <div class="col col-50 col-center">
+                                    <div class="button-bar right">
+                                      <ion-radio name="krp09a4" ng-model="krp.krp09a4" value="1">Ya</ion-radio>
+                                      <ion-radio name="krp09a4" ng-model="krp.krp09a4" value="2">Tidak</ion-radio>
+                                    </div>
+                                  </div>
+                                </div>
+                              </label>
+                              <label class="item item-text-wrap item-row">
+                                <div class="row">
+                                  <div class="col col-50 col-center">
+                                    <div class="input-label ">95. Lainnya</div>
+                                  </div>
+                                  <div class="col col-50 col-center">
+                                    <div class="button-bar right">
+                                      <ion-radio name="krp09a95" ng-model="krp.krp09a95" value="1">Ya</ion-radio>
+                                      <ion-radio name="krp09a95" ng-model="krp.krp09a95" value="2">Tidak</ion-radio>
+                                    </div>
+                                  </div>
+                                </div>
+                              </label>
+                              <label class="item item-input item-text-wrap" ng-if="krp.krp09a95 == 1">
+                                  <div class="input-label">Isikan lainnya</div>
+                                  <input type="text" class="input-border" ng-model="krp.krp09a95a">
+                              </label>
+                              <label class="item item-text-wrap item-row">
+                                <div class="row">
+                                  <div class="col col-50 col-center">
+                                    <div class="input-label ">98. Tidak Tahu</div>
+                                  </div>
+                                  <div class="col col-50 col-center">
+                                    <div class="button-bar right">
+                                      <ion-radio name="krp09a98" ng-model="krp.krp09a98" value="1">Ya</ion-radio>
+                                      <ion-radio name="krp09a98" ng-model="krp.krp09a98" value="2">Tidak</ion-radio>
+                                    </div>
+                                  </div>
+                                </div>
+                              </label>
+                            
+
+                            <div class="item item-divider">Cara Pembayaran</div>
+                            
+                              <label class="item item-text-wrap item-row">
+                                <div class="row">
+                                  <div class="col col-50 col-center">
+                                    <div class="input-label ">1. Asuransi JKN</div>
+                                  </div>
+                                  <div class="col col-50 col-center">
+                                    <div class="button-bar right">
+                                      <ion-radio name="krp10a1" ng-model="krp.krp10a1" value="1">Ya</ion-radio>
+                                      <ion-radio name="krp10a1" ng-model="krp.krp10a1" value="2">Tidak</ion-radio>
+                                    </div>
+                                  </div>
+                                </div>
+                              </label>
+                              <label class="item item-text-wrap item-row">
+                                <div class="row">
+                                  <div class="col col-50 col-center">
+                                    <div class="input-label ">2. Membayar sendiri</div>
+                                  </div>
+                                  <div class="col col-50 col-center">
+                                    <div class="button-bar right">
+                                      <ion-radio name="krp10a2" ng-model="krp.krp10a2" value="1">Ya</ion-radio>
+                                      <ion-radio name="krp10a2" ng-model="krp.krp10a2" value="2">Tidak</ion-radio>
+                                    </div>
+                                  </div>
+                                </div>
+                              </label>
+                              <label class="item item-text-wrap item-row">
+                                <div class="row">
+                                  <div class="col col-50 col-center">
+                                    <div class="input-label ">3. Dibagikan gratis</div>
+                                  </div>
+                                  <div class="col col-50 col-center">
+                                    <div class="button-bar right">
+                                      <ion-radio name="krp10a3" ng-model="krp.krp10a3" value="1">Ya</ion-radio>
+                                      <ion-radio name="krp10a3" ng-model="krp.krp10a3" value="2">Tidak</ion-radio>
+                                    </div>
+                                  </div>
+                                </div>
+                              </label>
+                              <label class="item item-text-wrap item-row">
+                                <div class="row">
+                                  <div class="col col-50 col-center">
+                                    <div class="input-label ">98. Tidak Tahu</div>
+                                  </div>
+                                  <div class="col col-50 col-center">
+                                    <div class="button-bar right">
+                                      <ion-radio name="krp10a98" ng-model="krp.krp10a98" value="1">Ya</ion-radio>
+                                      <ion-radio name="krp10a98" ng-model="krp.krp10a98" value="2">Tidak</ion-radio>
+                                    </div>
+                                  </div>
+                                </div>
+                              </label>
+                            
+                        </div>
+                    </div>
+                    <label class="item item-text-wrap item-row">
+                      <div class="row">
+                        <div class="col col-50 col-center">
+                          <div class="input-label ">Apakah ART diwawancara?</div>
+                        </div>
+                        <div class="col col-50 col-center">
+                          <div class="button-bar right">
+                            <ion-radio name="krp11" ng-model="krp.krp11" value="1">Ya</ion-radio>
+                            <ion-radio name="krp11" ng-model="krp.krp11" value="2">Tidak</ion-radio>
+                          </div>
+                        </div>
+                      </div>
+                    </label>
+                </div>
+            </ion-list>
+            <!-- KRP siklus 5 -->
+            <div class="notifikasi" ng-if="ARTBpernahhamil == false && statusKawinYa == false">Tidak ada pertanyaan untuk Anggota Rumah Tangga yang dimaksud.</div>
+            <div class="item-group" ng-if="myForm.$valid && krpModalAllowSave(art) && (j_siklus.s5)">
+                <button class="button simpan button-calm pull-right" ng-click="save()">
+                    <i class="icon ion-archive"></i> Simpan
+                </button>
+            </div>
+            
+        </form>
+            <div class="hint-status"><span>Silahkan gunakan tombol Laporan Wawancaara jika sudah ada data yang tercatat dan wawancara berhenti di tengah jalan</span></div>
+            <div class="item-group" ng-if="j_siklus.s7">
+                <button class="button simpan button-assertive" ng-click="save('utama')">
+                  <i class="icon ion-arrow-left-c"></i> Laporan Wawancara
+                </button>
+                <button ng-if="krp.krp01 >= 0 && krp.krp02 >= 0 && krp.krp03 >= 0 && krp.krp04 >= 0 && krp.krp05 >= 0" class="button simpan button-calm pull-right" ng-click="save()">
+                    <i class="icon ion-archive"></i> Simpan KRP
+                </button>
+            </div>
+    </ion-content>
+</ion-modal-view>

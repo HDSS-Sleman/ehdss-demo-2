@@ -1,0 +1,79 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-calm">
+        <h1 class="title">Penyakit Menular</h1>
+        <button class="button button-clear button-primary" ng-click="modal.hide()">Cancel</button>
+    </ion-header-bar>
+    <div class="bar bar-subheader">
+        <h2 class="title left">Nama ART : <span style="text-transform:capitalize">{{nama}} ({{umur}})</span></h2>
+    </div>
+    <ion-content class="ph has-subheader">
+        <div class="item-group">
+            <ion-list ng-show="tipeModal.modalPh01">
+                <label class="item item-text-wrap">
+                    <span class="input-label full">
+                        <b>PH01a.</b> Tidak bisa BAB lebih dari seminggu
+                    </span>
+                    <div class="button-bar right">
+                        <ion-radio name="ph01a" ng-model="ph.ph01a[idart]" ng-value="1">Ya</ion-radio>
+                        <ion-radio name="ph01a" ng-model="ph.ph01a[idart]" ng-value="2">Tidak</ion-radio>
+                        <ion-radio name="ph01a" ng-model="ph.ph01a[idart]" ng-value="98">Tidak Tahu</ion-radio>
+                    </div>
+                </label>
+                <label class="item item-text-wrap">
+                    <span class="input-label full">
+                        <b>PH04.</b> Pada usia berapa bulan yang bersangkutan mengalami gejala tersebut? (tulis usia dalam bulan)
+                    </span>
+                    <div class="button-bar right">
+                        <input type="number" block block-length="3" ng-model="ph.ph04a[idart]" min="0" max="59" class="pull-right input-border">
+                    </div>
+                </label>
+            </ion-list>
+            <ion-list ng-show="tipeModal.modalPh02">
+                <label class="item item-text-wrap">
+                    <span class="input-label full">
+                        <b>PH02a.</b> Perut membesar dan kesulitan menelan/makan 
+                    </span>
+                    <div class="button-bar right">
+                        <ion-radio name="ph02a" ng-model="ph.ph02a[idart]" ng-value="1">Ya</ion-radio>
+                        <ion-radio name="ph02a" ng-model="ph.ph02a[idart]" ng-value="2">Tidak</ion-radio>
+                        <ion-radio name="ph02a" ng-model="ph.ph02a[idart]" ng-value="98">Tidak Tahu</ion-radio>
+                    </div>
+                </label>
+                <label class="item item-text-wrap">
+                    <span class="input-label full">
+                        <b>PH04.</b> Pada usia berapa bulan yang bersangkutan mengalami gejala tersebut? (tulis usia dalam bulan)
+                    </span>
+                    <div class="button-bar right">
+                        <input type="number" block block-length="3" ng-model="ph.ph04b[idart]" min="0" max="59" class="pull-right input-border">
+                    </div>
+                </label>
+            </ion-list>
+            <ion-list ng-show="tipeModal.modalPh03">
+                <label class="item item-text-wrap">
+                    <span class="input-label full">
+                        <b>PH03a.</b> Diare (berdarah atau tanpa darah) disertai demam
+                    </span>
+                    <div class="button-bar right">
+                        <ion-radio name="ph03a" ng-model="ph.ph03a[idart]" ng-value="1">Ya</ion-radio>
+                        <ion-radio name="ph03a" ng-model="ph.ph03a[idart]" ng-value="2">Tidak</ion-radio>
+                        <ion-radio name="ph03a" ng-model="ph.ph03a[idart]" ng-value="98">Tidak Tahu</ion-radio>
+                    </div>
+                </label>
+                <label class="item item-text-wrap">
+                    <span class="input-label full">
+                        <b>PH04.</b> Pada usia berapa bulan yang bersangkutan mengalami gejala tersebut? (tulis usia dalam bulan)
+                    </span>
+                    <div class="button-bar right">
+                        <input type="number" block block-length="3" ng-model="ph.ph04c[idart]" min="0" max="59" class="pull-right input-border">
+                    </div>
+                </label>
+            </ion-list>
+        </div>
+
+        <div class="item-group" ng-if="modalAllowSave()">
+            <button class="button simpan button-calm pull-right" ng-click="saveModal(kj,nama)">
+                <i class="icon ion-archive"></i> Simpan
+            </button>
+        </div>
+    </ion-content>
+</ion-modal-view>

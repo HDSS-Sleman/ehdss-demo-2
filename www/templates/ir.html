@@ -1,0 +1,180 @@
+<ion-view view-title="Data Responden">
+    <ion-content class="rt">
+        <form name="myForm" novalidate>
+            <ion-list>
+                <label class="item item-input" ng-show="false">
+                    <div class="input-label">ID Aplikasi</div>
+                    <input class="input-border" type="text" ng-model="ir.idrt" readonly>
+                </label>
+
+                <div id="small-screen" class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label">Nama/Inisial</div>
+                        <div class="col col-50 col-center">
+                            <input class="lowercase pull-right" type="text" ng-model="ir.ir01" required>
+                        </div>
+                    </div>
+                </div>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label">Tgl Lahir</div>
+                        <div class="col col-50 col-center">
+                            <input class="lowercase pull-right" ng-change="countUmur()" type="date" min="1916-01-01" max="{{tglWawancara}}" type="text" ng-model="ir.ir02" required>
+                        </div>
+                    </div>
+                </label>
+
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label">Usia saat ini (dalam tahun)</div>
+                        <div class="col col-50 col-center">
+                            <input class="lowercase pull-right" block block-length="3" max="120" min="1" type="number" ng-model="ir.ir03" required>
+                        </div>
+                    </div>
+                </div> 
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label">Jenis Kelamin</div>
+                        <div class="col col-50 col-center">
+                            <select class="pull-right" name="ir03" ng-model="ir.ir04" required>
+                                <option value="" selected></option>
+                                <option value="1">1. Laki-laki</option>
+                                <option value="2">2. Perempuan</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center"> <div class="input-label">No.Telp/HP yang bisa dihubungi</div> </div>
+                        <div class="col col-50 col-center"><input class="pull-right" type="text" name="ir05" ng-model="ir.ir05" ng-pattern="/^[0-9]{6,13}$/" placeholder="08xxxxxxxxxx" required></div>
+                    </div>
+                    <span ng-show="myForm.ir11.$error.pattern" class="hint-status"> Angka salah!</span>
+                </div>
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label">Pendidikan </div>
+                        <div class="col col-50 col-center">
+                            <select class="pull-right" name="id17" ng-model="ir.ir06" required>
+                                <option value="" selected></option>
+                                <option ng-repeat="(key,val) in listPendidikan" value="{{key}}">{{val}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label">Pekerjaan</div>
+                        <div class="col col-50 col-center">
+                            <select class="pull-right" name="id19" ng-model="ir.ir07" required>
+                                <option value="" selected></option>
+                                <option ng-repeat="(key,val) in listPekerjaan" value="{{key}}">{{val}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row" ng-if="ir.ir07 == 95">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label">Pekerjaan lain</div>
+                        <div class="col col-50 col-center">
+                            <input class="lowercase pull-right" type="text" ng-model="ir.ir07a" required>
+                        </div>
+                    </div>
+                </div>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center">
+                            <div class="input-label ">Kepemilikan Asuransi</div>
+                        </div>
+                        <div class="col col-50 col-center">
+                            <div class="button-bar right">
+                                <ion-radio name="ir08" ng-model="ir.ir08" value="1">Ya</ion-radio>
+                                <ion-radio name="ir08" ng-model="ir.ir08" value="2">Tidak</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <div class="item-group" ng-if="ir.ir08 == 1">
+                    <div class="item item-divider">Apa saja jenis asuransi kesehatan yang dimiliki?</div>
+                    <ion-list>
+                        <label class="item item-text-wrap item-row">
+                            <div class="row">
+                                <div class="col col-50 col-center">
+                                    <div class="input-label ">1. BPJS PBI/Jamkesos/Jamkesda</div>
+                                </div>
+                                <div class="col col-50 col-center">
+                                    <div class="button-bar right">
+                                        <ion-radio name="ir08a" ng-model="ir.ir08a" value="1">Ya</ion-radio>
+                                        <ion-radio name="ir08a" ng-model="ir.ir08a" value="2">Tidak</ion-radio>
+                                    </div>
+                                </div>
+                            </div>
+                        </label>
+                        <label class="item item-text-wrap item-row">
+                            <div class="row">
+                                <div class="col col-50 col-center">
+                                    <div class="input-label ">2. BPJS Non-PBI</div>
+                                </div>
+                                <div class="col col-50 col-center">
+                                    <div class="button-bar right">
+                                        <ion-radio name="ir08b" ng-model="ir.ir08b" value="1">Ya</ion-radio>
+                                        <ion-radio name="ir08b" ng-model="ir.ir08b" value="2">Tidak</ion-radio>
+                                    </div>
+                                </div>
+                            </div>
+                        </label>
+                        <label class="item item-text-wrap item-row">
+                            <div class="row">
+                                <div class="col col-50 col-center">
+                                    <div class="input-label ">3. Asuransi Swasta</div>
+                                </div>
+                                <div class="col col-50 col-center">
+                                    <div class="button-bar right">
+                                        <ion-radio name="ir08c" ng-model="ir.ir08c" value="1">Ya</ion-radio>
+                                        <ion-radio name="ir08c" ng-model="ir.ir08c" value="2">Tidak</ion-radio>
+                                    </div>
+                                </div>
+                            </div>
+                        </label>
+                    </ion-list>
+                </div>
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label">Kecamatan </div>
+                        <div class="col col-50 col-center" >
+                            <select class="pull-right" ng-model="rt.ir09" ng-change="getKalurahan(rt.id04)" required>
+                                <option value="" selected></option>
+                                <option ng-repeat="(key,val) in listKapanewon" value="{{key}}">{{val}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row" ng-if="rt.id04">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label">Kelurahan </div>
+                        <div class="col col-50 col-center" >
+                            <select class="pull-right" ng-model="rt.ir10" required>
+                                <option value="" selected></option>
+                                <option ng-repeat="(key,val) in listKalurahan" value="{{key}}">{{val}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label">Dusun </div>
+                        <div class="col col-50 col-center" >
+                            <input class="pull-right" type="text" ng-model="rt.ir10" required>
+                        </div>
+                    </div>
+                </div>
+                
+            </ion-list>
+        </form>
+        <div class="item-group">
+            <button ng-if="allowSave(myForm)" class="button simpan button-positive pull-right" ng-click="save()">
+                Lanjut<i class="icon ion-arrow-right-c"></i>
+            </button>
+        </div>
+    </ion-content>
+</ion-view>

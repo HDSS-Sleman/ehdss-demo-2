@@ -1,0 +1,447 @@
+<ion-view view-title="Dampak Ekonomi (Subsample)">
+    <div class="bar bar-subheader bar-calm">
+        <h2 class="title left nama">Nama ART : {{curART._nama}} ({{curART.umur}})
+        </h2>
+    </div>
+    <ion-content id="dse" class="has-subheader has-footer dse">
+        <form name="myForm" novalidate>
+            <ion-list>
+                <div class="item item-text-wrap item-row">Pertanyaan selanjutnya mengenai dampak ekonomi yang dialami Bapak/Ibu selama wabah Covid19. Bagian ini khusus ditanyakan kepada responden terpilih yaitu bapak/ibu Anda sehingga tidak bisa diwakilkan atau dijawab oleh orang lain.
+                </div>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center nput-label"><b>DSE701 </b>Apakah Anda masih memiliki pekerjaan selama wabah covid19 6 bulan terakhir?</div>
+                        <div class="col col-50 ">
+                            <select class="input-border pull-right" ng-model="dse.dse701">
+                                <option value="" selected></option>
+                                <option value="1">1. Ya, Bekerja penuh waktu</option>
+                                <option value="2">2. Ya, Bekerja paruh waktu</option>
+                                <option value="3">3. Ya, namun sementara sedang dirumahkan</option>
+                                <option value="4">4. Tidak, baru saja terkena PHK akibat kantor/tempat usaha tutup</option>
+                                <option value="5">5. Tidak bekerja</option>
+                            </select>
+                        </div>
+                    </div>
+                </label>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center nput-label"><b>DSE702 </b>Di dalam database kami, Pekerjaan utama Anda pada tahun lalu adalah <span class="nama">{{pekerjaan_lalu}}</span> sedangkan Pekerjaan utama Anda saat ini adalah <span class="nama">{{pekerjaan_sekarang}}</span>. Apakah benar pekerjaan tersebut adalah pekerjaan utama Anda selama 6 bulan terakhir? </div>
+                        <div class="col col-50 ">
+                            <select class="input-border pull-right" ng-model="dse.dse702">
+                                <option value="" selected></option>
+                                <option value="1">1. Ya</option>
+                                <option value="2">2. Tidak</option>
+                            </select>
+                        </div>
+                    </div>
+                </label>
+                <label class="item item-text-wrap item-row" ng-if="dse.dse702 == 2">
+                    <div class="row">
+                        <div class="col col-50 col-center nput-label"><b>DSE702a </b>Apa pekerjaan utama Anda selama wabah Covid19 6 bulan terakhir? </div>
+                        <div class="col col-50 ">
+                            <select class="input-border pull-right" ng-model="dse.dse702a">
+                                <option value="" selected></option>
+                                <option ng-repeat="(key,val) in pekerjaan" value="{{key}}">{{val}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </label>
+                <label class="item item-text-wrap item-row" ng-if="dse.dse702 == 2 && dse.dse702a == 95">
+                    <div class="row">
+                        <div class="col col-50 col-center">
+                            <div class="input-label "><b>DSE702_95a </b> Sebutkan pekerjaan lain </div>
+                        </div>
+                        <div class="col col-50 col-center">
+                            <input type="text" ng-model="dse.dse702_95a" class="input-border pull-right">
+                        </div>
+                    </div>
+                </label>
+                <label class="item item-text-wrap item-row" >
+                    <div class="row">
+                        <div class="col col-50 col-center">
+                            <div class="input-label "><b>DSE702b </b> Deskripsi pekerjaan </div>
+                        </div>
+                        <div class="col col-50 col-center">
+                            <input type="text" ng-model="dse.dse702b" class="input-border pull-right">
+                        </div>
+                    </div>
+                </label>
+
+                <div class="item item-divider"><b>DSE703 </b>Bagaimana wabah Covid19 selama 6 bulan terakhir berdampak pada keuangan pribadi atau sumber pendapatan Anda?</div>
+                <div class="item-group">
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center nput-label"><b>DSE703a </b>Saya khawatir akan kehilangan pekerjaan atau sumber penghasilan utama saya dalam beberapa minggu ke depan jika tidak ada perubahan </div>
+                            <div class="col col-50 ">
+                                <select class="input-border pull-right" ng-model="dse.dse703a">
+                                    <option value="" selected></option>
+                                    <option value="1">1. Ya</option>
+                                    <option value="2">2. Tidak</option>
+                                </select>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center nput-label"><b>DSE703b </b>Saya tidak dapat memenuhi kebutuhan utama, seperti bahan makanan, listrik, bahan bakar, dll. </div>
+                            <div class="col col-50 ">
+                                <select class="input-border pull-right" ng-model="dse.dse703b">
+                                    <option value="" selected></option>
+                                    <option value="1">1. Ya</option>
+                                    <option value="2">2. Tidak</option>
+                                </select>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center nput-label"><b>DSE703c </b>Saya tidak dapat memenuhi kewajiban keuangan, seperti pembayaran sewa atau kredit (misal: sewa rumah, kredit kendaraan) </div>
+                            <div class="col col-50 ">
+                                <select class="input-border pull-right" ng-model="dse.dse703c">
+                                    <option value="" selected></option>
+                                    <option value="1">1. Ya</option>
+                                    <option value="2">2. Tidak</option>
+                                </select>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center nput-label"><b>DSE703d </b>Saya menggunakan tabungan saya untuk memenuhi kewajiban keuangan </div>
+                            <div class="col col-50 ">
+                                <select class="input-border pull-right" ng-model="dse.dse703d">
+                                    <option value="" selected></option>
+                                    <option value="1">1. Ya</option>
+                                    <option value="2">2. Tidak</option>
+                                </select>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center nput-label"><b>DSE703e </b>Keuangan saya tidak terpengaruh </div>
+                            <div class="col col-50 ">
+                                <select class="input-border pull-right" ng-model="dse.dse703e">
+                                    <option value="" selected></option>
+                                    <option value="1">1. Ya</option>
+                                    <option value="2">2. Tidak</option>
+                                </select>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center nput-label"><b>DSE703f </b>Saya mengalami dampak positif, seperti kenaikan gaji atau pekerjaan baru </div>
+                            <div class="col col-50 ">
+                                <select class="input-border pull-right" ng-model="dse.dse703f">
+                                    <option value="" selected></option>
+                                    <option value="1">1. Ya</option>
+                                    <option value="2">2. Tidak</option>
+                                </select>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+                    
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center nput-label"><b>DSE704 </b>Bagaimana dampak pada pendapatan Anda selama 6 bulan terakhir wabah covid19 terjadi? </div>
+                        <div class="col col-50 ">
+                            <select class="input-border pull-right" ng-model="dse.dse704">
+                                <option value="" selected></option>
+                                <option value="1">1. Meningkat</option>
+                                <option value="2">2. Tetap</option>
+                                <option value="3">3. Menurun</option>
+                            </select>
+                        </div>
+                    </div>
+                </label>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center nput-label"><b>DSE705 </b>Bagaimana dampak pada pengeluaran Anda selama 6 bulan terakhir wabah covid19 terjadi? </div>
+                        <div class="col col-50 ">
+                            <select class="input-border pull-right" ng-model="dse.dse705">
+                                <option value="" selected></option>
+                                <option value="1">1. Meningkat</option>
+                                <option value="2">2. Tetap</option>
+                                <option value="3">3. Menurun</option>
+                            </select>
+                        </div>
+                    </div>
+                </label>
+
+                <div class="item item-divider"><b>DSE706 </b>Apakah terjadi perubahan pada pengeluaran Anda pada barang-barang di bawah ini, selama wabah Covid19 6 bulan terakhir?</div>
+                <div class="item-group">
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center nput-label"><b>DSE706a </b>Bahan Makanan (sembako, sayuran dan lauk mentah) </div>
+                            <div class="col col-50 ">
+                                <select class="input-border pull-right" ng-model="dse.dse706a">
+                                    <option value="" selected></option>
+                                    <option value="1">1. Meningkat</option>
+                                    <option value="2">2. Tetap</option>
+                                    <option value="3">3. Menurun</option>
+                                </select>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center nput-label"><b>DSE706b </b>Makanan/ Minuman Jadi </div>
+                            <div class="col col-50 ">
+                                <select class="input-border pull-right" ng-model="dse.dse706b">
+                                    <option value="" selected></option>
+                                    <option value="1">1. Meningkat</option>
+                                    <option value="2">2. Tetap</option>
+                                    <option value="3">3. Menurun</option>
+                                </select>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center nput-label"><b>DSE706c </b>Kesehatan (pergi ke dokter/rumah sakit, obat, vitamin dan sanitasi) </div>
+                            <div class="col col-50 ">
+                                <select class="input-border pull-right" ng-model="dse.dse706c">
+                                    <option value="" selected></option>
+                                    <option value="1">1. Meningkat</option>
+                                    <option value="2">2. Tetap</option>
+                                    <option value="3">3. Menurun</option>
+                                </select>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center nput-label"><b>DSE706d </b>Listrik </div>
+                            <div class="col col-50 ">
+                                <select class="input-border pull-right" ng-model="dse.dse706d">
+                                    <option value="" selected></option>
+                                    <option value="1">1. Meningkat</option>
+                                    <option value="2">2. Tetap</option>
+                                    <option value="3">3. Menurun</option>
+                                </select>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center nput-label"><b>DSE706e </b>BBM (Bahan Bakar Minyak) </div>
+                            <div class="col col-50 ">
+                                <select class="input-border pull-right" ng-model="dse.dse706e">
+                                    <option value="" selected></option>
+                                    <option value="1">1. Meningkat</option>
+                                    <option value="2">2. Tetap</option>
+                                    <option value="3">3. Menurun</option>
+                                </select>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center nput-label"><b>DSE706f </b>Pulsa/ Paket Data </div>
+                            <div class="col col-50 ">
+                                <select class="input-border pull-right" ng-model="dse.dse706f">
+                                    <option value="" selected></option>
+                                    <option value="1">1. Meningkat</option>
+                                    <option value="2">2. Tetap</option>
+                                    <option value="3">3. Menurun</option>
+                                </select>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center nput-label"><b>DSE706g </b>Transportasi umum (termasuk transportasi online) </div>
+                            <div class="col col-50 ">
+                                <select class="input-border pull-right" ng-model="dse.dse706g">
+                                    <option value="" selected></option>
+                                    <option value="1">1. Meningkat</option>
+                                    <option value="2">2. Tetap</option>
+                                    <option value="3">3. Menurun</option>
+                                </select>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center nput-label"><b>DSE707 </b>Masih terkait pertanyaan sebelumnya, pengeluaran mana yang meningkat paling besar? </div>
+                        <div class="col col-50 ">
+                            <select class="input-border pull-right" ng-model="dse.dse707">
+                                <option value="" selected></option>
+                                <option value="1">1. Bahan Makanan (sembako, sayuran dan lauk mentah)</option>
+                                <option value="2">2. Makanan/ Minuman Jadi</option>
+                                <option value="3">3. Kesehatan (pergi ke dokter/rumah sakit, obat, vitamin dan sanitasi)</option>
+                                <option value="4">4. Listrik</option>
+                                <option value="5">5. BBM (Bahan Bakar Minyak)</option>
+                                <option value="6">6. Pulsa/ Paket Data</option>
+                                <option value="7">7. Transportasi umum (termasuk transportasi online)</option>
+                            </select>
+                        </div>
+                    </div>
+                </label>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center">
+                            <div class="input-label "><b>DSE708 </b> Apakah Anda menerima bantuan selama wabah Covid19 6 bulan terakhir ?</div>
+                        </div>
+                        <div class="col col-50 col-center">
+                            <div class="button-bar right">
+                                <ion-radio name="dse08" ng-model="dse.dse708" value="1" >Ya</ion-radio>
+                                <ion-radio name="dse08" ng-model="dse.dse708" value="2" >Tidak</ion-radio>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <!-- Jika menerima bantuan semala Covid -->
+                <div ng-if="dse.dse708 == 1">
+                    <div class="item item-divider"><b>DSE709 </b>Dari mana Anda menerima bantuan selama wabah Covid19 6 bulan terakhir tersebut? </div>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center"> <div class="input-label">a. Pemerintah </div> </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="dse09_1" ng-model="dse.dse709_1" value="1" >Ya</ion-radio>
+                                    <ion-radio name="dse09_1" ng-model="dse.dse709_1" value="2" >Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center"> <div class="input-label">b. Keluarga </div> </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="dse09_2" ng-model="dse.dse709_2" value="1" >Ya</ion-radio>
+                                    <ion-radio name="dse09_2" ng-model="dse.dse709_2" value="2" >Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center"> <div class="input-label">c. Teman/Tetangga </div> </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="dse09_3" ng-model="dse.dse709_3" value="1" >Ya</ion-radio>
+                                    <ion-radio name="dse09_3" ng-model="dse.dse709_3" value="2" >Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center"> <div class="input-label">d. Swasta/Yayasan </div> </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="dse09_4" ng-model="dse.dse709_4" value="1" >Ya</ion-radio>
+                                    <ion-radio name="dse09_4" ng-model="dse.dse709_4" value="2" >Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center"> <div class="input-label">e. Lainnya </div> </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="dse09_95" ng-model="dse.dse709_95" value="1" >Ya</ion-radio>
+                                    <ion-radio name="dse09_95" ng-model="dse.dse709_95" value="2" >Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row" ng-if="dse.dse709_95 == 1">
+                        <div class="row">
+                            <div class="col col-50 col-center"> <div class="input-label ">f. Sebutkan </div> </div>
+                            <div class="col col-50 col-center">
+                                <input type="text" ng-model="dse.dse709_95a" class="input-border pull-right">
+                            </div>
+                        </div>
+                    </label>
+                </div>
+                <!-- Jika menerima bantuan semala Covid, apa jenis bantuan yg diterima -->
+                <div ng-if="dse.dse708 == 1">
+                    <div class="item item-divider"><b>DSE710 </b>Jka Ya, Apa jenis bantuan yang Anda terima selama covid19 6 bulan terakhir ? </div>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center"> <div class="input-label">a. Uang tunai </div> </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="dse10_1" ng-model="dse.dse710_1" value="1" >Ya</ion-radio>
+                                    <ion-radio name="dse10_1" ng-model="dse.dse710_1" value="2" >Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center"> <div class="input-label">b. Bahan makanan pokok </div> </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="dse10_2" ng-model="dse.dse710_2" value="1" >Ya</ion-radio>
+                                    <ion-radio name="dse10_2" ng-model="dse.dse710_2" value="2" >Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center"> <div class="input-label">c. Pemeriksaan kesehatan </div> </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="dse10_3" ng-model="dse.dse710_3" value="1" >Ya</ion-radio>
+                                    <ion-radio name="dse10_3" ng-model="dse.dse710_3" value="2" >Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center"> <div class="input-label">d. Penangguhan/penghapusan kewajiban keuangan </div> </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="dse10_4" ng-model="dse.dse710_4" value="1" >Ya</ion-radio>
+                                    <ion-radio name="dse10_4" ng-model="dse.dse710_4" value="2" >Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row">
+                        <div class="row">
+                            <div class="col col-50 col-center"> <div class="input-label">e. Lainnya </div> </div>
+                            <div class="col col-50 col-center">
+                                <div class="button-bar right">
+                                    <ion-radio name="dse10_95" ng-model="dse.dse710_95" value="1" >Ya</ion-radio>
+                                    <ion-radio name="dse10_95" ng-model="dse.dse710_95" value="2" >Tidak</ion-radio>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="item item-text-wrap item-row" ng-if="dse.dse710_95 == 1">
+                        <div class="row">
+                            <div class="col col-50 col-center"> <div class="input-label ">f. Sebutkan </div> </div>
+                            <div class="col col-50 col-center">
+                                <input type="text" ng-model="dse.dse710_95a" class="input-border pull-right">
+                            </div>
+                        </div>
+                    </label>
+                </div>
+                <input type="number" ng-model="dse.dse" ng-show="false">
+            </ion-list>
+        </form>
+        
+        <div class="hint-status"><span>Silahkan gunakan tombol Laporan Wawancaara jika sudah ada data yang tercatat dan wawancara berhenti di tengah jalan</span></div>
+        <div class="item-group" ng-if="j_siklus.s7">
+            <button class="button simpan button-assertive pull-left" ng-click="save('individu')">
+                <i class="icon ion-arrow-left-c"></i>Laporan Wawancara
+            </button>
+            <button ng-if="allowSave(myForm)" class="button simpan button-dark pull-right" ng-click="save()">
+                <i class="icon ion-archive"></i> Lanjut ke SRQ
+            </button>
+        </div>
+
+    </ion-content>
+</ion-view>
