@@ -2126,7 +2126,7 @@
             // yang dipakai sebagai property/key data adalah ID ART
             clsART: ['part', 'pb', 'srq'],
             // yg hanya membutuhkan data RT, data akan langsung disimpan di root cls
-            clsRT: ['ir','klk','lkf','lkm','pkl','pss','pst','kmt','kbt'],
+            clsRT: ['ir', 'agh', 'hl', 'srq', 'atr'],
             // selain clsART dan clsRT, misal artb, juga hanya memerlukan dataRT
             // tetapi property/key tetap menggunakan ID ART
             /**

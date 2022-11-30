@@ -26,8 +26,8 @@
                 AppService.getUniqueIdrt().then(function(dataUnik){
                     $rootScope.idrt = dataUnik || '';
                 });
-
                 $state.go('app.ir');
+                // $state.go('app.agh');
             }, 300);
         };
 

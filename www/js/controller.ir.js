@@ -21,6 +21,7 @@
         AppService.getDataKel($rootScope.idrt, 'ir').then(function(data) {
             $scope.ir = data || {};
             $scope.ir.idrt = $rootScope.idrt;
+            $scope.ir.ir02 = new Date(data.ir02)
         });
         
         AppService.getTglWawancaraPlusSatu(true).then(function(val) {
@@ -38,6 +39,12 @@
             }
         }
 
+        $scope.getKalurahan = function(val){
+            if (val >= 1 && val <= 17) {
+                $scope.listKalurahan = AppService.getListKalurahan(val);                
+            }
+        }
+
         
         //Agar tidak bisa mengetik '*','+' dan '-'//
         // $scope.onlyNumber = function() {
@@ -47,7 +54,7 @@
         //
 
         $scope.save = function(param) {
-
+            $scope.ir.ir = 1;
             $rootScope.dataRT = $scope.ir;
 
             $rootScope.$broadcast('saving:show');
@@ -57,15 +64,15 @@
                 $rootScope.$broadcast('loading:show');
                 $timeout(function() {
                     $rootScope.$broadcast('loading:hide');
-                    $state.go('app.klk');
+                    $state.go('app.atr');
                 }, 400);
             });
         };
 
         $scope.allowSave = function(myForm) {
             var ir = $scope.ir;
-            var allow = ir.ir01 && ir.ir02 && ir.ir03 && ir.ir04 && ir.ir05 &&
-                        ir.ir07 && ir.ir08 && rt.ir09 && rt.ir10 && rt.ir11;
+            var allow = ir.ir01 && ir.ir02 && ir.ir03 && ir.ir04 && ir.ir05 && ir.ir06 && 
+                        ir.ir07 && ir.ir08 && ir.ir09 && ir.ir10 && ir.ir11;
 
                         // pekerjaan lain
                         if (ir.ir07 == 95) {
@@ -73,11 +80,17 @@
                         }
 
                         // asuransi lain
+                        a = parseInt(ir.ir08a);
+                        b = parseInt(ir.ir08b);
+                        c = parseInt(ir.ir08c);
+                        no_asuransi = a + b + c;
                         if (ir.ir08 == 1) {
-                            allow = allow && ir.ir08a && ir.ir08b && ir.ir08c;
+                            allow = allow && ir.ir08a && ir.ir08b && ir.ir08c &&
+                                    (no_asuransi != 6);
                         }
 
-            return allow && myForm.$valid;
+            // return allow && myForm.$valid;
+            return true;
 
         };  
 

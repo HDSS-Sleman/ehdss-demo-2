@@ -18,15 +18,15 @@ angular.module('ehdss', ['ionic','ngCordova'])
         }
         // set config localforage
         localforage.config({
-            name: 'ehdss-hl-2022'
+            name: 'ehdss-demo-v1'
         });
         // Set URL server 'index.php' untuk aplikasi atau browser
         // integra9: 'http://hdss.integra9.com/server/index.php',
         // localhost: 'http://localhost/ehdss/www/server/index.php',
         // https://hdss.ikm.fk.ugm.ac.id/e-hdss/server/index.php untuk upload ke server
         if (ionic.Platform.isWebView() || ionic.Platform.isCrosswalk() || ionic.Platform.isAndroid()) {
-            $rootScope.serverUrl = 'http://slemanhdss.id/ugm-hpu-literasi-kesehatan/server/index.php';
-            $rootScope.serverUrlUpload = 'https://slemanhdss.id/ugm-hpu-literasi-kesehatan/server/index.php';
+            $rootScope.serverUrl = 'http://slemanhdss.id/ehdss-demo-v2/server/index.php';
+            $rootScope.serverUrlUpload = 'https://slemanhdss.id/ehdss-demo-v2/server/index.php';
             // $rootScope.serverUrl = 'http://10.18.5.71/e-hdss/server/index.php'; // $rootScope.serverUrl = 'http://hdss.ikm.fk.ugm.ac.id/e-hdss/server/index.php';
             // $rootScope.serverUrlUpload = 'http://10.18.5.71/e-hdss/server/index.php'; // $rootScope.serverUrlUpload = 'https://hdss.ikm.fk.ugm.ac.id/e-hdss/server/index.php';
             $rootScope.iniAndroid = true;
@@ -92,83 +92,43 @@ angular.module('ehdss', ['ionic','ngCordova'])
             }
         }
     })
-    .state('app.klk', {
+    .state('app.agh', {
         cache: false,
-        url: '/klk',
+        url: '/agh',
         views: {
             'menuContent': {
-                templateUrl: 'templates/klk.html',
-                controller: 'KlkCtrl'
+                templateUrl: 'templates/agh.html',
+                controller: 'AghCtrl'
             }
         }
     })
-    .state('app.lkf', {
+    .state('app.hl', {
         cache: false,
-        url: '/lkf',
+        url: '/hl',
         views: {
             'menuContent': {
-                templateUrl: 'templates/lkf.html',
-                controller: 'LkfCtrl'
+                templateUrl: 'templates/hl.html',
+                controller: 'HlCtrl'
             }
         }
     })
-    .state('app.lkm', {
+    .state('app.srq', {
         cache: false,
-        url: '/lkm',
+        url: '/srq',
         views: {
             'menuContent': {
-                templateUrl: 'templates/lkm.html',
-                controller: 'LkmCtrl'
+                templateUrl: 'templates/srq.html',
+                controller: 'SrqCtrl'
             }
         }
     })
-    .state('app.pkl', {
+    .state('app.atr', {
         cache: false,
-        url: '/pkl',
+        url: '/srq',
         views: {
             'menuContent': {
-                templateUrl: 'templates/pkl.html',
-                controller: 'PklCtrl'
-            }
-        }
-    })
-    .state('app.pss', {
-        cache: false,
-        url: '/pss',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/pss.html',
-                controller: 'PssCtrl'
-            }
-        }
-    })
-    .state('app.pst', {
-        cache: false,
-        url: '/pst',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/pst.html',
-                controller: 'PstCtrl'
-            }
-        }
-    })
-    .state('app.kmt', {
-        cache: false,
-        url: '/kmt',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/kmt.html',
-                controller: 'KmtCtrl'
-            }
-        }
-    })
-    .state('app.kbt', {
-        cache: false,
-        url: '/kbt',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/kbt.html',
-                controller: 'KbtCtrl'
+                templateUrl: 'templates/atr.html',
+                controller: 'AtrCtrl'
             }
         }
     })

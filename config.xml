@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="id.ac.ugm.fk.ehdss.ichc2022" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Literasi Kesehatan</name>
+    <name>Electronic and Health Demographic Surveillance System Mini Lite</name>
     <description>
         Electronic and Health Demographic Surveillance System
     </description>
-    <author email="ebta.setiawan@gmail.com" href="http://ebsoft.web.id/">
-      Ebta Setiawan
+    <author email="hdssjogja.fkkmk@ugm.ac.id" href="https://hdss.fk.ugm.ac.id/">
+      HDSS Sleman
     </author>
     <content src="index.html" />
     <access origin="*" />

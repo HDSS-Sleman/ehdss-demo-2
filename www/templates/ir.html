@@ -1,7 +1,8 @@
-<ion-view view-title="Data Responden">
-    <ion-content class="rt">
+<ion-view view-title="Identitas Responden">
+    <ion-content class="ir">
         <form name="myForm" novalidate>
             <ion-list>
+                <input type="text" ng-model="ir.ir" ng-show="false">
                 <label class="item item-input" ng-show="false">
                     <div class="input-label">ID Aplikasi</div>
                     <input class="input-border" type="text" ng-model="ir.idrt" readonly>
@@ -142,18 +143,18 @@
                     <div class="row">
                         <div class="col col-50 col-center input-label">Kecamatan </div>
                         <div class="col col-50 col-center" >
-                            <select class="pull-right" ng-model="rt.ir09" ng-change="getKalurahan(rt.id04)" required>
+                            <select class="pull-right" ng-model="ir.ir09" ng-change="getKalurahan(ir.ir09)" required>
                                 <option value="" selected></option>
                                 <option ng-repeat="(key,val) in listKapanewon" value="{{key}}">{{val}}</option>
                             </select>
                         </div>
                     </div>
                 </div>
-                <div class="item item-text-wrap item-row" ng-if="rt.id04">
+                <div class="item item-text-wrap item-row" ng-if="ir.ir09">
                     <div class="row">
                         <div class="col col-50 col-center input-label">Kelurahan </div>
                         <div class="col col-50 col-center" >
-                            <select class="pull-right" ng-model="rt.ir10" required>
+                            <select class="pull-right" ng-model="ir.ir10" required>
                                 <option value="" selected></option>
                                 <option ng-repeat="(key,val) in listKalurahan" value="{{key}}">{{val}}</option>
                             </select>
@@ -164,10 +165,31 @@
                     <div class="row">
                         <div class="col col-50 col-center input-label">Dusun </div>
                         <div class="col col-50 col-center" >
-                            <input class="pull-right" type="text" ng-model="rt.ir10" required>
+                            <input class="pull-right" type="text" ng-model="ir.ir11" required>
                         </div>
                     </div>
                 </div>
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label">RW </div>
+                        <div class="col col-50 col-center" >
+                            <input class="pull-right" type="number" ng-model="ir.id07" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label">RT </div>
+                        <div class="col col-50 col-center" >
+                            <input class="pull-right" type="number" ng-model="ir.id08" required>
+                        </div>
+                    </div>
+                </div>
+                <label class="item item-input">
+                    <div class="input-label">Alamat rumah</div>
+                    <input class="lowercase" type="text" ng-model="ir.id09">
+                </label>
+                <div class="invalid-val"><span>Alamat rumah diisikan jalan, gang, nomor rumah, blok, nama perumahan, komplek atau informasi lain. Kosongkan jika tidak tahu</span></div>
                 
             </ion-list>
         </form>

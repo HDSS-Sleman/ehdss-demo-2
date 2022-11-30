@@ -1,0 +1,35 @@
+<ion-view view-title="Kesehatan Jiwa">
+    <ion-content id="srq" class="srq">
+        <form name="myForm" novalidate>
+            <ion-list>
+                <div class="item item-text-wrap item-row">Pertanyaan berikut berhubungan dengan masalah yang mungkin mengganggu Anda selama 30 hari terakhir. Apabila Anda menganggap pertanyaan itu Anda alami dalam 30 hari terakhir, pilihlah pilihan jawaban YA Sebaliknya apabila Anda menganggap pertanyaan itu tidak Anda alami dalam 30 hari terakhir, pilihlah pilihan jawaban TIDAK. Jika Anda tidak yakin tentang jawabannya, berilah jawaban yang paling sesuai di antara YA dan TIDAK. Kami tegaskan bahwa jawaban Anda bersifat rahasia.
+                </div>
+                <input type="number" ng-model="srq.srq" ng-show="false">
+                <label class="item item-text-wrap" ng-repeat="(key,val) in listSrq1">
+                    <span class="input-label full">
+                        <b>{{key}}.</b> {{val}} 
+                    </span >
+                    <div class="button-bar right">
+                        <ion-radio ng-required="true" name="srq{{key}}" ng-model="srq['srq'+key]" ng-value="1">Ya</ion-radio>
+                        <ion-radio ng-required="true" name="srq{{key}}" ng-model="srq['srq'+key]" ng-value="2">Tidak</ion-radio>
+                    </div>
+                </label>
+                <label class="item item-text-wrap" ng-repeat="(key,val) in listSrq2">
+                    <span class="input-label full">
+                        <b>{{key}}.</b> {{val}} 
+                    </span >
+                    <div class="button-bar right">
+                        <ion-radio ng-required="true" name="srq{{key}}" ng-model="srq['srq'+key]" ng-value="1">Ya</ion-radio>
+                        <ion-radio ng-required="true" name="srq{{key}}" ng-model="srq['srq'+key]" ng-value="2">Tidak</ion-radio>
+                    </div>
+                </label>
+            </ion-list>
+        </form>
+
+        <div class="item-group">
+            <button ng-if="allowSave(myForm)" class="button simpan button-positive pull-right" ng-click="save('atr')">
+                Lanjut<i class="icon ion-arrow-right-c"></i>
+            </button>
+        </div>
+    </ion-content>
+</ion-view>

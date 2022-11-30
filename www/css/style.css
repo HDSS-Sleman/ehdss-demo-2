@@ -674,9 +674,6 @@ input.ng-valid, select.ng-valid, textarea.ng-valid{
     }
 }
 
-
-
-
 .input-label-home {
      display:table;
      padding:7px 10px 7px 0;
@@ -693,6 +690,10 @@ hr {
         border-top-style: none;
         border-top-width: 0px;
     border-top: 1px solid rgba(0,0,0,.1);
+}
+
+.mw100 {
+  width: 100px;
 }
 
 /* End of custom CSS untuk eHDSS mini */
