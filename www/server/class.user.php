@@ -14,12 +14,12 @@ class User
         header('Content-type: application/json');
 
         /* Table Name */
-        $this->tb_data_art = 'hl2022_data_art';
-        $this->tb_data_result = 'hl2022_data_result';
-        $this->tb_data_rt = 'hl2022_data_rt';
-        $this->tb_users = 'hl2022_users';
-        $this->tb_user_enum = 'hl2022_user_enum';
-        $this->tb_user_rt = 'hl2022_user_rt';
+        $this->tb_data_art = 'demov2_data_art';
+        $this->tb_data_result = 'demov2_data_result';
+        $this->tb_data_rt = 'demov2_data_rt';
+        $this->tb_users = 'demov2_users';
+        $this->tb_user_enum = 'demov2_user_enum';
+        $this->tb_user_rt = 'demov2_user_rt';
     }
 
     /**
@@ -110,7 +110,7 @@ class User
             }
             echo json_encode($resp, JSON_NUMERIC_CHECK);
         } else {
-            exit('{"success": false, "msg": "Empty atau Gagal mengambil data hl2022_user_rt"}');
+            exit('{"success": false, "msg": "Empty atau Gagal mengambil data demov2_user_rt"}');
         }
     }
 
@@ -173,7 +173,7 @@ class User
                 exit('{"success": false, "msg": "Gagal menghapus User dari Users"}');
             }
         } else {
-            exit('{"success": false, "msg": "Gagal menghapus User dari hl2022_User_rt"}');
+            exit('{"success": false, "msg": "Gagal menghapus User dari demov2_User_rt"}');
         }
     }
 

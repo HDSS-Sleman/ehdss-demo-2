@@ -2124,7 +2124,7 @@
             // 'kai', 'kim', 'asm', merupakan modul dari KAI
             // class atau modul yg membutuhkan data Anggota Rumah Tangga
             // yang dipakai sebagai property/key data adalah ID ART
-            clsART: ['part', 'pb', 'srq'],
+            clsART: ['part'],
             // yg hanya membutuhkan data RT, data akan langsung disimpan di root cls
             clsRT: ['ir', 'agh', 'hl', 'srq', 'atr'],
             // selain clsART dan clsRT, misal artb, juga hanya memerlukan dataRT

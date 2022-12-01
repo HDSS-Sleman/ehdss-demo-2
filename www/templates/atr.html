@@ -29,7 +29,10 @@
                 </label>
             </ion-list>
         </form>
-        <div class="padding text-right">
+        <div class="item-group">
+            <button class="button simpan button-positive pull-left" ng-click="save('srq')" >
+                <i class="icon ion-arrow-left-c"></i>Kembali
+            </button>
             <button ng-if="AllowSave(myForm)" class="button simpan button-positive pull-right" ng-click="save('end')">
                 Lanjut<i class="icon ion-arrow-right-c"></i>
             </button>
