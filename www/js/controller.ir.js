@@ -64,7 +64,7 @@
                 $rootScope.$broadcast('loading:show');
                 $timeout(function() {
                     $rootScope.$broadcast('loading:hide');
-                    $state.go('app.atr');
+                    $state.go('app.agh');
                 }, 400);
             });
         };
@@ -89,8 +89,7 @@
                                     (no_asuransi != 6);
                         }
 
-            // return allow && myForm.$valid;
-            return true;
+            return allow && myForm.$valid;
 
         };  
 

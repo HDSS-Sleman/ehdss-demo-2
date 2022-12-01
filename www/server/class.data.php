@@ -459,11 +459,11 @@ class Data {
 
     private function generateCsv($includeXslx = false) {
          // Ambil semua kolom2 RT dan ART sebagai master array dan set empty value
-         $csv = file_get_contents('rt_hl_2022.csv');
+         $csv = file_get_contents('rt_demov1.csv');
          $ref_rt = array_fill_keys(explode(',', $csv), '');
 
          // csv art yg lama jika tidak ada replace data header
-         $csv = file_get_contents('art_hl_2022.csv'); 
+         $csv = file_get_contents('art_demov1.csv'); 
          $ref_art = array_fill_keys(explode(',', $csv), '');
 
          // Query setiap data RT 1 saja dengan tanggal terakhir masuk

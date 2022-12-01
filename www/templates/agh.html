@@ -28,7 +28,7 @@
             <input type="text" ng-model="agh.agh" ng-show="false">
             <div class="item item-text-wrap item-row">Pertanyaan berikut ini tentang buah dan sayur yang biasa anda konsumsi. Saya memiliki Buku Foto Makanan yang berisi daftar buah dan sayuran lokal. Masing-masing gambar menunjukkan besarnya yang dikonsumsi. Ini bukanlah sebuah ujian dan tidak ada jawaban benar atau salah. Pilihlah jawaban yang paling sesuai dengan kebiasaan anda untuk menggambarkan keadaan anda. Jika ada pertanyaan atau hal yang belum Anda pahami, jangan sungkan untuk menanyakan hal tersebut kepada saya. Kami berharap anda menjawab seluruh pertanyaan. Anda bebas menginterupsi saya kapanpun dan mengajukan pertanyaan jika Anda merasa tidak memahami pertanyaan atau hal lain dalam penelitian ini.
             </div>
-            <label class="item item-text-wrap">
+            <div class="item item-text-wrap">
                 <span class="input-label full">
                     <b>E1. </b>Biasanya dalam 1 minggu, berapa hari Anda mengkonsumsi buah-buahan? <b>(Isikan kode "98" jika responden tidak tahu)</b>
                 </span >
@@ -36,8 +36,8 @@
                     <input type="number" ng-model="agh.e1" block block-length="2" min="0" max="98" numbers-allowed="0-7,98">
                     &nbsp; hari
                 </div>
-            </label>
-            <label class="item item-text-wrap">
+            </div>
+            <div class="item item-text-wrap">
                 <span class="input-label full">
                     <b>E2b. </b>Apakah tau jumlah porsi jenis buah yang paling sering dikonsumsi
                 </span >
@@ -45,8 +45,8 @@
                     <ion-radio name="agh.e2b" ng-model="agh.e2b" value="1">Ya</ion-radio>
                     <ion-radio name="agh.e2b" ng-model="agh.e2b" value="98">Tidak</ion-radio>
                 </div>
-            </label>
-            <label class="item item-text-wrap" ng-if="agh.e2b == 1">
+            </div>
+            <div class="item item-text-wrap" ng-if="agh.e2b == 1">
                 <span class="input-label full">
                     <b>E2a. </b>Jenis buah yang paling sering dikonsumsi, sebutkan
                 </span >
@@ -54,25 +54,25 @@
                     <input class="lowercase" type="text" ng-model="agh.e2aa" required placeholder="nama buah"> &nbsp; 
                     <input type="number" ng-model="agh.e2a" block block-length="4" min="0" max="1000" ng-change="getPorsi('buah',agh.e2a)" required placeholder="jml gram"> &nbsp; gram                    
                 </div>
-            </label>
+            </div>
             <div class="invalid-val" ng-if="agh.e2b == 1"><span>1 porsi = 80 gram</span></div>
-            <label class="item item-text-wrap" ng-if="agh.e2b == 1">
+            <div class="item item-text-wrap" ng-if="agh.e2b == 1">
                 <span class="input-label full">
                     <b>E2. </b>Berapa porsi rata-rata Anda mengkonsumsi buah-buahan  dalam satu hari dari hari-hari tersebut?
                 </span >
                 <div class="button-bar right">
                     <input type="number" ng-model="agh.e2" block min="0" max="98" disabled required> &nbsp; porsi
                 </div>
-            </label>
-            <label class="item item-text-wrap">
+            </div>
+            <div class="item item-text-wrap">
                 <span class="input-label full">
                     <b>E3.</b> Biasanya dalam 1 minggu, berapa hari Anda mengkonsumsi sayur-sayuran? <b>(Isikan kode "98" jika responden tidak tahu)</b>
                 </span >
                 <div class="button-bar right">
                     <input type="number" ng-model="agh.e3" block block-length="2" min="0" max="98" numbers-allowed="0-7,98"> &nbsp; hari
                 </div>
-            </label>
-            <label class="item item-text-wrap">
+            </div>
+            <div class="item item-text-wrap">
                 <span class="input-label full">
                     <b>E4b. </b>Apakah tau jumlah porsi jenis sayur yang paling sering dikonsumsi
                 </span >
@@ -80,8 +80,8 @@
                     <ion-radio name="agh.e4b" ng-model="agh.e4b" value="1">Ya</ion-radio>
                     <ion-radio name="agh.e4b" ng-model="agh.e4b" value="98">Tidak</ion-radio>
                 </div>
-            </label>
-            <label class="item item-text-wrap" ng-if="agh.e4b == 1">
+            </div>
+            <div class="item item-text-wrap" ng-if="agh.e4b == 1">
                 <span class="input-label full">
                     <b>E4a.</b> Jenis sayur yang paling sering dikonsumsi, sebutkan
                 </span >
@@ -89,23 +89,23 @@
                     <input class="lowercase" type="text" ng-model="agh.e4aa" required placeholder="nama sayur"> &nbsp; 
                     <input type="number" ng-model="agh.e4a" block block-length="4" min="0" max="1000" ng-change="getPorsi('sayur',agh.e4a)" required placeholder="jml gram"> &nbsp; gram
                 </div>
-            </label>
+            </div>
             <div class="invalid-val" ng-if="agh.e4b == 1"><span>1 porsi = 80 gram</span></div>
-            <label class="item item-text-wrap" ng-if="agh.e4b == 1">
+            <div class="item item-text-wrap" ng-if="agh.e4b == 1">
                 <span class="input-label full">
                     <b>E4.</b> Berapa porsi rata-rata Anda mengkonsumsi sayur-sayuran dalam satu hari dari hari-hari tersebut?
                 </span >
                 <div class="button-bar right">
                     <input type="number" ng-model="agh.e4" block min="0" max="98" disabled required> &nbsp; porsi
                 </div>
-            </label>
+            </div>
         </ion-list> <!-- End of list module pola makan -->
 
         <ion-list ng-show="garam">
             <div class="item item-text-wrap item-row">Dalam pertanyaan berikut ini, kami ingin mengetahui lebih detail tentang asupan garam Anda dalam 1 minggu terakhir. Asupan garam termasuk garam meja, garam yang dimurnikan seperti garam laut, garam beryodium, garam balok dan bubuk, dan saus asin seperti kecap asin atau saus ikan. Pertanyaan-pertanyaan berikut ini adalah tentang bagaimana makanan disiapkan di rumah Anda, pada makan makanan olahan yang tinggi garam seperti [ikan asin, tauco, dll], dan pertanyaan tentang pengendalian asupan garam Anda. Jawablah pertanyaan sekalipun anda menganggap diri anda mengkonsumsi sedikit garam.
             </div>
             <div class="notifikasi">Baca semua pilihan jawaban. Menggunakan showcard yang menunjukkan garam dan saus asin.</div>
-            <label class="item item-text-wrap" ng-repeat="(key,val) in listGaram">
+            <div class="item item-text-wrap" ng-repeat="(key,val) in listGaram">
                 <span class="input-label full">
                     <b>I{{key}}.</b> {{val}} 
                 </span >
@@ -120,7 +120,7 @@
                         <option value="98">98. Tidak tahu</option>
                     </select>
                 </div>
-            </label>
+            </div>
         </ion-list> <!-- End of list module asupan garam -->
 
         <ion-list ng-show="aktivitas_fisik">
@@ -129,7 +129,7 @@
             <div class="item item-text-wrap item-row">Pertama-tama, mari mengingat waktu yang Anda habiskan untuk bekerja. Bekerja dalam artian hal-hal yan Anda harus kerjakan baik dibayar maupun tidak dibayar, seperti belajar/mengikuti pelatihan, pekerjaan rumah tangga, bertani, memancing atau berburu, mencari kerja, dll. `aktivitas dengan intensitas tinggi` merupakan aktivitas yang membutuhkan usaha/tenaga yang besar dan menyebabkan peningkatan frekuensi napas maupun detak jantung yang besar, `aktivitas dengan intensitas sedang` merupakan aktivitas yang membutuhkan usaha/tenaga yang cukup/sedang dan tidak banyak menyebabkan peningkatan frekuensi napas dan detak jantung.
             </div>
             <div class="item-row item-divider"><h4>Aktivitas Fisik Saat Bekerja</h4></div>
-            <label class="item item-text-wrap">
+            <div class="item item-text-wrap">
                 <span class="input-label full">
                     <b>F1.</b> Apakah pekerjaan Anda berhubungan dengan kegiatan dengan <b>intensitas berat</b> yang menyebabkan frekuensi napas dan detak jantung meningkat cukup besar, seperti kegiatan pertanian, membawa atau mengangkat beban berat, menggali atau pekerjaan konstruksi sedikitnya 10 menit secara terus menerus? (Contoh pekerjaan dengan intensitas berat: petani, buruh bangunan, buruh pasar, tukang kayu, tukang becak, tukang gali, buruh angkut)
                 </span >
@@ -137,16 +137,16 @@
                     <ion-radio name="agh.f1" ng-model="agh.f1" value="1">Ya</ion-radio>
                     <ion-radio name="agh.f1" ng-model="agh.f1" value="2">Tidak</ion-radio>
                 </div>
-            </label>
-            <label class="item item-text-wrap" ng-if="agh.f1 == 1">
+            </div>
+            <div class="item item-text-wrap" ng-if="agh.f1 == 1">
                 <span class="input-label full">
                     <b>F2.</b> Dalam seminggu, berapa hari Anda melakukan kegiatan dengan <b>intensitas berat</b> sebagai bagian dari pekerjaan?
                 </span >
                 <div class="button-bar right">
                     <input type="number" ng-model="agh.f2" block block-length="2" min="0" max="7" required> &nbsp; hari
                 </div>
-            </label>
-            <label class="item item-text-wrap" ng-if="agh.f1 == 1">
+            </div>
+            <div class="item item-text-wrap" ng-if="agh.f1 == 1">
                 <span class="input-label full">
                     <b>F3.</b> Biasanya, berapa banyak waktu yang Anda habiskan tiap harinya untuk melakukan kegiatan dengan <b>intensitas berat</b> pada saat Anda bekerja?
                 </span >
@@ -154,10 +154,10 @@
                     <input class="mw100" type="number" ng-model="agh.f3a" block block-length="2" min="0" max="24" required> &nbsp; jam &nbsp;
                     <input class="mw100" type="number" ng-model="agh.f3b" block block-length="2" min="0" max="59" required> &nbsp; menit
                 </div>
-            </label>
+            </div>
             <div class="invalid-val" ng-if="agh.f1 == 1"><span>Contoh: 1 jam 30 menit, 0 jam 40 menit atau 2 jam 0 menit</span></div>
 
-            <label class="item item-text-wrap">
+            <div class="item item-text-wrap">
                 <span class="input-label full">
                     <b>F4.</b> Apakah pekerjaan Anda berhubungan dengan kegiatan dengan <b>intensitas sedang</b> yang menyebabkan sedikit frekuensi napas dan detak jantung seperti berjalan cepat atau membawa beban ringan selama paling sedikitnya 10 menit secara terus menerus? (Contoh pekerjaan dengan intensitas sedang: supir bus, petugas parkir, pekerjaan rutin rumah tangga, memasak di rumah, penjahit, penjaga malam, guru olahraga)
                 </span >
@@ -165,16 +165,16 @@
                     <ion-radio name="agh.f4" ng-model="agh.f4" value="1">Ya</ion-radio>
                     <ion-radio name="agh.f4" ng-model="agh.f4" value="2">Tidak</ion-radio>
                 </div>
-            </label>
-            <label class="item item-text-wrap" ng-if="agh.f4 == 1">
+            </div>
+            <div class="item item-text-wrap" ng-if="agh.f4 == 1">
                 <span class="input-label full">
                     <b>F5.</b> Dalam seminggu, berapa hari Anda melakukan kegiatan dengan <b>intensitas sedang</b> sebagai bagian dari pekerjaan?
                 </span >
                 <div class="button-bar right">
                     <input type="number" ng-model="agh.f5" block block-length="2" min="0" max="7" required> &nbsp; hari
                 </div>
-            </label>
-            <label class="item item-text-wrap" ng-if="agh.f4 == 1">
+            </div>
+            <div class="item item-text-wrap" ng-if="agh.f4 == 1">
                 <span class="input-label full">
                     <b>F6.</b> Biasanya, berapa banyak waktu yang Anda habiskan tiap harinya untuk melakukan kegiatan dengan <b>intensitas sedang</b> pada saat Anda bekerja?
                 </span >
@@ -182,13 +182,13 @@
                     <input class="mw100" type="number" ng-model="agh.f6a" block block-length="2" min="0" max="24" required> &nbsp; jam &nbsp;
                     <input class="mw100" type="number" ng-model="agh.f6b" block block-length="2" min="0" max="59" required> &nbsp; menit
                 </div>
-            </label>
+            </div>
             <div class="invalid-val" ng-if="agh.f4 == 1"><span>Contoh: 1 jam 30 menit, 0 jam 40 menit atau 2 jam 0 menit</span></div>
 
             <div class="item-row item-divider"><h4>Aktivitas Fisik Saat Perjalanan</h4></div>
             <div class="item item-text-wrap item-row">Pada pertanyaan berikutnya mohon hilangkan aktivitas fisik dalam pekerjaan Anda yang telah Anda sebutkan sebelumnya. Saat ini kami ingin menanyakan pada Anda mengenai cara melakukan perjalanan dari satu tempat ke tempat lainnya, misalnya untuk bekerja, belanja, ke tempat ibadah, mengunjungi keluarga/saudara, dll.
             </div>
-            <label class="item item-text-wrap">
+            <div class="item item-text-wrap">
                 <span class="input-label full">
                     <b>F7.</b> Apakah anda sering berjalan kaki atau bersepeda selama paling sedikitnya 10 menit secara terus menerus saat bepergian?
                 </span >
@@ -196,16 +196,16 @@
                     <ion-radio name="agh.f7" ng-model="agh.f7" value="1">Ya</ion-radio>
                     <ion-radio name="agh.f7" ng-model="agh.f7" value="2">Tidak</ion-radio>
                 </div>
-            </label>
-            <label class="item item-text-wrap"  ng-if="agh.f7 == 1">
+            </div>
+            <div class="item item-text-wrap"  ng-if="agh.f7 == 1">
                 <span class="input-label full">
                     <b>F8.</b> Dalam 1 minggu, berapa hari Anda berjalan kaki atau bersepeda sedikitnya 10 menit secara terus menerus saat bepergian?
                 </span >
                 <div class="button-bar right">
                     <input type="number" ng-model="agh.f8" block block-length="2" min="0" max="7" required> &nbsp; hari
                 </div>
-            </label>
-            <label class="item item-text-wrap" ng-if="agh.f7 == 1">
+            </div>
+            <div class="item item-text-wrap" ng-if="agh.f7 == 1">
                 <span class="input-label full">
                     <b>F9.</b> Berapa banyak waktu yang Anda habiskan tiap harinya untuk Anda berjalan kaki atau bersepeda?
                 </span >
@@ -213,13 +213,13 @@
                     <input class="mw100" type="number" ng-model="agh.f9a" block block-length="2" min="0" max="24" required> &nbsp; jam &nbsp;
                     <input class="mw100" type="number" ng-model="agh.f9b" block block-length="2" min="0" max="59" required> &nbsp; menit
                 </div>
-            </label> 
+            </div> 
             <div class="invalid-val" ng-if="agh.f7 == 1"><span>Contoh: 1 jam 30 menit, 0 jam 40 menit atau 2 jam 0 menit</span></div>
 
             <div class="item-row item-divider"><h4>Aktivitas Saat Waktu Luang</h4></div>
             <div class="item item-text-wrap item-row">Pada pertanyaan selanjutnya, mohon hilangkan aktivitas pekerjaan dan perjalanan yang telah Anda sebutkan. Saat ini, kami ingin menanyakan mengenai aktivitas olahraga, fitness dan aktivitas rekreasional/yang Anda lakukan dalam waktu luang.
             </div>
-            <label class="item item-text-wrap">
+            <div class="item item-text-wrap">
                 <span class="input-label full">
                     <b>F10.</b> Apakah anda melakukan olahraga, latihan kebugaran atau kegiatan rekreasi dengan <b>intensitas berat</b> yang menyebabkan sedikit peningkatan frekuensi napas dan detak jantung, selama paling sedikitnya 10 menit secara terus menerus? (Contoh olahraga dengan intensitas berat: aerobik, bersepeda cepat)
                 </span >
@@ -227,16 +227,16 @@
                     <ion-radio name="agh.f10" ng-model="agh.f10" value="1">Ya</ion-radio>
                     <ion-radio name="agh.f10" ng-model="agh.f10" value="2">Tidak</ion-radio>
                 </div>
-            </label>
-            <label class="item item-text-wrap" ng-if="agh.f10 == 1">
+            </div>
+            <div class="item item-text-wrap" ng-if="agh.f10 == 1">
                 <span class="input-label full">
                     <b>F11.</b> Dalam seminggu berapa hari Anda melakukan olahraga, latihan kebugaran atau kegiatan rekreasi dengan <b>intensitas berat</b>?
                 </span >
                 <div class="button-bar right">
                     <input type="number" ng-model="agh.f11" block block-length="2" min="0" max="7" required> &nbsp; hari
                 </div>
-            </label>
-            <label class="item item-text-wrap" ng-if="agh.f10 == 1">
+            </div>
+            <div class="item item-text-wrap" ng-if="agh.f10 == 1">
                 <span class="input-label full">
                     <b>F12.</b> Biasanya berapa banyak waktu yang Anda habiskan tiap harinya untuk melakukan olahraga, laihan kebugaran atau kegiatan rekreasi dengan <b>intensitas berat</b>?
                 </span >
@@ -244,10 +244,10 @@
                     <input class="mw100" type="number" ng-model="agh.f12a" block block-length="2" min="0" max="24" required> &nbsp; jam
                     <input class="mw100" type="number" ng-model="agh.f12b" block block-length="2" min="0" max="59" required> &nbsp; menit
                 </div>
-            </label>
+            </div>
             <div class="invalid-val" ng-if="agh.f10 == 1"><span>Contoh: 1 jam 30 menit, 0 jam 40 menit atau 2 jam 0 menit</span></div>
 
-            <label class="item item-text-wrap">
+            <div class="item item-text-wrap">
                 <span class="input-label full">
                     <b>F13.</b> Apakah anda melakukan olahraga, latihan kebugaran atau kegiatan rekreasi dengan <b>intensitas sedang</b> yang menyebabkan sedikit peningkatan frekuensi napas dan detak jantung, selama paling sedikitnya 10 menit secara terus menerus? (Contoh: bersepeda santai, main bulutangkis ganda)
                 </span >
@@ -255,16 +255,16 @@
                     <ion-radio name="agh.f13" ng-model="agh.f13" value="1">Ya</ion-radio>
                     <ion-radio name="agh.f13" ng-model="agh.f13" value="2">Tidak</ion-radio>
                 </div>
-            </label>
-            <label class="item item-text-wrap" ng-if="agh.f13 == 1">
+            </div>
+            <div class="item item-text-wrap" ng-if="agh.f13 == 1">
                 <span class="input-label full">
                     <b>F14.</b> Dalam seminggu berapa hari Anda melakukan olahraga, latihan kebugaran atau kegiatan rekreasi dengan <b>intensitas sedang</b>?
                 </span >
                 <div class="button-bar right">
                     <input type="number" ng-model="agh.f14" block block-length="2" min="0" max="7" required> &nbsp; hari
                 </div>
-            </label>
-            <label class="item item-text-wrap" ng-if="agh.f13 == 1">
+            </div>
+            <div class="item item-text-wrap" ng-if="agh.f13 == 1">
                 <span class="input-label full">
                     <b>F15.</b> Biasanya berapa banyak waktu yang Anda habiskan tiap harinya untuk melakukan olahraga, laihan kebugaran atau kegiatan rekreasi dengan <b>intensitas sedang</b>?
                 </span >
@@ -272,20 +272,12 @@
                     <input class="mw100" type="number" ng-model="agh.f15a" block block-length="2" min="0" max="24" required> &nbsp; jam &nbsp; 
                     <input class="mw100" type="number" ng-model="agh.f15b" block block-length="2" min="0" max="59" required> &nbsp; menit
                 </div>
-            </label>
+            </div>
             <div class="invalid-val" ng-if="agh.f13 == 1"><span>Contoh: 1 jam 30 menit, 0 jam 40 menit atau 2 jam 0 menit</span></div>
         </ion-list> <!-- End of list module aktivitas fisik -->
 
         <ion-list ng-show="penggunaan_tembakau">
-            <!-- <label class="item item-text-wrap">
-                <span class="input-label full">
-                    
-                </span >
-                <div class="button-bar right">
-                    
-                </div>
-            </label> -->
-            <label class="item item-text-wrap">
+            <div class="item item-text-wrap">
                 <span class="input-label full">
                     <b>G05. </b>Apakah {{nama}} merokok selama 1 bulan terakhir <br> <b>(Bacakan Jawaban)</b>
                 </span >
@@ -299,29 +291,29 @@
                         <option value="5">5. Tidak pernah sama sekali</option>
                     </select>
                 </div>
-            </label>
-            <label class="item item-text-wrap" ng-if="agh.g05 == 1 || agh.g05 == 3">
+            </div>
+            <div class="item item-text-wrap" ng-if="agh.g05 == 1 || agh.g05 == 3">
                 <span class="input-label full">
                     <b>G06. </b>Berapa umur {{nama}} mulai merokok setiap hari? <br> <b>Isikan dengan `98` jika responden menjawab dengan tidak ingat</b>
                 </span >
                 <div class="button-bar right">
                     <input type="number" ng-model="agh.g06" block block-length="2" min="1" max="98" class="pull-right" required>
                 </div>
-            </label>
-            <label class="item item-text-wrap" ng-if="agh.g05 < 5">
+            </div>
+            <div class="item item-text-wrap" ng-if="agh.g05 < 5">
                 <span class="input-label full">
                     <b>G07. </b>Berapa umur {{nama}} ketika pertama kali merokok? <br> <b>Isikan dengan `98` jika responden menjawab dengan tidak ingat</b>
                 </span >
                 <div class="button-bar right">
                     <input type="number" ng-model="agh.g07" block block-length="2" min="1" max="98" class="pull-right" required>
                 </div>
-            </label>
-            <label class="item item-text-wrap" ng-if="agh.g05 < 5">
+            </div>
+            <div class="item item-text-wrap" ng-if="agh.g05 < 5">
                 <span class="input-label full">
                     <b>G08. </b>Rata-rata berapa batang rokok / cerutu / cangklong (buah yang) {{nama}} hisap perhari atau perminggu?
                 </span >
-            </label>
-            <label class="item item-text-wrap" ng-if="agh.g05 < 5">
+            </div>
+            <div class="item item-text-wrap" ng-if="agh.g05 < 5">
                 <span class="input-label full">
                     a. Rokok (kretek, putih dan linting)
                 </span >
@@ -331,8 +323,8 @@
                 <div class="button-bar right" ng-if="agh.g05 == 2 || agh.g05 == 4">
                     <input type="number" ng-model="agh.g08a2" block block-length="2" min="-2" max="99"> &nbsp; batang/minggu
                 </div>
-            </label>
-            <label class="item item-text-wrap" ng-if="agh.g05 < 5">
+            </div>
+            <div class="item item-text-wrap" ng-if="agh.g05 < 5">
                 <span class="input-label full">
                     b. Cerutu / cangklong
                 </span >
@@ -342,7 +334,7 @@
                 <div class="button-bar right" ng-if="agh.g05 == 2 || agh.g05 == 4">
                     <input type="number" ng-model="agh.g08b2" block block-length="2" min="-2" max="99"> &nbsp; batang/minggu
                 </div>
-            </label>
+            </div>
 
             <!-- Pertanyaan Rokok elektrik tidak digunakan di siklus 6 bagian merokok -->
             <!-- <div class="item item-text-wrap item-row">Rokok elektrik atau rokok elektronik adalah alat elektronik yang biasanya berisi cairan yang mengandung nikotin yang diuapkan lalu dihirup. Anda mungkin mengenalnya dengan nama vape, hookah-pen, atau hookah elektrik, cerutu elektrik, pipa/cangklong elektrik, atau vaporizer. Sebagian terlihat seperti rokok dan sebagian lain terlihat seperti bolpen atau pipa kecil. Alat ini menggunakan daya baterai untuk memproduksi uap.
