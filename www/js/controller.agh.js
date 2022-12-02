@@ -29,8 +29,7 @@
         $scope.listGaram = {
             '1' : 'Seberapa sering Anda menambahkan garam atau saus asin seperti kecap asin pada makanan Anda tepat sebelum anda makan?',
             '2' : 'Seberapa sering garam, bumbu asin atau saus asin ditambahkan dalam proses memasak di rumah Anda?',
-            '3' : 'Seberapa sering Anda makan makanan olahan tinggi garam seperti makanan ringan asin, makanan kaleng asin termasuk acar dan makanan yang diawetkan, makanan cepat saji, keju dan olahan daging?',
-            '4' : 'Berapa banyak garam atau saus asin yang telah Anda konsumsi?'
+            '3' : 'Seberapa sering Anda makan makanan olahan tinggi garam seperti makanan ringan asin, makanan kaleng asin termasuk acar dan makanan yang diawetkan, makanan cepat saji, keju dan olahan daging?'
         }
 
         // Display/Tidak Tombol selanjutnya (aktivitas_fisik)

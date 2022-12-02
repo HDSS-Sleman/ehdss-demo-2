@@ -104,7 +104,7 @@
         <ion-list ng-show="garam">
             <div class="item item-text-wrap item-row">Dalam pertanyaan berikut ini, kami ingin mengetahui lebih detail tentang asupan garam Anda dalam 1 minggu terakhir. Asupan garam termasuk garam meja, garam yang dimurnikan seperti garam laut, garam beryodium, garam balok dan bubuk, dan saus asin seperti kecap asin atau saus ikan. Pertanyaan-pertanyaan berikut ini adalah tentang bagaimana makanan disiapkan di rumah Anda, pada makan makanan olahan yang tinggi garam seperti [ikan asin, tauco, dll], dan pertanyaan tentang pengendalian asupan garam Anda. Jawablah pertanyaan sekalipun anda menganggap diri anda mengkonsumsi sedikit garam.
             </div>
-            <div class="notifikasi">Baca semua pilihan jawaban. Menggunakan showcard yang menunjukkan garam dan saus asin.</div>
+            <!-- <div class="notifikasi">Baca semua pilihan jawaban. Menggunakan showcard yang menunjukkan garam dan saus asin.</div> -->
             <div class="item item-text-wrap" ng-repeat="(key,val) in listGaram">
                 <span class="input-label full">
                     <b>I{{key}}.</b> {{val}} 
@@ -117,6 +117,22 @@
                         <option value="3">3. Kadang-kadang</option>
                         <option value="4">4. jarang</option>
                         <option value="5">5. Tidak pernah</option>
+                        <option value="98">98. Tidak tahu</option>
+                    </select>
+                </div>
+            </div>
+            <div class="item item-text-wrap">
+                <span class="input-label full">
+                    <b>I4. </b>Berapa banyak garam atau saus asin yang telah Anda konsumsi?
+                </span >
+                <div class="button-bar right">
+                    <select ng-model="agh.i4" class="pull-right" required>
+                        <option value="" selected></option>
+                        <option value="1">1. Banyak sekali</option>
+                        <option value="2">2. Banyak</option>
+                        <option value="3">3. Cukup / sedang</option>
+                        <option value="4">4. Sedikit</option>
+                        <option value="5">5. Sangat sedikit</option>
                         <option value="98">98. Tidak tahu</option>
                     </select>
                 </div>
@@ -241,7 +257,7 @@
                     <b>F12.</b> Biasanya berapa banyak waktu yang Anda habiskan tiap harinya untuk melakukan olahraga, laihan kebugaran atau kegiatan rekreasi dengan <b>intensitas berat</b>?
                 </span >
                 <div class="button-bar right">
-                    <input class="mw100" type="number" ng-model="agh.f12a" block block-length="2" min="0" max="24" required> &nbsp; jam
+                    <input class="mw100" type="number" ng-model="agh.f12a" block block-length="2" min="0" max="24" required> &nbsp; jam &nbsp;
                     <input class="mw100" type="number" ng-model="agh.f12b" block block-length="2" min="0" max="59" required> &nbsp; menit
                 </div>
             </div>
