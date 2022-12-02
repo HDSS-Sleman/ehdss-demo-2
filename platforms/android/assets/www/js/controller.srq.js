@@ -6,13 +6,14 @@
 
     function SrqCtrl($scope, $state, $rootScope, $timeout, AppService) {      
 
-        $scope.curART = $rootScope.curART;
-        $scope.idrt = $scope.curART.idrt || $rootScope.dataRT.idrt;
-        $scope.idart = $scope.curART.art03b || $scope.curART.artb03b;
-        $scope.curART._nama = $scope.curART.art01;
+        if (!$rootScope.idrt) {
+            $state.go('app.home'); // jika tidak ada idrt kembali ke home
+            return false;
+        }
+
         $scope.srq = {};
 
-        AppService.getDataKel($scope.idrt, 'srq', $scope.idart).then(function(data) {
+        AppService.getDataKel($rootScope.idrt, 'srq').then(function(data) {
             $scope.srq = data || {};
         });
 
@@ -20,39 +21,37 @@
             $scope.tglMaxEntry = val;
         })
 
-        $scope.save = function(param) {
+        $scope.listSrq1 = {
+            '01' : 'Apakah Anda sering menderita sakit kepala?',
+            '02' : 'Apakah Anda tidak nafsu makan?',
+            '03' : 'Apakah Anda tidur tidak nyenyak?',
+            '04' : 'Apakah Anda mudah merasa takut?',
+            '05' : 'Apakah Anda merasa cemas, tegang, atau khawatir?',
+            '06' : 'Apakah tangan Anda gemetar?',
+            '07' : 'Apakah Anda mengalami gangguan pencernaan?',
+            '08' : 'Apakah Anda merasa sulit berpikir jernih?',
+            '09' : 'Apakah Anda merasa tidak bahagia?'
+        }
+        $scope.listSrq2 = {
+            '10' : 'Apakah Anda lebih sering menangis?'
+        }
 
-            if (param == 'individu') {
-                /* Jika wawancara berhenti di tengah jalan*/
-                $rootScope.catatanModulUtama = false; $rootScope.catatanModulB = true;
-                $rootScope.tab_catatan = true; // langsung buka tab catatan
-                $rootScope.tab_cover = false; // tab cover di hide dulu
-                var goTo = 'app.art_cover';
-            }else{
-                var goTo = 'app.aksi';
-            }
-
+         /* simpan data*/
+        $scope.save = function(modul) {
             $scope.srq.srq = 1;
-            $rootScope.$broadcast('saving:show');
-            AppService.saveDataKel('srq', $scope.srq).then(function(data) {
-                $rootScope.$broadcast('saving:hide');
-                $rootScope.$broadcast('loading:show');
-                $timeout(function() {
-                    $rootScope.$broadcast('loading:hide');
-                        $state.go(goTo);
-                }, 300);
-            });
+            var goTo = modul ? 'app.'+modul : '';
+            // simpan model, termasuk yg hidden dg ng-show, exclude hidden dg ng-if
+            return AppService.saveDataKelMasked('srq', $scope.srq, true, goTo);
         };
 
         $scope.allowSave = function(myForm) {
             var srq = $scope.srq;
             var allow = srq.srq01 && srq.srq02 && srq.srq03 && srq.srq04 && srq.srq05 &&
-                        srq.srq06 && srq.srq07 && srq.srq08 && srq.srq09 && srq.srq10 &&
-                        srq.srq11 && srq.srq12 && srq.srq13 && srq.srq14 && srq.srq15 &&
-                        srq.srq16 && srq.srq17 && srq.srq18 && srq.srq19 && srq.srq20 &&
-                        srq.srq21 && srq.srq22 && srq.srq23;
+                        srq.srq06 && srq.srq07 && srq.srq08 && srq.srq09 && srq.srq10;
 
             return allow && myForm.$valid;
         };
+
+
     }
 })();

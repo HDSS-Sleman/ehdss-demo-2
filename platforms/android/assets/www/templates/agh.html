@@ -1,4 +1,4 @@
-<ion-view view-title="Antropometri Gaya Hidup">
+<ion-view view-title="Gaya Hidup">
     <div class="bar bar-subheader bar-calm" ng-show="pola_makan">
         <h2 class="title left">E. Pola Makan</h2>
     </div>
@@ -28,560 +28,329 @@
             <input type="text" ng-model="agh.agh" ng-show="false">
             <div class="item item-text-wrap item-row">Pertanyaan berikut ini tentang buah dan sayur yang biasa anda konsumsi. Saya memiliki Buku Foto Makanan yang berisi daftar buah dan sayuran lokal. Masing-masing gambar menunjukkan besarnya yang dikonsumsi. Ini bukanlah sebuah ujian dan tidak ada jawaban benar atau salah. Pilihlah jawaban yang paling sesuai dengan kebiasaan anda untuk menggambarkan keadaan anda. Jika ada pertanyaan atau hal yang belum Anda pahami, jangan sungkan untuk menanyakan hal tersebut kepada saya. Kami berharap anda menjawab seluruh pertanyaan. Anda bebas menginterupsi saya kapanpun dan mengajukan pertanyaan jika Anda merasa tidak memahami pertanyaan atau hal lain dalam penelitian ini.
             </div>
-            <div class="item item-text-wrap item-row">
-                <div class="row">
-                    <div class="col col-50 col-center">
-                        <div class="input-label"><b>E1. </b>Biasanya dalam 1 minggu, berapa hari Anda mengkonsumsi buah-buahan? <b>(Isikan kode "98" jika responden tidak tahu)</b></div>
-                    </div>
-                    <div class="col col-offset-20 col-center">
-                        <input type="number" ng-model="agh.e1" block block-length="2" min="0" max="98" numbers-allowed="0-7,98" class="input-border">
-                    </div>
-                    <div class="col col-center">
-                        <div class="input-label ">hari</div>
-                    </div>
+            <div class="item item-text-wrap">
+                <span class="input-label full">
+                    <b>E1. </b>Biasanya dalam 1 minggu, berapa hari Anda mengkonsumsi buah-buahan? <b>(Isikan kode "98" jika responden tidak tahu)</b>
+                </span >
+                <div class="button-bar right">
+                    <input type="number" ng-model="agh.e1" block block-length="2" min="0" max="98" numbers-allowed="0-7,98">
+                    &nbsp; hari
                 </div>
             </div>
-            <label class="item item-text-wrap item-row">
-                <div class="row">
-                    <div class="col col-50 col-center">
-                        <div class="input-label"><b>E2b. </b>Apakah tau jumlah porsi jenis buah yang paling sering dikonsumsi</div>
-                    </div>
-                    <div class="col col-50 col-center">
-                        <div class="button-bar right">
-                            <ion-radio name="agh.e2b" ng-model="agh.e2b" value="1">Ya</ion-radio>
-                            <ion-radio name="agh.e2b" ng-model="agh.e2b" value="98">Tidak</ion-radio>
-                        </div>
-                    </div>
+            <div class="item item-text-wrap">
+                <span class="input-label full">
+                    <b>E2b. </b>Apakah tau jumlah porsi jenis buah yang paling sering dikonsumsi
+                </span >
+                <div class="button-bar right">
+                    <ion-radio name="agh.e2b" ng-model="agh.e2b" value="1">Ya</ion-radio>
+                    <ion-radio name="agh.e2b" ng-model="agh.e2b" value="98">Tidak</ion-radio>
                 </div>
-            </label>
-            <div class="item item-text-wrap item-row" ng-if="agh.e2b == 1">
-                <div class="row">
-                    <div class="col col-50 col-center">
-                        <div class="input-label"><b>E2a. </b>Jenis buah yang paling sering dikonsumsi, sebutkan</div>
-                    </div>
-                    <div class="col col-20 col-center">
-                        <input class="lowercase input-border" type="text" ng-model="agh.e2aa" class="input-border">
-                    </div>
-                    <div class="col col-center">
-                        <input type="number" ng-model="agh.e2a" block block-length="4" min="0" max="1000" ng-change="getPorsi('buah',agh.e2a)" class="input-border">
-                    </div>
-                    <div class="col col-center">
-                        <div class="input-label ">gram</div>
-                    </div>
+            </div>
+            <div class="item item-text-wrap" ng-if="agh.e2b == 1">
+                <span class="input-label full">
+                    <b>E2a. </b>Jenis buah yang paling sering dikonsumsi, sebutkan
+                </span >
+                <div class="button-bar right">
+                    <input class="lowercase" type="text" ng-model="agh.e2aa" required placeholder="nama buah"> &nbsp; 
+                    <input type="number" ng-model="agh.e2a" block block-length="4" min="0" max="1000" ng-change="getPorsi('buah',agh.e2a)" required placeholder="jml gram"> &nbsp; gram                    
                 </div>
             </div>
             <div class="invalid-val" ng-if="agh.e2b == 1"><span>1 porsi = 80 gram</span></div>
-            <div class="item item-text-wrap item-row" ng-if="agh.e2b == 1">
-                <div class="row">
-                    <div class="col col-50 col-center">
-                        <div class="input-label"><b>E2. </b>Berapa porsi rata-rata Anda mengkonsumsi buah-buahan  dalam satu hari dari hari-hari tersebut?</div>
-                    </div>
-                    <div class="col col-offset-20 col-center">
-                        <input type="number" ng-model="agh.e2" block min="0" max="98" readonly class="input-border">
-                    </div>
-                    <div class="col col-center">
-                        <div class="input-label ">porsi</div>
-                    </div>
+            <div class="item item-text-wrap" ng-if="agh.e2b == 1">
+                <span class="input-label full">
+                    <b>E2. </b>Berapa porsi rata-rata Anda mengkonsumsi buah-buahan  dalam satu hari dari hari-hari tersebut?
+                </span >
+                <div class="button-bar right">
+                    <input type="number" ng-model="agh.e2" block min="0" max="98" disabled required> &nbsp; porsi
                 </div>
             </div>
-            <div class="item item-text-wrap item-row">
-                <div class="row">
-                    <div class="col col-50 col-center">
-                        <div class="input-label"><b>E3.</b> Biasanya dalam 1 minggu, berapa hari Anda mengkonsumsi sayur-sayuran? <b>(Isikan kode "98" jika responden tidak tahu)</b></div>
-                    </div>
-                    <div class="col col-offset-20 col-center">
-                        <input type="number" ng-model="agh.e3" block block-length="2" min="0" max="98" numbers-allowed="0-7,98" class="input-border">
-                    </div>
-                    <div class="col col-center">
-                        <div class="input-label ">hari</div>
-                    </div>
+            <div class="item item-text-wrap">
+                <span class="input-label full">
+                    <b>E3.</b> Biasanya dalam 1 minggu, berapa hari Anda mengkonsumsi sayur-sayuran? <b>(Isikan kode "98" jika responden tidak tahu)</b>
+                </span >
+                <div class="button-bar right">
+                    <input type="number" ng-model="agh.e3" block block-length="2" min="0" max="98" numbers-allowed="0-7,98"> &nbsp; hari
                 </div>
             </div>
-             <label class="item item-text-wrap item-row">
-                <div class="row">
-                    <div class="col col-50 col-center">
-                        <div class="input-label"><b>E4b. </b>Apakah tau jumlah porsi jenis sayur yang paling sering dikonsumsi</div>
-                    </div>
-                    <div class="col col-50 col-center">
-                        <div class="button-bar right">
-                            <ion-radio name="agh.e4b" ng-model="agh.e4b" value="1">Ya</ion-radio>
-                            <ion-radio name="agh.e4b" ng-model="agh.e4b" value="98">Tidak</ion-radio>
-                        </div>
-                    </div>
+            <div class="item item-text-wrap">
+                <span class="input-label full">
+                    <b>E4b. </b>Apakah tau jumlah porsi jenis sayur yang paling sering dikonsumsi
+                </span >
+                <div class="button-bar right">
+                    <ion-radio name="agh.e4b" ng-model="agh.e4b" value="1">Ya</ion-radio>
+                    <ion-radio name="agh.e4b" ng-model="agh.e4b" value="98">Tidak</ion-radio>
                 </div>
-            </label>
-            <div class="item item-text-wrap item-row" ng-if="agh.e4b == 1">
-                <div class="row">
-                    <div class="col col-50 col-center">
-                        <div class="input-label"><b>E4a.</b> Jenis sayur yang paling sering dikonsumsi, sebutkan</div>
-                    </div>
-                    <div class="col col-20 col-center">
-                        <input class="lowercase input-border" type="text" ng-model="agh.e4aa" class="input-border">
-                    </div>
-                    <div class="col col-center">
-                        <input type="number" ng-model="agh.e4a" block block-length="4" min="0" max="1000" ng-change="getPorsi('sayur',agh.e4a)" class="input-border">
-                    </div>
-                    <div class="col col-center">
-                        <div class="input-label ">gram</div>
-                    </div>
+            </div>
+            <div class="item item-text-wrap" ng-if="agh.e4b == 1">
+                <span class="input-label full">
+                    <b>E4a.</b> Jenis sayur yang paling sering dikonsumsi, sebutkan
+                </span >
+                <div class="button-bar right">
+                    <input class="lowercase" type="text" ng-model="agh.e4aa" required placeholder="nama sayur"> &nbsp; 
+                    <input type="number" ng-model="agh.e4a" block block-length="4" min="0" max="1000" ng-change="getPorsi('sayur',agh.e4a)" required placeholder="jml gram"> &nbsp; gram
                 </div>
             </div>
             <div class="invalid-val" ng-if="agh.e4b == 1"><span>1 porsi = 80 gram</span></div>
-            <div class="item item-text-wrap item-row" ng-if="agh.e4b == 1">
-                <div class="row">
-                    <div class="col col-50 col-center">
-                        <div class="input-label"><b>E4.</b> Berapa porsi rata-rata Anda mengkonsumsi sayur-sayuran dalam satu hari dari hari-hari tersebut?</div>
-                    </div>
-                    <div class="col col-offset-20 col-center">
-                        <input type="number" ng-model="agh.e4" block min="0" max="98" readonly class="input-border">
-                    </div>
-                    <div class="col col-center">
-                        <div class="input-label ">porsi</div>
-                    </div>
+            <div class="item item-text-wrap" ng-if="agh.e4b == 1">
+                <span class="input-label full">
+                    <b>E4.</b> Berapa porsi rata-rata Anda mengkonsumsi sayur-sayuran dalam satu hari dari hari-hari tersebut?
+                </span >
+                <div class="button-bar right">
+                    <input type="number" ng-model="agh.e4" block min="0" max="98" disabled required> &nbsp; porsi
                 </div>
             </div>
         </ion-list> <!-- End of list module pola makan -->
 
         <ion-list ng-show="garam">
-            <div class="item item-text-wrap item-row">Dalam pertanyaan berikut ini, kami ingin mengetahui lebih detail tentang asupan garam Anda. Asupan garam termasuk garam meja, garam yang dimurnikan seperti garam laut, garam beryodium, garam balok dan bubuk, dan saus asin seperti kecap asin atau saus ikan. Pertanyaan-pertanyaan berikut ini adalah tentang bagaimana makanan disiapkan di rumah Anda, pada makan makanan olahan yang tinggi garam seperti [ikan asin, tauco, dll], dan pertanyaan tentang pengendalian asupan garam Anda. Jawablah pertanyaan sekalipun anda menganggap diri anda mengkonsumsi sedikit garam.
+            <div class="item item-text-wrap item-row">Dalam pertanyaan berikut ini, kami ingin mengetahui lebih detail tentang asupan garam Anda dalam 1 minggu terakhir. Asupan garam termasuk garam meja, garam yang dimurnikan seperti garam laut, garam beryodium, garam balok dan bubuk, dan saus asin seperti kecap asin atau saus ikan. Pertanyaan-pertanyaan berikut ini adalah tentang bagaimana makanan disiapkan di rumah Anda, pada makan makanan olahan yang tinggi garam seperti [ikan asin, tauco, dll], dan pertanyaan tentang pengendalian asupan garam Anda. Jawablah pertanyaan sekalipun anda menganggap diri anda mengkonsumsi sedikit garam.
             </div>
-            <div class="notifikasi">Baca semua pilihan jawaban. Menggunakan showcard yang menunjukkan garam dan saus asin.</div>
-            <label class="item item-select item-text-wrap">
-                <div class="input-label"><b>I 11. </b>Seberapa sering Anda menambahkan garam atau saus asin seperti kecap asin pada makanan Anda tepat sebelum anda makan? </div>
-                <select ng-model="agh.i11">
-                    <option value="" selected></option>
-                    <option value="1">1. Selalu</option>
-                    <option value="2">2. Sering</option>
-                    <option value="3">3. Kadang-kadang</option>
-                    <option value="4">4. jarang</option>
-                    <option value="5">5. Tidak pernah</option>
-                    <option value="98">98. Tidak tahu</option>
-                </select>
-            </label>
-            <label class="item item-select item-text-wrap">
-                <div class="input-label"><b>I 12. </b>Seberapa sering garam, bumbu asin atau saus asin ditambahkan dalam proses memasak di rumah Anda? </div>
-                <select ng-model="agh.i12">
-                    <option value="" selected></option>
-                    <option value="1">1. Selalu</option>
-                    <option value="2">2. Sering</option>
-                    <option value="3">3. Kadang-kadang</option>
-                    <option value="4">4. jarang</option>
-                    <option value="5">5. Tidak pernah</option>
-                    <option value="98">98. Tidak tahu</option>
-                </select>
-            </label>
-            <label class="item item-select item-text-wrap">
-                <div class="input-label"><b>I 13. </b>Seberapa sering Anda makan makanan olahan tinggi garam seperti makanan ringan asin, makanan kaleng asin termasuk acar dan makanan yang diawetkan, makanan cepat saji, keju dan olahan daging? </div>
-                <select ng-model="agh.i13">
-                    <option value="" selected></option>
-                    <option value="1">1. Selalu</option>
-                    <option value="2">2. Sering</option>
-                    <option value="3">3. Kadang-kadang</option>
-                    <option value="4">4. jarang</option>
-                    <option value="5">5. Tidak pernah</option>
-                    <option value="98">98. Tidak tahu</option>
-                </select>
-            </label>
-            <label class="item item-select item-text-wrap">
-                <div class="input-label"><b>I 14. </b>Berapa banyak garam atau saus asin yang telah Anda konsumsi? </div>
-                <select ng-model="agh.i14">
-                    <option value="" selected></option>
-                    <option value="1">1. Selalu</option>
-                    <option value="2">2. Sering</option>
-                    <option value="3">3. Kadang-kadang</option>
-                    <option value="4">4. jarang</option>
-                    <option value="5">5. Tidak pernah</option>
-                    <option value="98">98. Tidak tahu</option>
-                </select>
-            </label>
+            <!-- <div class="notifikasi">Baca semua pilihan jawaban. Menggunakan showcard yang menunjukkan garam dan saus asin.</div> -->
+            <div class="item item-text-wrap" ng-repeat="(key,val) in listGaram">
+                <span class="input-label full">
+                    <b>I{{key}}.</b> {{val}} 
+                </span >
+                <div class="button-bar right">
+                    <select class="pull-right" name="i{{key}}" ng-model="agh['i'+key]" required>
+                        <option value="" selected></option>
+                        <option value="1">1. Selalu</option>
+                        <option value="2">2. Sering</option>
+                        <option value="3">3. Kadang-kadang</option>
+                        <option value="4">4. jarang</option>
+                        <option value="5">5. Tidak pernah</option>
+                        <option value="98">98. Tidak tahu</option>
+                    </select>
+                </div>
+            </div>
+            <div class="item item-text-wrap">
+                <span class="input-label full">
+                    <b>I4. </b>Berapa banyak garam atau saus asin yang telah Anda konsumsi?
+                </span >
+                <div class="button-bar right">
+                    <select ng-model="agh.i4" class="pull-right" required>
+                        <option value="" selected></option>
+                        <option value="1">1. Banyak sekali</option>
+                        <option value="2">2. Banyak</option>
+                        <option value="3">3. Cukup / sedang</option>
+                        <option value="4">4. Sedikit</option>
+                        <option value="5">5. Sangat sedikit</option>
+                        <option value="98">98. Tidak tahu</option>
+                    </select>
+                </div>
+            </div>
         </ion-list> <!-- End of list module asupan garam -->
 
         <ion-list ng-show="aktivitas_fisik">
-            <div class="item item-text-wrap item-row">Selanjutnya, kami akan menanyakan pada Anda mengenai waktu yang Anda gunakan untuk melakukan berbagai tipe aktivitas fisik beberapa minggu terakhir. Silahkan jawab pertanyaan berikut, meskipun Anda tidak merasa melakukan cukup aktivitas fisik.
+            <div class="item item-text-wrap item-row">Selanjutnya, kami akan menanyakan pada Anda mengenai waktu yang Anda gunakan untuk melakukan berbagai tipe aktivitas fisik dalam 1 minggu terakhir. Silahkan jawab pertanyaan berikut, meskipun Anda tidak merasa melakukan cukup aktivitas fisik.
             </div>
             <div class="item item-text-wrap item-row">Pertama-tama, mari mengingat waktu yang Anda habiskan untuk bekerja. Bekerja dalam artian hal-hal yan Anda harus kerjakan baik dibayar maupun tidak dibayar, seperti belajar/mengikuti pelatihan, pekerjaan rumah tangga, bertani, memancing atau berburu, mencari kerja, dll. `aktivitas dengan intensitas tinggi` merupakan aktivitas yang membutuhkan usaha/tenaga yang besar dan menyebabkan peningkatan frekuensi napas maupun detak jantung yang besar, `aktivitas dengan intensitas sedang` merupakan aktivitas yang membutuhkan usaha/tenaga yang cukup/sedang dan tidak banyak menyebabkan peningkatan frekuensi napas dan detak jantung.
             </div>
             <div class="item-row item-divider"><h4>Aktivitas Fisik Saat Bekerja</h4></div>
-            <label class="item item-text-wrap item-row">
-                <div class="row">
-                    <div class="col col-50 col-center">
-                        <div class="input-label"><b>F1.</b> Apakah pekerjaan Anda berhubungan dengan kegiatan dengan <b>intensitas berat</b> yang menyebabkan frekuensi napas dan detak jantung meningkat cukup besar, seperti kegiatan pertanian, membawa atau mengangkat beban berat, menggali atau pekerjaan konstruksi sedikitnya 10 menit secara terus menerus? (Contoh pekerjaan dengan intensitas berat: petani, buruh bangunan, buruh pasar, tukang kayu, tukang becak, tukang gali, buruh angkut)</div>
-                    </div>
-                    <div class="col col-50 col-center">
-                        <div class="button-bar right">
-                            <ion-radio name="agh.f1" ng-model="agh.f1" value="1">Ya</ion-radio>
-                            <ion-radio name="agh.f1" ng-model="agh.f1" value="2">Tidak</ion-radio>
-                        </div>
-                    </div>
-                </div>
-            </label>
-            <div class="item item-text-wrap item-row" ng-if="agh.f1 == 1">
-                <div class="row">
-                    <div class="col col-50 col-center">
-                        <div class="input-label"><b>F2.</b> Dalam seminggu, berapa hari Anda melakukan kegiatan dengan <b>intensitas berat</b> sebagai bagian dari pekerjaan?</div>
-                    </div>
-                    <div class="col col-offset-20 col-center">
-                        <input type="number" ng-model="agh.f2" block block-length="2" min="0" max="7" class="input-border">
-                    </div>
-                    <div class="col col-center">
-                        <div class="input-label ">hari</div>
-                    </div>
+            <div class="item item-text-wrap">
+                <span class="input-label full">
+                    <b>F1.</b> Apakah pekerjaan Anda berhubungan dengan kegiatan dengan <b>intensitas berat</b> yang menyebabkan frekuensi napas dan detak jantung meningkat cukup besar, seperti kegiatan pertanian, membawa atau mengangkat beban berat, menggali atau pekerjaan konstruksi sedikitnya 10 menit secara terus menerus? (Contoh pekerjaan dengan intensitas berat: petani, buruh bangunan, buruh pasar, tukang kayu, tukang becak, tukang gali, buruh angkut)
+                </span >
+                <div class="button-bar right">
+                    <ion-radio name="agh.f1" ng-model="agh.f1" value="1">Ya</ion-radio>
+                    <ion-radio name="agh.f1" ng-model="agh.f1" value="2">Tidak</ion-radio>
                 </div>
             </div>
-            <div class="item item-text-wrap item-row" ng-if="agh.f1 == 1">
-                <div class="row">
-                    <div class="col col-50 col-center">
-                        <div class="input-label"><b>F3.</b> Biasanya, berapa banyak waktu yang Anda habiskan tiap harinya untuk melakukan kegiatan dengan <b>intensitas berat</b> pada saat Anda bekerja?</div>
-                    </div>
-                    <div class="col col-offset-10 col-10 col-center">
-                        <input type="number" ng-model="agh.f3a" block block-length="2" min="0" max="24" class="input-border">
-                    </div>
-                    <div class="col col-10 col-center">
-                        <div class="input-label ">jam &</div>
-                    </div>
-                    <div class="col col-10 col-center">
-                        <input type="number" ng-model="agh.f3b" block block-length="2" min="0" max="60" class="input-border">
-                    </div>
-                    <div class="col col-10 col-center">
-                        <div class="input-label ">menit</div>
-                    </div>
+            <div class="item item-text-wrap" ng-if="agh.f1 == 1">
+                <span class="input-label full">
+                    <b>F2.</b> Dalam seminggu, berapa hari Anda melakukan kegiatan dengan <b>intensitas berat</b> sebagai bagian dari pekerjaan?
+                </span >
+                <div class="button-bar right">
+                    <input type="number" ng-model="agh.f2" block block-length="2" min="0" max="7" required> &nbsp; hari
                 </div>
             </div>
-            <label class="item item-text-wrap item-row">
-                <div class="row">
-                    <div class="col col-50 col-center">
-                        <div class="input-label"><b>F4.</b> Apakah pekerjaan Anda berhubungan dengan kegiatan dengan <b>intensitas sedang</b> yang menyebabkan sedikit frekuensi napas dan detak jantung seperti berjalan cepat atau membawa beban ringan selama paling sedikitnya 10 menit secara terus menerus? (Contoh pekerjaan dengan intensitas sedang: supir bus, petugas parkir, pekerjaan rutin rumah tangga, memasak di rumah, penjahit, penjaga malam, guru olahraga)</div>
-                    </div>
-                    <div class="col col-50 col-center">
-                        <div class="button-bar right">
-                            <ion-radio name="agh.f4" ng-model="agh.f4" value="1">Ya</ion-radio>
-                            <ion-radio name="agh.f4" ng-model="agh.f4" value="2">Tidak</ion-radio>
-                        </div>
-                    </div>
-                </div>
-            </label>
-            <div class="item item-text-wrap item-row" ng-if="agh.f4 == 1">
-                <div class="row">
-                    <div class="col col-50 col-center">
-                        <div class="input-label"><b>F5.</b> Dalam seminggu, berapa hari Anda melakukan kegiatan dengan <b>intensitas sedang</b> sebagai bagian dari pekerjaan?</div>
-                    </div>
-                    <div class="col col-offset-20 col-center">
-                        <input type="number" ng-model="agh.f5" block block-length="2" min="0" max="7" class="input-border">
-                    </div>
-                    <div class="col col-center">
-                        <div class="input-label ">hari</div>
-                    </div>
+            <div class="item item-text-wrap" ng-if="agh.f1 == 1">
+                <span class="input-label full">
+                    <b>F3.</b> Biasanya, berapa banyak waktu yang Anda habiskan tiap harinya untuk melakukan kegiatan dengan <b>intensitas berat</b> pada saat Anda bekerja?
+                </span >
+                <div class="button-bar right">
+                    <input class="mw100" type="number" ng-model="agh.f3a" block block-length="2" min="0" max="24" required> &nbsp; jam &nbsp;
+                    <input class="mw100" type="number" ng-model="agh.f3b" block block-length="2" min="0" max="59" required> &nbsp; menit
                 </div>
             </div>
-            <div class="item item-text-wrap item-row" ng-if="agh.f4 == 1">
-                <div class="row">
-                    <div class="col col-50 col-center">
-                        <div class="input-label"><b>F6.</b> Biasanya, berapa banyak waktu yang Anda habiskan tiap harinya untuk melakukan kegiatan dengan <b>intensitas sedang</b> pada saat Anda bekerja?</div>
-                    </div>
-                    <div class="col col-offset-10 col-10 col-center">
-                        <input type="number" ng-model="agh.f6a" block block-length="2" min="0" max="24" class="input-border">
-                    </div>
-                    <div class="col col-10 col-center">
-                        <div class="input-label ">jam &</div>
-                    </div>
-                    <div class="col col-10 col-center">
-                        <input type="number" ng-model="agh.f6b" block block-length="2" min="0" max="60" class="input-border">
-                    </div>
-                    <div class="col col-10 col-center">
-                        <div class="input-label ">menit</div>
-                    </div>
+            <div class="invalid-val" ng-if="agh.f1 == 1"><span>Contoh: 1 jam 30 menit, 0 jam 40 menit atau 2 jam 0 menit</span></div>
+
+            <div class="item item-text-wrap">
+                <span class="input-label full">
+                    <b>F4.</b> Apakah pekerjaan Anda berhubungan dengan kegiatan dengan <b>intensitas sedang</b> yang menyebabkan sedikit frekuensi napas dan detak jantung seperti berjalan cepat atau membawa beban ringan selama paling sedikitnya 10 menit secara terus menerus? (Contoh pekerjaan dengan intensitas sedang: supir bus, petugas parkir, pekerjaan rutin rumah tangga, memasak di rumah, penjahit, penjaga malam, guru olahraga)
+                </span >
+                <div class="button-bar right">
+                    <ion-radio name="agh.f4" ng-model="agh.f4" value="1">Ya</ion-radio>
+                    <ion-radio name="agh.f4" ng-model="agh.f4" value="2">Tidak</ion-radio>
                 </div>
             </div>
+            <div class="item item-text-wrap" ng-if="agh.f4 == 1">
+                <span class="input-label full">
+                    <b>F5.</b> Dalam seminggu, berapa hari Anda melakukan kegiatan dengan <b>intensitas sedang</b> sebagai bagian dari pekerjaan?
+                </span >
+                <div class="button-bar right">
+                    <input type="number" ng-model="agh.f5" block block-length="2" min="0" max="7" required> &nbsp; hari
+                </div>
+            </div>
+            <div class="item item-text-wrap" ng-if="agh.f4 == 1">
+                <span class="input-label full">
+                    <b>F6.</b> Biasanya, berapa banyak waktu yang Anda habiskan tiap harinya untuk melakukan kegiatan dengan <b>intensitas sedang</b> pada saat Anda bekerja?
+                </span >
+                <div class="button-bar right">
+                    <input class="mw100" type="number" ng-model="agh.f6a" block block-length="2" min="0" max="24" required> &nbsp; jam &nbsp;
+                    <input class="mw100" type="number" ng-model="agh.f6b" block block-length="2" min="0" max="59" required> &nbsp; menit
+                </div>
+            </div>
+            <div class="invalid-val" ng-if="agh.f4 == 1"><span>Contoh: 1 jam 30 menit, 0 jam 40 menit atau 2 jam 0 menit</span></div>
 
             <div class="item-row item-divider"><h4>Aktivitas Fisik Saat Perjalanan</h4></div>
             <div class="item item-text-wrap item-row">Pada pertanyaan berikutnya mohon hilangkan aktivitas fisik dalam pekerjaan Anda yang telah Anda sebutkan sebelumnya. Saat ini kami ingin menanyakan pada Anda mengenai cara melakukan perjalanan dari satu tempat ke tempat lainnya, misalnya untuk bekerja, belanja, ke tempat ibadah, mengunjungi keluarga/saudara, dll.
             </div>
-            <label class="item item-text-wrap item-row">
-                <div class="row">
-                    <div class="col col-50 col-center">
-                        <div class="input-label"><b>F7.</b> Apakah anda sering berjalan kaki atau bersepeda selama paling sedikitnya 10 menit secara terus menerus saat bepergian?</div>
-                    </div>
-                    <div class="col col-50 col-center">
-                        <div class="button-bar right">
-                            <ion-radio name="agh.f7" ng-model="agh.f7" value="1">Ya</ion-radio>
-                            <ion-radio name="agh.f7" ng-model="agh.f7" value="2">Tidak</ion-radio>
-                        </div>
-                    </div>
-                </div>
-            </label>
-            <div class="item item-text-wrap item-row" ng-if="agh.f7 == 1">
-                <div class="row">
-                    <div class="col col-50 col-center">
-                        <div class="input-label"><b>F8.</b> Dalam 1 minggu, berapa hari Anda berjalan kaki atau bersepeda sedikitnya 10 menit secara terus menerus saat bepergian?</div>
-                    </div>
-                    <div class="col col-offset-20 col-center">
-                        <input type="number" ng-model="agh.f8" block block-length="2" min="0" max="7" class="input-border">
-                    </div>
-                    <div class="col col-center">
-                        <div class="input-label ">hari</div>
-                    </div>
+            <div class="item item-text-wrap">
+                <span class="input-label full">
+                    <b>F7.</b> Apakah anda sering berjalan kaki atau bersepeda selama paling sedikitnya 10 menit secara terus menerus saat bepergian?
+                </span >
+                <div class="button-bar right">
+                    <ion-radio name="agh.f7" ng-model="agh.f7" value="1">Ya</ion-radio>
+                    <ion-radio name="agh.f7" ng-model="agh.f7" value="2">Tidak</ion-radio>
                 </div>
             </div>
-            <div class="item item-text-wrap item-row" ng-if="agh.f7 == 1">
-                <div class="row">
-                    <div class="col col-50 col-center">
-                        <div class="input-label"><b>F9.</b> Berapa banyak waktu yang Anda habiskan tiap harinya untuk Anda berjalan kaki atau bersepeda?</div>
-                    </div>
-                    <div class="col col-offset-10 col-10 col-center">
-                        <input type="number" ng-model="agh.f9a" block block-length="2" min="0" max="24" class="input-border">
-                    </div>
-                    <div class="col col-10 col-center">
-                        <div class="input-label ">jam &</div>
-                    </div>
-                    <div class="col col-10 col-center">
-                        <input type="number" ng-model="agh.f9b" block block-length="2" min="0" max="60" class="input-border">
-                    </div>
-                    <div class="col col-10 col-center">
-                        <div class="input-label ">menit</div>
-                    </div>
+            <div class="item item-text-wrap"  ng-if="agh.f7 == 1">
+                <span class="input-label full">
+                    <b>F8.</b> Dalam 1 minggu, berapa hari Anda berjalan kaki atau bersepeda sedikitnya 10 menit secara terus menerus saat bepergian?
+                </span >
+                <div class="button-bar right">
+                    <input type="number" ng-model="agh.f8" block block-length="2" min="0" max="7" required> &nbsp; hari
                 </div>
             </div>
+            <div class="item item-text-wrap" ng-if="agh.f7 == 1">
+                <span class="input-label full">
+                    <b>F9.</b> Berapa banyak waktu yang Anda habiskan tiap harinya untuk Anda berjalan kaki atau bersepeda?
+                </span >
+                <div class="button-bar right">
+                    <input class="mw100" type="number" ng-model="agh.f9a" block block-length="2" min="0" max="24" required> &nbsp; jam &nbsp;
+                    <input class="mw100" type="number" ng-model="agh.f9b" block block-length="2" min="0" max="59" required> &nbsp; menit
+                </div>
+            </div> 
+            <div class="invalid-val" ng-if="agh.f7 == 1"><span>Contoh: 1 jam 30 menit, 0 jam 40 menit atau 2 jam 0 menit</span></div>
 
             <div class="item-row item-divider"><h4>Aktivitas Saat Waktu Luang</h4></div>
             <div class="item item-text-wrap item-row">Pada pertanyaan selanjutnya, mohon hilangkan aktivitas pekerjaan dan perjalanan yang telah Anda sebutkan. Saat ini, kami ingin menanyakan mengenai aktivitas olahraga, fitness dan aktivitas rekreasional/yang Anda lakukan dalam waktu luang.
             </div>
-            <label class="item item-text-wrap item-row">
-                <div class="row">
-                    <div class="col col-50 col-center">
-                        <div class="input-label"><b>F10.</b> Apakah anda melakukan olahraga, latihan kebugaran atau kegiatan rekreasi dengan <b>intensitas berat</b> yang menyebabkan sedikit peningkatan frekuensi napas dan detak jantung, selama paling sedikitnya 10 menit secara terus menerus? (Contoh olahraga dengan intensitas berat: aerobik, bersepeda cepat)</div>
-                    </div>
-                    <div class="col col-50 col-center">
-                        <div class="button-bar right">
-                            <ion-radio name="agh.f10" ng-model="agh.f10" value="1">Ya</ion-radio>
-                            <ion-radio name="agh.f10" ng-model="agh.f10" value="2">Tidak</ion-radio>
-                        </div>
-                    </div>
-                </div>
-            </label>
-            <div class="item item-text-wrap item-row" ng-if="agh.f10 == 1">
-                <div class="row">
-                    <div class="col col-50 col-center">
-                        <div class="input-label"><b>F11.</b> Dalam seminggu berapa hari Anda melakukan olahraga, latihan kebugaran atau kegiatan rekreasi dengan <b>intensitas berat</b>?</div>
-                    </div>
-                    <div class="col col-offset-20 col-center">
-                        <input type="number" ng-model="agh.f11" block block-length="2" min="0" max="7" class="input-border">
-                    </div>
-                    <div class="col col-center">
-                        <div class="input-label ">hari</div>
-                    </div>
+            <div class="item item-text-wrap">
+                <span class="input-label full">
+                    <b>F10.</b> Apakah anda melakukan olahraga, latihan kebugaran atau kegiatan rekreasi dengan <b>intensitas berat</b> yang menyebabkan sedikit peningkatan frekuensi napas dan detak jantung, selama paling sedikitnya 10 menit secara terus menerus? (Contoh olahraga dengan intensitas berat: aerobik, bersepeda cepat)
+                </span >
+                <div class="button-bar right">
+                    <ion-radio name="agh.f10" ng-model="agh.f10" value="1">Ya</ion-radio>
+                    <ion-radio name="agh.f10" ng-model="agh.f10" value="2">Tidak</ion-radio>
                 </div>
             </div>
-            <div class="item item-text-wrap item-row" ng-if="agh.f10 == 1">
-                <div class="row">
-                    <div class="col col-50 col-center">
-                        <div class="input-label"><b>F12.</b> Biasanya berapa banyak waktu yang Anda habiskan tiap harinya untuk melakukan olahraga, laihan kebugaran atau kegiatan rekreasi dengan <b>intensitas berat</b>?</div>
-                    </div>
-                    <div class="col col-offset-10 col-10 col-center">
-                        <input type="number" ng-model="agh.f12a" block block-length="2" min="0" max="24" class="input-border">
-                    </div>
-                    <div class="col col-10 col-center">
-                        <div class="input-label ">jam &</div>
-                    </div>
-                    <div class="col col-10 col-center">
-                        <input type="number" ng-model="agh.f12b" block block-length="2" min="0" max="60" class="input-border">
-                    </div>
-                    <div class="col col-10 col-center">
-                        <div class="input-label ">menit</div>
-                    </div>
+            <div class="item item-text-wrap" ng-if="agh.f10 == 1">
+                <span class="input-label full">
+                    <b>F11.</b> Dalam seminggu berapa hari Anda melakukan olahraga, latihan kebugaran atau kegiatan rekreasi dengan <b>intensitas berat</b>?
+                </span >
+                <div class="button-bar right">
+                    <input type="number" ng-model="agh.f11" block block-length="2" min="0" max="7" required> &nbsp; hari
                 </div>
             </div>
-            <label class="item item-text-wrap item-row">
-                <div class="row">
-                    <div class="col col-50 col-center">
-                        <div class="input-label"><b>F13.</b> Apakah anda melakukan olahraga, latihan kebugaran atau kegiatan rekreasi dengan <b>intensitas sedang</b> yang menyebabkan sedikit peningkatan frekuensi napas dan detak jantung, selama paling sedikitnya 10 menit secara terus menerus? (Contoh: bersepeda santai, main bulutangkis ganda)</div>
-                    </div>
-                    <div class="col col-50 col-center">
-                        <div class="button-bar right">
-                            <ion-radio name="agh.f13" ng-model="agh.f13" value="1">Ya</ion-radio>
-                            <ion-radio name="agh.f13" ng-model="agh.f13" value="2">Tidak</ion-radio>
-                        </div>
-                    </div>
-                </div>
-            </label>
-            <div class="item item-text-wrap item-row" ng-if="agh.f13 == 1">
-                <div class="row">
-                    <div class="col col-50 col-center">
-                        <div class="input-label"><b>F14.</b> Dalam seminggu berapa hari Anda melakukan olahraga, latihan kebugaran atau kegiatan rekreasi dengan <b>intensitas sedang</b>?</div>
-                    </div>
-                    <div class="col col-offset-20 col-center">
-                        <input type="number" ng-model="agh.f14" block block-length="2" min="0" max="7" class="input-border">
-                    </div>
-                    <div class="col col-center">
-                        <div class="input-label ">hari</div>
-                    </div>
+            <div class="item item-text-wrap" ng-if="agh.f10 == 1">
+                <span class="input-label full">
+                    <b>F12.</b> Biasanya berapa banyak waktu yang Anda habiskan tiap harinya untuk melakukan olahraga, laihan kebugaran atau kegiatan rekreasi dengan <b>intensitas berat</b>?
+                </span >
+                <div class="button-bar right">
+                    <input class="mw100" type="number" ng-model="agh.f12a" block block-length="2" min="0" max="24" required> &nbsp; jam &nbsp;
+                    <input class="mw100" type="number" ng-model="agh.f12b" block block-length="2" min="0" max="59" required> &nbsp; menit
                 </div>
             </div>
-            <div class="item item-text-wrap item-row" ng-if="agh.f13 == 1">
-                <div class="row">
-                    <div class="col col-50 col-center">
-                        <div class="input-label"><b>F15.</b> Biasanya berapa banyak waktu yang Anda habiskan tiap harinya untuk melakukan olahraga, laihan kebugaran atau kegiatan rekreasi dengan <b>intensitas sedang</b>?</div>
-                    </div>
-                    <div class="col col-offset-10 col-10 col-center">
-                        <input type="number" ng-model="agh.f15a" block block-length="2" min="0" max="24" class="input-border">
-                    </div>
-                    <div class="col col-10 col-center">
-                        <div class="input-label ">jam &</div>
-                    </div>
-                    <div class="col col-10 col-center">
-                        <input type="number" ng-model="agh.f15b" block block-length="2" min="0" max="60" class="input-border">
-                    </div>
-                    <div class="col col-10 col-center">
-                        <div class="input-label ">menit</div>
-                    </div>
-                </div>
-            </div>
+            <div class="invalid-val" ng-if="agh.f10 == 1"><span>Contoh: 1 jam 30 menit, 0 jam 40 menit atau 2 jam 0 menit</span></div>
 
-            <div class="item-row item-divider"><h4>Aktivitas Sedentari</h4></div>
-            <div class="item item-text-wrap item-row">Pertanyaan selanjutnya akan menanyakan mengenai aktivitas duduk atau berbaring saat di kantor, dirumah, menuju dan dari suatu tempat, atau waktu bersama teman termasuk waktu yang dihabiskan duduk di meja, bercengkrama dengan teman, bepergian dengan mobil, bus, kereta, membaca, bermain kartu atau menonton televisi, tetapi tidak termasuk waktu yang dihabiskan untuk tidur.
-            </div>
-            <div class="item item-text-wrap item-row">
-                <div class="row">
-                    <div class="col col-50 col-center">
-                        <div class="input-label"><b>F16.</b> Biasanya berapa banyak waktu yang Anda habiskan tiap harinya untuk duduk dan berbaring?
-                        Pertimbangkan total waktu yang dihabiskan selama duduk bekerja, di kantor, membaca, menonton televisi, menggunakan komputer, mengerjakan kerajinan seperti menyulam, istirahat dan lain lain. Tidak termasuk waktu yang digunakan untuk tidur.</div>
-                    </div>
-                    <div class="col col-offset-10 col-10 col-center">
-                        <input type="number" ng-model="agh.f16a" block block-length="2" min="0" max="24" class="input-border">
-                    </div>
-                    <div class="col col-10 col-center">
-                        <div class="input-label ">jam &</div>
-                    </div>
-                    <div class="col col-10 col-center">
-                        <input type="number" ng-model="agh.f16b" block block-length="2" min="0" max="60" class="input-border">
-                    </div>
-                    <div class="col col-10 col-center">
-                        <div class="input-label ">menit</div>
-                    </div>
+            <div class="item item-text-wrap">
+                <span class="input-label full">
+                    <b>F13.</b> Apakah anda melakukan olahraga, latihan kebugaran atau kegiatan rekreasi dengan <b>intensitas sedang</b> yang menyebabkan sedikit peningkatan frekuensi napas dan detak jantung, selama paling sedikitnya 10 menit secara terus menerus? (Contoh: bersepeda santai, main bulutangkis ganda)
+                </span >
+                <div class="button-bar right">
+                    <ion-radio name="agh.f13" ng-model="agh.f13" value="1">Ya</ion-radio>
+                    <ion-radio name="agh.f13" ng-model="agh.f13" value="2">Tidak</ion-radio>
                 </div>
             </div>
-            <label class="item item-text-wrap item-row">
-                <div class="row">
-                    <div class="col col-50 col-center">
-                        <div class="input-label"><b>PACOV01. </b>Apakah ada perubahan aktivitas fisik selama wabah covid19? </div>
-                    </div>
-                    <div class="col col-50 col-center">
-                        <select ng-model="agh.pacov01" class="input-border pull-right">
-                            <option value="" selected></option>
-                            <option value="1">1. Tetap</option>
-                            <option value="2">2. Berkurang sedikit</option>
-                            <option value="3">3. Berkurang banyak</option>
-                            <option value="4">4. Meningkat sedikit</option>
-                            <option value="5">5. Meningkat banyak</option>
-                        </select>
-                    </div>
-                </div> 
-            </label>
+            <div class="item item-text-wrap" ng-if="agh.f13 == 1">
+                <span class="input-label full">
+                    <b>F14.</b> Dalam seminggu berapa hari Anda melakukan olahraga, latihan kebugaran atau kegiatan rekreasi dengan <b>intensitas sedang</b>?
+                </span >
+                <div class="button-bar right">
+                    <input type="number" ng-model="agh.f14" block block-length="2" min="0" max="7" required> &nbsp; hari
+                </div>
+            </div>
+            <div class="item item-text-wrap" ng-if="agh.f13 == 1">
+                <span class="input-label full">
+                    <b>F15.</b> Biasanya berapa banyak waktu yang Anda habiskan tiap harinya untuk melakukan olahraga, laihan kebugaran atau kegiatan rekreasi dengan <b>intensitas sedang</b>?
+                </span >
+                <div class="button-bar right">
+                    <input class="mw100" type="number" ng-model="agh.f15a" block block-length="2" min="0" max="24" required> &nbsp; jam &nbsp; 
+                    <input class="mw100" type="number" ng-model="agh.f15b" block block-length="2" min="0" max="59" required> &nbsp; menit
+                </div>
+            </div>
+            <div class="invalid-val" ng-if="agh.f13 == 1"><span>Contoh: 1 jam 30 menit, 0 jam 40 menit atau 2 jam 0 menit</span></div>
         </ion-list> <!-- End of list module aktivitas fisik -->
 
         <ion-list ng-show="penggunaan_tembakau">
-            <label class="item item-text-wrap item-row">
-                <div class="row">
-                    <div class="col col-50 col-center">
-                        <div class="input-label"><b>G05. </b>Apakah {{nama}} merokok selama 1 bulan terakhir <br> <b>(Bacakan Jawaban)</b> </div>
-                    </div>
-                    <div class="col col-50 col-center">
-                        <select ng-model="agh.g05" class="input-border">
-                            <option value="" selected></option>
-                            <option value="1">1. Ya, setiap hari</option>
-                            <option value="2">2. Ya, kadang-kadang</option>
-                            <option value="3">3. Tidak, tapi sebelumnya pernah merokok tiap hari</option>
-                            <option value="4">4. Tidak, tapi sebelumnya pernah merokok kadang-kadang</option>
-                            <option value="5">5. Tidak pernah sama sekali</option>
-                        </select>
-                    </div>
-                </div> 
-            </label>
-            <div class="item item-text-wrap item-row" ng-if="agh.g05 == 1 || agh.g05 == 3">
-                <div class="row">
-                    <div class="col col-50 col-center">
-                        <span class="input-label col col-50"><b>G06. </b>Berapa umur {{nama}} mulai merokok setiap hari? <br> <b>Isikan dengan `98` jika responden menjawab dengan tidak ingat</b> </span>
-                    </div>
-                    <div class="col col-offset-20 col-center">
-                        <input type="number" ng-model="agh.g06" block block-length="2" min="1" max="98" class="input-border">
-                    </div>
+            <div class="item item-text-wrap">
+                <span class="input-label full">
+                    <b>G05. </b>Apakah {{nama}} merokok selama 1 bulan terakhir <br> <b>(Bacakan Jawaban)</b>
+                </span >
+                <div class="button-bar right">
+                    <select ng-model="agh.g05" class="pull-right" required>
+                        <option value="" selected></option>
+                        <option value="1">1. Ya, setiap hari</option>
+                        <option value="2">2. Ya, kadang-kadang</option>
+                        <option value="3">3. Tidak, tapi sebelumnya pernah merokok tiap hari</option>
+                        <option value="4">4. Tidak, tapi sebelumnya pernah merokok kadang-kadang</option>
+                        <option value="5">5. Tidak pernah sama sekali</option>
+                    </select>
                 </div>
             </div>
-            <div class="item item-text-wrap item-row" ng-if="agh.g05 < 5">
-                <div class="row">
-                    <div class="col col-50 col-center">
-                        <span class="input-label"><b>G07. </b>Berapa umur {{nama}} ketika pertama kali merokok? <br> <b>Isikan dengan `98` jika responden menjawab dengan tidak ingat</b> </span>
-                    </div>
-                    <div class="col col-offset-20 col-center">
-                        <input type="number" ng-model="agh.g07" block block-length="2" min="1" max="98" class="input-border">
-                    </div>
+            <div class="item item-text-wrap" ng-if="agh.g05 == 1 || agh.g05 == 3">
+                <span class="input-label full">
+                    <b>G06. </b>Berapa umur {{nama}} mulai merokok setiap hari? <br> <b>Isikan dengan `98` jika responden menjawab dengan tidak ingat</b>
+                </span >
+                <div class="button-bar right">
+                    <input type="number" ng-model="agh.g06" block block-length="2" min="1" max="98" class="pull-right" required>
                 </div>
             </div>
-            <div class="item item-text-wrap item-row" ng-if="agh.g05 < 5">
-                <div class="col col-90 col-center">
-                        <span><b>G08. </b>Rata-rata berapa batang rokok / cerutu / cangklong (buah yang) {{nama}} hisap perhari atau perminggu?</span>
+            <div class="item item-text-wrap" ng-if="agh.g05 < 5">
+                <span class="input-label full">
+                    <b>G07. </b>Berapa umur {{nama}} ketika pertama kali merokok? <br> <b>Isikan dengan `98` jika responden menjawab dengan tidak ingat</b>
+                </span >
+                <div class="button-bar right">
+                    <input type="number" ng-model="agh.g07" block block-length="2" min="1" max="98" class="pull-right" required>
                 </div>
             </div>
-            <div class="item item-text-wrap item-row" ng-if="agh.g05 < 5">
-                <div class="row">
-                    <div class="col col-50 col-center">
-                        <div class="input-label">a. Rokok (kretek, putih dan linting)</div>
-                    </div>
-                    
-                    <div class="col " ng-if="agh.g05 == 1 || agh.g05 == 3">
-                        <input type="number" ng-model="agh.g08a1" block block-length="2" min="-2" max="99" class="input-border">
-                    </div>
-                    <div class="col" ng-if="agh.g05 == 1 || agh.g05 == 3">
-                        <div class="input-label ">batang/hari</div>
-                    </div>
-
-                    <div class="col " ng-if="agh.g05 == 2 || agh.g05 == 4">
-                        <input type="number" ng-model="agh.g08a2" block block-length="2" min="-2" max="99" class="input-border">
-                    </div>
-                    <div class="col" ng-if="agh.g05 == 2 || agh.g05 == 4">
-                        <div class="input-label ">batang/minggu</div>
-                    </div>
-                    
+            <div class="item item-text-wrap" ng-if="agh.g05 < 5">
+                <span class="input-label full">
+                    <b>G08. </b>Rata-rata berapa batang rokok / cerutu / cangklong (buah yang) {{nama}} hisap perhari atau perminggu?
+                </span >
+            </div>
+            <div class="item item-text-wrap" ng-if="agh.g05 < 5">
+                <span class="input-label full">
+                    a. Rokok (kretek, putih dan linting)
+                </span >
+                <div class="button-bar right" ng-if="agh.g05 == 1 || agh.g05 == 3">
+                    <input type="number" ng-model="agh.g08a1" block block-length="2" min="-2" max="99"> &nbsp; batang/hari
+                </div>
+                <div class="button-bar right" ng-if="agh.g05 == 2 || agh.g05 == 4">
+                    <input type="number" ng-model="agh.g08a2" block block-length="2" min="-2" max="99"> &nbsp; batang/minggu
                 </div>
             </div>
-            <div class="item item-text-wrap item-row" ng-if="agh.g05 < 5">
-                <div class="row">
-                    <div class="col col-50 col-center">
-                        <div class="input-label">b. Cerutu / cangklong</div>
-                    </div>
-                    
-                    <div class="col " ng-if="agh.g05 == 1 || agh.g05 == 3">
-                        <input type="number" ng-model="agh.g08b1" block block-length="2" min="-2" max="99" class="input-border">
-                    </div>
-                    <div class="col" ng-if="agh.g05 == 1 || agh.g05 == 3">
-                        <div class="input-label ">batang/hari</div>
-                    </div>
-                
-                    <div class="col " ng-if="agh.g05 == 2 || agh.g05 == 4">
-                        <input type="number" ng-model="agh.g08b2" block block-length="2" min="-2" max="99" class="input-border">
-                    </div>
-                    <div class="col" ng-if="agh.g05 == 2 || agh.g05 == 4">
-                        <div class="input-label ">batang/minggu</div>
-                    </div>
-                    
+            <div class="item item-text-wrap" ng-if="agh.g05 < 5">
+                <span class="input-label full">
+                    b. Cerutu / cangklong
+                </span >
+                <div class="button-bar right" ng-if="agh.g05 == 1 || agh.g05 == 3">
+                    <input type="number" ng-model="agh.g08b1" block block-length="2" min="-2" max="99"> &nbsp; batang/hari
+                </div>
+                <div class="button-bar right" ng-if="agh.g05 == 2 || agh.g05 == 4">
+                    <input type="number" ng-model="agh.g08b2" block block-length="2" min="-2" max="99"> &nbsp; batang/minggu
                 </div>
             </div>
-            <label class="item item-text-wrap item-row" ng-if="agh.g05 < 5">
-                <div class="row">
-                    <div class="col col-50 col-center">
-                        <div class="input-label"><b>TOBCOV01. </b>Apakah ada perubahan aktivitas merokok selama wabah covid19? </div>
-                    </div>
-                    <div class="col col-50 col-center">
-                        <select ng-model="agh.tobcov01" class="input-border pull-right">
-                            <option value="" selected></option>
-                            <option value="1">1. Tetap</option>
-                            <option value="2">2. Berkurang sedikit</option>
-                            <option value="3">3. Berkurang banyak</option>
-                            <option value="4">4. Meningkat sedikit</option>
-                            <option value="5">5. Meningkat banyak</option>
-                        </select>
-                    </div>
-                </div> 
-            </label>
 
             <!-- Pertanyaan Rokok elektrik tidak digunakan di siklus 6 bagian merokok -->
             <!-- <div class="item item-text-wrap item-row">Rokok elektrik atau rokok elektronik adalah alat elektronik yang biasanya berisi cairan yang mengandung nikotin yang diuapkan lalu dihirup. Anda mungkin mengenalnya dengan nama vape, hookah-pen, atau hookah elektrik, cerutu elektrik, pipa/cangklong elektrik, atau vaporizer. Sebagian terlihat seperti rokok dan sebagian lain terlihat seperti bolpen atau pipa kecil. Alat ini menggunakan daya baterai untuk memproduksi uap.
@@ -661,7 +430,7 @@
                         <div class="input-label"><b>H1. </b>Nomor Alat pengukur tekanan darah</div>
                     </div>
                     <div class="col col-offset-33 col-10">
-                        <input type="number" ng-model="agh.h1" block block-length="2" min="1" max="99" class="input-border">
+                        <input type="number" ng-model="agh.h1" block block-length="2" min="1" max="99">
                     </div>
                 </div>
             </div>
@@ -671,13 +440,13 @@
                         <div class="input-label"><b>H2. </b>Bacaan 1</div>
                     </div>
                     <div class="col col-offset-20 col-10">
-                        <input type="number" ng-model="agh.h2a" block block-length="3" min="-4" max="300" class="input-border">
+                        <input type="number" ng-model="agh.h2a" block block-length="3" min="-4" max="300">
                     </div>
                     <div class="col col-20">
                         <div class="input-label">Sistolik(mmHg)</div>
                     </div>
                     <div class="col col-10">
-                        <input type="number" ng-model="agh.h2b" block block-length="3" min="-4" max="200" class="input-border">
+                        <input type="number" ng-model="agh.h2b" block block-length="3" min="-4" max="200">
                     </div>
                     <div class="col col-20">
                         <div class="input-label">Distolik(mmHg)</div>
@@ -690,13 +459,13 @@
                         <div class="input-label"><b>H3. </b>Bacaan 2</div>
                     </div>
                     <div class="col col-offset-20 col-10">
-                        <input type="number" ng-model="agh.h3a" block block-length="3" min="-4" max="300" class="input-border">
+                        <input type="number" ng-model="agh.h3a" block block-length="3" min="-4" max="300">
                     </div>
                     <div class="col col-20">
                         <div class="input-label">Sistolik(mmHg)</div>
                     </div>
                     <div class="col col-10">
-                        <input type="number" ng-model="agh.h3b" block block-length="3" min="-4" max="200" class="input-border">
+                        <input type="number" ng-model="agh.h3b" block block-length="3" min="-4" max="200">
                     </div>
                     <div class="col col-20">
                         <div class="input-label">Distolik(mmHg)</div>
@@ -709,13 +478,13 @@
                         <div class="input-label"><b>H4. </b>Bacaan 3</div>
                     </div>
                     <div class="col col-offset-20 col-10">
-                        <input type="number" ng-model="agh.h4a" block block-length="3" min="-4" max="300" class="input-border">
+                        <input type="number" ng-model="agh.h4a" block block-length="3" min="-4" max="300">
                     </div>
                     <div class="col col-20">
                         <div class="input-label">Sistolik(mmHg)</div>
                     </div>
                     <div class="col col-10">
-                        <input type="number" ng-model="agh.h4b" block block-length="3" min="-4" max="200" class="input-border">
+                        <input type="number" ng-model="agh.h4b" block block-length="3" min="-4" max="200">
                     </div>
                     <div class="col col-20">
                         <div class="input-label">Distolik(mmHg)</div>
@@ -728,7 +497,7 @@
                         <div class="input-label"><b>H5. </b>Selama 2 minggu terakhir, pernahkah anda menjalani pengobatan untuk tekanan darah tinggi menggunakan obat-obatan yang diresepkan dokter atau petugas kesehatan lainnya?</div>
                     </div>
                     <div class="col col-50 col-center">
-                        <select ng-model="agh.h5" class="input-border">
+                        <select ng-model="agh.h5">
                             <option value="" selected></option>
                             <option value="1">1. Ya</option>
                             <option value="2">2. Tidak</option>
@@ -743,7 +512,7 @@
                         <div class="input-label"><b>H9. </b>Nadi (x/menit)</div>
                     </div>
                     <div class="col col-50">
-                        <input type="number" ng-model="agh.h9" block block-length="3" min="1" max="999" class="input-border">
+                        <input type="number" ng-model="agh.h9" block block-length="3" min="1" max="999">
                     </div>
                 </div>
             </div>
@@ -755,7 +524,7 @@
                         <div class="input-label"><b>H10. </b>Berat badan</div>
                     </div>
                     <div class="col col-25">
-                        <input type="number" ng-model="agh.h10" block block-length="5" min="1" max="200" ng-change="getBMI(agh.h10,agh.h11)" class="input-border">
+                        <input type="number" ng-model="agh.h10" block block-length="5" min="1" max="200" ng-change="getBMI(agh.h10,agh.h11)">
                     </div>
                     <div class="col col-center">
                         <div class="input-label ">kg</div>
@@ -768,7 +537,7 @@
                         <div class="input-label"><b>H11. </b>Tinggi badan</div>
                     </div>
                     <div class="col col-25">
-                        <input type="number" ng-model="agh.h11" block block-length="5" min="1" max="250" ng-change="getBMI(agh.h10,agh.h11)" class="input-border">
+                        <input type="number" ng-model="agh.h11" block block-length="5" min="1" max="250" ng-change="getBMI(agh.h10,agh.h11)">
                     </div>
                     <div class="col col-center">
                         <div class="input-label ">cm</div>
@@ -781,7 +550,7 @@
                         <div class="input-label"><b>H12. </b>Body Mass Index (BMI)</div>
                     </div>
                     <div class="col col-25" ng-disabled="true">
-                        <input type="number" ng-model="agh.h12" block block-length="7" min="1" max="200" ng-change="getBMI(agh.h10,agh.h11)" class="input-border">
+                        <input type="number" ng-model="agh.h12" block block-length="7" min="1" max="200" ng-change="getBMI(agh.h10,agh.h11)">
                     </div>
                     <div class="col col-center">
                         <div class="input-label ">kg/m<sup>2</sup></div>
@@ -796,7 +565,7 @@
                         <div class="input-label"><b>H6. </b>Nomor Alat pengukur lingkar pinggang dan panggul</div>
                     </div>
                     <div class="col col-offset-33 col-10">
-                        <input type="number" ng-model="agh.h6" block block-length="2" min="1" max="99" class="input-border">
+                        <input type="number" ng-model="agh.h6" block block-length="2" min="1" max="99">
                     </div>
                 </div>
             </div>
@@ -806,7 +575,7 @@
                         <div class="input-label"><b>H7. </b>Lingkar pinggang</div>
                     </div>
                     <div class="col col-offset-20 col-10">
-                        <input type="number" ng-model="agh.h7" block block-length="5" min="-4" max="200" class="input-border">
+                        <input type="number" ng-model="agh.h7" block block-length="5" min="-4" max="200">
                     </div>
                     <div class="col col-20">
                         <div class="input-label">centimeter (cm)</div>
@@ -819,7 +588,7 @@
                         <div class="input-label"><b>H8. </b>Lingkar panggul</div>
                     </div>
                     <div class="col col-offset-20 col-10">
-                        <input type="number" ng-model="agh.h8" block block-length="5" min="-4" max="300" class="input-border">
+                        <input type="number" ng-model="agh.h8" block block-length="5" min="-4" max="300">
                     </div>
                     <div class="col col-20">
                         <div class="input-label">centimeter (cm)</div>
@@ -836,7 +605,7 @@
                         <div class="input-label"><b>H13. </b>Mendapat Terapi Statin</div>
                     </div>
                     <div class="col col-25 col-center">
-                        <select ng-model="agh.h13" class="input-border">
+                        <select ng-model="agh.h13">
                             <option value="" selected></option>
                             <option value="1">1. Ya</option>
                             <option value="2">2. Tidak</option>
@@ -846,7 +615,7 @@
                         <div class="input-label pull-right">H13a. Jenis</div>
                     </div>
                     <div class="col col-25">
-                        <input class="lowercase input-border" type="text" ng-model="agh.h13a">
+                        <input class="lowercase" type="text" ng-model="agh.h13a">
                     </div>
                 </div>
             </div>
@@ -856,7 +625,7 @@
                         <div class="input-label"><b>H14. </b>Mendapat Terapi AntiPlatelet</div>
                     </div>
                     <div class="col col-25 col-center">
-                        <select ng-model="agh.h14" class="input-border">
+                        <select ng-model="agh.h14">
                             <option value="" selected></option>
                             <option value="1">1. Ya</option>
                             <option value="2">2. Tidak</option>
@@ -866,7 +635,7 @@
                         <div class="input-label pull-right">H14a Jenis</div>
                     </div>
                     <div class="col col-25">
-                        <input class="lowercase input-border" type="text" ng-model="agh.h14a">
+                        <input class="lowercase" type="text" ng-model="agh.h14a">
                     </div>
                 </div>
             </div>
@@ -876,7 +645,7 @@
                         <div class="input-label"><b>H15. </b>Mendapat Terapi AntiHipertensi</div>
                     </div>
                     <div class="col col-25 col-center">
-                        <select ng-model="agh.h15" class="input-border">
+                        <select ng-model="agh.h15">
                             <option value="" selected></option>
                             <option value="1">1. Ya</option>
                             <option value="2">2. Tidak</option>
@@ -886,7 +655,7 @@
                         <div class="input-label pull-right">H15a. Jenis</div>
                     </div>
                     <div class="col col-25">
-                        <input class="lowercase input-border" type="text" ng-model="agh.h15a">
+                        <input class="lowercase" type="text" ng-model="agh.h15a">
                     </div>
                 </div>
             </div>
@@ -896,7 +665,7 @@
                         <div class="input-label"><b>H16. </b>Apakah sudah menopause?</div>
                     </div>
                     <div class="col col-50 col-center">
-                        <select ng-model="agh.h16" class="input-border">
+                        <select ng-model="agh.h16">
                             <option value="" selected></option>
                             <option value="1">1. Ya</option>
                             <option value="2">2. Tidak</option>
@@ -910,7 +679,7 @@
                         <div class="input-label"><b>H17. </b>Riwayat Diabetes?</div>
                     </div>
                     <div class="col col-50 col-center">
-                        <select ng-model="agh.h17" class="input-border">
+                        <select ng-model="agh.h17">
                             <option value="" selected></option>
                             <option value="1">1. Ya</option>
                             <option value="2">2. Tidak</option>
@@ -925,7 +694,7 @@
                         <div class="input-label"><b>H18. </b>Riwayat Dislipidemia?</div>
                     </div>
                     <div class="col col-50 col-center">
-                        <select ng-model="agh.h18" class="input-border">
+                        <select ng-model="agh.h18">
                             <option value="" selected></option>
                             <option value="1">1. Ya</option>
                             <option value="2">2. Tidak</option>
@@ -940,7 +709,7 @@
                         <div class="input-label"><b>H19. </b>Riwayat Hipertensi?</div>
                     </div>
                     <div class="col col-50 col-center">
-                        <select ng-model="agh.h19" class="input-border">
+                        <select ng-model="agh.h19">
                             <option value="" selected></option>
                             <option value="1">1. Ya</option>
                             <option value="2">2. Tidak</option>
@@ -955,7 +724,7 @@
                         <div class="input-label"><b>H20. </b>Riwayat keluarga sakit jantung?</div>
                     </div>
                     <div class="col col-50 col-center">
-                        <select ng-model="agh.h20" class="input-border">
+                        <select ng-model="agh.h20">
                             <option value="" selected></option>
                             <option value="1">1. Ya</option>
                             <option value="2">2. Tidak</option>
@@ -970,7 +739,7 @@
                         <div class="input-label"><b>H21. </b>Riwayat penyakit kardiovaskular sebelumnya (angina, serangan jantung, stroke, TIA)</div>
                     </div>
                     <div class="col col-25 col-center">
-                        <select ng-model="agh.h21" class="input-border">
+                        <select ng-model="agh.h21">
                             <option value="" selected></option>
                             <option value="1">1. Ya</option>
                             <option value="2">2. Tidak</option>
@@ -980,7 +749,7 @@
                         <div class="input-label pull-right">Jenis</div>
                     </div>
                     <div class="col col-25">
-                        <input class="lowercase input-border" type="text" ng-model="agh.h">
+                        <input class="lowercase" type="text" ng-model="agh.h">
                     </div>
                 </div>
             </div>
@@ -991,13 +760,13 @@
                         <div class="input-label"><b>H22a. </b>Nama obat</div>
                     </div>
                     <div class="col col-25">
-                        <input class="lowercase input-border" type="text" ng-model="agh.h22a">
+                        <input class="lowercase" type="text" ng-model="agh.h22a">
                     </div>
                     <div class="col col-offset-10">
                         <div class="input-label">Dosis</div>
                     </div>
                     <div class="col col-25">
-                        <input class="lowercase input-border" type="text" ng-model="agh.hh22a_dosis">
+                        <input class="lowercase" type="text" ng-model="agh.hh22a_dosis">
                     </div>
                 </div>
             </div>
@@ -1007,13 +776,13 @@
                         <div class="input-label"><b>H22b. </b>Nama obat</div>
                     </div>
                     <div class="col col-25">
-                        <input class="lowercase input-border" type="text" ng-model="agh.h22b">
+                        <input class="lowercase" type="text" ng-model="agh.h22b">
                     </div>
                     <div class="col col-offset-10">
                         <div class="input-label">Dosis</div>
                     </div>
                     <div class="col col-25">
-                        <input class="lowercase input-border" type="text" ng-model="agh.h22b_dosis">
+                        <input class="lowercase" type="text" ng-model="agh.h22b_dosis">
                     </div>
                 </div>
             </div>
@@ -1023,13 +792,13 @@
                         <div class="input-label"><b>H22c. </b>Nama obat</div>
                     </div>
                     <div class="col col-25">
-                        <input class="lowercase input-border" type="text" ng-model="agh.h22c">
+                        <input class="lowercase" type="text" ng-model="agh.h22c">
                     </div>
                     <div class="col col-offset-10">
                         <div class="input-label">Dosis</div>
                     </div>
                     <div class="col col-25">
-                        <input class="lowercase input-border" type="text" ng-model="agh.h22c_dosis">
+                        <input class="lowercase" type="text" ng-model="agh.h22c_dosis">
                     </div>
                 </div>
             </div>
@@ -1039,13 +808,13 @@
                         <div class="input-label"><b>H22d. </b>Nama obat</div>
                     </div>
                     <div class="col col-25">
-                        <input class="lowercase input-border" type="text" ng-model="agh.h22d">
+                        <input class="lowercase" type="text" ng-model="agh.h22d">
                     </div>
                     <div class="col col-offset-10">
                         <div class="input-label">Dosis</div>
                     </div>
                     <div class="col col-25">
-                        <input class="lowercase input-border" type="text" ng-model="agh.h22d_dosis">
+                        <input class="lowercase" type="text" ng-model="agh.h22d_dosis">
                     </div>
                 </div>
             </div>
@@ -1055,13 +824,13 @@
                         <div class="input-label"><b>H22e. </b>Nama obat</div>
                     </div>
                     <div class="col col-25">
-                        <input class="lowercase input-border" type="text" ng-model="agh.h22e">
+                        <input class="lowercase" type="text" ng-model="agh.h22e">
                     </div>
                     <div class="col col-offset-10">
                         <div class="input-label">Dosis</div>
                     </div>
                     <div class="col col-25">
-                        <input class="lowercase input-border" type="text" ng-model="agh.h22e_dosis">
+                        <input class="lowercase" type="text" ng-model="agh.h22e_dosis">
                     </div>
                 </div>
             </div>
@@ -1075,7 +844,7 @@
                         <div class="input-label"><b>H23. </b>Gula darah</div>
                     </div>
                     <div class="col col-10">
-                        <input type="number" ng-model="agh.h23" block min="0" max="500" class="input-border">
+                        <input type="number" ng-model="agh.h23" block min="0" max="500">
                     </div>
                     <div class="col">
                         <div class="input-label ">mgl/dl</div>
@@ -1088,7 +857,7 @@
                         <div class="input-label"><b>H24. </b>Kolesterol</div>
                     </div>
                     <div class="col col-10">
-                        <input type="number" ng-model="agh.h24" block min="0" max="500" class="input-border">
+                        <input type="number" ng-model="agh.h24" block min="0" max="500">
                     </div>
                     <div class="col">
                         <div class="input-label ">mgl/dl</div>
@@ -1102,7 +871,7 @@
                         <div class="input-label"><b>H25. </b>Irama</div>
                     </div>
                     <div class="col col-50">
-                        <input class="lowercase input-border" type="text" ng-model="agh.h25" class="input-border">
+                        <input class="lowercase" type="text" ng-model="agh.h25">
                     </div>
                 </div>
             </div>
@@ -1112,7 +881,7 @@
                         <div class="input-label"><b>H26. </b>Heart rate</div>
                     </div>
                     <div class="col col-10">
-                        <input type="number" ng-model="agh.h26" block min="0" max="300" class="input-border">
+                        <input type="number" ng-model="agh.h26" block min="0" max="300">
                     </div>
                     <div class="col">
                         <div class="input-label">x/min</div>
@@ -1125,13 +894,13 @@
                         <div class="input-label"><b>H27. </b>Axis</div>
                     </div>
                     <div class="col col-50">
-                        <input class="lowercase input-border" type="text" ng-model="agh.h27" class="input-border">
+                        <input class="lowercase" type="text" ng-model="agh.h27">
                     </div>
                 </div>
             </div>
             <label class="item item-select item-text-wrap">
                 <div class="input-label"><b>H28. </b>LAH </div>
-                <select ng-model="agh.h28" class="input-border">
+                <select ng-model="agh.h28">
                     <option value="" selected></option>
                     <option value="1">1. Ya</option>
                     <option value="2">2. Tidak</option>
@@ -1139,7 +908,7 @@
             </label>
             <label class="item item-select item-text-wrap">
                 <div class="input-label"><b>H29. </b>RAH </div>
-                <select ng-model="agh.h29" class="input-border">
+                <select ng-model="agh.h29">
                     <option value="" selected></option>
                     <option value="1">1. Ya</option>
                     <option value="2">2. Tidak</option>
@@ -1147,7 +916,7 @@
             </label>
             <label class="item item-select item-text-wrap">
                 <div class="input-label"><b>H30. </b>LVH </div>
-                <select ng-model="agh.h30" class="input-border">
+                <select ng-model="agh.h30">
                     <option value="" selected></option>
                     <option value="1">1. Ya</option>
                     <option value="2">2. Tidak</option>
@@ -1155,7 +924,7 @@
             </label>
             <label class="item item-select item-text-wrap">
                 <div class="input-label"><b>H31. </b>RVH </div>
-                <select ng-model="agh.h31" class="input-border">
+                <select ng-model="agh.h31">
                     <option value="" selected></option>
                     <option value="1">1. Ya</option>
                     <option value="2">2. Tidak</option>
@@ -1163,7 +932,7 @@
             </label>
             <label class="item item-select item-text-wrap">
                 <div class="input-label"><b>H32. </b>Poor R Wave </div>
-                <select ng-model="agh.h32" class="input-border">
+                <select ng-model="agh.h32">
                     <option value="" selected></option>
                     <option value="1">1. Ya</option>
                     <option value="2">2. Tidak</option>
@@ -1171,7 +940,7 @@
             </label>
             <label class="item item-select item-text-wrap">
                 <div class="input-label"><b>H33. </b>New LBBB </div>
-                <select ng-model="agh.h33" class="input-border">
+                <select ng-model="agh.h33">
                     <option value="" selected></option>
                     <option value="1">1. Ya</option>
                     <option value="2">2. Tidak</option>
@@ -1179,7 +948,7 @@
             </label>
             <label class="item item-select item-text-wrap">
                 <div class="input-label"><b>H34. </b>New RBBB </div>
-                <select ng-model="agh.h34" class="input-border">
+                <select ng-model="agh.h34">
                     <option value="" selected></option>
                     <option value="1">1. Ya</option>
                     <option value="2">2. Tidak</option>
@@ -1191,7 +960,7 @@
                         <div class="input-label"><b>H35. </b>Ventricular Aritmia</div>
                     </div>
                     <div class="col col-25 col-center">
-                        <select ng-model="agh.h35" class="input-border">
+                        <select ng-model="agh.h35">
                             <option value="" selected></option>
                             <option value="1">1. Ya</option>
                             <option value="2">2. Tidak</option>
@@ -1201,7 +970,7 @@
                         <div class="input-label pull-right">Jenis</div>
                     </div>
                     <div class="col col-25">
-                        <input class="lowercase input-border" type="text" ng-model="agh.h35a">
+                        <input class="lowercase" type="text" ng-model="agh.h35a">
                     </div>
                 </div>
             </div>
@@ -1211,7 +980,7 @@
                         <div class="input-label"><b>H36. </b>Supraventricular Aritmia</div>
                     </div>
                     <div class="col col-25 col-center">
-                        <select ng-model="agh.h36" class="input-border">
+                        <select ng-model="agh.h36">
                             <option value="" selected></option>
                             <option value="1">1. Ya</option>
                             <option value="2">2. Tidak</option>
@@ -1221,7 +990,7 @@
                         <div class="input-label pull-right">Jenis</div>
                     </div>
                     <div class="col col-25">
-                        <input class="lowercase input-border" type="text" ng-model="agh.h36a">
+                        <input class="lowercase" type="text" ng-model="agh.h36a">
                     </div>
                 </div>
             </div>
@@ -1232,7 +1001,7 @@
                         <div class="input-label"><b>H37. </b>ST Elevasi </div>
                     </div>
                     <div class="col col-25 col-center">
-                        <select ng-model="agh.h37" class="input-border">
+                        <select ng-model="agh.h37">
                             <option value="" selected></option>
                             <option value="1">1. Ya</option>
                             <option value="2">2. Tidak</option>
@@ -1242,7 +1011,7 @@
                         <div class="input-label pull-right">Jenis</div>
                     </div>
                     <div class="col col-25">
-                        <input class="lowercase input-border" type="text" ng-model="agh.h37a">
+                        <input class="lowercase" type="text" ng-model="agh.h37a">
                     </div>
                 </div>
             </div>
@@ -1252,7 +1021,7 @@
                         <div class="input-label"><b>H38. </b>ST Depresi</div>
                     </div>
                     <div class="col col-25 col-center">
-                        <select ng-model="agh.h38" class="input-border">
+                        <select ng-model="agh.h38">
                             <option value="" selected></option>
                             <option value="1">1. Ya</option>
                             <option value="2">2. Tidak</option>
@@ -1262,7 +1031,7 @@
                         <div class="input-label pull-right">Jenis</div>
                     </div>
                     <div class="col col-25">
-                        <input class="lowercase input-border" type="text" ng-model="agh.h38a">
+                        <input class="lowercase" type="text" ng-model="agh.h38a">
                     </div>
                 </div>
             </div>
@@ -1273,7 +1042,7 @@
                         <div class="input-label"><b>H39. </b>STEMI Lokasi</div>
                     </div>
                     <div class="col col-50 col-center">
-                        <input class="lowercase input-border" type="text" ng-model="agh.h39">
+                        <input class="lowercase" type="text" ng-model="agh.h39">
                     </div>
                 </div>
             </div>
@@ -1283,7 +1052,7 @@
                         <div class="input-label"><b>H40. </b>T Inverted</div>
                     </div>
                     <div class="col col-25 col-center">
-                        <select ng-model="agh.h40" class="input-border">
+                        <select ng-model="agh.h40">
                             <option value="" selected></option>
                             <option value="1">1. Ya</option>
                             <option value="2">2. Tidak</option>
@@ -1293,7 +1062,7 @@
                         <div class="input-label pull-right">Lokasi</div>
                     </div>
                     <div class="col col-25">
-                        <input class="lowercase input-border" type="text" ng-model="agh.h40a">
+                        <input class="lowercase" type="text" ng-model="agh.h40a">
                     </div>
                 </div>
             </div>
@@ -1303,7 +1072,7 @@
                         <div class="input-label"><b>H41. </b>Q Patologis</div>
                     </div>
                     <div class="col col-25 col-center">
-                        <select ng-model="agh.h41" class="input-border">
+                        <select ng-model="agh.h41">
                             <option value="" selected></option>
                             <option value="1">1. Ya</option>
                             <option value="2">2. Tidak</option>
@@ -1313,7 +1082,7 @@
                         <div class="input-label pull-right">Lokasi</div>
                     </div>
                     <div class="col col-25">
-                        <input class="lowercase input-border" type="text" ng-model="agh.h41a">
+                        <input class="lowercase" type="text" ng-model="agh.h41a">
                     </div>
                 </div>
             </div>
@@ -1323,14 +1092,14 @@
                         <div class="input-label"><b>H42. </b>Prolong QT</div>
                     </div>
                     <div class="col col-25 col-center">
-                        <select ng-model="agh.h42" class="input-border">
+                        <select ng-model="agh.h42">
                             <option value="" selected></option>
                             <option value="1">1. Ya</option>
                             <option value="2">2. Tidak</option>
                         </select>
                     </div>
                     <div class="col col-25">
-                        <input class="lowercase input-border" type="text" ng-model="agh.h42a">
+                        <input class="lowercase" type="text" ng-model="agh.h42a">
                     </div>
                     <div class="col col-25">
                         <div class="input-label pull-right">ms</div>
@@ -1343,7 +1112,7 @@
                         <div class="input-label"><b>H43. </b>T Peak - T end interval</div>
                     </div>
                     <div class="col col-25">
-                        <input type="number" ng-model="agh.h43" class="input-border">
+                        <input type="number" ng-model="agh.h43">
                     </div>
                     <div class="col">
                         <div class="input-label pull-right">ms</div>
@@ -1356,7 +1125,7 @@
                         <div class="input-label"><b>H44. </b>RR interval</div>
                     </div>
                     <div class="col col-25">
-                        <input type="number" ng-model="agh.h44" class="input-border">
+                        <input type="number" ng-model="agh.h44">
                     </div>
                     <div class="col">
                         <div class="input-label pull-right">ms</div>
@@ -1365,35 +1134,38 @@
             </label>
             <label class="item item-input item-text-wrap">
                 <div class="input-label">Lain - lain</div>
-                <textarea class="text-area pull-right input-border" name="h45" ng-model="agh.h45" ng-pattern="/^[^,]*$/" ></textarea>
+                <textarea class="text-area pull-right" name="h45" ng-model="agh.h45" ng-pattern="/^[^,]*$/" ></textarea>
             </label>
             <label class="item item-input item-text-wrap">
                 <div class="input-label">Hasil / kesan</div>
-                <textarea class="text-area pull-right input-border" name="h46" ng-model="agh.h46" ng-pattern="/^[^,]*$/" ></textarea>
+                <textarea class="text-area pull-right" name="h46" ng-model="agh.h46" ng-pattern="/^[^,]*$/" ></textarea>
             </label>
         </ion-list> <!-- End of list module antropometri3 -->
 
         <!-- Buttons -->
         <div class="item-group" ng-if="pola_makan && polaMakanAllowSave()">
-            <button class="button simpan button-calm pull-right" ng-click="go('aktivitas_fisik','pola_makan')" >
-                Selanjutnya (Aktifitas Fisik)<i class="icon ion-arrow-right-c"></i>
+            <button class="button simpan button-positive pull-left" ng-click="save('ir')" >
+                <i class="icon ion-arrow-left-c"></i>Kembali
+            </button>
+            <button class="button simpan button-calm pull-right" ng-click="go('garam','pola_makan')" >
+                Asupan Garam<i class="icon ion-arrow-right-c"></i>
             </button>
         </div>
         <div class="item-group" ng-if="garam && garamAllowSave()">
             <button class="button simpan button-calm" ng-click="go('pola_makan','garam')">
-                <i class="icon ion-arrow-left-c"></i>Sebelumnya (Pola Makan)
+                <i class="icon ion-arrow-left-c"></i>Pola Makan
             </button>
             <button class="button simpan button-calm pull-right" ng-click="go('aktivitas_fisik','garam')">
-                Selanjutnya (Aktifitas Fisik)<i class="icon ion-arrow-right-c"></i>
+                Aktifitas Fisik<i class="icon ion-arrow-right-c"></i>
             </button>
         </div>
 
         <div class="item-group" ng-if="aktivitas_fisik && aktivitasFisikAllowSave()">
-            <!-- <button class="button simpan button-calm" ng-click="go('pola_makan','aktivitas_fisik')">
-                <i class="icon ion-arrow-left-c"></i>Sebelumnya (Pola Makan)
-            </button> -->
+            <button class="button simpan button-calm" ng-click="go('garam','aktivitas_fisik')">
+                <i class="icon ion-arrow-left-c"></i>Asupan Garam
+            </button>
             <button class="button simpan button-calm pull-right" ng-click="go('penggunaan_tembakau','aktivitas_fisik')">
-                Selanjutnya (Penggunaan Tembakau)<i class="icon ion-arrow-right-c"></i>
+                Penggunaan Tembakau<i class="icon ion-arrow-right-c"></i>
             </button>
         </div>
         <div class="item-group" ng-if="penggunaan_tembakau && penggunaanTembakauAllowSave()">
@@ -1403,16 +1175,16 @@
             <!-- <button class="button simpan button-calm pull-right" ng-click="go('antropometri','penggunaan_tembakau')">
                 Selanjutnya (Antropometri)<i class="icon ion-arrow-right-c"></i>
             </button> -->
-            <!-- di siklus 6 selesai di AGH bagian merokok -->
-            <button class="button simpan button-dark pull-right" ng-click="save(true)">
-                <i class="icon ion-archive"></i> Simpan
+            <!-- eHDSS Demo selesai di AGH bagian merokok -->
+            <button class="button simpan button-positive pull-right" ng-click="save('hl')">
+                Lanjut<i class="icon ion-arrow-right-c"></i>
             </button>
         </div>
-        <div class="item-group">
+        <!-- <div class="item-group">
             <button class="button simpan button-assertive" ng-click="save(true)">
                 <i class="icon ion-archive"></i> Laporan Wawancara
             </button>
-        </div>
+        </div> -->
 
         <div class="item-group" ng-if="antropometri && antropometriAllowSave()">
             <button class="button simpan button-calm" ng-click="go('penggunaan_tembakau', 'antropometri')">

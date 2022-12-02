@@ -14,19 +14,12 @@ class User
         header('Content-type: application/json');
 
         /* Table Name */
-        $this->tb_data_art = 'ichc2022_data_art';
-        $this->tb_data_art_pindah = 'ichc2022_data_art_pindah';
-        $this->tb_data_cke = 'ichc2022_data_cke';
-        $this->tb_data_cspv = 'ichc2022_data_cspv';
-        $this->tb_data_pb = 'ichc2022_data_pb';
-        $this->tb_data_result = 'ichc2022_data_result';
-        $this->tb_data_rt = 'ichc2022_data_rt';
-        $this->tb_queryku = 'ichc2022_queryku';
-        $this->tb_replace_data_header = 'ichc2022_replace_data_header';
-        $this->tb_replace_data_json = 'ichc2022_replace_data_json';
-        $this->tb_users = 'ichc2022_users';
-        $this->tb_user_enum = 'ichc2022_user_enum';
-        $this->tb_user_rt = 'ichc2022_user_rt';
+        $this->tb_data_art = 'demov2_data_art';
+        $this->tb_data_result = 'demov2_data_result';
+        $this->tb_data_rt = 'demov2_data_rt';
+        $this->tb_users = 'demov2_users';
+        $this->tb_user_enum = 'demov2_user_enum';
+        $this->tb_user_rt = 'demov2_user_rt';
     }
 
     /**
@@ -117,7 +110,7 @@ class User
             }
             echo json_encode($resp, JSON_NUMERIC_CHECK);
         } else {
-            exit('{"success": false, "msg": "Empty atau Gagal mengambil data ichc2022_user_rt"}');
+            exit('{"success": false, "msg": "Empty atau Gagal mengambil data demov2_user_rt"}');
         }
     }
 
@@ -180,7 +173,7 @@ class User
                 exit('{"success": false, "msg": "Gagal menghapus User dari Users"}');
             }
         } else {
-            exit('{"success": false, "msg": "Gagal menghapus User dari ichc2022_User_rt"}');
+            exit('{"success": false, "msg": "Gagal menghapus User dari demov2_User_rt"}');
         }
     }
 
@@ -430,159 +423,5 @@ class User
         readfile($zipname);
     }
 
-    public function download_export_art_history() {
-        $role = $this->userIsSupervisor();
-        if ($role === 'enum') {
-            exit('{"success": false, "msg": "Maaf, anda tidak punya akses modul ini"}');
-        }
-
-        $date_str = $this->uniq_str();
-        $zipname = "output/history/hdss_history_export_$date_str.zip";
-        $zip = new ZipArchive;
-        $zip->open($zipname, ZipArchive::CREATE);
-        $files = glob('output/history/*.{xlsx,csv}',GLOB_BRACE);
-        foreach ($files as $num => $file) {
-            $zip->addFile($file);
-        }
-        $zip->close();
-
-        header('Content-Type: application/zip');
-        header('Content-disposition: attachment; filename='. basename($zipname));
-        header('Content-Length: ' . filesize($zipname));
-        readfile($zipname);
-    }
-
-    public function download_export_random() {
-        $role = $this->userIsSupervisor();
-        if ($role === 'enum') {
-            exit('{"success": false, "msg": "Maaf, anda tidak punya akses modul ini"}');
-        }
-
-        $date_str = $this->uniq_str();
-        $zipname = "output/history_random/hdss_export_random_$date_str.zip";
-        $zip = new ZipArchive;
-        $zip->open($zipname, ZipArchive::CREATE);
-        $files = glob('output/history_random/*.{xlsx,csv}',GLOB_BRACE);
-        foreach ($files as $num => $file) {
-            $zip->addFile($file);
-        }
-        $zip->close();
-
-        header('Content-Type: application/zip');
-        header('Content-disposition: attachment; filename='. basename($zipname));
-        header('Content-Length: ' . filesize($zipname));
-        readfile($zipname);
-    }
-
-    public function download_export_pb() {
-        $role = $this->userIsSupervisor();
-        if ($role === 'enum') {
-            exit('{"success": false, "msg": "Maaf, anda tidak punya akses modul ini"}');
-        }
-
-        $date_str = $this->uniq_str();
-        $zipname = "output/pb/hdss_pb_$date_str.zip";
-        $zip = new ZipArchive;
-        $zip->open($zipname, ZipArchive::CREATE);
-        $files = glob('output/pb/*.{xlsx,csv}',GLOB_BRACE);
-        foreach ($files as $num => $file) {
-            $zip->addFile($file);
-        }
-        $zip->close();
-
-        header('Content-Type: application/zip');
-        header('Content-disposition: attachment; filename='. basename($zipname));
-        header('Content-Length: ' . filesize($zipname));
-        readfile($zipname);
-    }
-
-    public function download_export_pindah() {
-        $role = $this->userIsSupervisor();
-        if ($role === 'enum') {
-            exit('{"success": false, "msg": "Maaf, anda tidak punya akses modul ini"}');
-        }
-
-        $date_str = $this->uniq_str();
-        $zipname = "output/pindah/hdss_pindah_$date_str.zip";
-        $zip = new ZipArchive;
-        $zip->open($zipname, ZipArchive::CREATE);
-        $files = glob('output/pindah/*.{xlsx,csv}',GLOB_BRACE);
-        foreach ($files as $num => $file) {
-            $zip->addFile($file);
-        }
-        $zip->close();
-
-        header('Content-Type: application/zip');
-        header('Content-disposition: attachment; filename='. basename($zipname));
-        header('Content-Length: ' . filesize($zipname));
-        readfile($zipname);
-    }
-
-    public function download_export_ktlp() {
-        $role = $this->userIsSupervisor();
-        if ($role === 'enum') {
-            exit('{"success": false, "msg": "Maaf, anda tidak punya akses modul ini"}');
-        }
-
-        $date_str = $this->uniq_str();
-        $zipname = "output/ktlp/hdss_ktlp_$date_str.zip";
-        $zip = new ZipArchive;
-        $zip->open($zipname, ZipArchive::CREATE);
-        $files = glob('output/ktlp/*.{xlsx,csv}',GLOB_BRACE);
-        foreach ($files as $num => $file) {
-            $zip->addFile($file);
-        }
-        $zip->close();
-
-        header('Content-Type: application/zip');
-        header('Content-disposition: attachment; filename='. basename($zipname));
-        header('Content-Length: ' . filesize($zipname));
-        readfile($zipname);
-    }
-    
-
-    public function download_export_cke() {
-        $role = $this->userIsSupervisor();
-        if ($role === 'enum') {
-            exit('{"success": false, "msg": "Maaf, anda tidak punya akses modul ini"}');
-        }
-
-        $date_str = $this->uniq_str();
-        $zipname = "output/cke/hdss_export_cke_$date_str.zip";
-        $zip = new ZipArchive;
-        $zip->open($zipname, ZipArchive::CREATE);
-        $files = glob('output/cke/*.{xlsx,csv}',GLOB_BRACE);
-        foreach ($files as $num => $file) {
-            $zip->addFile($file);
-        }
-        $zip->close();
-
-        header('Content-Type: application/zip');
-        header('Content-disposition: attachment; filename='. basename($zipname));
-        header('Content-Length: ' . filesize($zipname));
-        readfile($zipname);
-    }
-
-    public function download_export_cspv() {
-        $role = $this->userIsSupervisor();
-        if ($role === 'enum') {
-            exit('{"success": false, "msg": "Maaf, anda tidak punya akses modul ini"}');
-        }
-
-        $date_str = $this->uniq_str();
-        $zipname = "output/cspv/hdss_export_cspv_$date_str.zip";
-        $zip = new ZipArchive;
-        $zip->open($zipname, ZipArchive::CREATE);
-        $files = glob('output/cspv/*.{xlsx,csv}',GLOB_BRACE);
-        foreach ($files as $num => $file) {
-            $zip->addFile($file);
-        }
-        $zip->close();
-
-        header('Content-Type: application/zip');
-        header('Content-disposition: attachment; filename='. basename($zipname));
-        header('Content-Length: ' . filesize($zipname));
-        readfile($zipname);
-    }
     
 }

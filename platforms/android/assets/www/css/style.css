@@ -286,7 +286,7 @@ padding: 0
     border: 0;
     min-width: 110px;
 }
-/*untuk tombol ya yg terlalu lebar*/
+/*untuk tombol radio ya yg terlalu lebar*/
 .radio-ya {
     padding: 5px;
     border: 0;
@@ -633,3 +633,67 @@ input.ng-valid, select.ng-valid, textarea.ng-valid{
        -moz-filter: brightness(1.2) grayscale(0.5) opacity(1);
             filter: brightness(1.2) grayscale(0.5) opacity(1);
 }
+
+/* Custom CSS untuk eHDSS mini */
+/* eHDSS yang diisi langsung oleh responden */
+
+@media only screen and (max-width: 767px) {
+    .radio-likert {
+        padding: 5px;
+        border: 0;
+        min-width: 70px;
+    }
+
+    .big-screen{
+        display: none;
+    }
+
+    #btn-sedang{
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .radio-likert {
+        padding: 5px;
+        border: 0;
+        min-width: 90px;
+    }
+
+    .small-screen{
+        display: none;
+    }
+
+    .pad-desktop{
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+
+    #btn-kecil{
+        display: none;
+    }
+}
+
+.input-label-home {
+     display:table;
+     padding:7px 10px 7px 0;
+     max-width:100%;
+     color:#444;
+     font-size:16px
+}
+
+hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+        border-top-color: currentcolor;
+        border-top-style: none;
+        border-top-width: 0px;
+    border-top: 1px solid rgba(0,0,0,.1);
+}
+
+.mw100 {
+  width: 100px;
+}
+
+/* End of custom CSS untuk eHDSS mini */

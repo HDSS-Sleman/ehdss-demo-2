@@ -275,6 +275,251 @@
             11: '11', 12: '12', 13: '13', 14: '14', 15: '15', 16: '16', 17: '17', 18: '18', 19: '19',
             20: '20', 21: '21', 22: '22', 23: '23', 24: '24', 25: '25', 26: '26', 27: '27', 28: '28',
         };
+        var listKapanewon = {
+            1: 'Gamping',
+            2: 'Godean',
+            3: 'Moyudan',
+            4: 'Minggir',
+            5: 'Seyegan',
+            6: 'Mlati',
+            7: 'Depok',
+            8: 'Berbah',
+            9: 'Prambanan',
+            10: 'Kalasan',
+            11: 'Ngemplak',
+            12: 'Ngaglik',
+            13: 'Sleman',
+            14: 'Tempel',
+            15: 'Turi',
+            16: 'Pakem',
+            17: 'Cangkringan'
+        }
+
+        var listKalurahanGamping = {
+            1: 'Balecatur',
+            2: 'Ambarketawang',
+            3: 'Banyuraden',
+            4: 'Nogotirto',
+            5: 'Trihanggo'
+        }
+
+        var listKalurahanGodean = {
+            6: 'Sidorejo',
+            7: 'Sidoluhur',
+            8: 'Sidomulyo',
+            9: 'Sidoangung',
+            10: 'Sidokarto',
+            11: 'Sidoarum',
+            12: 'Sidomoyo'
+        }
+
+        var listKalurahanMoyudan = {
+            13: 'Sumberrahayu',
+            14: 'Sumbersari',
+            15: 'Sumberagung',
+            16: 'Sumberarum'
+        }
+
+        var listKalurahanMinggir = {
+            17: 'Sendangarum',
+            18: 'Sendangmulyo',
+            19: 'Sendangagung',
+            20: 'Sendangsari',
+            21: 'Sendangrejo'
+        }
+
+        var listKalurahanSeyegan = {
+            22: 'Margoluwih',
+            23: 'Margodadi',
+            24: 'Margokaton',
+            25: 'Margomulyo',
+            26: 'Margoagung'
+        }
+
+        var listKalurahanMlati = {
+            27: 'Sinduadi',
+            28: 'Sendangadi',
+            29: 'Tlogoadi',
+            30: 'Tirtoadi',
+            31: 'Sumberadi'
+        }
+
+        var listKalurahanDepok = {
+            32: 'Caturtunggal',
+            33: 'Maguwoharjo',
+            34: 'Condongcatur'
+        }
+
+        var listKalurahanBerbah = {
+            35: 'Sendangtirto',
+            36: 'Tegaltirto',
+            37: 'Kalitirto',
+            38: 'Jogotirto'
+        }
+
+        var listKalurahanPrambanan = {
+            39: 'Sumberharjo',
+            40: 'Wukirharjo',
+            41: 'Gayamharjo',
+            42: 'Sambirejo',
+            43: 'Madurejo',
+            44: 'Bukoharjo'
+        }
+
+        var listKalurahanKalasan = {
+            45: 'Purwomartani',
+            46: 'Tirtomartani',
+            47: 'Tamanmartani',
+            48: 'Selomartani'
+        }
+
+        var listKalurahanNgemplak = {
+            49: 'Sindumartani',
+            50: 'Bimomartani',
+            51: 'Widodomartani',
+            52: 'Wedomartani',
+            53: 'Umbulmartani'
+        }
+
+        var listKalurahanNgaglik = {
+            54: 'Sariharjo',
+            55: 'Minomartani',
+            56: 'Sinduharjo',
+            57: 'Sukoharjo',
+            58: 'Sardonoharjo',
+            59: 'Donoharjo'
+        }
+
+        var listKalurahanSleman = {
+            60: 'Caturharjo',
+            61: 'Triharjo',
+            62: 'Tridadi',
+            63: 'Pandowoharjo',
+            64: 'Trimulyo'
+        }
+
+        var listKalurahanTempel = {
+            65: 'Banyurejo',
+            66: 'Tambakrejo',
+            67: 'Sumberrejo',
+            68: 'Pondokrejo',
+            69: 'Mororejo',
+            70: 'Margorejo',
+            71: 'Lumbungrejo',
+            72: 'Merdikorejo'
+        }
+
+        var listKalurahanTuri = {
+            73: 'Bangunkerto',
+            74: 'Donokerto',
+            75: 'Girikerto',
+            76: 'Wonokerto'
+        }
+
+        var listKalurahanPakem = {
+            77: 'Purwobinangun',
+            78: 'Candibinangun',
+            79: 'Harjobinangun',
+            80: 'Pakembinangun',
+            81: 'Hargobinangun'
+        }
+
+        var listKalurahanCangkringan = {
+            82: 'Argomulyo',
+            83: 'Wukirsari',
+            84: 'Glagaharjo',
+            85: 'Kepuharjo',
+            86: 'Umbulharjo'
+        }
+
+        var listKalurahanAll = {
+            1: 'Balecatur',
+            2: 'Ambarketawang',
+            3: 'Banyuraden',
+            4: 'Nogotirto',
+            5: 'Trihanggo',
+            6: 'Sidorejo',
+            7: 'Sidoluhur',
+            8: 'Sidomulyo',
+            9: 'Sidoangung',
+            10: 'Sidokarto',
+            11: 'Sidoarum',
+            12: 'Sidomoyo',
+            13: 'Sumberrahayu',
+            14: 'Sumbersari',
+            15: 'Sumberagung',
+            16: 'Sumberarum',
+            17: 'Sendangarum',
+            18: 'Sendangmulyo',
+            19: 'Sendangagung',
+            20: 'Sendangsari',
+            21: 'Sendangrejo',
+            22: 'Margoluwih',
+            23: 'Margodadi',
+            24: 'Margokaton',
+            25: 'Margomulyo',
+            26: 'Margoagung',
+            27: 'Sinduadi',
+            28: 'Sendangadi',
+            29: 'Tlogoadi',
+            30: 'Tirtoadi',
+            31: 'Sumberadi',
+            32: 'Caturtunggal',
+            33: 'Maguwoharjo',
+            34: 'Condongcatur',
+            35: 'Sendangtirto',
+            36: 'Tegaltirto',
+            37: 'Kalitirto',
+            38: 'Jogotirto',
+            39: 'Sumberharjo',
+            40: 'Wukirharjo',
+            41: 'Gayamharjo',
+            42: 'Sambirejo',
+            43: 'Madurejo',
+            44: 'Bukoharjo',
+            45: 'Purwomartani',
+            46: 'Tirtomartani',
+            47: 'Tamanmartani',
+            48: 'Selomartani',
+            49: 'Sindumartani',
+            50: 'Bimomartani',
+            51: 'Widodomartani',
+            52: 'Wedomartani',
+            53: 'Umbulmartani',
+            54: 'Sariharjo',
+            55: 'Minomartani',
+            56: 'Sinduharjo',
+            57: 'Sukoharjo',
+            58: 'Sardonoharjo',
+            59: 'Donoharjo',
+            60: 'Caturharjo',
+            61: 'Triharjo',
+            62: 'Tridadi',
+            63: 'Pandowoharjo',
+            64: 'Trimulyo',
+            65: 'Banyurejo',
+            66: 'Tambakrejo',
+            67: 'Sumberrejo',
+            68: 'Pondokrejo',
+            69: 'Mororejo',
+            70: 'Margorejo',
+            71: 'Lumbungrejo',
+            72: 'Merdikorejo',
+            73: 'Bangunkerto',
+            74: 'Donokerto',
+            75: 'Girikerto',
+            76: 'Wonokerto',
+            77: 'Purwobinangun',
+            78: 'Candibinangun',
+            79: 'Harjobinangun',
+            80: 'Pakembinangun',
+            81: 'Hargobinangun',
+            82: 'Argomulyo',
+            83: 'Wukirsari',
+            84: 'Glagaharjo',
+            85: 'Kepuharjo',
+            86: 'Umbulharjo'
+        }
         var kode_pos = {
             55264: '55264', 55281: '55281', 55282: '55282', 55283: '55283', 55284: '55284', 55285: '55285', 
             55286: '55286', 55287: '55287', 55288: '55288', 55291: '55291', 55292: '55292', 55293: '55293', 55294: '55294', 
@@ -302,6 +547,15 @@
             zeroPad: function(num, places) {
                 var zero = places - num.toString().length + 1;
                 return Array(+(zero > 0 && zero)).join('0') + num;
+            },
+            makeID: function(length) {
+                var result           = '';
+                var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+                var charactersLength = characters.length;
+                for ( var i = 0; i < length; i++ ) {
+                    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+                }
+                return result;
             },
             // Convert Date to string in 'yyyy-mm-dd'
             // karena month di js mulai dari 0, maka tambah satu
@@ -474,6 +728,74 @@
                     }
                 }
                 return pekerjaanArr;
+            },
+            getListKapanewon: function() {
+                return listKapanewon;
+            },
+            getKapanewon: function(id) {
+                return listKapanewon[id] ? listKapanewon[id] : '-';
+            },
+            getListKalurahan: function(id){
+                switch(id) {
+                    case '1':
+                        return listKalurahanGamping;
+                        break;
+                    case '2':
+                        return listKalurahanGodean;
+                        break;
+                    case '3':
+                        return listKalurahanMoyudan;
+                        break;
+                    case '4':
+                        return listKalurahanMinggir;
+                        break;
+                    case '5':
+                        return listKalurahanSeyegan;
+                        break;
+                    case '6':
+                        return listKalurahanMlati;
+                        break;
+                    case '7':
+                        return listKalurahanDepok;
+                        break;
+                    case '8':
+                        return listKalurahanBerbah;
+                        break;
+                    case '9':
+                        return listKalurahanPrambanan;
+                        break;
+                    case '10':
+                        return listKalurahanKalasan;
+                        break;
+                    case '11':
+                        return listKalurahanNgemplak;
+                        break;
+                    case '12':
+                        return listKalurahanNgaglik;
+                        break;
+                    case '13':
+                        return listKalurahanSleman;
+                        break;
+                    case '14':
+                        return listKalurahanTempel;
+                        break;
+                    case '15':
+                        return listKalurahanTuri;
+                        break;
+                    case '16':
+                        return listKalurahanPakem;
+                        break;
+                    case '17':
+                        return listKalurahanCangkringan;
+                        break;
+
+                }
+            },
+            getListKalurahanAll: function() {
+                return listKalurahanAll;
+            },
+            getKalurahan: function(id) {
+                return listKalurahanAll[id] ? listKalurahanAll[id] : '-';
             },
             getPendidikan:  function(id) {
                 return pendidikan[id] ? pendidikan[id] : '-';
@@ -792,8 +1114,7 @@
                         dataKels.forEach(function(elm, idx, array) {
                             // console.log(elm);
                             if (key === ('datakel:' + elm.idrt)) {
-                                var allow = val.rt || val.mch || val.ichc || val.ir || val.png ||
-                                            val.prk || val.bkia || val.ichcp;
+                                var allow = val.ir;
                                 dataKels[idx]['allowUpload'] = !!allow;
                             }
 
@@ -820,16 +1141,10 @@
                 var deferred = $q.defer();
                 // generate uniques ID 
                 // cek datakel degan ID yg sama
-                // example id : IDl06icr90ityyn68tnmfenum
-                var idrt = 'id' + (new Date()).getTime() +'-'+$rootScope.username;
-                localforage.getItem('datakel:' + idrt).then(function(val) {
-                    if (val) {
-                        deferred.resolve();
-                    }else{
-                        var uniq = 'ID' + Date.now().toString(36) + Math.random().toString(36).substr(2) + $rootScope.username;
-                        deferred.resolve(uniq);
-                    }
-                });
+                // example id : IDl8o6506i0j0p3xeizv5
+
+                var uniq = 'ID' + Date.now().toString(36) + Math.random().toString(36).substr(2) + me.makeID(5);
+                deferred.resolve(uniq);
 
                 return deferred.promise;
             },
@@ -1176,15 +1491,7 @@
                             // dataART = me.mergeModel(val, dataART, 'ptm');
 
                             // model yang child-nya bukan idart simpan ke dataRT
-                            $rootScope.dataRT.pm = (val && val.pm) || {};
-                            $rootScope.dataRT.ptm = (val && val.ptm) || {};
-                            $rootScope.dataRT.mch = (val && val.mch) || {};
-                            $rootScope.dataRT.ichc = (val && val.ichc) || {};
                             $rootScope.dataRT.ir = (val && val.ir) || {};
-                            $rootScope.dataRT.png = (val && val.png) || {};
-                            $rootScope.dataRT.prk = (val && val.prk) || {};
-                            $rootScope.dataRT.bkia = (val && val.bkia) || {};
-                            $rootScope.dataRT.ichcp = (val && val.ichcp) || {};
 
                             // return function
                             deferred.resolve(dataART);
@@ -1195,15 +1502,7 @@
 
                             if (val) {
                                 // model yang child-nya bukan idart simpan ke dataRT
-                                $rootScope.dataRT.pm = (val && val.pm) || {};
-                                $rootScope.dataRT.ptm = (val && val.ptm) || {};
-                                $rootScope.dataRT.mch = (val && val.mch) || {};
-                                $rootScope.dataRT.ichc = (val && val.ichc) || {};
                                 $rootScope.dataRT.ir = (val && val.ir) || {};
-                                $rootScope.dataRT.png = (val && val.png) || {};
-                                $rootScope.dataRT.prk = (val && val.prk) || {};
-                                $rootScope.dataRT.bkia = (val && val.bkia) || {};
-                                $rootScope.dataRT.ichcp = (val && val.ichcp) || {};
                                 
                                 // return function
                                 deferred.resolve(dataART);
@@ -1825,12 +2124,9 @@
             // 'kai', 'kim', 'asm', merupakan modul dari KAI
             // class atau modul yg membutuhkan data Anggota Rumah Tangga
             // yang dipakai sebagai property/key data adalah ID ART
-            clsART: ['part', 'krp', 'agh', 'pb', 'srq', 'dse', 'aksi','hl','vac'],
+            clsART: ['part'],
             // yg hanya membutuhkan data RT, data akan langsung disimpan di root cls
-            clsRT: ['pm','ptm','pk','dif','hiv','akk','mb','ins','aks', 
-                    'kai','kim','asm','ksm','prp','hrt','kr',
-                    'cover','icf','kj','ph',
-                    'mch','ichc','ir','png','prk','bkia','ichcp'],
+            clsRT: ['ir', 'agh', 'hl', 'srq', 'atr'],
             // selain clsART dan clsRT, misal artb, juga hanya memerlukan dataRT
             // tetapi property/key tetap menggunakan ID ART
             /**
@@ -1933,51 +2229,26 @@
 
                 return deferred.promise;
             },
-            saveDataRT: function(cls, data, username,filter, clsParent){ //simpan data RT siklus 1 ke baseline di localforage
+            saveDataRT: function(cls, data, username,filter, clsParent){ //simpan data ke localforage
                 var deferred = $q.defer();
                 var dataRT = {};
                 data = me.normalisasiData(data);
                 dataRT[cls] = data || {};
-
-                // jika edit, replace datakel rt dengan yg baru
-                if ($rootScope.editStatusRT === 'edit') {
-                    lf.getItem('datakel:' + data.idrt).then(function(val_get){
+    
+                
+                lf.getItem('datakel:' + data.idrt).then(function(val_get){
+                    if (val_get) { // jika edit, replace datakel rt dengan yg baru
                         val_get.rt = data;
-                        lf.setItem('datakel:' + data.idrt, val_get, function(err, val_set){ //masukkan dataRT baru ke datakel:'idrt'
+                        lf.setItem('datakel:' + data.idrt, val_get, function(err, val_set){ // update dataRT ke datakel:'idrt'
                             deferred.resolve({ 'success': true, 'msg': 'Berhasil menyimpan data' });
                         });
-                    });
-                }else{
-                    lf.setItem('datakel:' + data.idrt, dataRT, function(err, val){ //masukkan dataRT baru ke datakel:'idrt'
-                    deferred.resolve({ 'success': true, 'msg': 'Berhasil menyimpan data' });
-                    });
-                }
-                
-                
-                //masukan data RT baru ke baseline afifah/nama yg lain
-                lf.getItem('baseline:' + username).then(function(val) { //username harus ada kalo tidak maka error
-                    var dataRT = val || {};
-                    // push dataRT baru ke data_rt baseline:'username' setelah input data
-                    var dataRT_baru = []
-                    dataRT_baru = dataRT.data_rt;
-
-                    // jika editRT (sudah ada idrt yg sama)
-                    if($rootScope.editStatusRT === 'edit'){
-                        dataRT_baru.forEach(function(val, idx) {
-                            if (dataRT_baru[idx].idrt === data.idrt) {
-                                dataRT_baru[idx] = data;
-                            }
-                        });
                     }else{
-                        dataRT_baru.push(data);
-                    }
-                     
-                    dataRT.data_rt = dataRT_baru;
-                    lf.setItem('baseline:' + username, dataRT, function(err, val) {
-                        // me.getDataART();
-                        deferred.resolve({ 'success': true, 'msg': 'Berhasil menyimpan data' });
-                    });
+                        lf.setItem('datakel:' + data.idrt, dataRT, function(err, val){ //masukkan dataRT baru ke datakel:'idrt'
+                            deferred.resolve({ 'success': true, 'msg': 'Berhasil menyimpan data' });
+                        });
+                    }   
                 });
+                
                 return deferred.promise;
             },
             getMaxNoUrutRT: function(kluster){

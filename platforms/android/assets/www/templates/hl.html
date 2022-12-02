@@ -1,285 +1,146 @@
-<ion-view view-title="Health Literacy">
-    <div class="bar bar-subheader bar-calm" ng-show="literacy">
-        <h2 class="title left nama">Nama ART : {{curART._nama}} ({{curART.umur}})</h2>
-    </div>
-    
-    <!--End of Sub-Header-Bar-->
-    <ion-content id="hl" class="has-subheader hl" style="padding-bottom: 10px">
+<ion-view view-title="Literasi Kesehatan">
+    <ion-content id="hl" class="hl">
       <form name="myForm">
-        <ion-list ng-show="literacy">
+        <ion-list>
             <input type="text" ng-model="hl.hl" ng-show="false">
             <div class="item item-divider desc item-text-wrap">
-                Dalam range sangat mudah sampai sangat sulit, Seberapa mudah Anda menilai tentang hal di bawah ini.
+                Dalam range sangat sulit sampai sangat mudah, Seberapa mudah Anda menilai tentang hal di bawah ini.<br>
+                1. Sangat Sulit<br>
+                2. Cukup Sulit<br>
+                3. Cukup Mudah<br>
+                4. sangat Mudah<br>
             </div>
-            
-            <div class="item item-text-wrap item-row">
-                <div class="row">
-                    <div class="col col-50 col-center input-label"><b>HL01</b> Menemukan informasi tentang perawatan/pengobatan penyakit yang menjadi perhatian anda ?<br>
-                    <span class="input-label hint-status">Probing: Bila Anda merasakan gejala penyakit dan ingin mengetahui cara perawatan atau pengobatan, Seberapa mudah Anda mendapatkan informasi tentang perawatan atau pengobatan penyakit tersebut?</span>
-                    </div>
-                    <div class="col col-50 col-center" >
-                        <select class="pull-right input-border" class="pull-right input-border" ng-model="hl.hl01">
-                            <option value="" selected></option>
-                            <option value="1">1. Sangat Sulit</option>
-                            <option value="2">2. Cukup Sulit</option>
-                            <option value="3">3. Cukup Mudah</option>
-                            <option value="4">4. sangat Mudah</option>
-                        </select>
-                    </div>
+            <label class="item item-text-wrap">
+                <span class="input-label full">
+                    <b>HL01</b> Menemukan informasi tentang perawatan/pengobatan penyakit yang menjadi perhatian anda?<br>
+                    <span class="hint-status">Hint: Bila Anda merasakan gejala penyakit dan ingin mengetahui cara perawatan atau pengobatan, Seberapa mudah Anda mendapatkan informasi tentang perawatan atau pengobatan penyakit tersebut?</span>
+                </span >
+                <div class="button-bar right">
+                    <ion-radio ng-required="true" class="radio-likert" name="hl01" ng-model="hl.hl01" ng-value="1">1</ion-radio>
+                    <ion-radio ng-required="true" class="radio-likert" name="hl01" ng-model="hl.hl01" ng-value="2">2</ion-radio>
+                    <ion-radio ng-required="true" class="radio-likert" name="hl01" ng-model="hl.hl01" ng-value="3">3</ion-radio>
+                    <ion-radio ng-required="true" class="radio-likert" name="hl01" ng-model="hl.hl01" ng-value="4">4</ion-radio>
                 </div>
-            </div>
-            <div class="item item-text-wrap item-row">
-                <div class="row">
-                    <div class="col col-50 col-center input-label"><b>HL02</b> Mencari tahu dimana mencari tenaga kesehatan ketika anda sakit ?<br>
-                    <span class="input-label hint-status">Probing: Tenaga kesehatan yang dimaksud adalah dokter, bidan dan perawat</span>
-                    </div>
-                    <div class="col col-50 col-center" >
-                        <select class="pull-right input-border" class="pull-right input-border" ng-model="hl.hl02">
-                            <option value="" selected></option>
-                            <option value="1">1. Sangat Sulit</option>
-                            <option value="2">2. Cukup Sulit</option>
-                            <option value="3">3. Cukup Mudah</option>
-                            <option value="4">4. sangat Mudah</option>
-                        </select>
-                    </div>
+            </label>
+            <label class="item item-text-wrap">
+                <span class="input-label full">
+                    <b>HL02</b> Mencari tahu dimana mencari tenaga kesehatan ketika anda sakit?<br>
+                    <span class="hint-status">Hint: Tenaga kesehatan yang dimaksud adalah dokter, bidan dan perawat</span>
+                </span >
+                <div class="button-bar right">
+                    <ion-radio ng-required="true" class="radio-likert" name="hl02" ng-model="hl.hl02" ng-value="1">1</ion-radio>
+                    <ion-radio ng-required="true" class="radio-likert" name="hl02" ng-model="hl.hl02" ng-value="2">2</ion-radio>
+                    <ion-radio ng-required="true" class="radio-likert" name="hl02" ng-model="hl.hl02" ng-value="3">3</ion-radio>
+                    <ion-radio ng-required="true" class="radio-likert" name="hl02" ng-model="hl.hl02" ng-value="4">4</ion-radio>
                 </div>
-            </div>
-            <div class="item item-text-wrap item-row">
-                <div class="row">
-                    <div class="col col-50 col-center input-label"><b>HL03</b> Memahami apa yang dokter jelaskan kepada anda ?<br>
-                    <span class="input-label hint-status">Probing: Apabila Anda ke dokter dan diberikan informasi tekait kondisi kesehatan Anda seperti hasil pemeriksaan atau cara pencegahan suatau penyakit, seberapa mudah Anda memahami penjelasan dari dokter tersebut? </span>
-                    </div>
-                    <div class="col col-50 col-center" >
-                        <select class="pull-right input-border" class="pull-right input-border" ng-model="hl.hl03">
-                            <option value="" selected></option>
-                            <option value="1">1. Sangat Sulit</option>
-                            <option value="2">2. Cukup Sulit</option>
-                            <option value="3">3. Cukup Mudah</option>
-                            <option value="4">4. sangat Mudah</option>
-                        </select>
-                    </div>
+            </label>
+            <label class="item item-text-wrap">
+                <span class="input-label full">
+                    <b>HL03</b> Memahami apa yang dokter jelaskan kepada anda?<br>
+                    <span class="hint-status">Hint: Apabila Anda ke dokter dan diberikan informasi tekait kondisi kesehatan Anda seperti hasil pemeriksaan atau cara pencegahan suatau penyakit, seberapa mudah Anda memahami penjelasan dari dokter tersebut? </span>
+                </span >
+                <div class="button-bar right">
+                    <ion-radio ng-required="true" class="radio-likert" name="hl03" ng-model="hl.hl03" ng-value="1">1</ion-radio>
+                    <ion-radio ng-required="true" class="radio-likert" name="hl03" ng-model="hl.hl03" ng-value="2">2</ion-radio>
+                    <ion-radio ng-required="true" class="radio-likert" name="hl03" ng-model="hl.hl03" ng-value="3">3</ion-radio>
+                    <ion-radio ng-required="true" class="radio-likert" name="hl03" ng-model="hl.hl03" ng-value="4">4</ion-radio>
                 </div>
-            </div>
-            <div class="item item-text-wrap item-row">
-                <div class="row">
-                    <div class="col col-50 col-center input-label"><b>HL04</b> Memahami instruksi dokter atau apoteker bagaimana cara meminum obat yang diresepkan ?<br>
-                    <span class="input-label hint-status">Probing: Apabila Anda berobat dan diberi obat oleh dokter atau apoteker, kemudian dokter atau apoteker memberikan penjelasan atau instruksi cara penggunaan obat tersebut, seberapa mudah Anda memahami petunjuk penggunaan obat tersebut? </span>
-                    </div>
-                    <div class="col col-50 col-center" >
-                        <select class="pull-right input-border" class="pull-right input-border" ng-model="hl.hl04">
-                            <option value="" selected></option>
-                            <option value="1">1. Sangat Sulit</option>
-                            <option value="2">2. Cukup Sulit</option>
-                            <option value="3">3. Cukup Mudah</option>
-                            <option value="4">4. sangat Mudah</option>
-                        </select>
-                    </div>
+            </label>
+            <label class="item item-text-wrap">
+                <span class="input-label full">
+                    <b>HL04</b> Memahami instruksi dokter atau apoteker bagaimana cara meminum obat yang diresepkan?<br>
+                    <span class="hint-status">Hint: Apabila Anda berobat dan diberi obat oleh dokter atau apoteker, kemudian dokter atau apoteker memberikan penjelasan atau instruksi cara penggunaan obat tersebut, seberapa mudah Anda memahami petunjuk penggunaan obat tersebut? </span>
+                </span >
+                <div class="button-bar right">
+                    <ion-radio ng-required="true" class="radio-likert" name="hl04" ng-model="hl.hl04" ng-value="1">1</ion-radio>
+                    <ion-radio ng-required="true" class="radio-likert" name="hl04" ng-model="hl.hl04" ng-value="2">2</ion-radio>
+                    <ion-radio ng-required="true" class="radio-likert" name="hl04" ng-model="hl.hl04" ng-value="3">3</ion-radio>
+                    <ion-radio ng-required="true" class="radio-likert" name="hl04" ng-model="hl.hl04" ng-value="4">4</ion-radio>
                 </div>
-            </div>
-            <div class="item item-text-wrap item-row">
-                <div class="row">
-                    <div class="col col-50 col-center input-label"><b>HL05</b> Menilai kapan anda membutuhkan pendapat dari dokter lain ?<br>
-                    <span class="input-label hint-status">Probing: Apabila keluarga Anda ada yang sakit dan mendapatkan saran dari seorang dokter untuk mendapatkan tindakan medis tertentu, misalnya disarankan rawat inap atau tindakan operasi. Bagaimana Anda mempertimbangkan keuntungan dan kerugian dari saran pilihan pengobatan tersebut? </span>
-                    </div>
-                    <div class="col col-50 col-center" >
-                        <select class="pull-right input-border" class="pull-right input-border" ng-model="hl.hl05">
-                            <option value="" selected></option>
-                            <option value="1">1. Sangat Sulit</option>
-                            <option value="2">2. Cukup Sulit</option>
-                            <option value="3">3. Cukup Mudah</option>
-                            <option value="4">4. sangat Mudah</option>
-                        </select>
-                    </div>
+            </label>
+            <label class="item item-text-wrap">
+                <span class="input-label full">
+                    <b>HL05</b> Menilai kapan anda membutuhkan pendapat dari dokter lain?<br>
+                    <span class="hint-status">Hint: Apabila keluarga Anda ada yang sakit dan mendapatkan saran dari seorang dokter untuk mendapatkan tindakan medis tertentu, misalnya disarankan rawat inap atau tindakan operasi. Bagaimana Anda mempertimbangkan keuntungan dan kerugian dari saran pilihan pengobatan tersebut? </span>
+                </span >
+                <div class="button-bar right">
+                    <ion-radio ng-required="true" class="radio-likert" name="hl05" ng-model="hl.hl05" ng-value="1">1</ion-radio>
+                    <ion-radio ng-required="true" class="radio-likert" name="hl05" ng-model="hl.hl05" ng-value="2">2</ion-radio>
+                    <ion-radio ng-required="true" class="radio-likert" name="hl05" ng-model="hl.hl05" ng-value="3">3</ion-radio>
+                    <ion-radio ng-required="true" class="radio-likert" name="hl05" ng-model="hl.hl05" ng-value="4">4</ion-radio>
                 </div>
-            </div>
-            <div class="item item-text-wrap item-row">
-                <div class="row">
-                    <div class="col col-50 col-center input-label"><b>HL06</b> Menggunakan informasi yang diberikan oleh dokter untuk membuat keputusan tentang sakit anda ?<br>
-                    <span class="input-label hint-status">Probing: Yang dimaksud keputusan misalnya Anda disarankan rawat inap dalam pengobatan sakit Anda </span>
-                    </div>
-                    <div class="col col-50 col-center" >
-                        <select class="pull-right input-border" class="pull-right input-border" ng-model="hl.hl06">
-                            <option value="" selected></option>
-                            <option value="1">1. Sangat Sulit</option>
-                            <option value="2">2. Cukup Sulit</option>
-                            <option value="3">3. Cukup Mudah</option>
-                            <option value="4">4. sangat Mudah</option>
-                        </select>
-                    </div>
+            </label>
+            <label class="item item-text-wrap">
+                <span class="input-label full">
+                    <b>HL06</b> Menggunakan informasi yang diberikan oleh dokter untuk membuat keputusan tentang sakit anda ?<br>
+                    <span class="hint-status">Hint: Yang dimaksud keputusan misalnya Anda disarankan rawat inap dalam pengobatan sakit Anda </span>
+                </span >
+                <div class="button-bar right">
+                    <ion-radio ng-required="true" class="radio-likert" name="hl06" ng-model="hl.hl06" ng-value="1">1</ion-radio>
+                    <ion-radio ng-required="true" class="radio-likert" name="hl06" ng-model="hl.hl06" ng-value="2">2</ion-radio>
+                    <ion-radio ng-required="true" class="radio-likert" name="hl06" ng-model="hl.hl06" ng-value="3">3</ion-radio>
+                    <ion-radio ng-required="true" class="radio-likert" name="hl06" ng-model="hl.hl06" ng-value="4">4</ion-radio>
                 </div>
-            </div>
-            <div class="item item-text-wrap item-row">
-                <div class="row">
-                    <div class="col col-50 col-center input-label"><b>HL07</b> Mematuhi instruksi dari dokter atau apoteker anda ?<br>
-                    <span class="input-label hint-status">Probing: Anda diberikan obat kemudian diminta untuk mengonsumsi obat tersebut rutin setiap hari selama 1 bulan, seberapa mudah Anda mematuhi instruksi dokter atau apoteker Anda? </span>
-                    </div>
-                    <div class="col col-50 col-center" >
-                        <select class="pull-right input-border" class="pull-right input-border" ng-model="hl.hl07">
-                            <option value="" selected></option>
-                            <option value="1">1. Sangat Sulit</option>
-                            <option value="2">2. Cukup Sulit</option>
-                            <option value="3">3. Cukup Mudah</option>
-                            <option value="4">4. sangat Mudah</option>
-                        </select>
-                    </div>
+            </label>
+            <label class="item item-text-wrap">
+                <span class="input-label full">
+                    <b>HL07</b> Mematuhi instruksi dari dokter atau apoteker anda ?<br>
+                    <span class="hint-status">Hint: Anda diberikan obat kemudian diminta untuk mengonsumsi obat tersebut rutin setiap hari selama 1 bulan, seberapa mudah Anda mematuhi instruksi dokter atau apoteker Anda? </span>
+                </span >
+                <div class="button-bar right">
+                    <ion-radio ng-required="true" class="radio-likert" name="hl07" ng-model="hl.hl07" ng-value="1">1</ion-radio>
+                    <ion-radio ng-required="true" class="radio-likert" name="hl07" ng-model="hl.hl07" ng-value="2">2</ion-radio>
+                    <ion-radio ng-required="true" class="radio-likert" name="hl07" ng-model="hl.hl07" ng-value="3">3</ion-radio>
+                    <ion-radio ng-required="true" class="radio-likert" name="hl07" ng-model="hl.hl07" ng-value="4">4</ion-radio>
                 </div>
-            </div>
-            <div class="item item-text-wrap item-row">
-                <div class="row">
-                    <div class="col col-50 col-center input-label"><b>HL08</b> Menemukan informasi bagaimana mengatur kesehatan mental misalnya stress atau depresi ?<br>
-                    <span class="input-label hint-status">Probing: Mengatur kesehatan mental misalnya bagaimana Anda dapat mengatasi stress atau depresi? </span>
-                    </div>
-                    <div class="col col-50 col-center" >
-                        <select class="pull-right input-border" class="pull-right input-border" ng-model="hl.hl08">
-                            <option value="" selected></option>
-                            <option value="1">1. Sangat Sulit</option>
-                            <option value="2">2. Cukup Sulit</option>
-                            <option value="3">3. Cukup Mudah</option>
-                            <option value="4">4. sangat Mudah</option>
-                        </select>
-                    </div>
+            </label>
+            <label class="item item-text-wrap">
+                <span class="input-label full">
+                    <b>HL08</b> Menemukan informasi bagaimana mengatur kesehatan mental misalnya stress atau depresi ?<br>
+                    <span class="hint-status">Hint: Mengatur kesehatan mental misalnya bagaimana Anda dapat mengatasi stress atau depresi? </span>
+                </span >
+                <div class="button-bar right">
+                    <ion-radio ng-required="true" class="radio-likert" name="hl08" ng-model="hl.hl08" ng-value="1">1</ion-radio>
+                    <ion-radio ng-required="true" class="radio-likert" name="hl08" ng-model="hl.hl08" ng-value="2">2</ion-radio>
+                    <ion-radio ng-required="true" class="radio-likert" name="hl08" ng-model="hl.hl08" ng-value="3">3</ion-radio>
+                    <ion-radio ng-required="true" class="radio-likert" name="hl08" ng-model="hl.hl08" ng-value="4">4</ion-radio>
                 </div>
-            </div>
-            <div class="item item-text-wrap item-row">
-                <div class="row">
-                    <div class="col col-50 col-center input-label"><b>HL09</b> Memahami peringatan tentang kesehatan seperti perilaku merokok, kurang olah raga, terlalu banyak minum alkohol ?<br>
-                    <span class="input-label hint-status">Probing: Peringatan tentang kesehatan misalnya iklan layanan masyarakat di TV atau peringatan pada bungkus rokok  </span>
-                    </div>
-                    <div class="col col-50 col-center" >
-                        <select class="pull-right input-border" class="pull-right input-border" ng-model="hl.hl09">
-                            <option value="" selected></option>
-                            <option value="1">1. Sangat Sulit</option>
-                            <option value="2">2. Cukup Sulit</option>
-                            <option value="3">3. Cukup Mudah</option>
-                            <option value="4">4. sangat Mudah</option>
-                        </select>
-                    </div>
+            </label>
+            <label class="item item-text-wrap">
+                <span class="input-label full">
+                    <b>HL09</b> Memahami peringatan tentang kesehatan seperti perilaku merokok, kurang olah raga, terlalu banyak minum alkohol ?<br>
+                    <span class="hint-status">Hint: Peringatan tentang kesehatan misalnya iklan layanan masyarakat di TV atau peringatan pada bungkus rokok  </span>
+                </span >
+                <div class="button-bar right">
+                    <ion-radio ng-required="true" class="radio-likert" name="hl09" ng-model="hl.hl09" ng-value="1">1</ion-radio>
+                    <ion-radio ng-required="true" class="radio-likert" name="hl09" ng-model="hl.hl09" ng-value="2">2</ion-radio>
+                    <ion-radio ng-required="true" class="radio-likert" name="hl09" ng-model="hl.hl09" ng-value="3">3</ion-radio>
+                    <ion-radio ng-required="true" class="radio-likert" name="hl09" ng-model="hl.hl09" ng-value="4">4</ion-radio>
                 </div>
-            </div>
-            <div class="item item-text-wrap item-row">
-                <div class="row">
-                    <div class="col col-50 col-center input-label"><b>HL10</b> Memahami mengapa Anda membutuhkan deteksi dini penyakit (health screening) ?<br>
-                    <span class="input-label hint-status">Probing: Apakah Anda tahu apa yang dimaksud dengan deteksi dini?</span>
-                    <span class="input-label hint-status">Probing: Deteksi dini yaitu pemeriksaan pada orang sehat untuk mengetahui kemungkinan orang tersebut mempunyai suatu penyakit, contohnya pemeriksaan gula darah untuk mengetahui orang tersebut kemungkinan menderita penyakit gula.</span>
-                    </div>
-                    <div class="col col-50 col-center" >
-                        <select class="pull-right input-border" class="pull-right input-border" ng-model="hl.hl10">
-                            <option value="" selected></option>
-                            <option value="1">1. Sangat Sulit</option>
-                            <option value="2">2. Cukup Sulit</option>
-                            <option value="3">3. Cukup Mudah</option>
-                            <option value="4">4. sangat Mudah</option>
-                        </select>
-                    </div>
+            </label>
+            <label class="item item-text-wrap">
+                <span class="input-label full">
+                    <b>HL10</b> Memahami mengapa Anda membutuhkan deteksi dini penyakit (health screening) ?<br>
+                    <span class="hint-status">Hint: Apakah Anda tahu apa yang dimaksud dengan deteksi dini?</span>
+                    <span class="hint-status">Deteksi dini yaitu pemeriksaan pada orang sehat untuk mengetahui kemungkinan orang tersebut mempunyai suatu penyakit, contohnya pemeriksaan gula darah untuk mengetahui orang tersebut kemungkinan menderita penyakit gula.</span>
+                </span >
+                <div class="button-bar right">
+                    <ion-radio ng-required="true" class="radio-likert" name="hl10" ng-model="hl.hl10" ng-value="1">1</ion-radio>
+                    <ion-radio ng-required="true" class="radio-likert" name="hl10" ng-model="hl.hl10" ng-value="2">2</ion-radio>
+                    <ion-radio ng-required="true" class="radio-likert" name="hl10" ng-model="hl.hl10" ng-value="3">3</ion-radio>
+                    <ion-radio ng-required="true" class="radio-likert" name="hl10" ng-model="hl.hl10" ng-value="4">4</ion-radio>
                 </div>
-            </div>
-            <div class="item item-text-wrap item-row">
-                <div class="row">
-                    <div class="col col-50 col-center input-label"><b>HL11</b> Menilai apakah informasi kesehatan di media dapat dipercaya ?<br>
-                    <span class="input-label hint-status">Probing: Contoh media adalah TV, radio, koran, atau ulasan di website </span>
-                    </div>
-                    <div class="col col-50 col-center" >
-                        <select class="pull-right input-border" class="pull-right input-border" ng-model="hl.hl11">
-                            <option value="" selected></option>
-                            <option value="1">1. Sangat Sulit</option>
-                            <option value="2">2. Cukup Sulit</option>
-                            <option value="3">3. Cukup Mudah</option>
-                            <option value="4">4. sangat Mudah</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="item item-text-wrap item-row">
-                <div class="row">
-                    <div class="col col-50 col-center input-label"><b>HL12</b> Memutuskan bagaimana anda dapat melindungi diri sendiri dari penyakit berdasarkan informasi dari media ?<br>
-                    <span class="input-label hint-status">Probing: Misalnya ada informasi di media bahwa tekanan darah tinggi dapat dihindari dengan mengurangi konsumsi garam. Bagaimana Anda dapat memutuskan untuk mencegah tekanan darah tinggi?</span>
-                    </div>
-                    <div class="col col-50 col-center" >
-                        <select class="pull-right input-border" class="pull-right input-border" ng-model="hl.hl12">
-                            <option value="" selected></option>
-                            <option value="1">1. Sangat Sulit</option>
-                            <option value="2">2. Cukup Sulit</option>
-                            <option value="3">3. Cukup Mudah</option>
-                            <option value="4">4. sangat Mudah</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="item item-text-wrap item-row">
-                <div class="row">
-                    <div class="col col-50 col-center input-label"><b>HL13</b> Menemukan informasi tentang aktivitas yang baik untuk kesehatan mental anda ?<br>
-                    <span class="input-label hint-status">Probing: Anda mendapat berbagai informasi kegiatan sehari-hari yang mempengaruhi kesehatan mental (misal olahraga, bersosialisasi, meditasi), seberapa mudah Anda  menemukan informasi tentang kegiatan yang memang sehat?  </span>
-                    </div>
-                    <div class="col col-50 col-center" >
-                        <select class="pull-right input-border" class="pull-right input-border" ng-model="hl.hl13">
-                            <option value="" selected></option>
-                            <option value="1">1. Sangat Sulit</option>
-                            <option value="2">2. Cukup Sulit</option>
-                            <option value="3">3. Cukup Mudah</option>
-                            <option value="4">4. sangat Mudah</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="item item-text-wrap item-row">
-                <div class="row">
-                    <div class="col col-50 col-center input-label"><b>HL14</b> Memahami nasehat tentang kesehatan dari keluarga atau teman ?<br>
-                    <span class="input-label hint-status">Probing: Apabila keluarga Anda ada yang sakit dan mendaptkan saran, misalnya kerabat Anda menyarankan untuk berobat ke RS X, teman Anda menyarankan untuk berobat ke dokter Y, sedangkat tetangga Anda menyarankan untuk berobat ke pengobatan alternatif. Bagaimana Anda memahami keuntungan dan kerugian dari masing-masing pilihan pengobatan tersebut? </span>
-                    </div>
-                    <div class="col col-50 col-center" >
-                        <select class="pull-right input-border" class="pull-right input-border" ng-model="hl.hl14">
-                            <option value="" selected></option>
-                            <option value="1">1. Sangat Sulit</option>
-                            <option value="2">2. Cukup Sulit</option>
-                            <option value="3">3. Cukup Mudah</option>
-                            <option value="4">4. sangat Mudah</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="item item-text-wrap item-row">
-                <div class="row">
-                    <div class="col col-50 col-center input-label"><b>HL15</b> Memahami informasi di media tentang bagaimana menjadi lebih sehat ?<br>
-                    <span class="input-label hint-status">Probing: Contoh media adalah TV, radio, koran, atau ulasan di website </span>
-                    </div>
-                    <div class="col col-50 col-center" >
-                        <select class="pull-right input-border" class="pull-right input-border" ng-model="hl.hl15">
-                            <option value="" selected></option>
-                            <option value="1">1. Sangat Sulit</option>
-                            <option value="2">2. Cukup Sulit</option>
-                            <option value="3">3. Cukup Mudah</option>
-                            <option value="4">4. sangat Mudah</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="item item-text-wrap item-row">
-                <div class="row">
-                    <div class="col col-50 col-center input-label"><b>HL16</b> Memberi penilaian kegiatan sehari-hari yang mempengaruhi kesehatan anda ?<br>
-                    <span class="input-label hint-status">Probing: Anda mendapat berbagai informasi kegiatan sehari-hari yang mempengaruhi kesehatan (misal perilaku makan, minum, olahraga), seberapa mudah Anda menilai kegiatan tersebut dapat memberikan pengaruh kepada kesehatan Anda ?  </span>
-                    </div>
-                    <div class="col col-50 col-center" >
-                        <select class="pull-right input-border" class="pull-right input-border" ng-model="hl.hl16">
-                            <option value="" selected></option>
-                            <option value="1">1. Sangat Sulit</option>
-                            <option value="2">2. Cukup Sulit</option>
-                            <option value="3">3. Cukup Mudah</option>
-                            <option value="4">4. sangat Mudah</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
+            </label>
         </ion-list>
         
       </form>
         <!-- Buttons-->
-        <div class="hint-status"><span>Silahkan gunakan tombol Laporan Wawancaara jika sudah ada data yang tercatat dan wawancara berhenti di tengah jalan</span></div>
-        <div class="item-group" ng-if="literacy">
-            <button class="button simpan button-assertive pull-left" ng-click="save(true, 'individu')">
-                <i class="icon ion-arrow-left-c"></i> Laporan Wawancara
+        <div class="item-group">
+            <button class="button simpan button-positive pull-left" ng-click="save('agh')" >
+                <i class="icon ion-arrow-left-c"></i>Kembali
             </button>
-            <button ng-if="literacyAllowSave()" class="button simpan button-dark pull-right" ng-click="save(true)">
-                <i class="icon ion-archive"></i> Lanjut ke DSE 
+            <button ng-if="literacyAllowSave(myForm)" class="button simpan button-positive pull-right" ng-click="save('srq')">
+                Lanjut<i class="icon ion-arrow-right-c"></i>
             </button>
         </div>
 

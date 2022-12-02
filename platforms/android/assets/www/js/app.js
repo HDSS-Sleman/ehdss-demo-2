@@ -18,15 +18,15 @@ angular.module('ehdss', ['ionic','ngCordova'])
         }
         // set config localforage
         localforage.config({
-            name: 'ehdss-ichc-2022'
+            name: 'ehdss-demo-v1'
         });
         // Set URL server 'index.php' untuk aplikasi atau browser
         // integra9: 'http://hdss.integra9.com/server/index.php',
         // localhost: 'http://localhost/ehdss/www/server/index.php',
         // https://hdss.ikm.fk.ugm.ac.id/e-hdss/server/index.php untuk upload ke server
-        if (ionic.Platform.isWebView() || ionic.Platform.isCrosswalk()) {
-            $rootScope.serverUrl = 'http://slemanhdss.id/ichc_2022/server/index.php';
-            $rootScope.serverUrlUpload = 'https://slemanhdss.id/ichc_2022/server/index.php';
+        if (ionic.Platform.isWebView() || ionic.Platform.isCrosswalk() || ionic.Platform.isAndroid()) {
+            $rootScope.serverUrl = 'http://slemanhdss.id/ehdss-demo-v2/server/index.php';
+            $rootScope.serverUrlUpload = 'https://slemanhdss.id/ehdss-demo-v2/server/index.php';
             // $rootScope.serverUrl = 'http://10.18.5.71/e-hdss/server/index.php'; // $rootScope.serverUrl = 'http://hdss.ikm.fk.ugm.ac.id/e-hdss/server/index.php';
             // $rootScope.serverUrlUpload = 'http://10.18.5.71/e-hdss/server/index.php'; // $rootScope.serverUrlUpload = 'https://hdss.ikm.fk.ugm.ac.id/e-hdss/server/index.php';
             $rootScope.iniAndroid = true;
@@ -64,17 +64,6 @@ angular.module('ehdss', ['ionic','ngCordova'])
             templateUrl: 'templates/menu.html',
             controller: 'AppCtrl'
         })
-
-    .state('app.setting', {
-        url: '/setting',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/setting.html',
-                controller: 'SettingCtrl'
-            }
-        }
-    })
-
     .state('app.user', {
         url: '/user',
         views: {
@@ -84,7 +73,6 @@ angular.module('ehdss', ['ionic','ngCordova'])
             }
         }
     })
-
     .state('app.home', {
         url: '/home',
         views: {
@@ -94,94 +82,7 @@ angular.module('ehdss', ['ionic','ngCordova'])
             }
         }
     })
-
-    .state('app.art', {
-        cache: false,
-        url: '/art',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/list_art.html',
-                controller: 'ArtCtrl'
-            }
-        }
-    })    
-
-    .state('app.rt', {
-        cache: false,
-        url: '/rt',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/rt.html',
-                controller: 'RtCtrl'
-            }
-        }
-    })
-
-    .state('app.art_kart', {
-        cache: false,
-        url: '/art_kart',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/art_kart.html',
-                controller: 'ArtKartCtrl'
-            }
-        }
-    })
-    
-    .state('app.icf', {
-        cache: false,
-        url: '/icf',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/icf.html',
-                controller: 'IcfCtrl'
-            }
-        }
-    })
-
-    .state('app.pm', {
-        cache: false,
-        url: '/pm',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/pm.html',
-                controller: 'PmnCtrl'
-            }
-        }
-    })
-
-    .state('app.ptm', {
-        cache: false,
-        url: '/ptm',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/ptm.html',
-                controller: 'PtmCtrl'
-            }
-        }
-    })
-    
-    .state('app.mch',{
-        cache: false,
-        url: '/mch',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/mch.html',
-                controller: 'MchCtrl'
-            }
-        }
-    })
-    .state('app.ichc',{
-        cache: false,
-        url: '/ichc',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/ichc.html',
-                controller: 'IchcCtrl'
-            }
-        }
-    })
-    .state('app.ir',{
+    .state('app.ir', {
         cache: false,
         url: '/ir',
         views: {
@@ -191,43 +92,53 @@ angular.module('ehdss', ['ionic','ngCordova'])
             }
         }
     })
-    .state('app.png',{
+    .state('app.agh', {
         cache: false,
-        url: '/png',
+        url: '/agh',
         views: {
             'menuContent': {
-                templateUrl: 'templates/png.html',
-                controller: 'PngCtrl'
+                templateUrl: 'templates/agh.html',
+                controller: 'AghCtrl'
             }
         }
     })
-    .state('app.prk',{
+    .state('app.hl', {
         cache: false,
-        url: '/prk',
+        url: '/hl',
         views: {
             'menuContent': {
-                templateUrl: 'templates/prk.html',
-                controller: 'PrkCtrl'
+                templateUrl: 'templates/hl.html',
+                controller: 'HlCtrl'
             }
         }
     })
-    .state('app.bkia',{
+    .state('app.srq', {
         cache: false,
-        url: '/bkia',
+        url: '/srq',
         views: {
             'menuContent': {
-                templateUrl: 'templates/bkia.html',
-                controller: 'BkiaCtrl'
+                templateUrl: 'templates/srq.html',
+                controller: 'SrqCtrl'
             }
         }
     })
-    .state('app.ichcp',{
+    .state('app.atr', {
         cache: false,
-        url: '/ichcp',
+        url: '/srq',
         views: {
             'menuContent': {
-                templateUrl: 'templates/ichcp.html',
-                controller: 'IchcpCtrl'
+                templateUrl: 'templates/atr.html',
+                controller: 'AtrCtrl'
+            }
+        }
+    })
+    .state('app.end', {
+        cache: false,
+        url: '/end',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/end.html',
+                controller: 'EndCtrl'
             }
         }
     })

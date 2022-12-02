@@ -1,0 +1,41 @@
+<ion-view view-title="Antropometri">
+    <ion-content class="atr">
+        <form name="myForm" novalidate>
+            <ion-list>
+                <input type="number" ng-model="atr.atr" ng-show="false">
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label">Tinggi badan (cm)</div>
+                        <div class="col col-50 col-center">
+                             <input class="lowercase pull-right" type="number" ng-change="getIMT(atr.atr02,atr.atr01)" block block-length="6" ng-model="atr.atr01" required>
+                        </div>
+                    </div>
+                </label>
+                <div class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label">Berat badan (kg)</div>
+                        <div class="col col-50 col-center">
+                            <input class="lowercase pull-right" type="number" ng-change="getIMT(atr.atr02,atr.atr01)" block block-length="6" ng-model="atr.atr02" required>
+                        </div>
+                    </div>
+                </div>
+                <label class="item item-text-wrap item-row">
+                    <div class="row">
+                        <div class="col col-50 col-center input-label">IMT</div>
+                        <div class="col col-50 col-center">
+                             <input class="lowercase pull-right" type="text" ng-model="atr.atr03" readonly required>
+                        </div>
+                    </div>
+                </label>
+            </ion-list>
+        </form>
+        <div class="item-group">
+            <button class="button simpan button-positive pull-left" ng-click="save('srq')" >
+                <i class="icon ion-arrow-left-c"></i>Kembali
+            </button>
+            <button ng-if="AllowSave(myForm)" class="button simpan button-positive pull-right" ng-click="save('end')">
+                Lanjut<i class="icon ion-arrow-right-c"></i>
+            </button>
+        </div>
+    </ion-content>
+</ion-view>

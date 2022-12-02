@@ -2,120 +2,96 @@
     angular.module('ehdss')
         .controller('IrCtrl', IrCtrl);
 
-    IrCtrl.$inject = ['$scope', '$state', '$rootScope', '$timeout', 'AppService', '$ionicPopup', '$http'];
+    IrCtrl.$inject = ['$scope', '$state', '$rootScope', '$timeout', 'AppService'];
 
-    function IrCtrl($scope, $state, $rootScope, $timeout, AppService, $ionicPopup, $http) {
+    function IrCtrl($scope, $state, $rootScope, $timeout, AppService) {
         
-        $scope.ir = {};
-        AppService.getDataART().then(function(data) {
-            $scope.dataART = data.filter(function(item) {
-                return !item.artTdkAda;
-            });
-            $scope.ir = $rootScope.dataRT.ir || {};
-            if ($scope.ir) {
-                $scope.ir = AppService.deNormalisasiData($scope.ir);
-
-                // validasi usia anak
-                if ($scope.ir.id05) {
-                    var strAge = AppService.getTglLahir($scope.ir.id05);
-                    var umur = AppService.getAgeDetail(strAge);
-                    var umurArr = umur.split('/');
-                    $scope.year = parseInt(umurArr[0]);
-                    $scope.month = parseInt(umurArr[1]);
-                    $scope.day = parseInt(umurArr[2]);
-                    $scope.allowUsia = $scope.year == 0 && $scope.month <= 6;
-
-                    // display age
-                    var strAge = AppService.getTglLahir($scope.ir.id05);
-                    $scope.ir.id26 = AppService.getAgeDetailStr(strAge); 
-                }
-
-                AppService.getCurentRT($rootScope.curRT.idrt).then(function(data2) {
-                    $scope.rt = data2;
-                    if ($scope.rt.id04) { $scope.ir.id04 = $scope.rt.id04; } // Nama Anak
-                    if ($scope.rt.id24) { $scope.ir.id24 = $scope.rt.id24; } // NIK
-                    if ($scope.rt.id05) { $scope.ir.id05 = new Date($scope.rt.id05); } // tgl lahir anak
-                    if ($scope.rt.id27) { $scope.ir.id27 = ''+$scope.rt.id27; } // kabupaten
-                    if ($scope.rt.id23) { $scope.ir.id23 = $scope.rt.id23; } // alamat
-                    if ($scope.rt.id26) { $scope.ir.id26 = $scope.rt.id26; } // usia saat wawancara
-                    if ($scope.rt.id29) { $scope.ir.id29 = $scope.rt.id29; } // usia saat wawancara
-
-                });
-
-                
-            }
-        });
-
-        $scope.umur_AllowSave = function(){
-            // validasi usia anak
-            if ($scope.ir.id05) {
-                var strAge = AppService.getTglLahir($scope.ir.id05);
-                var umur = AppService.getAgeDetail(strAge);
-                var umurArr = umur.split('/');
-                $scope.year = parseInt(umurArr[0]);
-                $scope.month = parseInt(umurArr[1]);
-                $scope.day = parseInt(umurArr[2]);
-                $scope.allowUsia = $scope.year == 0 && $scope.month <= 6;
-
-                // display age
-                var strAge = AppService.getTglLahir($scope.ir.id05);
-                $scope.ir.id26 = AppService.getAgeDetailStr(strAge); 
-            }
+        if (!$rootScope.idrt) {
+            $state.go('app.home'); // jika tidak ada idrt kembali ke home
+            return false;
         }
+        
+        $scope.listKapanewon = AppService.getListKapanewon();
+        $scope.listKalurahan = AppService.getListKalurahanAll();
+        $scope.listPekerjaan = AppService.listPekerjaan();
+        $scope.listPendidikan = AppService.listPendidikan();
 
-        $scope.tglMin6Bulan = AppService.addMonths(new Date(), -6);
+        $scope.ir = {};
 
+        AppService.getDataKel($rootScope.idrt, 'ir').then(function(data) {
+            $scope.ir = data || {};
+            $scope.ir.idrt = $rootScope.idrt;
+            $scope.ir.ir02 = new Date(data.ir02)
+        });
+        
         AppService.getTglWawancaraPlusSatu(true).then(function(val) {
             $scope.tglWawancara = val;
         });
 
-        $scope.tempatPersalinanList = {
-            '1': '1. Rumah Sakit',
-            '2': '2. Puskesmas/Klinik',
-            '3': '3. Bidan Praktek Swasta',
-            '4': '4. Rumah',
+        $scope.countUmur = function(){
+            // validasi usia anak
+            if ($scope.ir.ir02) {
+                var strAge = AppService.getTglLahir($scope.ir.ir02);
+                var umur = AppService.getAgeDetail(strAge);
+                var umurArr = umur.split('/');
+                $scope.year = parseInt(umurArr[0]);
+                $scope.ir.ir03 = $scope.year
+            }
         }
 
-        $scope.pendidikanList = {
-            '1': '1. SD',
-            '2': '2. SMP',
-            '3': '3. SMA',
-            '4': '4. D3',
-            '5': '5. S1',
-            '6': '6. S2/S3',
+        $scope.getKalurahan = function(val){
+            if (val >= 1 && val <= 17) {
+                $scope.listKalurahan = AppService.getListKalurahan(val);                
+            }
         }
 
-        $scope.asuransiList = {
-            '1': '1. BPJS PBI/Jamkesos/Jamkesda',
-            '2': '2. BPJS Non-PBI',
-            '3': '3. Asuransi Swasta',
-            '4': '4. Tidak Punya Asuransi',
-        }
+        
+        //Agar tidak bisa mengetik '*','+' dan '-'//
+        // $scope.onlyNumber = function() {
+        //     var onlyNumber = event.charCode >= 48 && event.charCode <= 57;
+        //     return onlyNumber;
+        // }
+        //
 
-        $scope.AllowSave = function(myForm) {
+        $scope.save = function(param) {
+            $scope.ir.ir = 1;
+            $rootScope.dataRT = $scope.ir;
+
+            $rootScope.$broadcast('saving:show');
+            //  save data Informasi Responden
+            AppService.saveDataRT('ir', $scope.ir).then(function(data) {
+                $rootScope.$broadcast('saving:hide');
+                $rootScope.$broadcast('loading:show');
+                $timeout(function() {
+                    $rootScope.$broadcast('loading:hide');
+                    $state.go('app.agh');
+                }, 400);
+            });
+        };
+
+        $scope.allowSave = function(myForm) {
             var ir = $scope.ir;
-            allow = ir.id04 && ir.id05 && ir.id29 && ir.id27;
+            var allow = ir.ir01 && ir.ir02 && ir.ir03 && ir.ir04 && ir.ir05 && ir.ir06 && 
+                        ir.ir07 && ir.ir08 && ir.ir09 && ir.ir10 && ir.ir11;
 
-                    if (ir.id10 == 3) {
-                        allow = allow && ir.id10a;
-                    }
+                        // pekerjaan lain
+                        if (ir.ir07 == 95) {
+                            allow = allow && ir.ir07a;
+                        }
 
-                    if (ir.id15 == 2) {
-                        allow = allow && ir.id15a;
-                    }
+                        // asuransi lain
+                        a = parseInt(ir.ir08a);
+                        b = parseInt(ir.ir08b);
+                        c = parseInt(ir.ir08c);
+                        no_asuransi = a + b + c;
+                        if (ir.ir08 == 1) {
+                            allow = allow && ir.ir08a && ir.ir08b && ir.ir08c &&
+                                    (no_asuransi != 6);
+                        }
 
-                    if (ir.id22 == 1) {
-                        allow = allow && ir.id22a && ir.id22b && ir.id22c;
-                    }
             return allow && myForm.$valid;
-        };
 
-        // Save
-        $scope.save = function(finish) {
-            var goTo = finish ? 'app.art' : '';
-            // simpan model, termasuk yg hidden dg ng-show, exclude hidden dg ng-if
-            return AppService.saveDataKelMasked('ir', $scope.ir, true, goTo);
-        };
+        };  
 
     }
 })();

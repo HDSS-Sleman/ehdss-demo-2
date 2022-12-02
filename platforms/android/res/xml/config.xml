@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="id.ac.ugm.fk.ehdss.ichc2022" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="id.ac.ugm.fk.ehdss.demoversion1" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <preference name="loglevel" value="DEBUG" />
     <feature name="Keyboard">
         <param name="android-package" value="io.ionic.keyboard.IonicKeyboard" />
@@ -34,12 +34,12 @@
     <splash density="port-xhdpi" src="resources/android/splash/drawable-port-xhdpi-screen.png" />
     <splash density="port-xxhdpi" src="resources/android/splash/drawable-port-xxhdpi-screen.png" />
     <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
-    <name>eHDSS ICHC</name>
+    <name>eHDSS Demo Version 1</name>
     <description>
-        Electronic and Health Demographic Surveillance System
+        Electronic and Health Demographic Surveillance System Mini Lite
     </description>
-    <author email="ebta.setiawan@gmail.com" href="http://ebsoft.web.id/">
-      Ebta Setiawan
+    <author email="hdssjogja.fkkmk@ugm.ac.id" href="https://hdss.fk.ugm.ac.id/">
+      HDSS Sleman
     </author>
     <content src="index.html" />
     <access origin="*" />

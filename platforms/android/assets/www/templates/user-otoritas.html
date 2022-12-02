@@ -3,20 +3,10 @@
         <ion-refresher pulling-text="Pull to refresh..." on-refresh="refreshPage()">
         </ion-refresher>
         <div ng-if="userOtorized && (userRole == 'admin')" class="download-export">
-            <!-- <div class="row">
-                <div class="col col-75">
-                    Hasil Export eHDSS Data Kish Terpisah
-                </div>
-                <div class="col col-25 text-right">
-                    <button
-                       class="button button-right icon-left ion-android-download button-small button-royal"
-                       ng-click="downloadExport('Random')">Download(zip)</button>
-                </div>
-            </div> -->
             <!-- Download HDSS -->
             <div class="row">
                 <div class="col col-75">
-                    Hasil Export eHDSS Data RT dan ART
+                    Download data 
                 </div>
                 <div class="col col-25 text-right">
                     <button
@@ -24,96 +14,12 @@
                        ng-click="downloadExport()">Download (zip)</button>
                 </div>
             </div>
-            <div class="row">
-                <div class="col col-75">
-                    Hasil Export History eHDSS Data RT dan ART
-                </div>
-                <div class="col col-25 text-right">
-                    <button
-                       class="button button-right icon-left ion-android-download button-small button-royal"
-                       ng-click="downloadExport('ART_History')">Download (zip)</button>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col col-75">
-                    Hasil Export Perbaikan baseline
-                </div>
-                <div class="col col-25 text-right">
-                    <button
-                       class="button button-right icon-left ion-android-download button-small button-balanced"
-                       ng-click="downloadExport('PB')">Download (zip)</button>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col col-75">
-                    Hasil Export ART Pindah
-                </div>
-                <div class="col col-25 text-right">
-                    <button
-                       class="button button-right icon-left ion-android-download button-small button-positive"
-                       ng-click="downloadExport('art_pindah')">Download (zip)</button>
-                </div>
-            </div>
-            <!-- <div class="row">
-                <div class="col col-75">
-                    Hasil Export Kontak Awal
-                </div>
-                <div class="col col-25 text-right">
-                    <button
-                       class="button button-right icon-left ion-android-download button-small button-positive"
-                       ng-click="downloadExport('ktlp')">Download (zip)</button>
-                </div>
-            </div> -->
             
-            <div class="row">
-                <div class="col col-75">
-                    Set IDRT RuTa Pecah & Replacement
-                </div>
-                <div class="col col-25 text-right">
-                    <button
-                       class="button button-right icon-left ion-android-download button-small button-assertive"
-                       ng-click="setIdrtMax()">Set IDRT</button>
-                </div>
-            </div>
         </div>
 
         <div ng-if="userOtorized && (userRole == 'admin' || userRole == 'supervisor')" class="download-export">
-            <!-- Download Catatan Enum -->
-            <div class="row">
-                <div class="col col-75">
-                    Hasil Export Catatan Enum (xslx dan csv) tersedia
-                </div>
-                <div class="col col-25 text-right">
-                    <button
-                       class="button button-right icon-left ion-android-download button-small button-balanced"
-                       ng-click="downloadExport('CKE')">Download (zip)</button>
-                </div>
-            </div>
-            <!-- Download Catatan SPV -->
-            <div class="row">
-                <div class="col col-75">
-                    Hasil Export Catatan SPV (xslx dan csv) tersedia
-                </div>
-                <div class="col col-25 text-right">
-                    <button
-                       class="button button-right icon-left ion-android-download button-small button-balanced"
-                       ng-click="downloadExport('CSPV')">Download (zip)</button>
-                </div>
-            </div>
-            <!-- Download Catatan SPV -->
+            <!-- Download  SPV -->
         </div>
-        <!-- <div ng-if="userOtorized && (userRole == 'admin')" class="download-export">
-            <div class="row">
-                <div class="col col-75">
-                    Set IDRT Replacement Sample
-                </div>
-                <div class="col col-25 text-right">
-                    <button
-                       class="button button-right icon-left ion-android-download button-small button-assertive"
-                       ng-click="setIdrtReplacement()">Set IDRT replacement sample</button>
-                </div>
-            </div>
-        </div> -->
 
         <div class="item item-divider desc item-text-wrap">
             Silahkan login untuk mengakses modul User Otoritas
