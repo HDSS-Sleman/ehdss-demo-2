@@ -182,132 +182,12 @@
                     $scope.modal.show();
                 });
             } else if (u.role == 'supervisor' || u.role == 'admin') {
-                listUserAvailable();
-                listUserEnum().then(function() {
-                    $scope.modal.show();
-                });
+                // listUserAvailable();
+                // listUserEnum().then(function() {
+                //     $scope.modal.show();
+                // });
+                $scope.modal.show();
             }
-        };
-
-        $scope.catatanSPV = function(u){
-            $scope.cspv = {};
-            $scope.cspv.tglcspv = new Date();
-            
-            // get data catatan SPV yg sudah tersimpan di database
-            $http.get($rootScope.serverUrl + '?module=data&method=catatan_spv&idrt=' +
-            u.idrt, {timeout:7000}).then(
-                function successCallback(resp) {
-                    $scope.kosong = resp.data.length === 0;
-                    if ($scope.kosong) {
-                        $scope.cspv.idrt = $scope.cspv.idrt || u.idrt;
-                        $scope.cspv.tglcspv = $scope.cspv.tglcspv || new Date();
-                    }
-                    resp.data.forEach(function(val,idx){
-                        if (val.data_spv) {
-                            $scope.cspv = JSON.parse(val.data_spv);
-                            $scope.cspv.tglcspv = new Date($scope.cspv.tglcspv);
-                        }
-                    });
-                },
-                function errorCallback(resp) {
-                });
-
-            $scope.showCatat = true;
-            $scope.showInfo = false;
-        };
-
-        $scope.info = function(u) {
-            $scope.iIDRT = u.idrt;
-            $scope.cspv = {};
-            $scope.cenum = {};
-            
-            // get data catatan SPV yg sudah tersimpan di database
-            $http.get($rootScope.serverUrl + '?module=data&method=catatan_spv&idrt=' +
-            u.idrt, {timeout:7000}).then(
-                function successCallback(resp) {
-                    $scope.kosong = resp.data.length === 0;
-                    resp.data.forEach(function(val_spv,idx){
-                        if (val_spv.data_spv) {
-                            $scope.cspv = JSON.parse(val_spv.data_spv);
-                            $scope.cspv.tglcspv = AppService.StringDateTo_ddmmyyy($scope.cspv.tglcspv);
-                        }else{
-                            $scope.cspv.idrt = $scope.cspv.idrt || u.idrt;
-                            $scope.cspv.tglcspv = '';
-                        }
-                    });
-                },
-                function errorCallback(resp) {
-                });
-
-            // get data catatan Enum yg sudah tersimpan di database
-            $http.get($rootScope.serverUrl + '?module=data&method=catatan_enum&idrt=' +
-            u.idrt, {timeout:7000}).then(
-                function successCallback(resp) {
-                    $scope.kosong = resp.data.length === 0;
-                    resp.data.forEach(function(val_enum,idx){
-                        if (val_enum.data_enum) {
-                            $scope.cenum = JSON.parse(val_enum.data_enum);
-                            $scope.cenum.tglcke1_m1 = AppService.StringDateTo_ddmmyyy($scope.cenum.tglcke1_m1);
-                            $scope.cenum.tglcke2_m1 = AppService.StringDateTo_ddmmyyy($scope.cenum.tglcke2_m1);
-                            $scope.cenum.tglcke3_m1 = AppService.StringDateTo_ddmmyyy($scope.cenum.tglcke3_m1);
-
-                            $scope.cenum.tglcke1_m2 = AppService.StringDateTo_ddmmyyy($scope.cenum.tglcke1_m2);
-                            $scope.cenum.tglcke2_m2 = AppService.StringDateTo_ddmmyyy($scope.cenum.tglcke2_m2);
-                            $scope.cenum.tglcke3_m2 = AppService.StringDateTo_ddmmyyy($scope.cenum.tglcke3_m2);
-
-                            $scope.cenum.tglcke1_m3 = AppService.StringDateTo_ddmmyyy($scope.cenum.tglcke1_m3);
-                            $scope.cenum.tglcke2_m3 = AppService.StringDateTo_ddmmyyy($scope.cenum.tglcke2_m3);
-                            $scope.cenum.tglcke3_m3 = AppService.StringDateTo_ddmmyyy($scope.cenum.tglcke3_m3);
-                        }else{
-                            $scope.cenum.tglcke1_m1 = '';
-                            $scope.cenum.tglcke2_m1 = '';
-                            $scope.cenum.tglcke3_m1 = '';
-                            $scope.cenum.tglcke1_m2 = '';
-                            $scope.cenum.tglcke2_m2 = '';
-                            $scope.cenum.tglcke3_m2 = '';
-                            $scope.cenum.tglcke1_m3 = '';
-                            $scope.cenum.tglcke2_m3 = '';
-                            $scope.cenum.tglcke3_m3 = '';
-                        }
-                    });
-                },
-                function errorCallback(resp) {
-                });
-
-            // get Status Upload data wawancara
-            $http.get($rootScope.serverUrl + '?module=data&method=statUpload&idrt=' +
-            u.idrt, {timeout:7000}).then(
-                function successCallback(resp) {
-                    $scope.kosong = resp.data.length === 0;
-                    $scope.statUpload = $scope.kosong ? 'Belum upload data wawancara' : 'Sudah upload data wawancara';
-                },
-                function errorCallback(resp) {
-                });
-
-            // get Status Upload data catatan enum
-            $http.get($rootScope.serverUrl + '?module=data&method=statUploadCke&idrt=' +
-            u.idrt, {timeout:7000}).then(
-                function successCallback(resp) {
-                    $scope.kosongCke = resp.data.length === 0;
-                    $scope.statUploadCke = $scope.kosongCke ? 'Belum upload data catatan enum' : 'Sudah upload data catatan enum';
-                },
-                function errorCallback(resp) {
-                });
-
-            // get tgl bagi baseline
-            $http.get($rootScope.serverUrl + '?module=data&method=tgl_bagi&idrt=' +
-            u.idrt, {timeout:7000}).then(
-                function successCallback(resp) {
-                    $scope.kosong = resp.data.length === 0;
-                    resp.data.forEach(function(val_tgl,idx){
-                        $scope.tglBagi = AppService.StringDateTo_ddmmyyy(val_tgl.tglbagi);
-                    });
-                },
-                function errorCallback(resp) {
-                });
-
-            $scope.showCatat = false;
-            $scope.showInfo = true;
         };
 
         $scope.addUser = function() {
@@ -404,7 +284,11 @@
                             title: 'Sukses',
                             template: resp.data.msg
                         });
-                        listRT();
+                        if ($scope.editMode == 'edit') { // jika edit mode update param berdasarkan data yg diinput
+                            $scope.userParams = '&username=' + user.user + '&password=' + md5(user.paswd1);
+                        }
+                        
+                        location.reload();
                     }
                 },
                 function errorCallback(resp) {

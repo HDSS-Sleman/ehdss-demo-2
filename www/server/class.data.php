@@ -12,12 +12,12 @@ class Data {
         }
 
         /* Table Name */
-        $this->tb_data_art = 'demov2_data_art';
-        $this->tb_data_result = 'demov2_data_result';
-        $this->tb_data_rt = 'demov2_data_rt';
-        $this->tb_users = 'demov2_users';
-        $this->tb_user_enum = 'demov2_user_enum';
-        $this->tb_user_rt = 'demov2_user_rt';
+        // $this->tb_data_art = 'demo2_data_art';
+        $this->tb_data_result = 'demo2_data_result';
+        // $this->tb_data_rt = 'demo2_data_rt';
+        $this->tb_users = 'demo2_users';
+        // $this->tb_user_enum = 'demo2_user_enum';
+        // $this->tb_user_rt = 'demo2_user_rt';
     }
 
     public function list_rt() {
@@ -33,7 +33,7 @@ class Data {
 
         // di tabel user, password = md5(md5(password)) - default user + 789
         // jadi yg dikirim harus sudah berupa md5(password) 
-        // ambil dari table demov2_users
+        // ambil dari table demo2_users
         $sql_user = "SELECT * FROM ".$this->tb_users." WHERE user = '$username' AND password=md5('$password')";
         $result_user = $this->db->query($sql_user);
         if($result_user->num_rows === 0) {
@@ -46,10 +46,10 @@ class Data {
         $sql_art = "SELECT * FROM ".$this->tb_data_art." WHERE idrt IN ($sql_idrt_user)";
         $result_art = $this->db->query($sql_art);
 
-        // agar query cepat, pastikan idrt di index di demov2_data_rt dan demov2_data_art (kpd01 juga)
+        // agar query cepat, pastikan idrt di index di demo2_data_rt dan demo2_data_art (kpd01 juga)
         $sql_rt = "SELECT * FROM ".$this->tb_data_rt." WHERE idrt IN ($sql_idrt_user)";
 
-        // Tambah kolom jumlah ART (old query karena masih abil demov2_data_result tgl yg lama)
+        // Tambah kolom jumlah ART (old query karena masih abil demo2_data_result tgl yg lama)
         // $sql_rt = "SELECT t1.*, t2.*, t3.datakel FROM ".$this->tb_data_rt." t1 
         //     LEFT JOIN (
         //      select idrt, count(*) jml_art from ".$this->tb_data_art."
@@ -63,7 +63,7 @@ class Data {
         //     ON t1.idrt = t3.idrt
         //     WHERE t1.idrt IN ($sql_idrt_user)";
 
-        // Tambah kolom jumlah ART (new query karena sudah abil demov2_data_result tgl yg terbaru)
+        // Tambah kolom jumlah ART (new query karena sudah abil demo2_data_result tgl yg terbaru)
         $sql_rt = "SELECT t1.*, t2.*, t3.datakel FROM ".$this->tb_data_rt." t1
             LEFT JOIN (
                 SELECT idrt, COUNT(*) jml_art FROM ".$this->tb_data_art."
@@ -114,9 +114,9 @@ class Data {
             }
             
             // query untuk tambahan rt baru siklus 1 berdasarkan username diambil data yg terbaru
-            // $sql_s1 = "SELECT idrt, data FROM demov2_data_result 
-            //             WHERE tanggal IN (SELECT id_tb.tgl FROM (SELECT id_data_result,idrt,MAX(tanggal) AS tgl FROM `demov2_data_result` WHERE DATA LIKE '%enum_".$username."_enum%' GROUP BY idrt) AS id_tb) 
-            //             ORDER BY `demov2_data_result`.`idrt` ASC";
+            // $sql_s1 = "SELECT idrt, data FROM demo2_data_result 
+            //             WHERE tanggal IN (SELECT id_tb.tgl FROM (SELECT id_data_result,idrt,MAX(tanggal) AS tgl FROM `demo2_data_result` WHERE DATA LIKE '%enum_".$username."_enum%' GROUP BY idrt) AS id_tb) 
+            //             ORDER BY `demo2_data_result`.`idrt` ASC";
             $sql_s1 = "SELECT t11.idrt, t11.data FROM ".$this->tb_data_result." t11
                     LEFT JOIN ".$this->tb_user_rt." t22 ON t11.idrt = t22.idrt
                     WHERE t11.tanggal = (SELECT MAX(t22.tanggal) FROM ".$this->tb_data_result." t22 WHERE t22.idrt = t11.idrt AND t11.data LIKE '%enum_".$username."_enum%')
@@ -327,12 +327,12 @@ class Data {
     }
     
     /**
-     * Fungsi-fungsi mengubah json data di table demov2_data_result menjadi CSV
+     * Fungsi-fungsi mengubah json data di table demo2_data_result menjadi CSV
      */
 
      // Fungsi untuk mengubah model => (id_art => value) menjadi id_art => (model => value)
      // Agar hasilnya seperti data yang ada di part, artb dan krp
-     // parameter $data adalah array dari kolom data demov2_data_result
+     // parameter $data adalah array dari kolom data demo2_data_result
      private function normalisasi_data(&$data) {
          // $modul adalah ngModel induk, $obj adalah value dari ngModel
          foreach ($data as $modul => $obj) {
@@ -459,17 +459,15 @@ class Data {
 
     private function generateCsv($includeXslx = false) {
          // Ambil semua kolom2 RT dan ART sebagai master array dan set empty value
-         $csv = file_get_contents('rt_demov1.csv');
+         $csv = file_get_contents('rt_demo2.csv');
          $ref_rt = array_fill_keys(explode(',', $csv), '');
 
          // csv art yg lama jika tidak ada replace data header
-         $csv = file_get_contents('art_demov1.csv'); 
+         $csv = file_get_contents('art_demo2.csv'); 
          $ref_art = array_fill_keys(explode(',', $csv), '');
 
          // Query setiap data RT 1 saja dengan tanggal terakhir masuk
-         $sql = "SELECT t1.idrt, t1.data, t1.tanggal, t2.user FROM ".$this->tb_data_result." t1
-                LEFT JOIN ".$this->tb_user_rt." t2 ON t1.idrt = t2.idrt
-                WHERE t1.tanggal = (SELECT MAX(t2.tanggal) FROM ".$this->tb_data_result." t2 WHERE t2.idrt = t1.idrt)
+         $sql = "SELECT t1.idrt, t1.data, t1.tanggal FROM ".$this->tb_data_result." t1
                 ORDER BY t1.idrt";
          $res = $this->db->query($sql);
 

@@ -14,12 +14,12 @@ class User
         header('Content-type: application/json');
 
         /* Table Name */
-        $this->tb_data_art = 'demov2_data_art';
-        $this->tb_data_result = 'demov2_data_result';
-        $this->tb_data_rt = 'demov2_data_rt';
-        $this->tb_users = 'demov2_users';
-        $this->tb_user_enum = 'demov2_user_enum';
-        $this->tb_user_rt = 'demov2_user_rt';
+        // $this->tb_data_art = 'demo2_data_art';
+        $this->tb_data_result = 'demo2_data_result';
+        // $this->tb_data_rt = 'demo2_data_rt';
+        $this->tb_users = 'demo2_users';
+        // $this->tb_user_enum = 'demo2_user_enum';
+        // $this->tb_user_rt = 'demo2_user_rt';
     }
 
     /**
@@ -87,19 +87,11 @@ class User
 
         if ($role === 'admin') {
             $where = '';
-        } else {
-            $where = "WHERE u.user = '$username' OR u.user IN (SELECT enum FROM ".$this->tb_user_enum." WHERE user = '$username')";
         }
 
-        $sql = "SELECT u.id_user, u.user, role, IFNULL(jml,'-') jml_rt
+        $sql = "SELECT u.id_user, u.user, role
                 FROM ".$this->tb_users." u
-                LEFT JOIN
-                (
-                  SELECT USER, COUNT(idrt) jml
-                  FROM ".$this->tb_user_rt."
-                  GROUP BY USER
-                  ORDER BY USER) urt
-                ON urt.user = u.user $where ORDER BY role, u.user";
+                $where ORDER BY role, u.user";
         $result= $this->db->query($sql);
         if ($result) {
             $i = 0;
@@ -110,7 +102,7 @@ class User
             }
             echo json_encode($resp, JSON_NUMERIC_CHECK);
         } else {
-            exit('{"success": false, "msg": "Empty atau Gagal mengambil data demov2_user_rt"}');
+            exit('{"success": false, "msg": "Empty atau Gagal mengambil data demo2_user_rt $sql"}');
         }
     }
 
@@ -173,7 +165,7 @@ class User
                 exit('{"success": false, "msg": "Gagal menghapus User dari Users"}');
             }
         } else {
-            exit('{"success": false, "msg": "Gagal menghapus User dari demov2_User_rt"}');
+            exit('{"success": false, "msg": "Gagal menghapus User dari demo2_User_rt"}');
         }
     }
 

@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="id.ac.ugm.fk.ehdss.demoversion1" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="id.ac.ugm.fk.ehdss.2.0" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>eHDSS Demo Version 1</name>
     <description>
-        Electronic and Health Demographic Surveillance System Mini Lite
+        Electronic and Health Demographic Surveillance System 2.0
     </description>
     <author email="hdssjogja.fkkmk@ugm.ac.id" href="https://hdss.fk.ugm.ac.id/">
       HDSS Sleman

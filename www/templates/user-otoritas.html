@@ -5,10 +5,10 @@
         <div ng-if="userOtorized && (userRole == 'admin')" class="download-export">
             <!-- Download HDSS -->
             <div class="row">
-                <div class="col col-75">
+                <div class="col col-50">
                     Download data 
                 </div>
-                <div class="col col-25 text-right">
+                <div class="col col-50 text-right">
                     <button
                        class="button button-right icon-left ion-android-download button-small button-royal"
                        ng-click="downloadExport()">Download (zip)</button>
@@ -52,14 +52,12 @@
                         <div class="col col-10 text-center">No</div>
                         <div class="col col-20">Username</div>
                         <div class="col col-20 text-center">Role</div>
-                        <div class="col col-20 text-right">Jml RT</div>
                         <div class="col col-30 text-center">Aksi</div>
                     </div>
                     <div class="row" ng-repeat="u in listUserRT" ng-class="u.role">
                         <div class="col col-10 text-center">{{u.no}}</div>
                         <div class="col col-20">{{u.user}}</div>
                         <div class="col col-20 text-center">{{u.role}}</div>
-                        <div class="col col-20 text-right">{{u.jml_rt}}</div>
                         <div class="col col-30 col-row text-center">
                             <button ng-show="u.role == 'enum'" class="button icon-left ion-android-apps button-small button-positive"
                                 ng-click="detail(u)">Detail</button>

@@ -25,8 +25,8 @@ angular.module('ehdss', ['ionic','ngCordova'])
         // localhost: 'http://localhost/ehdss/www/server/index.php',
         // https://hdss.ikm.fk.ugm.ac.id/e-hdss/server/index.php untuk upload ke server
         if (ionic.Platform.isWebView() || ionic.Platform.isCrosswalk() || ionic.Platform.isAndroid()) {
-            $rootScope.serverUrl = 'http://slemanhdss.id/ehdss-demo-v2/server/index.php';
-            $rootScope.serverUrlUpload = 'https://slemanhdss.id/ehdss-demo-v2/server/index.php';
+            $rootScope.serverUrl = 'https://slemanhdss.id/ehdss-demo-2/server/index.php';
+            $rootScope.serverUrlUpload = 'https://slemanhdss.id/ehdss-demo-2/server/index.php';
             // $rootScope.serverUrl = 'http://10.18.5.71/e-hdss/server/index.php'; // $rootScope.serverUrl = 'http://hdss.ikm.fk.ugm.ac.id/e-hdss/server/index.php';
             // $rootScope.serverUrlUpload = 'http://10.18.5.71/e-hdss/server/index.php'; // $rootScope.serverUrlUpload = 'https://hdss.ikm.fk.ugm.ac.id/e-hdss/server/index.php';
             $rootScope.iniAndroid = true;
