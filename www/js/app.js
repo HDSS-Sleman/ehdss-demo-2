@@ -18,7 +18,7 @@ angular.module('ehdss', ['ionic','ngCordova'])
         }
         // set config localforage
         localforage.config({
-            name: 'ehdss-demo-v1'
+            name: 'ehdss-demo-2'
         });
         // Set URL server 'index.php' untuk aplikasi atau browser
         // integra9: 'http://hdss.integra9.com/server/index.php',
